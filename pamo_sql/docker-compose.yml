@@ -1,0 +1,165 @@
+version: "3.9"
+
+services:
+  # ─── Main experiment runner ─────────────────────────────────────
+  pamo-sql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pamo-sql-runner
+    env_file: .env
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=DEBUG
+      - LOG_FORMAT=json
+      - LOG_DIR=/app/artifacts/logs
+    volumes:
+      # Persist data & artifacts across runs
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+      - ./configs:/app/configs
+      # Mount source for live-edit during development
+      - ./common:/app/common
+      - ./stage0_metadata:/app/stage0_metadata
+      - ./stage1_understanding:/app/stage1_understanding
+      - ./stage2_generation:/app/stage2_generation
+      - ./stage3_execution_repair:/app/stage3_execution_repair
+      - ./stage4_sql_prm_selection:/app/stage4_sql_prm_selection
+      - ./stage4_5_hardcase_refinement:/app/stage4_5_hardcase_refinement
+      - ./stage4_selection:/app/stage4_selection
+      - ./stage5_evaluation:/app/stage5_evaluation
+      - ./pipelines:/app/pipelines
+    command: ["python", "pipelines/run_single_question.py"]
+    networks:
+      - pamo-net
+
+  # ─── Batch dataset runner ───────────────────────────────────────
+  pamo-dataset:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pamo-dataset-runner
+    env_file: .env
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=json
+      - LOG_DIR=/app/artifacts/logs
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+      - ./configs:/app/configs
+    command: ["python", "pipelines/run_dataset.py"]
+    profiles: ["batch"]
+    networks:
+      - pamo-net
+
+  # ─── Ablation experiment runner ─────────────────────────────────
+  pamo-ablation:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pamo-ablation-runner
+    env_file: .env
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=json
+      - LOG_DIR=/app/artifacts/logs
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+      - ./configs:/app/configs
+    command: ["python", "pipelines/run_ablation.py"]
+    profiles: ["ablation"]
+    networks:
+      - pamo-net
+
+  # ─── SQL-PRM model training ────────────────────────────────────
+  pamo-train:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pamo-train-prm
+    env_file: .env
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=json
+      - LOG_DIR=/app/artifacts/logs
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+      - ./configs:/app/configs
+    command: >
+      python stage4_sql_prm_selection/train_sql_prm.py
+        --pairs artifacts/stage4_pairs/train_pairs.jsonl
+        --output_dir artifacts/models/sql_prm_selector
+    profiles: ["train"]
+    # Uncomment below for GPU training:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    networks:
+      - pamo-net
+
+  # ─── Stage 0: offline metadata profiling ────────────────────────
+  pamo-profile:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pamo-profiler
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=DEBUG
+      - LOG_FORMAT=json
+      - LOG_DIR=/app/artifacts/logs
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+    command: >
+      python stage0_metadata/profile_database.py
+        --db_path data/raw/databases/california_schools/california_schools.sqlite
+        --output_path artifacts/metadata/california_schools/profile.json
+    profiles: ["profile"]
+    networks:
+      - pamo-net
+
+  # ─── Preprocessing pipeline for BIRD ────────────────────────────
+  pamo-preprocess:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pamo-preprocessor
+    environment:
+      - PYTHONPATH=/app
+      - LOG_LEVEL=INFO
+      - LOG_FORMAT=json
+      - LOG_DIR=/app/artifacts/logs
+    volumes:
+      - ./data:/app/data
+      - ./artifacts:/app/artifacts
+    command: ["python", "preprocess/run_all_preprocess.py", "--input", "data/raw/bird/train.json", "--split", "train"]
+    profiles: ["preprocess"]
+    networks:
+      - pamo-net
+
+  # ─── Log viewer (Dozzle) ────────────────────────────────────────
+  log-viewer:
+    image: amir20/dozzle:latest
+    container_name: pamo-log-viewer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "9999:8080"
+    profiles: ["monitoring"]
+    networks:
+      - pamo-net
+
+networks:
+  pamo-net:
+    driver: bridge

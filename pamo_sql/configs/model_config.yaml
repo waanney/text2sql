@@ -1,0 +1,30 @@
+# Model configuration for PAMO-SQL
+
+llm:
+  provider: "openai"  # openai | gemini | local
+  model: "gpt-4o-mini"
+  temperature: 0.2
+  max_tokens: 2048
+  timeout_sec: 60
+
+sql_prm:
+  # Training config
+  base_model: "microsoft/deberta-v3-base"
+  num_labels: 3
+  max_length: 2048
+  learning_rate: 2.0e-5
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 8
+  num_train_epochs: 3
+  fp16: true
+  save_steps: 500
+  eval_steps: 500
+  logging_steps: 50
+  output_dir: "artifacts/models/sql_prm_selector"
+
+  # Inference config
+  model_path: "artifacts/models/sql_prm_selector"
+
+embedding:
+  model: "text-embedding-3-small"
+  dimension: 512

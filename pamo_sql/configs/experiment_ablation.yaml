@@ -1,0 +1,106 @@
+experiment_name: "pamo_sql_v2_ablation"
+
+stages:
+  use_profile_metadata: true
+  use_query_log_features: true
+  use_schema_ranker: true
+  use_evidence_constraints: true
+  use_reasoning_generator: true
+  use_icl_generator: true
+  use_metadata_constrained_generator: true
+  use_evidence_focused_generator: true
+  use_join_focused_generator: true
+  use_simple_generator: true
+  use_repair: true
+  use_hard_case_refinement: true
+
+generation:
+  reasoning_n: 3
+  icl_n: 3
+  metadata_constrained_n: 2
+  evidence_focused_n: 3
+  join_focused_n: 3
+  simple_n: 1
+
+selector:
+  # "majority_voting" | "execution_grouping" | "rule_based" | "llm_pairwise" | "trained_prm" | "prm_llm_tiebreaker" | "prm_hardcase"
+  method: "trained_prm"
+
+ablation_variants:
+  - name: "A0_majority_voting"
+    description: "Majority voting baseline"
+    overrides:
+      selector.method: "majority_voting"
+
+  - name: "A1_execution_grouping"
+    description: "Execution grouping only"
+    overrides:
+      selector.method: "execution_grouping"
+
+  - name: "A2_rule_selector"
+    description: "Rule-based selector"
+    overrides:
+      selector.method: "rule_based"
+
+  - name: "A3_llm_pairwise"
+    description: "LLM pairwise selector"
+    overrides:
+      selector.method: "llm_pairwise"
+
+  - name: "A4_trained_prm"
+    description: "Trained SQL-PRM selector"
+    overrides:
+      selector.method: "trained_prm"
+
+  - name: "A5_prm_llm_tiebreaker"
+    description: "SQL-PRM + LLM tie-breaker"
+    overrides:
+      selector.method: "prm_llm_tiebreaker"
+
+  - name: "A6_prm_hardcase"
+    description: "SQL-PRM + hard-case refinement"
+    overrides:
+      selector.method: "trained_prm"
+      stages.use_hard_case_refinement: true
+
+  - name: "A7_prm_no_execution"
+    description: "SQL-PRM without execution feedback"
+    overrides:
+      selector.method: "trained_prm"
+      selector.no_execution_feedback: true
+
+  - name: "A8_prm_no_evidence"
+    description: "SQL-PRM without evidence context"
+    overrides:
+      selector.method: "trained_prm"
+      selector.no_evidence_context: true
+
+  - name: "A9_prm_no_matched_values"
+    description: "SQL-PRM without matched values"
+    overrides:
+      selector.method: "trained_prm"
+      selector.no_matched_values: true
+
+  - name: "full"
+    description: "Full pipeline with all components"
+    overrides: {}
+
+  - name: "wo_evidence_focused_gen"
+    description: "Without evidence-focused generator"
+    overrides:
+      stages.use_evidence_focused_generator: false
+
+  - name: "wo_join_focused_gen"
+    description: "Without join-focused generator"
+    overrides:
+      stages.use_join_focused_generator: false
+
+  - name: "wo_repair"
+    description: "Without repair stage"
+    overrides:
+      stages.use_repair: false
+
+  - name: "wo_hard_case"
+    description: "Without hard-case refinement"
+    overrides:
+      stages.use_hard_case_refinement: false

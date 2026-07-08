@@ -1,0 +1,17 @@
+# Core
+pandas>=1.5.0
+sqlglot>=11.0.0
+pyyaml>=6.0
+openai>=1.0.0
+
+# Schema ranker baseline
+scikit-learn>=1.0.0
+
+# SQL-PRM selector (Option 2: classification model)
+torch>=2.0.0
+transformers>=4.35.0
+datasets>=2.14.0
+
+# Optional: LoRA fine-tuning (Option 3)
+# peft>=0.6.0
+# bitsandbytes>=0.41.0

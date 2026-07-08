@@ -1,0 +1,32 @@
+# SQL-PRM Selector Configuration
+
+selector:
+  # "llm_pairwise" | "trained_prm" | "rule_based" | "majority_voting"
+  method: "llm_pairwise"
+
+  llm_pairwise:
+    model: "gpt-4o-mini"
+    temperature: 0.0
+    max_comparisons_per_question: 50  # cap for large candidate sets
+
+  trained_prm:
+    model_path: "artifacts/models/sql_prm_selector"
+    max_length: 2048
+
+  tournament:
+    group_by_execution: true  # deduplicate same-result candidates before tournament
+    tie_breaker: "llm"  # "llm" | "source_priority" | "none"
+
+  source_priority:
+    metadata_constrained_generator: 5
+    evidence_focused_generator: 5
+    reasoning_generator: 4
+    join_focused_generator: 4
+    icl_generator: 3
+    simple_generator: 2
+
+hard_case:
+  enable: true
+  margin_threshold: 0.5
+  max_regeneration_candidates: 5
+  max_refinement_rounds: 1
