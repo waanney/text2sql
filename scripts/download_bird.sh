@@ -5,10 +5,8 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-
 DEST_DIR="$PROJECT_ROOT/pamo_sql/data/raw/bird"
-
-TYPE=${1:-"mini"}
+TYPE=${1:-"dev"}
 
 if [ "$TYPE" = "train" ]; then
   URL="https://bird-bench.oss-cn-beijing.aliyuncs.com/train.zip"
@@ -18,12 +16,8 @@ elif [ "$TYPE" = "dev" ]; then
   URL="https://bird-bench.oss-cn-beijing.aliyuncs.com/dev.zip"
   ZIP_NAME="dev.zip"
   echo "Preparing to download BIRD Full Dev Dataset (approx. 4.5 GB)..."
-elif [ "$TYPE" = "mini" ]; then
-  URL="https://bird-bench.oss-cn-beijing.aliyuncs.com/minidev.zip"
-  ZIP_NAME="minidev.zip"
-  echo "Preparing to download BIRD Mini Dev Dataset (approx. 350 MB)..."
 else
-  echo "Error: Invalid argument '$TYPE'. Choose 'train', 'dev', or 'mini'."
+  echo "Error: Invalid argument '$TYPE'. Choose 'train' or 'dev'."
   exit 1
 fi
 
