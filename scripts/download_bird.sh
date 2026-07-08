@@ -8,10 +8,13 @@ PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 DEST_DIR="$PROJECT_ROOT/pamo_sql/data/raw/bird"
 
-# Ask user which split they want to download
 TYPE=${1:-"mini"}
 
-if [ "$TYPE" = "dev" ]; then
+if [ "$TYPE" = "train" ]; then
+  URL="https://bird-bench.oss-cn-beijing.aliyuncs.com/train.zip"
+  ZIP_NAME="train.zip"
+  echo "Preparing to download BIRD Full Train Dataset (WARNING: approx. 30 GB+)..."
+elif [ "$TYPE" = "dev" ]; then
   URL="https://bird-bench.oss-cn-beijing.aliyuncs.com/dev.zip"
   ZIP_NAME="dev.zip"
   echo "Preparing to download BIRD Full Dev Dataset (approx. 4.5 GB)..."
@@ -20,7 +23,7 @@ elif [ "$TYPE" = "mini" ]; then
   ZIP_NAME="minidev.zip"
   echo "Preparing to download BIRD Mini Dev Dataset (approx. 350 MB)..."
 else
-  echo "Error: Invalid argument '$TYPE'. Choose 'mini' or 'dev'."
+  echo "Error: Invalid argument '$TYPE'. Choose 'train', 'dev', or 'mini'."
   exit 1
 fi
 
