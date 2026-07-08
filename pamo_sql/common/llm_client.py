@@ -8,12 +8,16 @@ def call_llm(prompt: str, temperature: float = 0.2) -> str:
     Call the LLM using standard OpenAI client or similar.
     Fallback to env variables or mock response if not configured.
     """
-    # Check if OPENAI_API_KEY is configured
     api_key = os.environ.get("OPENAI_API_KEY")
-    if api_key:
+    base_url = os.environ.get("OPENAI_API_BASE")
+    
+    if api_key or base_url:
         try:
             from openai import OpenAI
-            client = OpenAI(api_key=api_key)
+            client = OpenAI(
+                api_key=api_key or "local-model",
+                base_url=base_url
+            )
             model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
             response = client.chat.completions.create(
                 model=model,
