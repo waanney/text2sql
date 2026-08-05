@@ -1,51 +1,51 @@
 {
   "total": 5,
-  "correct": 0,
-  "accuracy": 0.0,
+  "correct": 2,
+  "accuracy": 0.4,
   "details": [
     {
       "question_id": 0,
       "db_id": "california_schools",
-      "predicted_sql": "```sql\nSELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nJOIN \"schools\" ON \"frpm\".\"County Code\" = \"schools\".\"County\"\nWHERE \"schools\".\"County\" = 'Alameda';\n```",
+      "predicted_sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nJOIN \"schools\" ON \"frpm\".\"CDSCode\" = \"schools\".\"CDSCode\"\nWHERE \"schools\".\"County\" = 'Alameda';",
       "gold_sql": "SELECT `Free Meal Count (K-12)` / `Enrollment (K-12)` FROM frpm WHERE `County Name` = 'Alameda' ORDER BY (CAST(`Free Meal Count (K-12)` AS REAL) / `Enrollment (K-12)`) DESC LIMIT 1",
-      "correct": false,
-      "pred_rows": null,
+      "correct": true,
+      "pred_rows": 1,
       "gold_rows": 1
     },
     {
       "question_id": 1,
       "db_id": "california_schools",
-      "predicted_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+      "predicted_sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
       "gold_sql": "SELECT `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)` FROM frpm WHERE `Educational Option Type` = 'Continuation School' AND `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)` IS NOT NULL ORDER BY `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)` ASC LIMIT 3",
       "correct": false,
-      "pred_rows": null,
+      "pred_rows": 1,
       "gold_rows": 3
     },
     {
       "question_id": 2,
       "db_id": "california_schools",
-      "predicted_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+      "predicted_sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
       "gold_sql": "SELECT T2.Zip FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T1.`District Name` = 'Fresno County Office of Education' AND T1.`Charter School (Y/N)` = 1",
       "correct": false,
-      "pred_rows": null,
+      "pred_rows": 34,
       "gold_rows": 5
     },
     {
       "question_id": 3,
       "db_id": "california_schools",
-      "predicted_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+      "predicted_sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
       "gold_sql": "SELECT T2.MailStreet FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode ORDER BY T1.`FRPM Count (K-12)` DESC LIMIT 1",
-      "correct": false,
-      "pred_rows": null,
+      "correct": true,
+      "pred_rows": 1,
       "gold_rows": 1
     },
     {
       "question_id": 4,
       "db_id": "california_schools",
-      "predicted_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolID = f.SchoolID\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+      "predicted_sql": "SELECT schools.Phone\nFROM schools\nJOIN frpm ON schools.CDSCode = frpm.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1\n  AND frpm.`Charter Funding Type` = 'Directly funded'\n  AND schools.OpenDate >= '2000-01-01'\n  AND schools.Phone IS NOT NULL;",
       "gold_sql": "SELECT T2.Phone FROM frpm AS T1 INNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode WHERE T1.`Charter Funding Type` = 'Directly funded' AND T1.`Charter School (Y/N)` = 1 AND T2.OpenDate > '2000-01-01'",
       "correct": false,
-      "pred_rows": null,
+      "pred_rows": 694,
       "gold_rows": 751
     }
   ]

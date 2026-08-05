@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.13869071006774902,
+      "runtime_sec": 0.01342153549194336,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -34,7 +34,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011771678924560547,
+      "runtime_sec": 0.011254549026489258,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -59,7 +59,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011016130447387695,
+      "runtime_sec": 0.010751008987426758,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -84,7 +84,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.09255003929138184,
+      "runtime_sec": 0.020398855209350586,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -109,7 +109,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.032898664474487305,
+      "runtime_sec": 0.020380496978759766,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -125,7 +125,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS MaxEligibleFreeRate\nFROM frpm\nWHERE `County Name` = 'Alameda';",
+    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "0_cand_5",
@@ -134,11 +134,11 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014037609100341797,
+      "runtime_sec": 0.02064371109008789,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "MaxEligibleFreeRate"
+        "HighestEligibleFreeRate"
       ],
       "sample_rows": [
         [
@@ -159,7 +159,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.030997037887573242,
+      "runtime_sec": 0.02026844024658203,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -175,7 +175,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate\nFROM frpm\nWHERE `County Name` = 'Alameda';",
+    "sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nJOIN \"schools\" ON \"frpm\".\"CDSCode\" = \"schools\".\"CDSCode\"\nWHERE \"schools\".\"County\" = 'Alameda';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "0_cand_7",
@@ -184,7 +184,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.015551567077636719,
+      "runtime_sec": 0.020913362503051758,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -209,7 +209,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014326095581054688,
+      "runtime_sec": 0.01072549819946289,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -234,7 +234,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014352083206176758,
+      "runtime_sec": 0.010230779647827148,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -250,7 +250,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate\nFROM frpm\nWHERE `County Name` = 'Alameda';",
+    "sql": "SELECT MAX(frpm.`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate\nFROM frpm\nWHERE frpm.`County Name` = 'Alameda';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "0_cand_10",
@@ -259,7 +259,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014452219009399414,
+      "runtime_sec": 0.010361671447753906,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -284,32 +284,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.013904809951782227,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "HighestEligibleFreeRate"
-      ],
-      "sample_rows": [
-        [
-          1.0
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda';",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_1",
-    "candidate_id": "0_cand_12",
-    "question_id": 0,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.03188347816467285,
+      "runtime_sec": 0.010267496109008789,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -327,6 +302,31 @@
   {
     "sql": "SELECT MAX(\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm\nWHERE \"County Name\" = 'Alameda';",
     "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "0_cand_12",
+    "question_id": 0,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.010254144668579102,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "HighestEligibleFreeRate"
+      ],
+      "sample_rows": [
+        [
+          1.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda';",
+    "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "0_cand_13",
     "question_id": 0,
@@ -334,7 +334,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.016206741333007812,
+      "runtime_sec": 0.01991724967956543,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -359,7 +359,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014467000961303711,
+      "runtime_sec": 0.010984659194946289,
       "row_count": 1,
       "column_count": 1,
       "columns": [

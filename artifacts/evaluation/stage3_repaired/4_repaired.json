@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1 AND f.[Charter Funding Type] = 'Direct' AND s.OpenDate > '2000-01-01';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "4_cand_0",
@@ -9,7 +9,28 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011335372924804688,
+      "runtime_sec": 0.011277198791503906,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND f.`Charter Funding Type` = 'Direct' AND s.OpenDate > '2000-01-01';",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "4_cand_1",
+    "question_id": 4,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.010436058044433594,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -23,27 +44,6 @@
   {
     "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';",
     "source": "reasoning_generator",
-    "prompt_id": "reasoning_v1_temp_1",
-    "candidate_id": "4_cand_1",
-    "question_id": 4,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.010847806930541992,
-      "row_count": 0,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "SELECT DISTINCT T2.Phone\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T1.`Charter School (Y/N)` = 1 AND T1.`Charter Funding Type` LIKE '%charter%' AND T2.OpenDate > '2000-01-01';",
-    "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "4_cand_2",
     "question_id": 4,
@@ -51,7 +51,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010471105575561523,
+      "runtime_sec": 0.010481119155883789,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -72,7 +72,28 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019736289978027344,
+      "runtime_sec": 0.017669677734375,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT Phone \nFROM schools \nWHERE Charter = 1 AND FundingType = 'Direct' AND OpenDate > '2000-01-01';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "4_cand_4",
+    "question_id": 4,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01811361312866211,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -86,14 +107,14 @@
   {
     "sql": "SELECT Phone \nFROM schools \nWHERE Charter = 1 AND CharterNum IS NOT NULL AND OpenDate > '2000-01-01';",
     "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_1",
-    "candidate_id": "4_cand_4",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "4_cand_5",
     "question_id": 4,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019586563110351562,
+      "runtime_sec": 0.01909637451171875,
       "row_count": 1390,
       "column_count": 1,
       "columns": [
@@ -121,16 +142,16 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT Phone \nFROM schools \nWHERE Charter = 1 AND FundingType = 'Direct' AND OpenDate > '2000-01-01';",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "4_cand_5",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Direct'\n  AND s.OpenDate > '2000-01-01';",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "4_cand_6",
     "question_id": 4,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.0200650691986084,
+      "runtime_sec": 0.01076507568359375,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -144,27 +165,6 @@
   {
     "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Direct' AND s.OpenDate > '2000-01-01';",
     "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_0",
-    "candidate_id": "4_cand_6",
-    "question_id": 4,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.015915393829345703,
-      "row_count": 0,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "SELECT schools.Phone\nFROM schools\nJOIN frpm ON schools.CDSCode = frpm.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1\n  AND frpm.`Charter Funding Type` = 'Direct'\n  AND schools.OpenDate > '2000-01-01';",
-    "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "4_cand_7",
     "question_id": 4,
@@ -172,7 +172,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011044979095458984,
+      "runtime_sec": 0.010347843170166016,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -193,7 +193,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.029410600662231445,
+      "runtime_sec": 0.02568840980529785,
       "row_count": 694,
       "column_count": 1,
       "columns": [
@@ -230,7 +230,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02996206283569336,
+      "runtime_sec": 0.026401996612548828,
       "row_count": 694,
       "column_count": 1,
       "columns": [
@@ -258,7 +258,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT schools.Phone\nFROM schools\nJOIN frpm ON schools.CDSCode = frpm.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1\n  AND frpm.`Charter Funding Type` = 'Directly funded'\n  AND schools.OpenDate >= '2000-01-01'\n  AND schools.Phone IS NOT NULL;",
+    "sql": "SELECT \n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    f.`Charter School (Y/N)` = 1 \n    AND f.`Charter Funding Type` = 'Directly funded' \n    AND s.OpenDate >= '2000-01-01' \n    AND s.Phone IS NOT NULL;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "4_cand_10",
@@ -267,7 +267,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.030789852142333984,
+      "runtime_sec": 0.026660919189453125,
       "row_count": 694,
       "column_count": 1,
       "columns": [
@@ -295,7 +295,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Direct'\n  AND s.OpenDate > '2000-01-01';",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Direct' AND s.OpenDate > '2000-01-01';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "4_cand_11",
@@ -304,7 +304,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011760473251342773,
+      "runtime_sec": 0.011007547378540039,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -316,7 +316,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1\nAND f.[Charter Funding Type] = 'Direct'\nAND s.OpenDate > '2000-01-01';",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Direct'\n  AND s.OpenDate > '2000-01-01';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "4_cand_12",
@@ -325,7 +325,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010577678680419922,
+      "runtime_sec": 0.010214805603027344,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -337,7 +337,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Charter School (Y/N)] = 1 AND f.[Charter Funding Type] = 'Charter' AND s.OpenDate > '2000-01-01';",
+    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Direct'\nAND s.OpenDate > '2000-01-01';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "4_cand_13",
@@ -346,7 +346,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011052370071411133,
+      "runtime_sec": 0.01019287109375,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -358,7 +358,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT T2.Phone \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.`Charter School (Y/N)` = 1 AND T1.`Charter Funding Type` = 'Direct' AND T2.OpenDate > '2000-01-01';",
+    "sql": "SELECT T2.Phone\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T1.`Charter School (Y/N)` = 1 AND T1.`Charter Funding Type` = 'Direct' AND T2.OpenDate > '2000-01-01';",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "4_cand_14",
@@ -367,7 +367,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010934114456176758,
+      "runtime_sec": 0.010352849960327148,
       "row_count": 0,
       "column_count": 1,
       "columns": [

@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS MaxEligibleFreeRate\nFROM frpm\nWHERE `County Name` = 'Alameda';",
+    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "0_cand_5",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate\nFROM frpm\nWHERE `County Name` = 'Alameda';",
+    "sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nJOIN \"schools\" ON \"frpm\".\"CDSCode\" = \"schools\".\"CDSCode\"\nWHERE \"schools\".\"County\" = 'Alameda';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "0_cand_7",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate\nFROM frpm\nWHERE `County Name` = 'Alameda';",
+    "sql": "SELECT MAX(frpm.`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate\nFROM frpm\nWHERE frpm.`County Name` = 'Alameda';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "0_cand_10",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda';",
+    "sql": "SELECT MAX(\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm\nWHERE \"County Name\" = 'Alameda';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "0_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MAX(\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm\nWHERE \"County Name\" = 'Alameda';",
+    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "0_cand_13",

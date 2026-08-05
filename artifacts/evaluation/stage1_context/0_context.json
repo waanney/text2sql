@@ -27,14 +27,23 @@
     {
       "phrase": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`",
       "column": "frpm.Free Meal Count (K-12)",
-      "operator": "/",
-      "value": "frpm.Enrollment (K-12)",
+      "operator": "=",
+      "value": null,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
     },
     {
-      "phrase": "`County Name` = 'Alameda'",
+      "phrase": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`",
+      "column": "frpm.Enrollment (K-12)",
+      "operator": "=",
+      "value": null,
+      "needs_cast": false,
+      "cast_type": null,
+      "confidence": 1.0
+    },
+    {
+      "phrase": "County = 'Alameda'",
       "column": "frpm.County Name",
       "operator": "=",
       "value": "'Alameda'",

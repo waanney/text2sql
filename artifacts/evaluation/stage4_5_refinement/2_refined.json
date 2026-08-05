@@ -2,14 +2,18 @@
   "question_id": 2,
   "db_id": "california_schools",
   "final_sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
-  "best_candidate_id": "2_cand_7",
+  "best_candidate_id": "2_cand_6",
   "ranked_candidates": [
     [
-      "2_cand_7",
+      "2_cand_6",
+      2.4000000000000004
+    ],
+    [
+      "2_hardcase_3",
       1.6
     ],
     [
-      "2_cand_6",
+      "2_cand_7",
       0.8
     ],
     [
@@ -19,6 +23,27 @@
   ],
   "comparison_logs": [
     {
+      "candidate_a": "2_cand_6",
+      "candidate_b": "2_cand_7",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "2_cand_6",
+      "candidate_b": "2_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "2_cand_6",
+      "candidate_b": "2_hardcase_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
       "candidate_a": "2_cand_7",
       "candidate_b": "2_cand_8",
       "winner": "A",
@@ -27,14 +52,14 @@
     },
     {
       "candidate_a": "2_cand_7",
-      "candidate_b": "2_cand_6",
-      "winner": "A",
+      "candidate_b": "2_hardcase_3",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "2_cand_8",
-      "candidate_b": "2_cand_6",
+      "candidate_b": "2_hardcase_3",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -43,14 +68,14 @@
   "selected_candidate": {
     "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_1",
-    "candidate_id": "2_cand_7",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "2_cand_6",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02120065689086914,
+      "runtime_sec": 0.019333362579345703,
       "row_count": 34,
       "column_count": 1,
       "columns": [
@@ -78,5 +103,5 @@
     "repair_history": []
   },
   "num_original_candidates": 20,
-  "num_representatives": 3
+  "num_representatives": 4
 }

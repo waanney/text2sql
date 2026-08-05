@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.012094736099243164,
+      "runtime_sec": 0.03782010078430176,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -25,7 +25,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestFreeRate\nFROM \n    frpm\nWHERE \n    `Percent (%) Eligible Free (Ages 5-17)` IS NOT NULL;\n```",
+    "sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestFreeRate\nFROM \n    frpm\nWHERE \n    `Percent (%) Eligible Free (Ages 5-17)` IS NOT NULL\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "1_cand_1",
@@ -34,7 +34,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011562347412109375,
+      "runtime_sec": 0.0380246639251709,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -47,21 +47,10 @@
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestFreeRate\nFROM \n    frpm\nWHERE \n    `Percent (%) Eligible Free (Ages 5-17)` IS NOT NULL;\n```\n\nThis query will return the lowest non-null value of the \"Percent (%) Eligible Free (Ages 5-17)\" column from the \"frpm\" table.",
-        "error": "You can only execute one statement at a time.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestFreeRate\nFROM \n    frpm\nWHERE \n    `Percent (%) Eligible Free (Ages 5-17)` IS NOT NULL;\n```",
-        "repair_time_sec": 2.873816967010498,
-        "input_tokens": 618,
-        "output_tokens": 29
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "SELECT \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `Percent (%) Eligible Free (Ages 5-17)` IS NOT NULL\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
+    "sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestFreeRate\nFROM \n    frpm\nWHERE \n    `Percent (%) Eligible Free (Ages 5-17)` IS NOT NULL;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "1_cand_2",
@@ -70,21 +59,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010677814483642578,
-      "row_count": 3,
+      "runtime_sec": 0.030241966247558594,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
-        "Percent (%) Eligible Free (Ages 5-17)"
+        "LowestFreeRate"
       ],
       "sample_rows": [
         [
           0.00179856115107914
-        ],
-        [
-          0.00220507166482911
-        ],
-        [
-          0.00227790432801822
         ]
       ],
       "is_empty": false
@@ -92,32 +75,47 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestEligibleFreeRate\nFROM frpm\nWHERE `School Type` = 'Continuation'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
+    "sql": "```sql\nSELECT DISTINCT T1.`Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.SchoolType = 'Continuation'\nORDER BY T1.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "1_cand_3",
     "question_id": 1,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.010546445846557617,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "LowestEligibleFreeRate"
-      ],
-      "sample_rows": [
-        [
-          null
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: T2.SchoolType",
+      "runtime_sec": 0.0027222633361816406,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT DISTINCT T1.`Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.SchoolType = 'Continuation'\nORDER BY T1.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+        "error": "no such column: T2.SchoolType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT T1.`Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.SchoolType = 'Continuation'\nORDER BY T1.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.302278518676758,
+        "input_tokens": 603,
+        "output_tokens": 49
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT DISTINCT T1.`Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.SchoolType = 'Continuation'\nORDER BY T1.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
+        "error": "no such column: T2.SchoolType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT T1.`Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.SchoolType = 'Continuation'\nORDER BY T1.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.2961935997009277,
+        "input_tokens": 605,
+        "output_tokens": 49
+      }
+    ]
   },
   {
-    "sql": "SELECT MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestEligibleFreeRate\nFROM frpm\nWHERE `School Type` = 'Continuation' AND `Percent (%) Eligible Free (Ages 5-17)` IS NOT NULL\nLIMIT 3;",
+    "sql": "SELECT DISTINCT \"Percent (%) Eligible Free (Ages 5-17)\"\nFROM frpm\nWHERE \"School Type\" = 'Continuation'\nORDER BY \"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "1_cand_4",
@@ -126,23 +124,19 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01091909408569336,
-      "row_count": 1,
+      "runtime_sec": 0.010410070419311523,
+      "row_count": 0,
       "column_count": 1,
       "columns": [
-        "LowestEligibleFreeRate"
+        "Percent (%) Eligible Free (Ages 5-17)"
       ],
-      "sample_rows": [
-        [
-          null
-        ]
-      ],
-      "is_empty": false
+      "sample_rows": [],
+      "is_empty": true
     },
     "repair_history": []
   },
   {
-    "sql": "SELECT DISTINCT `Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE `School Type` = 'Continuation'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+    "sql": "SELECT MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS MinEligibleFreeRate\nFROM frpm\nWHERE `School Type` = 'Continuation' AND `Percent (%) Eligible Free (Ages 5-17)` IS NOT NULL\nORDER BY MinEligibleFreeRate ASC\nLIMIT 3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "1_cand_5",
@@ -151,19 +145,23 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011090517044067383,
-      "row_count": 0,
+      "runtime_sec": 0.009825468063354492,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
-        "Percent (%) Eligible Free (Ages 5-17)"
+        "MinEligibleFreeRate"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType LIKE '%Continuation%'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+    "sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "1_cand_6",
@@ -172,7 +170,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020425081253051758,
+      "runtime_sec": 0.018962860107421875,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -184,18 +182,18 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT TOP 3 \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType LIKE '%Continuation%'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC;",
+        "original_sql": "SELECT TOP 3 \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC;",
         "error": "near \"3\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType LIKE '%Continuation%'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
-        "repair_time_sec": 3.446260690689087,
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.275200605392456,
         "input_tokens": 595,
         "output_tokens": 41
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT DISTINCT frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType LIKE '%Continuation%'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+    "sql": "```sql\nSELECT DISTINCT frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Continuation'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "1_cand_7",
@@ -204,7 +202,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020704984664916992,
+      "runtime_sec": 0.019060611724853516,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -216,18 +214,18 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT TOP 3 frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType LIKE '%Continuation%'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC;",
+        "original_sql": "SELECT TOP 3 frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Continuation'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC;",
         "error": "near \"3\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT DISTINCT frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType LIKE '%Continuation%'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
-        "repair_time_sec": 3.314116954803467,
+        "fixed_sql": "```sql\nSELECT DISTINCT frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Continuation'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.0421953201293945,
         "input_tokens": 595,
         "output_tokens": 42
       }
     ]
   },
   {
-    "sql": "SELECT \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+    "sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "1_cand_8",
@@ -236,21 +234,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011457443237304688,
-      "row_count": 3,
+      "runtime_sec": 0.010990619659423828,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
-        "Percent (%) Eligible Free (Ages 5-17)"
+        "Lowest_Free_Rate"
       ],
       "sample_rows": [
         [
-          null
-        ],
-        [
-          null
-        ],
-        [
-          null
+          0.0434782608695652
         ]
       ],
       "is_empty": false
@@ -258,7 +250,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+    "sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestFreeRate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "1_cand_9",
@@ -267,21 +259,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010886669158935547,
-      "row_count": 3,
+      "runtime_sec": 0.010337352752685547,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
-        "Percent (%) Eligible Free (Ages 5-17)"
+        "LowestFreeRate"
       ],
       "sample_rows": [
         [
-          null
-        ],
-        [
-          null
-        ],
-        [
-          null
+          0.0434782608695652
         ]
       ],
       "is_empty": false
@@ -289,7 +275,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
+    "sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate_1,\n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) OVER (ORDER BY `Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate_2,\n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) OVER (ORDER BY `Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate_3\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "1_cand_10",
@@ -298,37 +284,24 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.012018918991088867,
-      "row_count": 3,
-      "column_count": 1,
+      "runtime_sec": 0.010133743286132812,
+      "row_count": 1,
+      "column_count": 3,
       "columns": [
-        "Percent (%) Eligible Free (Ages 5-17)"
+        "Lowest_Free_Rate_1",
+        "Lowest_Free_Rate_2",
+        "Lowest_Free_Rate_3"
       ],
       "sample_rows": [
         [
-          null
-        ],
-        [
-          null
-        ],
-        [
-          null
+          0.0434782608695652,
+          0.0434782608695652,
+          0.0434782608695652
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT TOP 3 \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC;",
-        "error": "near \"3\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
-        "repair_time_sec": 3.1913983821868896,
-        "input_tokens": 591,
-        "output_tokens": 37
-      }
-    ]
+    "repair_history": []
   },
   {
     "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType LIKE '%Continuation%'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
@@ -340,7 +313,28 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019515275955200195,
+      "runtime_sec": 0.01813483238220215,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Percent (%) Eligible Free (Ages 5-17)"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    f.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.StatusType LIKE '%Continuation%'\nORDER BY \n    f.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "1_cand_12",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01847696304321289,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -354,14 +348,14 @@
   {
     "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType LIKE '%Continuation%'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_1",
-    "candidate_id": "1_cand_12",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "1_cand_13",
     "question_id": 1,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019268035888671875,
+      "runtime_sec": 0.01800084114074707,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -373,38 +367,6 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] AS FreeRate\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType LIKE '%Continuation%'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_2",
-    "candidate_id": "1_cand_13",
-    "question_id": 1,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.020442485809326172,
-      "row_count": 0,
-      "column_count": 1,
-      "columns": [
-        "FreeRate"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT TOP 3 \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] AS FreeRate\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType LIKE '%Continuation%'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC;",
-        "error": "near \"3\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] AS FreeRate\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType LIKE '%Continuation%'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
-        "repair_time_sec": 3.6955785751342773,
-        "input_tokens": 598,
-        "output_tokens": 44
-      }
-    ]
-  },
-  {
     "sql": "SELECT MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate\nFROM frpm\nWHERE `Low Grade` = '5' AND `High Grade` = '17';",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
@@ -414,7 +376,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01140451431274414,
+      "runtime_sec": 0.010498762130737305,
       "row_count": 1,
       "column_count": 1,
       "columns": [

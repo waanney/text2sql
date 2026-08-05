@@ -9,7 +9,7 @@
       1.6
     ],
     [
-      "4_cand_4",
+      "4_cand_5",
       0.8
     ],
     [
@@ -20,7 +20,7 @@
   "comparison_logs": [
     {
       "candidate_a": "4_cand_6",
-      "candidate_b": "4_cand_4",
+      "candidate_b": "4_cand_5",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -33,7 +33,7 @@
       "probs": null
     },
     {
-      "candidate_a": "4_cand_4",
+      "candidate_a": "4_cand_5",
       "candidate_b": "4_cand_8",
       "winner": "B",
       "confidence": 0.8,
@@ -50,7 +50,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.029410600662231445,
+      "runtime_sec": 0.02568840980529785,
       "row_count": 694,
       "column_count": 1,
       "columns": [

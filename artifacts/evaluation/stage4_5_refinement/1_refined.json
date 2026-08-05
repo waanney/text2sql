@@ -1,19 +1,19 @@
 {
   "question_id": 1,
   "db_id": "california_schools",
-  "final_sql": "SELECT DISTINCT `Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE `School Type` = 'Continuation High Schools'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
-  "best_candidate_id": "1_hardcase_0",
+  "final_sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
+  "best_candidate_id": "1_cand_8",
   "ranked_candidates": [
     [
-      "1_hardcase_0",
+      "1_cand_8",
       4.0
     ],
     [
-      "1_cand_8",
+      "1_cand_10",
       3.2
     ],
     [
-      "1_cand_2",
+      "1_cand_5",
       2.4000000000000004
     ],
     [
@@ -21,86 +21,65 @@
       1.6
     ],
     [
-      "1_cand_3",
+      "1_cand_0",
       0.8
     ],
     [
-      "1_cand_0",
+      "1_cand_3",
       0.0
     ]
   ],
   "comparison_logs": [
     {
       "candidate_a": "1_cand_0",
-      "candidate_b": "1_cand_2",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_0",
-      "candidate_b": "1_cand_3",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_0",
-      "candidate_b": "1_cand_6",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_0",
-      "candidate_b": "1_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_0",
-      "candidate_b": "1_hardcase_0",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_2",
       "candidate_b": "1_cand_3",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "1_cand_2",
-      "candidate_b": "1_cand_6",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_2",
-      "candidate_b": "1_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_2",
-      "candidate_b": "1_hardcase_0",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_3",
+      "candidate_a": "1_cand_0",
       "candidate_b": "1_cand_6",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_3",
+      "candidate_b": "1_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_3",
+      "candidate_b": "1_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
       "candidate_a": "1_cand_3",
       "candidate_b": "1_cand_8",
       "winner": "B",
@@ -109,7 +88,14 @@
     },
     {
       "candidate_a": "1_cand_3",
-      "candidate_b": "1_hardcase_0",
+      "candidate_b": "1_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_6",
+      "candidate_b": "1_cand_5",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -123,44 +109,52 @@
     },
     {
       "candidate_a": "1_cand_6",
-      "candidate_b": "1_hardcase_0",
+      "candidate_b": "1_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_5",
+      "candidate_b": "1_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_5",
+      "candidate_b": "1_cand_10",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "1_cand_8",
-      "candidate_b": "1_hardcase_0",
-      "winner": "B",
+      "candidate_b": "1_cand_10",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT DISTINCT `Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE `School Type` = 'Continuation High Schools'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
-    "source": "targeted_regeneration",
-    "prompt_id": "hardcase_regen_v1_0",
-    "candidate_id": "1_hardcase_0",
+    "sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "1_cand_8",
     "question_id": 1,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02451801300048828,
-      "row_count": 3,
+      "runtime_sec": 0.010990619659423828,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
-        "Percent (%) Eligible Free (Ages 5-17)"
+        "Lowest_Free_Rate"
       ],
       "sample_rows": [
         [
-          null
-        ],
-        [
           0.0434782608695652
-        ],
-        [
-          0.0704225352112676
         ]
       ],
       "is_empty": false

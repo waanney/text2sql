@@ -1,47 +1,17 @@
 {
   "question_id": 3,
   "db_id": "california_schools",
-  "final_sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
+  "final_sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
   "best_candidate_id": "3_cand_6",
   "ranked_candidates": [
     [
       "3_cand_6",
-      1.6
-    ],
-    [
-      "3_cand_13",
-      0.8
-    ],
-    [
-      "3_cand_12",
       0.0
     ]
   ],
-  "comparison_logs": [
-    {
-      "candidate_a": "3_cand_6",
-      "candidate_b": "3_cand_12",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "3_cand_6",
-      "candidate_b": "3_cand_13",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "3_cand_12",
-      "candidate_b": "3_cand_13",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    }
-  ],
+  "comparison_logs": [],
   "selected_candidate": {
-    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "3_cand_6",
@@ -50,7 +20,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03829669952392578,
+      "runtime_sec": 0.02815866470336914,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -66,5 +36,5 @@
     "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 3
+  "num_representatives": 1
 }

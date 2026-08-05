@@ -45,24 +45,6 @@
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
-    },
-    {
-      "phrase": "Order by `Percent (%) Eligible Free (Ages 5-17)` ASC",
-      "column": "frpm.Percent (%) Eligible Free (Ages 5-17)",
-      "operator": "ASC",
-      "value": null,
-      "needs_cast": false,
-      "cast_type": null,
-      "confidence": 1.0
-    },
-    {
-      "phrase": "Limit to the lowest three values",
-      "column": null,
-      "operator": "LIMIT",
-      "value": "3",
-      "needs_cast": false,
-      "cast_type": null,
-      "confidence": 1.0
     }
   ],
   "top_tables": [
