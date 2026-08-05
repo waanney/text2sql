@@ -166,9 +166,9 @@ def run_ablation(ablation_yaml_path, dataset_json_path, raw_bird_dir, output_dir
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--ablation_yaml", default="configs/experiment_ablation.yaml")
-    parser.add_argument("--dataset", default="data/raw/bird/dev.json")
-    parser.add_argument("--bird_dir", default="data/raw/bird")
+    parser.add_argument("--ablation_yaml", default="pamo_sql/configs/experiment_ablation.yaml")
+    parser.add_argument("--dataset", default="pamo_sql/data/raw/bird/dev.json")
+    parser.add_argument("--bird_dir", default="pamo_sql/data/raw/bird")
     parser.add_argument("--output_dir", default="artifacts/ablation")
     parser.add_argument("--limit", type=int, default=5)
     args = parser.parse_args()

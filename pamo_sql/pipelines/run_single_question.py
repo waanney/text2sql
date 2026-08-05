@@ -12,7 +12,9 @@ Flow:
 import sys
 import json
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Setup sys.path to allow imports from pamo_sql root
 pamo_sql_dir = Path(__file__).resolve().parent.parent
 if str(pamo_sql_dir) not in sys.path:

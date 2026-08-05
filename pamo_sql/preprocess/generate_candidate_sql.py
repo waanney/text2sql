@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from common.io_utils import load_jsonl, save_json
-from preprocess.07_mutate_gold_sql import mutate_sql
+from preprocess.mutate_gold_sql import mutate_sql
 from common.logging_utils import log_event
 
 

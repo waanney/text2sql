@@ -8,16 +8,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from common.io_utils import load_jsonl
 from common.logging_utils import log_event
-from preprocess.00_validate_bird import validate_bird_file
-from preprocess.01_profile_database import profile_database_by_id
-from preprocess.02_execute_gold_sql import execute_gold_sql
-from preprocess.03_parse_gold_sql import parse_gold_sqls
-from preprocess.04_build_schema_ranker_data import build_schema_ranker_data
-from preprocess.05_build_generator_sft_data import build_generator_sft_data
-from preprocess.06_generate_candidate_sql import generate_candidate_sqls
-from preprocess.08_execute_candidates import execute_candidates
-from preprocess.09_build_sql_prm_data import build_sql_prm_data
-from preprocess.10_build_rl_rollout_pool import build_rl_rollout_pool
+from preprocess.validate_bird import validate_bird_file
+from preprocess.profile_database import profile_database_by_id
+from preprocess.execute_gold_sql import execute_gold_sql
+from preprocess.parse_gold_sql import parse_gold_sqls
+from preprocess.build_schema_ranker_data import build_schema_ranker_data
+from preprocess.build_generator_sft_data import build_generator_sft_data
+from preprocess.generate_candidate_sql import generate_candidate_sqls
+from preprocess.execute_candidates import execute_candidates
+from preprocess.build_sql_prm_data import build_sql_prm_data
+from preprocess.build_rl_rollout_pool import build_rl_rollout_pool 
 
 
 def run_all_preprocess(input_path, split="train"):

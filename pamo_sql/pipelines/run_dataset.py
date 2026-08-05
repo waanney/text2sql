@@ -138,8 +138,8 @@ def run_dataset(dataset_json_path, raw_bird_dir, output_dir, limit=None, selecto
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--dataset", default="data/raw/bird/dev.json")
-    parser.add_argument("--bird_dir", default="data/raw/bird")
+    parser.add_argument("--dataset", default="pamo_sql/data/raw/bird/dev.json")
+    parser.add_argument("--bird_dir", default="pamo_sql/data/raw/bird")
     parser.add_argument("--output_dir", default="artifacts/evaluation")
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--selector", default="llm", choices=["llm", "prm"])

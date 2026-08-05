@@ -13,8 +13,18 @@ def build_column_feature_table(
         (m["table"], m["column"]) for m in literal_matches
     }
 
-    output_phrase = question_info.get("output_phrase", "")
-    filter_phrases = " ".join(question_info.get("filter_phrases", []))
+    output_phrase = str(question_info.get("output_phrase", ""))
+    
+    filter_list = question_info.get("filter_phrases", [])
+    if not isinstance(filter_list, list):
+        filter_list = [filter_list]
+    filter_phrases_strs = []
+    for x in filter_list:
+        if isinstance(x, dict):
+            filter_phrases_strs.append(" ".join(str(v) for v in x.values() if v))
+        elif x:
+            filter_phrases_strs.append(str(x))
+    filter_phrases = " ".join(filter_phrases_strs)
 
     for item in candidate_columns:
         table = item["table"]
@@ -72,7 +82,10 @@ def compute_log_support(table, column, query_log_features):
 
     for item in query_log_features:
         total += 1
-        cols = " ".join(item.get("columns", [])).lower()
+        cols_list = item.get("columns", [])
+        if not isinstance(cols_list, list):
+            cols_list = [cols_list]
+        cols = " ".join(str(c) for c in cols_list).lower()
         if key1 in cols or key2 in cols:
             count += 1
 
