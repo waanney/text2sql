@@ -1,0 +1,586 @@
+[
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "20_cand_0",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.LowGrade",
+      "runtime_sec": 0.0030133724212646484,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8594305515289307,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8608150482177734,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "20_cand_1",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.CountyName",
+      "runtime_sec": 0.0028476715087890625,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9608557224273682,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.CountyName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9594461917877197,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "20_cand_2",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.LowGrade",
+      "runtime_sec": 0.0066242218017578125,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9179530143737793,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.913050651550293,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "20_cand_3",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.011385917663574219,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          3
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+        "repair_time_sec": 1.5441150665283203,
+        "input_tokens": 1318,
+        "output_tokens": 27
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "20_cand_4",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.011580467224121094,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          3
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+        "repair_time_sec": 1.5365960597991943,
+        "input_tokens": 1318,
+        "output_tokens": 27
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "20_cand_5",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01110386848449707,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          3
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+        "repair_time_sec": 1.5369975566864014,
+        "input_tokens": 1318,
+        "output_tokens": 27
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "20_cand_6",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.CountyName",
+      "runtime_sec": 0.0029702186584472656,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9733428955078125,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.CountyName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9698724746704102,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "20_cand_7",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.CountyName",
+      "runtime_sec": 0.0027327537536621094,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9674444198608398,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.CountyName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9566681385040283,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "20_cand_8",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.CountyName",
+      "runtime_sec": 0.0031731128692626953,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9653539657592773,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.CountyName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9696803092956543,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "20_cand_9",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.CountyName",
+      "runtime_sec": 0.002921581268310547,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9673218727111816,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.CountyName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9655818939208984,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "20_cand_10",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.CountyName",
+      "runtime_sec": 0.0027227401733398438,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9713232517242432,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.CountyName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9625911712646484,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "20_cand_11",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.LowGrade",
+      "runtime_sec": 0.0027887821197509766,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8621971607208252,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8635015487670898,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "20_cand_12",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.LowGrade",
+      "runtime_sec": 0.0029141902923583984,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.856971025466919,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8672022819519043,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "20_cand_13",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.LowGrade",
+      "runtime_sec": 0.0030384063720703125,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8602612018585205,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "error": "no such column: frpm.LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8721389770507812,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "20_cand_14",
+    "question_id": 20,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.011187314987182617,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          3
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+        "repair_time_sec": 1.5352044105529785,
+        "input_tokens": 1318,
+        "output_tokens": 27
+      }
+    ]
+  }
+]

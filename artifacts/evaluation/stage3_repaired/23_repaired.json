@@ -1,0 +1,749 @@
+[
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "23_cand_0",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026096105575561523,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "23_cand_1",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02213597297668457,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.Street\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "23_cand_2",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02283620834350586,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)],\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "23_cand_3",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.024170875549316406,
+      "row_count": 1239,
+      "column_count": 8,
+      "columns": [
+        "School",
+        "Street",
+        "City",
+        "Zip",
+        "State",
+        "Enrollment (K-12)",
+        "Enrollment (Ages 5-17)",
+        "EnrollmentDifference"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue",
+          "Hayward",
+          "94544-1136",
+          "CA",
+          277.0,
+          221.0,
+          56.0
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive",
+          "Fremont",
+          "94538-2308",
+          "CA",
+          410.0,
+          335.0,
+          75.0
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue",
+          "Alameda",
+          "94501-4406",
+          "CA",
+          1746.0,
+          1675.0,
+          71.0
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue",
+          "Alameda",
+          "94501-3278",
+          "CA",
+          1052.0,
+          1003.0,
+          49.0
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street",
+          "Alameda",
+          "94501-1851",
+          "CA",
+          144.0,
+          112.0,
+          32.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)],\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "23_cand_4",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02283787727355957,
+      "row_count": 1239,
+      "column_count": 8,
+      "columns": [
+        "School",
+        "Street",
+        "City",
+        "State",
+        "Zip",
+        "Enrollment (K-12)",
+        "Enrollment (Ages 5-17)",
+        "EnrollmentDifference"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue",
+          "Hayward",
+          "CA",
+          "94544-1136",
+          277.0,
+          221.0,
+          56.0
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive",
+          "Fremont",
+          "CA",
+          "94538-2308",
+          410.0,
+          335.0,
+          75.0
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue",
+          "Alameda",
+          "CA",
+          "94501-4406",
+          1746.0,
+          1675.0,
+          71.0
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue",
+          "Alameda",
+          "CA",
+          "94501-3278",
+          1052.0,
+          1003.0,
+          49.0
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street",
+          "Alameda",
+          "CA",
+          "94501-1851",
+          144.0,
+          112.0,
+          32.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "23_cand_5",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023201704025268555,
+      "row_count": 1239,
+      "column_count": 5,
+      "columns": [
+        "School",
+        "Street",
+        "City",
+        "Zip",
+        "State"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue",
+          "Hayward",
+          "94544-1136",
+          "CA"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive",
+          "Fremont",
+          "94538-2308",
+          "CA"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue",
+          "Alameda",
+          "94501-4406",
+          "CA"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue",
+          "Alameda",
+          "94501-3278",
+          "CA"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street",
+          "Alameda",
+          "94501-1851",
+          "CA"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > 30;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "23_cand_6",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02247929573059082,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > 30;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "23_cand_7",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023845911026000977,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "23_cand_8",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023250341415405273,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.Street\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "23_cand_9",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02660846710205078,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "23_cand_10",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02300405502319336,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > 30;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "23_cand_11",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022962331771850586,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.MailStreet\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > 30;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "23_cand_12",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023107290267944336,
+      "row_count": 1239,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "Street",
+        "MailStreet"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > 30;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "23_cand_13",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02303290367126465,
+      "row_count": 1239,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "Street",
+        "EnrollmentDifference"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue",
+          56.0
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive",
+          75.0
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue",
+          71.0
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue",
+          49.0
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street",
+          32.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.Street \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "23_cand_14",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0219573974609375,
+      "row_count": 1239,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Street"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue"
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive"
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue"
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue"
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  }
+]

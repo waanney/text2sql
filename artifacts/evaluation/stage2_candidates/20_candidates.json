@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "20_cand_0",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "20_cand_1",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "20_cand_2",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "20_cand_3",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "20_cand_4",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "20_cand_5",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "20_cand_6",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "20_cand_7",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "20_cand_8",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "20_cand_9",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "20_cand_10",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "20_cand_11",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "20_cand_12",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "20_cand_13",
+    "question_id": 20,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "20_cand_14",
+    "question_id": 20,
+    "db_id": "california_schools"
+  }
+]

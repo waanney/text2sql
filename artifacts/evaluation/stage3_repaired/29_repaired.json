@@ -1,0 +1,540 @@
+[
+  {
+    "sql": "SELECT MIN(OpenDate) AS OpenDate\nFROM schools\nWHERE School IN (\n    SELECT School\n    FROM frpm\n    WHERE `Enrollment (K-12)` = (\n        SELECT MAX(`Enrollment (K-12)`)\n        FROM frpm\n    )\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "29_cand_0",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 20.330856323242188,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "OpenDate"
+      ],
+      "sample_rows": [
+        [
+          "1850-07-01"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT MIN(OpenDate) AS OpenDate\nFROM schools\nWHERE GSoffered = 'K-12';",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "29_cand_1",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023063182830810547,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "OpenDate"
+      ],
+      "sample_rows": [
+        [
+          "1949-05-30"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT MIN(OpenDate) AS OpenDate\nFROM schools\nWHERE GSoffered = 'K-12';",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "29_cand_2",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.020824909210205078,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "OpenDate"
+      ],
+      "sample_rows": [
+        [
+          "1949-05-30"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY `Enrollment (K-12)` DESC \nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "29_cand_3",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: Enrollment (K-12)",
+      "runtime_sec": 0.002827167510986328,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY Enrollment DESC \nLIMIT 1;",
+        "error": "no such column: Enrollment",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY `Enrollment (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 1.520700454711914,
+        "input_tokens": 1311,
+        "output_tokens": 22
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY `Enrollment (K-12)` DESC \nLIMIT 1;\n```",
+        "error": "no such column: Enrollment (K-12)",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY `Enrollment (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 1.5166475772857666,
+        "input_tokens": 1316,
+        "output_tokens": 22
+      }
+    ]
+  },
+  {
+    "sql": "SELECT MIN(OpenDate) AS First_Open_Date\nFROM schools\nWHERE GSoffered = 'K-12';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "29_cand_4",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023158788681030273,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "First_Open_Date"
+      ],
+      "sample_rows": [
+        [
+          "1949-05-30"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY `Enrollment (K-12)` DESC \nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "29_cand_5",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: Enrollment (K-12)",
+      "runtime_sec": 0.003062009811401367,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY Enrollment DESC \nLIMIT 1;",
+        "error": "no such column: Enrollment",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY `Enrollment (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 1.5143117904663086,
+        "input_tokens": 1311,
+        "output_tokens": 22
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY `Enrollment (K-12)` DESC \nLIMIT 1;\n```",
+        "error": "no such column: Enrollment (K-12)",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY `Enrollment (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 1.5159294605255127,
+        "input_tokens": 1316,
+        "output_tokens": 22
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT MIN(s.OpenDate) AS First_Open_Date\nFROM frpm\nJOIN schools s ON frpm.School_Code = s.CDSCode\nWHERE frpm.School_Type = 'K-12 Schools (Public)'\nORDER BY frpm.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "29_cand_6",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Type",
+      "runtime_sec": 0.005048513412475586,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT MIN(s.OpenDate) AS First_Open_Date\nFROM frpm\nJOIN schools s ON frpm.School Code = s.CDSCode\nWHERE frpm.School Type = 'K-12 Schools (Public)'\nORDER BY frpm.Enrollment (K-12) DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT MIN(s.OpenDate) AS First_Open_Date\nFROM frpm\nJOIN schools s ON frpm.School_Code = s.CDSCode\nWHERE frpm.School_Type = 'K-12 Schools (Public)'\nORDER BY frpm.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.1742665767669678,
+        "input_tokens": 1329,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT MIN(s.OpenDate) AS First_Open_Date\nFROM frpm\nJOIN schools s ON frpm.School_Code = s.CDSCode\nWHERE frpm.School_Type = 'K-12 Schools (Public)'\nORDER BY frpm.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.School_Type",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT MIN(s.OpenDate) AS First_Open_Date\nFROM frpm\nJOIN schools s ON frpm.School_Code = s.CDSCode\nWHERE frpm.School_Type = 'K-12 Schools (Public)'\nORDER BY frpm.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.170281410217285,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    MIN(schools.OpenDate) AS First_Open_Date\nFROM \n    frpm\nJOIN \n    schools ON frpm.School_Code = schools.CDSCode\nWHERE \n    frpm.School_Type = 'K-12 Schools (Public)'\nORDER BY \n    frpm.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "29_cand_7",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Type",
+      "runtime_sec": 0.002901315689086914,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    MIN(schools.OpenDate) AS First_Open_Date\nFROM \n    frpm\nJOIN \n    schools ON frpm.School Code = schools.CDSCode\nWHERE \n    frpm.School Type = 'K-12 Schools (Public)'\nORDER BY \n    frpm.Enrollment (K-12) DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    MIN(schools.OpenDate) AS First_Open_Date\nFROM \n    frpm\nJOIN \n    schools ON frpm.School_Code = schools.CDSCode\nWHERE \n    frpm.School_Type = 'K-12 Schools (Public)'\nORDER BY \n    frpm.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4366579055786133,
+        "input_tokens": 1328,
+        "output_tokens": 33
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    MIN(schools.OpenDate) AS First_Open_Date\nFROM \n    frpm\nJOIN \n    schools ON frpm.School_Code = schools.CDSCode\nWHERE \n    frpm.School_Type = 'K-12 Schools (Public)'\nORDER BY \n    frpm.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.School_Type",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    MIN(schools.OpenDate) AS First_Open_Date\nFROM \n    frpm\nJOIN \n    schools ON frpm.School_Code = schools.CDSCode\nWHERE \n    frpm.School_Type = 'K-12 Schools (Public)'\nORDER BY \n    frpm.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4602973461151123,
+        "input_tokens": 1327,
+        "output_tokens": 33
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT MIN(s.OpenDate)\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Name = 'District Office'\nAND f.[Enrollment (K-12)] >= CAST(500 AS REAL)\nAND s.OpenDate IS NOT NULL;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "29_cand_8",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.School_Name",
+      "runtime_sec": 0.0031921863555908203,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT MIN(s.OpenDate)\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.School Name = 'District Office'\nAND f.[Enrollment (K-12)] >= CAST(500 AS REAL)\nAND s.OpenDate IS NOT NULL;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT MIN(s.OpenDate)\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Name = 'District Office'\nAND f.[Enrollment (K-12)] >= CAST(500 AS REAL)\nAND s.OpenDate IS NOT NULL;\n```",
+        "repair_time_sec": 2.204822301864624,
+        "input_tokens": 1333,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT MIN(s.OpenDate)\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Name = 'District Office'\nAND f.[Enrollment (K-12)] >= CAST(500 AS REAL)\nAND s.OpenDate IS NOT NULL;\n```",
+        "error": "no such column: f.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT MIN(s.OpenDate)\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Name = 'District Office'\nAND f.[Enrollment (K-12)] >= CAST(500 AS REAL)\nAND s.OpenDate IS NOT NULL;\n```",
+        "repair_time_sec": 2.2019546031951904,
+        "input_tokens": 1333,
+        "output_tokens": 40
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.[School Name],\n    frpm.OpenDate\nFROM \n    frpm\nJOIN \n    schools ON frpm.[School Code] = schools.CDSCode\nWHERE \n    frpm.[School Name] = 'District Office'\n    AND frpm.[Enrollment (K-12)] >= CAST(500 AS REAL)\n    AND schools.OpenDate IS NOT NULL\nORDER BY \n    frpm.[Enrollment (K-12)] DESC\nLIMIT 1;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "29_cand_9",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.OpenDate",
+      "runtime_sec": 0.0033121109008789062,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    frpm.School Name,\n    frpm.OpenDate\nFROM \n    frpm\nJOIN \n    schools ON frpm.School Code = schools.CDSCode\nWHERE \n    frpm.School Name = 'District Office'\n    AND frpm.Enrollment (K-12) >= CAST(500 AS REAL)\n    AND schools.OpenDate IS NOT NULL\nORDER BY \n    frpm.Enrollment (K-12) DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[School Name],\n    frpm.OpenDate\nFROM \n    frpm\nJOIN \n    schools ON frpm.[School Code] = schools.CDSCode\nWHERE \n    frpm.[School Name] = 'District Office'\n    AND frpm.[Enrollment (K-12)] >= CAST(500 AS REAL)\n    AND schools.OpenDate IS NOT NULL\nORDER BY \n    frpm.[Enrollment (K-12)] DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 3.230137586593628,
+        "input_tokens": 1342,
+        "output_tokens": 52
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.[School Name],\n    frpm.OpenDate\nFROM \n    frpm\nJOIN \n    schools ON frpm.[School Code] = schools.CDSCode\nWHERE \n    frpm.[School Name] = 'District Office'\n    AND frpm.[Enrollment (K-12)] >= CAST(500 AS REAL)\n    AND schools.OpenDate IS NOT NULL\nORDER BY \n    frpm.[Enrollment (K-12)] DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.OpenDate",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[School Name],\n    frpm.OpenDate\nFROM \n    frpm\nJOIN \n    schools ON frpm.[School Code] = schools.CDSCode\nWHERE \n    frpm.[School Name] = 'District Office'\n    AND frpm.[Enrollment (K-12)] >= CAST(500 AS REAL)\n    AND schools.OpenDate IS NOT NULL\nORDER BY \n    frpm.[Enrollment (K-12)] DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 3.250235080718994,
+        "input_tokens": 1345,
+        "output_tokens": 52
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm\nJOIN schools s ON frpm.School_Code = s.CDSCode\nWHERE frpm.School_Name = 'District Office'\nAND frpm.Enrollment_K_12 >= 500\nAND s.OpenDate IS NOT NULL;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "29_cand_10",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.0035142898559570312,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm\nJOIN schools s ON frpm.School Code = s.CDSCode\nWHERE frpm.School Name = 'District Office'\nAND frpm.Enrollment (K-12) >= 500\nAND s.OpenDate IS NOT NULL;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm\nJOIN schools s ON frpm.School_Code = s.CDSCode\nWHERE frpm.School_Name = 'District Office'\nAND frpm.Enrollment_K_12 >= 500\nAND s.OpenDate IS NOT NULL;\n```",
+        "repair_time_sec": 2.203972816467285,
+        "input_tokens": 1332,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm\nJOIN schools s ON frpm.School_Code = s.CDSCode\nWHERE frpm.School_Name = 'District Office'\nAND frpm.Enrollment_K_12 >= 500\nAND s.OpenDate IS NOT NULL;\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm\nJOIN schools s ON frpm.School_Code = s.CDSCode\nWHERE frpm.School_Name = 'District Office'\nAND frpm.Enrollment_K_12 >= 500\nAND s.OpenDate IS NOT NULL;\n```",
+        "repair_time_sec": 2.2034194469451904,
+        "input_tokens": 1331,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.OpenDate\nFROM frpm f\nJOIN schools s ON f.[School Code] = s.CDSCode\nWHERE f.[Enrollment (K-12)] IS NOT NULL AND s.StatusType = 'Active'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "29_cand_11",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.016859054565429688,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "OpenDate"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.OpenDate\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.[Enrollment (K-12)] IS NOT NULL AND s.StatusType = 'Active'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.OpenDate\nFROM frpm f\nJOIN schools s ON f.[School Code] = s.CDSCode\nWHERE f.[Enrollment (K-12)] IS NOT NULL AND s.StatusType = 'Active'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.2509994506835938,
+        "input_tokens": 1332,
+        "output_tokens": 41
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.OpenDate\nFROM frpm f\nJOIN schools s ON f.[School Code] = s.CDSCode\nWHERE f.[Enrollment (K-12)] IS NOT NULL AND s.StatusType = 'Active'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.OpenDate\nFROM frpm f\nJOIN schools s ON f.[School Code] = s.CDSCode\nWHERE f.[Enrollment (K-12)] IS NOT NULL AND s.StatusType = 'Active'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.250863790512085,
+        "input_tokens": 1355,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.OpenDate\nFROM \n    frpm f\nJOIN \n    schools s ON f.School_Code = s.CDSCode\nWHERE \n    f.High_Grade = '12'\nORDER BY \n    f.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "29_cand_12",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.High_Grade",
+      "runtime_sec": 0.0029633045196533203,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.OpenDate\nFROM \n    frpm f\nJOIN \n    schools s ON f.School Code = s.CDSCode\nWHERE \n    f.High Grade = '12'\nORDER BY \n    f.Enrollment (K-12) DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.OpenDate\nFROM \n    frpm f\nJOIN \n    schools s ON f.School_Code = s.CDSCode\nWHERE \n    f.High_Grade = '12'\nORDER BY \n    f.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0951874256134033,
+        "input_tokens": 1326,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.OpenDate\nFROM \n    frpm f\nJOIN \n    schools s ON f.School_Code = s.CDSCode\nWHERE \n    f.High_Grade = '12'\nORDER BY \n    f.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.High_Grade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.OpenDate\nFROM \n    frpm f\nJOIN \n    schools s ON f.School_Code = s.CDSCode\nWHERE \n    f.High_Grade = '12'\nORDER BY \n    f.Enrollment_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.097904682159424,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` LIKE '%K-12%'\nORDER BY f.`Enrollment (K-12)` DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "29_cand_13",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021294832229614258,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "OpenDate"
+      ],
+      "sample_rows": [
+        [
+          "2006-08-29"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School Type LIKE '%K-12%'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;",
+        "error": "near \"Type\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` LIKE '%K-12%'\nORDER BY f.`Enrollment (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.999082088470459,
+        "input_tokens": 1324,
+        "output_tokens": 33
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT MIN(OpenDate)\nFROM schools\nWHERE School IN (\n    SELECT School\n    FROM frpm\n    WHERE LowGrade = 'K' AND HighGrade = '12'\n    ORDER BY Enrollment_K_12 DESC\n    LIMIT 1\n);\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "29_cand_14",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: LowGrade",
+      "runtime_sec": 0.003335714340209961,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT MIN(OpenDate)\nFROM schools\nWHERE School IN (\n    SELECT School\n    FROM frpm\n    WHERE LowGrade = 'K' AND HighGrade = '12'\n    ORDER BY Enrollment (K-12) DESC\n    LIMIT 1\n);",
+        "error": "no such column: LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT MIN(OpenDate)\nFROM schools\nWHERE School IN (\n    SELECT School\n    FROM frpm\n    WHERE LowGrade = 'K' AND HighGrade = '12'\n    ORDER BY Enrollment_K_12 DESC\n    LIMIT 1\n);\n```",
+        "repair_time_sec": 1.9688339233398438,
+        "input_tokens": 1329,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT MIN(OpenDate)\nFROM schools\nWHERE School IN (\n    SELECT School\n    FROM frpm\n    WHERE LowGrade = 'K' AND HighGrade = '12'\n    ORDER BY Enrollment_K_12 DESC\n    LIMIT 1\n);\n```",
+        "error": "no such column: LowGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT MIN(OpenDate)\nFROM schools\nWHERE School IN (\n    SELECT School\n    FROM frpm\n    WHERE LowGrade = 'K' AND HighGrade = '12'\n    ORDER BY Enrollment_K_12 DESC\n    LIMIT 1\n);\n```",
+        "repair_time_sec": 1.9671416282653809,
+        "input_tokens": 1331,
+        "output_tokens": 37
+      }
+    ]
+  }
+]

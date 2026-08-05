@@ -1,0 +1,300 @@
+{
+  "question_id": 27,
+  "db_id": "california_schools",
+  "final_sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+  "best_candidate_id": "27_cand_14",
+  "ranked_candidates": [
+    [
+      "27_cand_14",
+      5.6
+    ],
+    [
+      "27_cand_13",
+      4.8
+    ],
+    [
+      "27_cand_6",
+      4.0
+    ],
+    [
+      "27_cand_0",
+      2.4000000000000004
+    ],
+    [
+      "27_cand_2",
+      2.4000000000000004
+    ],
+    [
+      "27_cand_3",
+      2.4000000000000004
+    ],
+    [
+      "27_cand_8",
+      0.8
+    ],
+    [
+      "27_cand_7",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "27_cand_0",
+      "candidate_b": "27_cand_2",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_0",
+      "candidate_b": "27_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_0",
+      "candidate_b": "27_cand_7",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_0",
+      "candidate_b": "27_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_0",
+      "candidate_b": "27_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_0",
+      "candidate_b": "27_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_0",
+      "candidate_b": "27_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_2",
+      "candidate_b": "27_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_2",
+      "candidate_b": "27_cand_7",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_2",
+      "candidate_b": "27_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_2",
+      "candidate_b": "27_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_2",
+      "candidate_b": "27_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_2",
+      "candidate_b": "27_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_3",
+      "candidate_b": "27_cand_7",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_3",
+      "candidate_b": "27_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_3",
+      "candidate_b": "27_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_3",
+      "candidate_b": "27_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_3",
+      "candidate_b": "27_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_7",
+      "candidate_b": "27_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_7",
+      "candidate_b": "27_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_7",
+      "candidate_b": "27_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_7",
+      "candidate_b": "27_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_6",
+      "candidate_b": "27_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_6",
+      "candidate_b": "27_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_6",
+      "candidate_b": "27_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_8",
+      "candidate_b": "27_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_8",
+      "candidate_b": "27_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "27_cand_13",
+      "candidate_b": "27_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "27_cand_14",
+    "question_id": 27,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027852773666381836,
+      "row_count": 749,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "AvgScoreWrite",
+        "CommunicationNumber"
+      ],
+      "sample_rows": [
+        [
+          "21st Century Learning Institute",
+          null,
+          "(951) 769-8424"
+        ],
+        [
+          "APEX Academy",
+          368.0,
+          "(323) 817-6550"
+        ],
+        [
+          "ASA Charter",
+          null,
+          "(909) 475-3322"
+        ],
+        [
+          "Abraham Lincoln Alternative",
+          null,
+          "(661) 256-5090"
+        ],
+        [
+          "Abraxis Charter",
+          null,
+          "(707) 539-2897"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+        "repair_time_sec": 3.0772409439086914,
+        "input_tokens": 1332,
+        "output_tokens": 41
+      }
+    ]
+  },
+  "num_original_candidates": 20,
+  "num_representatives": 8
+}

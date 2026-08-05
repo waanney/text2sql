@@ -1,35 +1,31 @@
 {
   "question_id": 11,
   "db_id": "california_schools",
-  "final_sql": "SELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)`) > 500;",
-  "best_candidate_id": "11_cand_8",
+  "final_sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)] > 500;",
+  "best_candidate_id": "11_cand_0",
   "ranked_candidates": [
-    [
-      "11_cand_8",
-      4.8
-    ],
     [
       "11_cand_0",
       4.0
     ],
     [
-      "11_cand_13",
+      "11_cand_8",
       3.2
     ],
     [
-      "11_cand_6",
+      "11_cand_11",
       2.4000000000000004
     ],
     [
-      "11_cand_7",
+      "11_cand_6",
       1.6
     ],
     [
-      "11_cand_3",
+      "11_cand_14",
       0.8
     ],
     [
-      "11_cand_14",
+      "11_cand_3",
       0.0
     ]
   ],
@@ -43,13 +39,6 @@
     },
     {
       "candidate_a": "11_cand_0",
-      "candidate_b": "11_cand_7",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "11_cand_0",
       "candidate_b": "11_cand_6",
       "winner": "A",
       "confidence": 0.8,
@@ -58,13 +47,13 @@
     {
       "candidate_a": "11_cand_0",
       "candidate_b": "11_cand_8",
-      "winner": "B",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "11_cand_0",
-      "candidate_b": "11_cand_13",
+      "candidate_b": "11_cand_11",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -73,13 +62,6 @@
       "candidate_a": "11_cand_0",
       "candidate_b": "11_cand_14",
       "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "11_cand_3",
-      "candidate_b": "11_cand_7",
-      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
@@ -99,7 +81,7 @@
     },
     {
       "candidate_a": "11_cand_3",
-      "candidate_b": "11_cand_13",
+      "candidate_b": "11_cand_11",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -107,35 +89,7 @@
     {
       "candidate_a": "11_cand_3",
       "candidate_b": "11_cand_14",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "11_cand_7",
-      "candidate_b": "11_cand_6",
       "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "11_cand_7",
-      "candidate_b": "11_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "11_cand_7",
-      "candidate_b": "11_cand_13",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "11_cand_7",
-      "candidate_b": "11_cand_14",
-      "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
@@ -148,7 +102,7 @@
     },
     {
       "candidate_a": "11_cand_6",
-      "candidate_b": "11_cand_13",
+      "candidate_b": "11_cand_11",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -162,7 +116,7 @@
     },
     {
       "candidate_a": "11_cand_8",
-      "candidate_b": "11_cand_13",
+      "candidate_b": "11_cand_11",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -175,7 +129,7 @@
       "probs": null
     },
     {
-      "candidate_a": "11_cand_13",
+      "candidate_a": "11_cand_11",
       "candidate_b": "11_cand_14",
       "winner": "A",
       "confidence": 0.8,
@@ -183,17 +137,17 @@
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)`) > 500;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "11_cand_8",
+    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)] > 500;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "11_cand_0",
     "question_id": 11,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.07842016220092773,
-      "row_count": 7801,
+      "runtime_sec": 0.030903339385986328,
+      "row_count": 7806,
       "column_count": 1,
       "columns": [
         "NCESSchool"
@@ -217,8 +171,19 @@
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Enrollment (K-12) + f.Enrollment (Ages 5-17) > 500;",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)] > 500;\n```",
+        "repair_time_sec": 2.0203211307525635,
+        "input_tokens": 1320,
+        "output_tokens": 29
+      }
+    ]
   },
   "num_original_candidates": 15,
-  "num_representatives": 7
+  "num_representatives": 6
 }

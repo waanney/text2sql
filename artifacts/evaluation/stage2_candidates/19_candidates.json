@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "19_cand_0",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "19_cand_1",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT \n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.School = sa.sname\nGROUP BY \n    s.School, s.Phone\nORDER BY \n    AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "19_cand_2",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nORDER BY sa.AvgScrMath DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "19_cand_3",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 2)\nORDER BY sat.AvgScrMath DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "19_cand_4",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nORDER BY sat.AvgScrMath DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "19_cand_5",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School Code = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "19_cand_6",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "19_cand_7",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "19_cand_8",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "19_cand_9",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "19_cand_10",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School Code = sa.cds\nJOIN schools s ON f.School Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "19_cand_11",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School Code = sa.cds\nJOIN schools s ON f.School Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "19_cand_12",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School Code = s.cds\nGROUP BY s.Phone\nORDER BY AVG(sats.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "19_cand_13",
+    "question_id": 19,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "19_cand_14",
+    "question_id": 19,
+    "db_id": "california_schools"
+  }
+]

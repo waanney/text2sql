@@ -34,22 +34,6 @@
     },
     {
       "type": "value_link",
-      "constraint": "Value 'Charter schools' matches value 'John Muir Charter Schools' in table 'schools', column 'School'"
-    },
-    {
-      "type": "value_link",
-      "constraint": "Value 'Charter School' matches value 'American Indian Public Charter School II' in table 'frpm', column 'School Name'"
-    },
-    {
-      "type": "value_link",
-      "constraint": "Value 'Charter School' matches value 'Pivot Charter School North Valley' in table 'satscores', column 'sname'"
-    },
-    {
-      "type": "value_link",
-      "constraint": "Value 'Charter School' matches value 'American Indian Public Charter School II' in table 'schools', column 'School'"
-    },
-    {
-      "type": "value_link",
       "constraint": "Value 'to Charter' matches value 'Novato Charter' in table 'frpm', column 'School Name'"
     },
     {
@@ -67,6 +51,22 @@
     {
       "type": "value_link",
       "constraint": "Value '1 Charter' matches value '701 Charter St.' in table 'schools', column 'StreetAbr'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Charter School' matches value 'American Indian Public Charter School II' in table 'frpm', column 'School Name'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Charter School' matches value 'Pivot Charter School North Valley' in table 'satscores', column 'sname'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Charter School' matches value 'American Indian Public Charter School II' in table 'schools', column 'School'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Charter schools' matches value 'John Muir Charter Schools' in table 'schools', column 'School'"
     },
     {
       "phrase": "Charter schools refers to `Charter School (Y/N)` = 1 in the frpm",

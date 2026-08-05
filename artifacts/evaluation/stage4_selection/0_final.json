@@ -1,15 +1,15 @@
 {
   "question_id": 0,
   "db_id": "california_schools",
-  "final_sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nWHERE \"frpm\".\"County Name\" = 'Alameda';",
-  "best_candidate_id": "0_cand_6",
+  "final_sql": "SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.`County Code` = s.`County`\nWHERE s.`County` = 'Alameda';",
+  "best_candidate_id": "0_cand_11",
   "ranked_candidates": [
     [
-      "0_cand_6",
+      "0_cand_11",
       0.8
     ],
     [
-      "0_cand_11",
+      "0_cand_6",
       0.0
     ]
   ],
@@ -17,22 +17,22 @@
     {
       "candidate_a": "0_cand_6",
       "candidate_b": "0_cand_11",
-      "winner": "A",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nWHERE \"frpm\".\"County Name\" = 'Alameda';",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_0",
-    "candidate_id": "0_cand_6",
+    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.`County Code` = s.`County`\nWHERE s.`County` = 'Alameda';",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "0_cand_11",
     "question_id": 0,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014079570770263672,
+      "runtime_sec": 0.014176130294799805,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -40,7 +40,7 @@
       ],
       "sample_rows": [
         [
-          1.0
+          null
         ]
       ],
       "is_empty": false

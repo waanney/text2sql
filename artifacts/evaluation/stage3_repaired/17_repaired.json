@@ -1,0 +1,634 @@
+[
+  {
+    "sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE f.AvgScrWrite > 499 AND s.CharterNum IS NOT NULL\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "17_cand_0",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrWrite",
+      "runtime_sec": 0.0028967857360839844,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE f.AvgScrWrite > 499 AND s.CharterNum IS NOT NULL\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE f.AvgScrWrite > 499 AND s.CharterNum IS NOT NULL\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.704617738723755,
+        "input_tokens": 1339,
+        "output_tokens": 48
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE f.AvgScrWrite > 499 AND s.CharterNum IS NOT NULL\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE f.AvgScrWrite > 499 AND s.CharterNum IS NOT NULL\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.713609218597412,
+        "input_tokens": 1341,
+        "output_tokens": 48
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE \n    f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "17_cand_1",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrWrite",
+      "runtime_sec": 0.0028123855590820312,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE \n    f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE \n    f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.8362298011779785,
+        "input_tokens": 1332,
+        "output_tokens": 41
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE \n    f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode AND s.CharterNum = f.Charter_School_Number\nWHERE \n    f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.8346822261810303,
+        "input_tokens": 1335,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "17_cand_2",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.024852514266967773,
+      "row_count": 51,
+      "column_count": 2,
+      "columns": [
+        "CharterNum",
+        "AvgWritingScore"
+      ],
+      "sample_rows": [
+        [
+          "0210",
+          630.0
+        ],
+        [
+          "0890",
+          593.0
+        ],
+        [
+          "0290",
+          582.0
+        ],
+        [
+          "0930",
+          579.0
+        ],
+        [
+          "1169",
+          576.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.713671922683716,
+        "input_tokens": 1333,
+        "output_tokens": 42
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.CDSCode, s.CharterNum\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrWrite > 499\nORDER BY st.AvgScrWrite DESC;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "17_cand_3",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02673196792602539,
+      "row_count": 430,
+      "column_count": 2,
+      "columns": [
+        "CDSCode",
+        "CharterNum"
+      ],
+      "sample_rows": [
+        [
+          "43694684334421",
+          null
+        ],
+        [
+          "19642121931880",
+          null
+        ],
+        [
+          "43694684334462",
+          null
+        ],
+        [
+          "43695344337762",
+          null
+        ],
+        [
+          "43696414332904",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.CDSCode AS CharterNumber,\n    AVG(ss.AvgScrWrite) AS AverageWritingScore\nFROM \n    satscores ss\nJOIN \n    schools s ON ss.cds = s.CDSCode\nWHERE \n    ss.AvgScrWrite > 499\nGROUP BY \n    s.CDSCode\nORDER BY \n    AverageWritingScore DESC;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "17_cand_4",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.020136117935180664,
+      "row_count": 430,
+      "column_count": 2,
+      "columns": [
+        "CharterNumber",
+        "AverageWritingScore"
+      ],
+      "sample_rows": [
+        [
+          "43694684334421",
+          664.0
+        ],
+        [
+          "19642121931880",
+          661.0
+        ],
+        [
+          "43694684334462",
+          657.0
+        ],
+        [
+          "43695344337762",
+          650.0
+        ],
+        [
+          "43696414332904",
+          646.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.CDSCode AS CharterNumber,\n    AVG(ss.AvgScrWrite) AS AvgWritingScore\nFROM \n    satscores ss\nJOIN \n    schools s ON ss.cds = s.CDSCode\nWHERE \n    ss.AvgScrWrite > 499\nGROUP BY \n    s.CDSCode\nORDER BY \n    AvgWritingScore DESC;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "17_cand_5",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.018761873245239258,
+      "row_count": 430,
+      "column_count": 2,
+      "columns": [
+        "CharterNumber",
+        "AvgWritingScore"
+      ],
+      "sample_rows": [
+        [
+          "43694684334421",
+          664.0
+        ],
+        [
+          "19642121931880",
+          661.0
+        ],
+        [
+          "43694684334462",
+          657.0
+        ],
+        [
+          "43695344337762",
+          650.0
+        ],
+        [
+          "43696414332904",
+          646.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "17_cand_6",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrWrite",
+      "runtime_sec": 0.003428936004638672,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "repair_time_sec": 3.1495420932769775,
+        "input_tokens": 1341,
+        "output_tokens": 50
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND f.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "repair_time_sec": 3.1326117515563965,
+        "input_tokens": 1344,
+        "output_tokens": 50
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(sa.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND \n    f.`Charter School Number` IS NOT NULL AND \n    sa.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "17_cand_7",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Charter",
+      "runtime_sec": 0.00281524658203125,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND \n    f.Charter School Number IS NOT NULL AND \n    sa.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;",
+        "error": "near \"School\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND \n    f.`Charter School Number` IS NOT NULL AND \n    sa.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "repair_time_sec": 3.514171838760376,
+        "input_tokens": 1350,
+        "output_tokens": 59
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND \n    f.`Charter School Number` IS NOT NULL AND \n    sa.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(sa.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    f.Charter = 1 AND \n    f.`Charter School Number` IS NOT NULL AND \n    sa.AvgScrWrite > 499\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "repair_time_sec": 3.536686658859253,
+        "input_tokens": 1353,
+        "output_tokens": 59
+      }
+    ]
+  },
+  {
+    "sql": "SELECT \n    s.CharterNum,\n    AVG(ss.AvgScrWrite) AS AvgScoreWrite\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    ss.AvgScrWrite > 499 AND s.CharterNum IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgScoreWrite DESC;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "17_cand_8",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02308487892150879,
+      "row_count": 50,
+      "column_count": 2,
+      "columns": [
+        "CharterNum",
+        "AvgScoreWrite"
+      ],
+      "sample_rows": [
+        [
+          "0210",
+          630.0
+        ],
+        [
+          "0890",
+          593.0
+        ],
+        [
+          "0290",
+          582.0
+        ],
+        [
+          "0930",
+          579.0
+        ],
+        [
+          "1169",
+          576.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.CharterNum,\n    AVG(ss.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    ss.AvgScrWrite > 499 AND s.CharterNum IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "17_cand_9",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022635459899902344,
+      "row_count": 50,
+      "column_count": 2,
+      "columns": [
+        "CharterNum",
+        "AvgWritingScore"
+      ],
+      "sample_rows": [
+        [
+          "0210",
+          630.0
+        ],
+        [
+          "0890",
+          593.0
+        ],
+        [
+          "0290",
+          582.0
+        ],
+        [
+          "0930",
+          579.0
+        ],
+        [
+          "1169",
+          576.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.CharterNum,\n    AVG(ss.AvgScrWrite) AS AvgScoreWrite\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    ss.AvgScrWrite > 499 AND s.CharterNum IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgScoreWrite DESC;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "17_cand_10",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02202439308166504,
+      "row_count": 50,
+      "column_count": 2,
+      "columns": [
+        "CharterNum",
+        "AvgScoreWrite"
+      ],
+      "sample_rows": [
+        [
+          "0210",
+          630.0
+        ],
+        [
+          "0890",
+          593.0
+        ],
+        [
+          "0290",
+          582.0
+        ],
+        [
+          "0930",
+          579.0
+        ],
+        [
+          "1169",
+          576.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "17_cand_11",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrWrite",
+      "runtime_sec": 0.003719329833984375,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.202765703201294,
+        "input_tokens": 1327,
+        "output_tokens": 36
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.197591781616211,
+        "input_tokens": 1329,
+        "output_tokens": 36
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "17_cand_12",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrWrite",
+      "runtime_sec": 0.0032241344451904297,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.2010574340820312,
+        "input_tokens": 1327,
+        "output_tokens": 36
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.1917309761047363,
+        "input_tokens": 1329,
+        "output_tokens": 36
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "17_cand_13",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrWrite",
+      "runtime_sec": 0.003191709518432617,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum;\n```",
+        "repair_time_sec": 2.017951250076294,
+        "input_tokens": 1322,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum;\n```",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum;\n```",
+        "repair_time_sec": 2.0173237323760986,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "17_cand_14",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrWrite",
+      "runtime_sec": 0.003900289535522461,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.566640853881836,
+        "input_tokens": 1336,
+        "output_tokens": 45
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.CharterNum, AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.AvgScrWrite > 499\nGROUP BY s.CharterNum\nORDER BY AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.5699234008789062,
+        "input_tokens": 1339,
+        "output_tokens": 45
+      }
+    ]
+  }
+]

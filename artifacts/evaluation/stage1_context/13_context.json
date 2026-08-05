@@ -24,28 +24,35 @@
   "matched_values": [],
   "evidence_constraints": [
     {
+      "type": "value_link",
+      "constraint": "Value '3 SAT' matches value '4243 Satsuma Avenue' in table 'schools', column 'Street'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value '3 SAT' matches value '4243 Satsuma Ave.' in table 'schools', column 'StreetAbr'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value '3 SAT' matches value '4243 Satsuma Avenue' in table 'schools', column 'MailStreet'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value '3 SAT' matches value '4243 Satsuma Ave.' in table 'schools', column 'MailStrAbr'"
+    },
+    {
       "phrase": "Excellence rate = NumGE1500 / NumTstTakr",
-      "column": "frpm.NumGE1500",
+      "column": "schools.NumGE1500",
       "operator": "/",
-      "value": "frpm.NumTstTakr",
+      "value": "schools.NumTstTakr",
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
     },
     {
-      "phrase": "List the phone numbers of the schools",
+      "phrase": "List the phone numbers of the schools with the top 3 SAT excellence rate.",
       "column": "schools.Phone",
-      "operator": "=",
-      "value": "schools.Phone",
-      "needs_cast": false,
-      "cast_type": null,
-      "confidence": 1.0
-    },
-    {
-      "phrase": "with the top 3 SAT excellence rate",
-      "column": "frpm.SAT Excellence Rate",
-      "operator": "ORDER BY",
-      "value": "DESC LIMIT 3",
+      "operator": "IN",
+      "value": "(SELECT NCESSchool FROM schools ORDER BY NumGE1500 / NumTstTakr DESC LIMIT 3)",
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
@@ -515,6 +522,6 @@
   "confidence": {
     "schema_linking": 0.10978487161693269,
     "literal_mapping": 0.0,
-    "evidence_parsing": 1.0
+    "evidence_parsing": 0.3333333333333333
   }
 }

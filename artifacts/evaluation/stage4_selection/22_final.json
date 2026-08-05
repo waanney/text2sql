@@ -1,0 +1,138 @@
+{
+  "question_id": 22,
+  "db_id": "california_schools",
+  "final_sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
+  "best_candidate_id": "22_cand_14",
+  "ranked_candidates": [
+    [
+      "22_cand_14",
+      3.2
+    ],
+    [
+      "22_cand_8",
+      2.4000000000000004
+    ],
+    [
+      "22_cand_10",
+      1.05
+    ],
+    [
+      "22_cand_12",
+      1.05
+    ],
+    [
+      "22_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "22_cand_10",
+      "candidate_b": "22_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_10",
+      "candidate_b": "22_cand_12",
+      "winner": "tie",
+      "confidence": 0.5,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_10",
+      "candidate_b": "22_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_10",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_12",
+      "candidate_b": "22_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_12",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_8",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "22_cand_14",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02723383903503418,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "Pittsburg Senior High"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.FRPM_Count DESC\nLIMIT 1;",
+        "error": "no such column: f.FRPM_Count",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.948376178741455,
+        "input_tokens": 1323,
+        "output_tokens": 35
+      }
+    ]
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 5
+}

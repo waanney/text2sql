@@ -1,0 +1,592 @@
+[
+  {
+    "sql": "```sql\nSELECT s.School, MAX(ss.NumTstTakr) AS MaxTestTakers\nFROM frpm f\nJOIN satscores ss ON f.CDSCode = ss.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY MaxTestTakers DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "22_cand_0",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02001166343688965,
+      "row_count": 0,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "MaxTestTakers"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, MAX(ss.NumTstTakr) AS MaxTestTakers\nFROM frpm f\nJOIN satscores ss ON f.CDSCode = ss.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY MaxTestTakers DESC\nLIMIT 1;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, MAX(ss.NumTstTakr) AS MaxTestTakers\nFROM frpm f\nJOIN satscores ss ON f.CDSCode = ss.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY MaxTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.6757266521453857,
+        "input_tokens": 1361,
+        "output_tokens": 49
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, MAX(ss.NumTstTakr) AS MaxTestTakers\nFROM frpm f\nJOIN satscores ss ON f.CDSCode = ss.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY MaxTestTakers DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, MAX(ss.NumTstTakr) AS MaxTestTakers\nFROM frpm f\nJOIN satscores ss ON f.CDSCode = ss.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY MaxTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.6584150791168213,
+        "input_tokens": 1363,
+        "output_tokens": 49
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT frpm.School_Name, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "22_cand_1",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.003016948699951172,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT frpm.School Name, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;",
+        "error": "no such column: frpm.School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.School_Name, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.273900270462036,
+        "input_tokens": 1323,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.School_Name, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.School_Name, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.272134780883789,
+        "input_tokens": 1324,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.School_Name, \n    satscores.NumTstTakr AS TotalTestTakers\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nWHERE \n    frpm.County = 'Contra Costa'\nORDER BY \n    TotalTestTakers DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "22_cand_2",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.0028078556060791016,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    frpm.School Name, \n    satscores.NumTstTakr AS TotalTestTakers\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nWHERE \n    frpm.County = 'Contra Costa'\nORDER BY \n    TotalTestTakers DESC\nLIMIT 1;",
+        "error": "no such column: frpm.School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name, \n    satscores.NumTstTakr AS TotalTestTakers\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nWHERE \n    frpm.County = 'Contra Costa'\nORDER BY \n    TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.571135997772217,
+        "input_tokens": 1326,
+        "output_tokens": 33
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.School_Name, \n    satscores.NumTstTakr AS TotalTestTakers\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nWHERE \n    frpm.County = 'Contra Costa'\nORDER BY \n    TotalTestTakers DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name, \n    satscores.NumTstTakr AS TotalTestTakers\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nWHERE \n    frpm.County = 'Contra Costa'\nORDER BY \n    TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.5763099193573,
+        "input_tokens": 1327,
+        "output_tokens": 33
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = SUBSTR(ss.cds, 1, 10)\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "22_cand_3",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.017549991607666016,
+      "row_count": 0,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "County",
+        "NumTstTakr"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = SUBSTR(ss.cds, 1, 10)\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = SUBSTR(ss.cds, 1, 10)\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3792126178741455,
+        "input_tokens": 1349,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = SUBSTR(ss.cds, 1, 10)\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = SUBSTR(ss.cds, 1, 10)\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3687918186187744,
+        "input_tokens": 1352,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "22_cand_4",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019685745239257812,
+      "row_count": 0,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "County",
+        "NumTstTakr"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.147042989730835,
+        "input_tokens": 1346,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.147522211074829,
+        "input_tokens": 1349,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "22_cand_5",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019156932830810547,
+      "row_count": 0,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "NumTstTakr"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0451738834381104,
+        "input_tokens": 1345,
+        "output_tokens": 33
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0404019355773926,
+        "input_tokens": 1348,
+        "output_tokens": 33
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT frpm.School_Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "22_cand_6",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.002791166305541992,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT frpm.School Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;",
+        "error": "no such column: frpm.School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.School_Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0126242637634277,
+        "input_tokens": 1322,
+        "output_tokens": 29
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.School_Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.School_Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0185129642486572,
+        "input_tokens": 1323,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT frpm.School_Name, frpm.School_Code, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "22_cand_7",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.004491329193115234,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT frpm.School Name, frpm.School Code, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;",
+        "error": "no such column: frpm.School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.School_Name, frpm.School_Code, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4184987545013428,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.School_Name, frpm.School_Code, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.School_Name, frpm.School_Code, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4095025062561035,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE f.`County Name` = 'Contra Costa'\nGROUP BY s.School\nORDER BY SUM(f.`Enrollment (Ages 5-17)`) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "22_cand_8",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.034838199615478516,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "Washington Elementary"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE f.`County Name` = 'Contra Costa'\nGROUP BY s.School\nORDER BY SUM(f.`Enrollment (Ages 5-17)`) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "22_cand_9",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.033817291259765625,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "Washington Elementary"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.School, COUNT(ss.NumTstTakr) AS TotalTestTakers\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds AND s.County = ss.cname\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "22_cand_10",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022624731063842773,
+      "row_count": 0,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "TotalTestTakers"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, COUNT(ss.NumTstTakr) AS TotalTestTakers\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds AND s.County = ss.cname\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, COUNT(ss.NumTstTakr) AS TotalTestTakers\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds AND s.County = ss.cname\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.507807493209839,
+        "input_tokens": 1357,
+        "output_tokens": 45
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, COUNT(ss.NumTstTakr) AS TotalTestTakers\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds AND s.County = ss.cname\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, COUNT(ss.NumTstTakr) AS TotalTestTakers\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds AND s.County = ss.cname\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4923338890075684,
+        "input_tokens": 1359,
+        "output_tokens": 45
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.CDSCode = ss.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "22_cand_11",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01864171028137207,
+      "row_count": 0,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "TotalTestTakers"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.School Code = ss.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.School, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.School_Code = ss.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.661193609237671,
+        "input_tokens": 1342,
+        "output_tokens": 49
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.School_Code = ss.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.CDSCode = ss.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.674910545349121,
+        "input_tokens": 1342,
+        "output_tokens": 49
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, s.County, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.`School Code` = ss.cds\nJOIN schools s ON f.`School Code` = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School, s.County\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "22_cand_12",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.016607046127319336,
+      "row_count": 0,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "County",
+        "TotalTestTakers"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.County, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.School Code = ss.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School, s.County\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.County, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.`School Code` = ss.cds\nJOIN schools s ON f.`School Code` = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School, s.County\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.922853469848633,
+        "input_tokens": 1345,
+        "output_tokens": 54
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, s.County, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.`School Code` = ss.cds\nJOIN schools s ON f.`School Code` = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School, s.County\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.County, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.`School Code` = ss.cds\nJOIN schools s ON f.`School Code` = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School, s.County\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.9229276180267334,
+        "input_tokens": 1368,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, MAX(sa.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores sa ON f.School_Name = sa.sname AND f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "22_cand_13",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.County",
+      "runtime_sec": 0.0055963993072509766,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, MAX(f.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores sa ON f.School Name = sa.sname AND f.School Code = sa.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.School, MAX(f.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores sa ON f.School_Name = sa.sname AND f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.8837828636169434,
+        "input_tokens": 1349,
+        "output_tokens": 54
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, MAX(f.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores sa ON f.School_Name = sa.sname AND f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, MAX(sa.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores sa ON f.School_Name = sa.sname AND f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.901975631713867,
+        "input_tokens": 1348,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "22_cand_14",
+    "question_id": 22,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02723383903503418,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "Pittsburg Senior High"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.FRPM_Count DESC\nLIMIT 1;",
+        "error": "no such column: f.FRPM_Count",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.948376178741455,
+        "input_tokens": 1323,
+        "output_tokens": 35
+      }
+    ]
+  }
+]

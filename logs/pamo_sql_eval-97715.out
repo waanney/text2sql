@@ -1,0 +1,436 @@
+=== Starting PAMO-SQL Evaluation Job ===
+Wed Aug  5 19:59:49 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.48.01              Driver Version: 590.48.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100 80GB PCIe          On  |   00000000:17:00.0 Off |                   On |
+| N/A   38C    P0             46W /  300W |     177MiB /  81920MiB |     N/A      Default |
+|                                         |                        |              Enabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| MIG devices:                                                                            |
++------------------+----------------------------------+-----------+-----------------------+
+| GPU  GI  CI  MIG |              Shared Memory-Usage |        Vol|        Shared         |
+|      ID  ID  Dev |                Shared BAR1-Usage | SM     Unc| CE ENC  DEC  OFA  JPG |
+|                  |                                  |        ECC|                       |
+|==================+==================================+===========+=======================|
+|  0    1   0   0  |              89MiB / 40192MiB    | 42      0 |  3   0    2    0    0 |
+|                  |               0MiB / 24543MiB    |           |                       |
++------------------+----------------------------------+-----------+-----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+{"timestamp": "2026-08-05T17:59:57.041578Z", "level": "INFO", "logger": "pamo_sql", "message": "Running dataset evaluation on pamo_sql/data/raw/bird/dev.json"}
+{"timestamp": "2026-08-05T17:59:57.050910Z", "level": "INFO", "logger": "pamo_sql", "message": "Using LLM Pairwise Selector"}
+{"timestamp": "2026-08-05T17:59:57.051087Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 1/30: Question ID 0"}
+{"timestamp": "2026-08-05T17:59:57.597002Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 0", "extra": {"question_input": {"question_id": 0, "question": "What is the highest eligible free rate for K-12 students in the schools in Alameda County?", "db_id": "california_schools", "evidence": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`"}}}
+{"timestamp": "2026-08-05T17:59:57.597322Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] Loading local model 'Qwen/Qwen2.5-Coder-7B-Instruct' on GPU (CUDA)...
+[llm_client] Local model 'Qwen/Qwen2.5-Coder-7B-Instruct' loaded successfully on GPU!
+{"timestamp": "2026-08-05T18:02:02.028269Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/0_context.json"}
+{"timestamp": "2026-08-05T18:02:02.028897Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:02:34.153504Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:02:34.153680Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:02:34.414082Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:02:34.414345Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:02:35.609219Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.`County Code` = s.`County`\nWHERE s.`County` = 'Alameda';"}
+{"timestamp": "2026-08-05T18:02:35.609795Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:02:45.844274Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate FROM frpm WHERE `County Name` = 'Alameda' AND `School Type` = 'K-12 Schools (Public)'"}
+{"timestamp": "2026-08-05T18:02:45.844526Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 0"}
+{"timestamp": "2026-08-05T18:02:45.845638Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 2/30: Question ID 1"}
+{"timestamp": "2026-08-05T18:02:46.060101Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 1", "extra": {"question_input": {"question_id": 1, "question": "Please list the lowest three eligible free rates for students aged 5-17 in continuation schools.", "db_id": "california_schools", "evidence": "Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`"}}}
+{"timestamp": "2026-08-05T18:02:46.060237Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:04:28.012371Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/1_context.json"}
+{"timestamp": "2026-08-05T18:04:28.012674Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:05:12.817495Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:05:12.817635Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:06:02.196458Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:06:02.196559Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:06:13.932336Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.SOCType LIKE '%Continuation%'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;"}
+{"timestamp": "2026-08-05T18:06:13.932487Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:07:22.661220Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT DISTINCT T1.`Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm AS T1\nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.SOCType = 'Continuation High Schools'\nORDER BY T1.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;"}
+{"timestamp": "2026-08-05T18:07:22.661487Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 1"}
+{"timestamp": "2026-08-05T18:07:22.661875Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 3/30: Question ID 2"}
+{"timestamp": "2026-08-05T18:07:22.856489Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 2", "extra": {"question_input": {"question_id": 2, "question": "Please list the zip code of all the charter schools in Fresno County Office of Education.", "db_id": "california_schools", "evidence": "Charter schools refers to `Charter School (Y/N)` = 1 in the table fprm"}}}
+{"timestamp": "2026-08-05T18:07:22.856614Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:07:45.771538Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/2_context.json"}
+{"timestamp": "2026-08-05T18:07:45.771682Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:08:21.454780Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:08:21.454897Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:08:58.910090Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:08:58.910333Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:09:16.188183Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`District Name` = 'Fresno County Office of Education';"}
+{"timestamp": "2026-08-05T18:09:16.188508Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:09:50.080974Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`District Name` = 'Fresno County Office of Education';"}
+{"timestamp": "2026-08-05T18:09:50.081287Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 2"}
+{"timestamp": "2026-08-05T18:09:50.082254Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 4/30: Question ID 3"}
+{"timestamp": "2026-08-05T18:09:50.558700Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 3", "extra": {"question_input": {"question_id": 3, "question": "What is the unabbreviated mailing street address of the school with the highest FRPM count for K-12 students?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:09:50.558845Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:10:50.748894Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/3_context.json"}
+{"timestamp": "2026-08-05T18:10:50.749154Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:11:26.488151Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:11:26.488420Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:12:07.349437Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:12:07.349776Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:12:10.603166Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T18:12:10.603297Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:12:10.603412Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:12:10.603470Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 3"}
+{"timestamp": "2026-08-05T18:12:10.603749Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 5/30: Question ID 4"}
+{"timestamp": "2026-08-05T18:12:10.831548Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 4", "extra": {"question_input": {"question_id": 4, "question": "Please list the phone numbers of the direct charter-funded schools that are opened after 2000/1/1.", "db_id": "california_schools", "evidence": "Charter schools refers to `Charter School (Y/N)` = 1 in the frpm"}}}
+{"timestamp": "2026-08-05T18:12:10.831720Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:13:36.404141Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/4_context.json"}
+{"timestamp": "2026-08-05T18:13:36.404385Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:14:16.342688Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:14:16.342824Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:14:42.371056Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:14:42.371458Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:14:46.236462Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate > '2000-01-01';"}
+{"timestamp": "2026-08-05T18:14:46.236767Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:14:46.237058Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:14:46.237194Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 4"}
+{"timestamp": "2026-08-05T18:14:46.238071Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 6/30: Question ID 5"}
+{"timestamp": "2026-08-05T18:14:46.469031Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 5", "extra": {"question_input": {"question_id": 5, "question": "How many schools with an average score in Math greater than 400 in the SAT test are exclusively virtual?", "db_id": "california_schools", "evidence": "Exclusively virtual refers to Virtual = 'F'"}}}
+{"timestamp": "2026-08-05T18:14:46.469174Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:16:23.534745Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/5_context.json"}
+{"timestamp": "2026-08-05T18:16:23.535282Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:16:58.612975Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:16:58.613264Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:17:01.237705Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:17:01.237979Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:17:32.320714Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;"}
+{"timestamp": "2026-08-05T18:17:32.321098Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:17:32.321407Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:17:32.321551Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 5"}
+{"timestamp": "2026-08-05T18:17:32.322509Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 7/30: Question ID 6"}
+{"timestamp": "2026-08-05T18:17:32.586117Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 6", "extra": {"question_input": {"question_id": 6, "question": "Among the schools with the SAT test takers of over 500, please list the schools that are magnet schools or offer a magnet program.", "db_id": "california_schools", "evidence": "Magnet schools or offer a magnet program means that Magnet = 1"}}}
+{"timestamp": "2026-08-05T18:17:32.586298Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:19:40.352556Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/6_context.json"}
+{"timestamp": "2026-08-05T18:19:40.353126Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:20:21.112941Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:20:21.113284Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:20:53.140762Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:20:53.141046Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:21:10.753215Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.NumTstTakr >= 500 AND s.Magnet = 1;"}
+{"timestamp": "2026-08-05T18:21:10.753552Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:21:10.753904Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:21:10.754050Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 6"}
+{"timestamp": "2026-08-05T18:21:10.755069Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 8/30: Question ID 7"}
+{"timestamp": "2026-08-05T18:21:11.044149Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 7", "extra": {"question_input": {"question_id": 7, "question": "What is the phone number of the school that has the highest number of test takers with an SAT score of over 1500?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:21:11.044384Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:22:25.142107Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/7_context.json"}
+{"timestamp": "2026-08-05T18:22:25.142343Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:23:10.973042Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:23:10.973155Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:24:11.962012Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:24:11.962191Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:24:22.079742Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.Phone\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumGE1500 > 0\nORDER BY st.NumGE1500 DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T18:24:22.079852Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:24:22.079951Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:24:22.079994Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 7"}
+{"timestamp": "2026-08-05T18:24:22.080344Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 9/30: Question ID 8"}
+{"timestamp": "2026-08-05T18:24:22.276896Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 8", "extra": {"question_input": {"question_id": 8, "question": "What is the number of SAT test takers of the schools with the highest FRPM count for K-12 students?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:24:22.277022Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:25:31.212054Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/8_context.json"}
+{"timestamp": "2026-08-05T18:25:31.212159Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:26:12.493081Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:26:12.493448Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:27:10.190495Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:27:10.190927Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:27:21.670430Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT SUM(s.NumTstTakr)\nFROM satscores s\nJOIN frpm f ON s.cds = f.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T18:27:21.670537Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:27:21.670641Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:27:21.670690Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 8"}
+{"timestamp": "2026-08-05T18:27:21.671113Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 10/30: Question ID 9"}
+{"timestamp": "2026-08-05T18:27:21.857623Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 9", "extra": {"question_input": {"question_id": 9, "question": "Among the schools with the average score in Math over 560 in the SAT test, how many schools are directly charter-funded?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:27:21.857770Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:28:31.303642Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/9_context.json"}
+{"timestamp": "2026-08-05T18:28:31.303909Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:29:09.390596Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:29:09.390916Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:29:36.550453Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:29:36.550567Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:29:39.757195Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT COUNT(schools.School)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE satscores.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';"}
+{"timestamp": "2026-08-05T18:29:39.757283Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:29:39.757364Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:29:39.757400Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 9"}
+{"timestamp": "2026-08-05T18:29:39.757653Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 11/30: Question ID 10"}
+{"timestamp": "2026-08-05T18:29:39.972839Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 10", "extra": {"question_input": {"question_id": 10, "question": "For the school with the highest average score in Reading in the SAT test, what is its FRPM count for students aged 5-17?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:29:39.973132Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:30:18.882815Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/10_context.json"}
+{"timestamp": "2026-08-05T18:30:18.882918Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:31:03.239873Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:31:03.240009Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:32:03.796753Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:32:03.796911Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:32:14.538582Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = REPLACE(satscores.cds, ' ', '')\nWHERE satscores.rtype = 'D'\nORDER BY satscores.AvgScrRead DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T18:32:14.538702Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:32:14.538829Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:32:14.538881Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 10"}
+{"timestamp": "2026-08-05T18:32:14.539253Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 12/30: Question ID 11"}
+{"timestamp": "2026-08-05T18:32:14.767037Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 11", "extra": {"question_input": {"question_id": 11, "question": "Please list the codes of the schools with a total enrollment of over 500.", "db_id": "california_schools", "evidence": "Total enrollment can be represented by `Enrollment (K-12)` + `Enrollment (Ages 5-17)`"}}}
+{"timestamp": "2026-08-05T18:32:14.767235Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:33:52.522377Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/11_context.json"}
+{"timestamp": "2026-08-05T18:33:52.522624Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:34:27.748347Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:34:27.748693Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:34:50.126171Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:34:50.126338Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:35:07.409752Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)] > 500;"}
+{"timestamp": "2026-08-05T18:35:07.409882Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:35:07.409997Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:35:07.410045Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 11"}
+{"timestamp": "2026-08-05T18:35:07.410408Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 13/30: Question ID 12"}
+{"timestamp": "2026-08-05T18:35:07.668865Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 12", "extra": {"question_input": {"question_id": 12, "question": "Among the schools with an SAT excellence rate of over 0.3, what is the highest eligible free rate for students aged 5-17?", "db_id": "california_schools", "evidence": "Excellence rate = NumGE1500 / NumTstTakr; Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`"}}}
+{"timestamp": "2026-08-05T18:35:07.669027Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:37:41.974442Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/12_context.json"}
+{"timestamp": "2026-08-05T18:37:41.975019Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:38:29.611716Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:38:29.612115Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:38:35.787992Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:38:35.788249Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:38:37.104045Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.NumGE1500 / T2.enroll12 > 0.3;"}
+{"timestamp": "2026-08-05T18:38:37.104407Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:38:58.647503Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.NumGE1500 / T2.enroll12 > 0.3;"}
+{"timestamp": "2026-08-05T18:38:58.647775Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 12"}
+{"timestamp": "2026-08-05T18:38:58.648523Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 14/30: Question ID 13"}
+{"timestamp": "2026-08-05T18:38:58.877722Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 13", "extra": {"question_input": {"question_id": 13, "question": "Please list the phone numbers of the schools with the top 3 SAT excellence rate.", "db_id": "california_schools", "evidence": "Excellence rate = NumGE1500 / NumTstTakr"}}}
+{"timestamp": "2026-08-05T18:38:58.877883Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:40:09.640857Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/13_context.json"}
+{"timestamp": "2026-08-05T18:40:09.641212Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:40:53.350669Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:40:53.350917Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:41:44.995287Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:41:44.995547Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:42:16.182834Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS sat_excellence_rate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.sat_excellence_rate DESC\nLIMIT 3;"}
+{"timestamp": "2026-08-05T18:42:16.183094Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:43:12.537354Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS sat_excellence_rate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.sat_excellence_rate DESC\nLIMIT 3;"}
+{"timestamp": "2026-08-05T18:43:12.537685Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 13"}
+{"timestamp": "2026-08-05T18:43:12.538592Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 15/30: Question ID 14"}
+{"timestamp": "2026-08-05T18:43:12.756590Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 14", "extra": {"question_input": {"question_id": 14, "question": "List the top five schools, by descending order, from the highest to the lowest, the most number of Enrollment (Ages 5-17). Please give their NCES school identification number.", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:43:12.756760Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:44:53.488415Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/14_context.json"}
+{"timestamp": "2026-08-05T18:44:53.489404Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:45:32.820052Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:45:32.820339Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:45:46.753125Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:45:46.753454Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:45:56.915420Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT \n    s.NCESSchool,\n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;"}
+{"timestamp": "2026-08-05T18:45:56.915508Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:45:56.915591Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:45:56.915629Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 14"}
+{"timestamp": "2026-08-05T18:45:56.915880Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 16/30: Question ID 15"}
+{"timestamp": "2026-08-05T18:45:57.109285Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 15", "extra": {"question_input": {"question_id": 15, "question": "Which active district has the highest average score in Reading?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:45:57.109416Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:46:29.057415Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/15_context.json"}
+{"timestamp": "2026-08-05T18:46:29.057562Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:47:11.342291Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:47:11.342439Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:47:29.861690Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:47:29.861959Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:47:35.896386Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T18:47:35.896634Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:47:35.896918Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:47:35.897059Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 15"}
+{"timestamp": "2026-08-05T18:47:35.897764Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 17/30: Question ID 16"}
+{"timestamp": "2026-08-05T18:47:36.128467Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 16", "extra": {"question_input": {"question_id": 16, "question": "How many schools in merged Alameda have number of test takers less than 100?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:47:36.128604Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:48:25.369683Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/16_context.json"}
+{"timestamp": "2026-08-05T18:48:25.370010Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:49:03.978369Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:49:03.978647Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:49:54.776655Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:49:54.777128Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:49:58.105300Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.`County Name` = 'Alameda' AND satscores.NumTstTakr < 100;"}
+{"timestamp": "2026-08-05T18:49:58.105402Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:49:58.105506Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:49:58.105555Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 16"}
+{"timestamp": "2026-08-05T18:49:58.105952Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 18/30: Question ID 17"}
+{"timestamp": "2026-08-05T18:49:58.300437Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 17", "extra": {"question_input": {"question_id": 17, "question": "Rank schools by their average score in Writing where the score is greater than 499, showing their charter numbers.", "db_id": "california_schools", "evidence": "Valid charter number means the number is not null"}}}
+{"timestamp": "2026-08-05T18:49:58.300562Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:51:52.264277Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/17_context.json"}
+{"timestamp": "2026-08-05T18:51:52.264533Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:52:38.773922Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:52:38.774065Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:53:24.110660Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:53:24.111047Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:53:35.366835Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;"}
+{"timestamp": "2026-08-05T18:53:35.366946Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:54:01.640534Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;"}
+{"timestamp": "2026-08-05T18:54:01.640768Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 17"}
+{"timestamp": "2026-08-05T18:54:01.641447Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 19/30: Question ID 18"}
+{"timestamp": "2026-08-05T18:54:01.836559Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 18", "extra": {"question_input": {"question_id": 18, "question": "How many schools in Fresno (directly funded) have number of test takers not more than 250?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:54:01.836690Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:54:58.511623Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/18_context.json"}
+{"timestamp": "2026-08-05T18:54:58.511981Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:55:41.642056Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:55:41.642193Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:56:47.445835Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:56:47.446092Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:56:58.499383Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.`County Name` = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;"}
+{"timestamp": "2026-08-05T18:56:58.499506Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:56:58.499615Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:56:58.499661Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 18"}
+{"timestamp": "2026-08-05T18:56:58.500068Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 20/30: Question ID 19"}
+{"timestamp": "2026-08-05T18:56:58.694252Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 19", "extra": {"question_input": {"question_id": 19, "question": "What is the phone number of the school that has the highest average score in Math?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:56:58.694407Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T18:57:54.208927Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/19_context.json"}
+{"timestamp": "2026-08-05T18:57:54.209370Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T18:58:30.279169Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T18:58:30.279311Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T18:58:56.768187Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T18:58:56.768402Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T18:59:06.556624Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T18:59:06.556743Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T18:59:06.556864Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T18:59:06.556914Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 19"}
+{"timestamp": "2026-08-05T18:59:06.557343Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 21/30: Question ID 20"}
+{"timestamp": "2026-08-05T18:59:06.777661Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 20", "extra": {"question_input": {"question_id": 20, "question": "How many schools in Amador which the Low Grade is 9 and the High Grade is 12?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T18:59:06.777862Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:00:00.285305Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/20_context.json"}
+{"timestamp": "2026-08-05T19:00:00.285456Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:00:34.975319Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:00:34.975445Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:01:23.605749Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:01:23.605934Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:01:24.809092Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';"}
+{"timestamp": "2026-08-05T19:01:24.809194Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:01:24.809292Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T19:01:24.809336Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 20"}
+{"timestamp": "2026-08-05T19:01:24.809722Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 22/30: Question ID 21"}
+{"timestamp": "2026-08-05T19:01:25.003773Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 21", "extra": {"question_input": {"question_id": 21, "question": "In Los Angeles how many schools have more than 500 free meals but less than 700 free or reduced price meals for K-12?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T19:01:25.003910Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:02:21.552517Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/21_context.json"}
+{"timestamp": "2026-08-05T19:02:21.552611Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:03:03.086153Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:03:03.086306Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:04:06.063819Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:04:06.063974Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:04:07.241923Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Los Angeles' \n  AND `Free Meal Count (K-12)` > 500 \n  AND `FRPM Count (K-12)` < 700;"}
+{"timestamp": "2026-08-05T19:04:07.242038Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:04:07.242151Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T19:04:07.242200Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 21"}
+{"timestamp": "2026-08-05T19:04:07.242527Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 23/30: Question ID 22"}
+{"timestamp": "2026-08-05T19:04:07.473478Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 22", "extra": {"question_input": {"question_id": 22, "question": "Which school in Contra Costa has the highest number of test takers?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T19:04:07.473643Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:04:40.700771Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/22_context.json"}
+{"timestamp": "2026-08-05T19:04:40.700870Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:05:23.159015Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:05:23.159158Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:06:24.595129Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:06:24.595301Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:06:35.043924Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T19:06:35.044046Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:06:35.044158Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T19:06:35.044206Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 22"}
+{"timestamp": "2026-08-05T19:06:35.044596Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 24/30: Question ID 23"}
+{"timestamp": "2026-08-05T19:06:35.263465Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 23", "extra": {"question_input": {"question_id": 23, "question": "List the names of schools with more than 30 difference in enrollements between K-12 and ages 5-17? Please also give the full street adress of the schools.", "db_id": "california_schools", "evidence": "Diffrence in enrollement = `Enrollment (K-12)` - `Enrollment (Ages 5-17)`"}}}
+{"timestamp": "2026-08-05T19:06:35.263600Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:08:51.052524Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/23_context.json"}
+{"timestamp": "2026-08-05T19:08:51.052751Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:09:37.099808Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:09:37.099980Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:09:37.454474Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:09:37.454560Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:09:55.028945Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)],\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;"}
+{"timestamp": "2026-08-05T19:09:55.029061Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:10:38.147487Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)],\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;"}
+{"timestamp": "2026-08-05T19:10:38.147850Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 23"}
+{"timestamp": "2026-08-05T19:10:38.148899Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 25/30: Question ID 24"}
+{"timestamp": "2026-08-05T19:10:38.354492Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 24", "extra": {"question_input": {"question_id": 24, "question": "Give the names of the schools with the percent eligible for free meals in K-12 is more than 0.1 and test takers whose test score is greater than or equal to 1500?", "db_id": "california_schools", "evidence": "Percent eligible for free meals = Free Meal Count (K-12) / Total (Enrollment (K-12)"}}}
+{"timestamp": "2026-08-05T19:10:38.354620Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:13:27.795904Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/24_context.json"}
+{"timestamp": "2026-08-05T19:13:27.796140Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:14:14.313357Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:14:14.313470Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:14:50.543464Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:14:50.543907Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:15:07.092459Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);"}
+{"timestamp": "2026-08-05T19:15:07.092747Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:15:07.093022Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T19:15:07.093161Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 24"}
+{"timestamp": "2026-08-05T19:15:07.093985Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 26/30: Question ID 25"}
+{"timestamp": "2026-08-05T19:15:07.316952Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 25", "extra": {"question_input": {"question_id": 25, "question": "Name schools in Riverside which the average of average math score for SAT is grater than 400, what is the funding type of these schools?", "db_id": "california_schools", "evidence": "Average of average math = sum(average math scores) / count(schools)."}}}
+{"timestamp": "2026-08-05T19:15:07.317087Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:17:14.488204Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/25_context.json"}
+{"timestamp": "2026-08-05T19:17:14.488517Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:17:55.975434Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:17:55.975817Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:18:18.351723Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:18:18.351838Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:18:41.166936Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(ss.AvgScrMath) > 400;"}
+{"timestamp": "2026-08-05T19:18:41.167073Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:19:17.848569Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(ss.AvgScrMath) > 400;"}
+{"timestamp": "2026-08-05T19:19:17.848875Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 25"}
+{"timestamp": "2026-08-05T19:19:17.849772Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 27/30: Question ID 26"}
+{"timestamp": "2026-08-05T19:19:18.047024Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 26", "extra": {"question_input": {"question_id": 26, "question": "State the names and full communication address of high schools in Monterey which has more than 800 free or reduced price meals for ages 15-17?", "db_id": "california_schools", "evidence": "Full communication address should include Street, City, State and zip code if any."}}}
+{"timestamp": "2026-08-05T19:19:18.047168Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:22:05.565351Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/26_context.json"}
+{"timestamp": "2026-08-05T19:22:05.565635Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:23:00.651970Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:23:00.652106Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:24:31.630098Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:24:31.630358Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:24:39.478563Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND s.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;"}
+{"timestamp": "2026-08-05T19:24:39.478661Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:25:12.635297Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND s.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;"}
+{"timestamp": "2026-08-05T19:25:12.635421Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 26"}
+{"timestamp": "2026-08-05T19:25:12.635862Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 28/30: Question ID 27"}
+{"timestamp": "2026-08-05T19:25:12.930515Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 27", "extra": {"question_input": {"question_id": 27, "question": "What is the average score in writing for the schools that were opened after 1991 or closed before 2000? List the school names along with the score. Also, list the communication number of the schools if there is any.", "db_id": "california_schools", "evidence": "Communication number refers to phone number."}}}
+{"timestamp": "2026-08-05T19:25:12.930717Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:28:03.677786Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/27_context.json"}
+{"timestamp": "2026-08-05T19:28:03.678442Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:29:01.279780Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:29:01.280123Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:30:15.133285Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:30:15.133704Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:30:50.265907Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;"}
+{"timestamp": "2026-08-05T19:30:50.266201Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:31:41.408662Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;"}
+{"timestamp": "2026-08-05T19:31:41.409037Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 27"}
+{"timestamp": "2026-08-05T19:31:41.410131Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 29/30: Question ID 28"}
+{"timestamp": "2026-08-05T19:31:41.609466Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 28", "extra": {"question_input": {"question_id": 28, "question": "Consider the average difference between K-12 enrollment and 15-17 enrollment of schools that are locally funded, list the names and DOC type of schools which has a difference above this average.", "db_id": "california_schools", "evidence": "Difference between K-12 enrollment and 15-17 enrollment can be computed by `Enrollment (K-12)` - `Enrollment (Ages 5-17)`"}}}
+{"timestamp": "2026-08-05T19:31:41.609611Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:34:43.111837Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/28_context.json"}
+{"timestamp": "2026-08-05T19:34:43.112495Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:36:04.796770Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:36:04.797287Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:37:30.378894Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:37:30.379436Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:37:57.773716Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.School, s.DOCType, AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS diff\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.FundingType = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING diff > (\n    SELECT AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS avg_diff\n    FROM frpm f\n    JOIN schools s ON f.CDSCode = s.CDSCode\n    WHERE s.FundingType = 'Locally funded'\n);"}
+{"timestamp": "2026-08-05T19:37:57.773843Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:39:04.545452Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT s.School, s.DOCType, AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS diff\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.FundingType = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING diff > (\n    SELECT AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS avg_diff\n    FROM frpm f\n    JOIN schools s ON f.CDSCode = s.CDSCode\n    WHERE s.FundingType = 'Locally funded'\n);"}
+{"timestamp": "2026-08-05T19:39:04.545786Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 28"}
+{"timestamp": "2026-08-05T19:39:04.546412Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 30/30: Question ID 29"}
+{"timestamp": "2026-08-05T19:39:04.820516Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 29", "extra": {"question_input": {"question_id": 29, "question": "When did the first-through-twelfth-grade school with the largest enrollment open?", "db_id": "california_schools", "evidence": "K-12 means First-through-twelfth-grade"}}}
+{"timestamp": "2026-08-05T19:39:04.820709Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-05T19:39:58.373136Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/29_context.json"}
+{"timestamp": "2026-08-05T19:39:58.373243Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-05T19:40:34.233869Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T19:40:34.234211Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-05T19:41:40.006549Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T19:41:40.006826Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T19:41:50.159834Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` LIKE '%K-12%'\nORDER BY f.`Enrollment (K-12)` DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T19:41:50.159929Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T19:42:24.957042Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Triggered. New Final SQL: SELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` LIKE '%K-12%'\nORDER BY f.`Enrollment (K-12)` DESC\nLIMIT 1;"}
+{"timestamp": "2026-08-05T19:42:24.957191Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 29"}
+{"timestamp": "2026-08-05T19:42:25.018017Z", "level": "INFO", "logger": "pamo_sql", "message": "Evaluation finished. Summary saved to artifacts/evaluation/evaluation_summary.json"}
+
+================ EVALUATION SUMMARY ================
+Total evaluated: 30
+Correct queries: 10
+Execution Accuracy: 33.33%
+Detailed results saved to: artifacts/evaluation/execution_accuracy_results.json
+====================================================
+
+=== Job Finished ===

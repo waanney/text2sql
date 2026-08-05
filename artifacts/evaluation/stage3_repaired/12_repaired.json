@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.013384342193603516,
+      "runtime_sec": 0.019568443298339844,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -25,7 +25,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.NumGE1500 / T2.NumTstTakr > 0.3;",
+    "sql": "```sql\nSELECT MAX(frm.\"Percent (%) Eligible Free (Ages 5-17)\") AS MaxEligibleFreeRate\nFROM frpm frm\nJOIN satscores sat ON frm.CDSCode = sat.cds\nWHERE (frm.\"Percent (%) Eligible Free (Ages 5-17)\" * frm.\"Enrollment (Ages 5-17)\") / sat.NumTstTakr > 0.3;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "12_cand_1",
@@ -34,23 +34,34 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.0072193145751953125,
+      "runtime_sec": 0.02395939826965332,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "HighestEligibleFreeRate"
+        "MaxEligibleFreeRate"
       ],
       "sample_rows": [
         [
-          null
+          1.0
         ]
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT MAX(frm.\"Percent (%) Eligible Free (Ages 5-17)\") AS MaxEligibleFreeRate\nFROM frpm frm\nJOIN satscores sat ON frm.CDSCode = sat.cds\nWHERE (frm.\"Percent (%) Eligible Free (Ages 5-17)\" * frm.\"Enrollment (Ages 5-17)\") / frm.\"NumTstTakr\" > 0.3;",
+        "error": "no such column: frm.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT MAX(frm.\"Percent (%) Eligible Free (Ages 5-17)\") AS MaxEligibleFreeRate\nFROM frpm frm\nJOIN satscores sat ON frm.CDSCode = sat.cds\nWHERE (frm.\"Percent (%) Eligible Free (Ages 5-17)\" * frm.\"Enrollment (Ages 5-17)\") / sat.NumTstTakr > 0.3;\n```",
+        "repair_time_sec": 2.936816692352295,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      }
+    ]
   },
   {
-    "sql": "SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.NumGE1500 > 0.3 * T2.NumTstTakr;",
+    "sql": "SELECT MAX(f.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`Percent (%) Eligible Free (Ages 5-17)` > 0.3;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "12_cand_2",
@@ -59,15 +70,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010406494140625,
+      "runtime_sec": 0.01594996452331543,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "MaxEligibleFreeRate"
+        "HighestEligibleFreeRate"
       ],
       "sample_rows": [
         [
-          0.904907975460123
+          1.0
         ]
       ],
       "is_empty": false
@@ -75,7 +86,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.AvgScrRead >= 1500;",
+    "sql": "SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.NumGE1500 / T2.enroll12 > 0.3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "12_cand_3",
@@ -84,32 +95,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.0071108341217041016,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "HighestEligibleFreeRate"
-      ],
-      "sample_rows": [
-        [
-          null
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.AvgScrMath >= 1500;",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_1",
-    "candidate_id": "12_cand_4",
-    "question_id": 12,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.00699305534362793,
+      "runtime_sec": 0.008306741714477539,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -125,7 +111,32 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (Ages 5-17)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`Percent (%) Eligible FRPM (Ages 5-17)` > 0.3;",
+    "sql": "SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = SUBSTR(T2.cds, 2)\nWHERE T2.AvgScrRead > 500 AND T2.AvgScrMath > 500 AND T2.AvgScrWrite > 500;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "12_cand_4",
+    "question_id": 12,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.010381937026977539,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "MaxEligibleFreeRate"
+      ],
+      "sample_rows": [
+        [
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT MAX(T2.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM satscores AS T1\nJOIN frpm AS T2 ON T1.sname = T2.`School Name` AND T1.dname = T2.`District Name`\nWHERE T1.NumGE1500 / T1.enroll12 > 0.3;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "12_cand_5",
@@ -134,7 +145,43 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014554977416992188,
+      "runtime_sec": 0.0076751708984375,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "MaxEligibleFreeRate"
+      ],
+      "sample_rows": [
+        [
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT MAX(T2.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM satscores AS T1\nJOIN frpm AS T2 ON T1.sname = T2.School Name AND T1.dname = T2.District Name\nWHERE T1.NumGE1500 / T1.enroll12 > 0.3;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT MAX(T2.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM satscores AS T1\nJOIN frpm AS T2 ON T1.sname = T2.`School Name` AND T1.dname = T2.`District Name`\nWHERE T1.NumGE1500 / T1.enroll12 > 0.3;\n```",
+        "repair_time_sec": 2.8998353481292725,
+        "input_tokens": 1336,
+        "output_tokens": 45
+      }
+    ]
+  },
+  {
+    "sql": "SELECT MAX(frpm.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Percent (%) Eligible Free (Ages 5-17)` > 0.3;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "12_cand_6",
+    "question_id": 12,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022161245346069336,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -152,18 +199,93 @@
   {
     "sql": "SELECT MAX(frpm.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Percent (%) Eligible Free (Ages 5-17)` > 0.3;",
     "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_0",
-    "candidate_id": "12_cand_6",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "12_cand_7",
     "question_id": 12,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022741079330444336,
+      "runtime_sec": 0.024070262908935547,
       "row_count": 1,
       "column_count": 1,
       "columns": [
         "HighestEligibleFreeRate"
+      ],
+      "sample_rows": [
+        [
+          1.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT MAX(frpm.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE (frpm.`Percent (%) Eligible Free (Ages 5-17)` * frpm.`Enrollment (Ages 5-17)`) / frpm.`Enrollment (Ages 5-17)` > 0.3;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "12_cand_8",
+    "question_id": 12,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023715734481811523,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "MaxEligibleFreeRate"
+      ],
+      "sample_rows": [
+        [
+          1.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT MAX(frpm.\"Percent (%) Eligible Free (Ages 5-17)\") AS MaxEligibleFreeRate\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    (frpm.\"Percent (%) Eligible Free (Ages 5-17)\" * frpm.\"Enrollment (Ages 5-17)\") / frpm.\"Enrollment (Ages 5-17)\" > 0.3;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "12_cand_9",
+    "question_id": 12,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023659944534301758,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "MaxEligibleFreeRate"
+      ],
+      "sample_rows": [
+        [
+          1.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT MAX(frpm.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    (frpm.`Percent (%) Eligible Free (Ages 5-17)` * frpm.`Enrollment (Ages 5-17)`) > 0.3 * frpm.`Enrollment (Ages 5-17)`\nORDER BY MaxEligibleFreeRate DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "12_cand_10",
+    "question_id": 12,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023060083389282227,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "MaxEligibleFreeRate"
       ],
       "sample_rows": [
         [
@@ -176,117 +298,6 @@
   },
   {
     "sql": "SELECT MAX(frpm.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Percent (%) Eligible Free (Ages 5-17)` > 0.3;",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_1",
-    "candidate_id": "12_cand_7",
-    "question_id": 12,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.022933244705200195,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "MaxEligibleFreeRate"
-      ],
-      "sample_rows": [
-        [
-          1.0
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T1.`Percent (%) Eligible Free (Ages 5-17)` > 0.3;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "12_cand_8",
-    "question_id": 12,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.0133056640625,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "MaxEligibleFreeRate"
-      ],
-      "sample_rows": [
-        [
-          1.0
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE CAST(T2.NumGE1500 AS REAL) / T2.NumTstTakr > 0.3;\n```",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_1",
-    "candidate_id": "12_cand_9",
-    "question_id": 12,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.012518644332885742,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "HighestEligibleFreeRate"
-      ],
-      "sample_rows": [
-        [
-          0.904907975460123
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE CAST(T1.NumGE1500 AS REAL) / T1.NumTstTakr > 0.3;",
-        "error": "no such column: T1.NumGE1500",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT MAX(T1.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE CAST(T2.NumGE1500 AS REAL) / T2.NumTstTakr > 0.3;\n```",
-        "repair_time_sec": 3.6283555030822754,
-        "input_tokens": 594,
-        "output_tokens": 40
-      }
-    ]
-  },
-  {
-    "sql": "SELECT MAX(frpm.`Percent (%) Eligible Free (Ages 5-17)`) AS HighestEligibleFreeRate\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE (frpm.`Percent (%) Eligible Free (Ages 5-17)` * frpm.`Enrollment (Ages 5-17)`) / frpm.`Enrollment (K-12)` > 0.3;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_2",
-    "candidate_id": "12_cand_10",
-    "question_id": 12,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.013058662414550781,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "HighestEligibleFreeRate"
-      ],
-      "sample_rows": [
-        [
-          1.0
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (Ages 5-17)\") AS MaxEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (Ages 5-17)` > 0.3;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "12_cand_11",
@@ -295,7 +306,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022121429443359375,
+      "runtime_sec": 0.02365398406982422,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -311,7 +322,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (Ages 5-17)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (Ages 5-17)` > 0.3;",
+    "sql": "SELECT MAX(frm.\"Percent (%) Eligible Free (Ages 5-17)\") AS HighestEligibleFreeRate\nFROM frpm frm\nJOIN schools sch ON frm.CDSCode = sch.CDSCode\nWHERE frm.\"Percent (%) Eligible Free (Ages 5-17)\" > 0.3;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "12_cand_12",
@@ -320,7 +331,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022989749908447266,
+      "runtime_sec": 0.02438807487487793,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -336,7 +347,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (Ages 5-17)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (Ages 5-17)` > 0.3;",
+    "sql": "SELECT MAX(frm.\"Percent (%) Eligible Free (Ages 5-17)\") AS HighestEligibleFreeRate\nFROM frpm frm\nJOIN schools sch ON frm.CDSCode = sch.CDSCode\nWHERE frm.\"Percent (%) Eligible Free (Ages 5-17)\" > 0.3;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "12_cand_13",
@@ -345,7 +356,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02328944206237793,
+      "runtime_sec": 0.02411341667175293,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -361,7 +372,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT MAX(`Percent (%) Eligible Free (Ages 5-17)`) AS MaxEligibleFreeRate\nFROM frpm\nWHERE `Percent (%) Eligible Free (K-12)` > 0.3;",
+    "sql": "SELECT MAX(\"Percent (%) Eligible Free (Ages 5-17)\") AS MaxEligibleFreeRate\nFROM frpm\nWHERE \"Percent (%) Eligible Free (K-12)\" > 0.3;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "12_cand_14",
@@ -370,7 +381,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011468648910522461,
+      "runtime_sec": 0.012301445007324219,
       "row_count": 1,
       "column_count": 1,
       "columns": [

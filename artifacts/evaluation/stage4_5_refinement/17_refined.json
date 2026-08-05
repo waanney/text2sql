@@ -1,0 +1,195 @@
+{
+  "question_id": 17,
+  "db_id": "california_schools",
+  "final_sql": "SELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;",
+  "best_candidate_id": "17_cand_2",
+  "ranked_candidates": [
+    [
+      "17_cand_2",
+      4.0
+    ],
+    [
+      "17_cand_4",
+      3.2
+    ],
+    [
+      "17_cand_8",
+      2.4000000000000004
+    ],
+    [
+      "17_hardcase_1",
+      1.6
+    ],
+    [
+      "17_cand_3",
+      0.8
+    ],
+    [
+      "17_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "17_cand_6",
+      "candidate_b": "17_cand_2",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_6",
+      "candidate_b": "17_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_6",
+      "candidate_b": "17_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_6",
+      "candidate_b": "17_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_6",
+      "candidate_b": "17_hardcase_1",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_2",
+      "candidate_b": "17_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_2",
+      "candidate_b": "17_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_2",
+      "candidate_b": "17_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_2",
+      "candidate_b": "17_hardcase_1",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_3",
+      "candidate_b": "17_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_3",
+      "candidate_b": "17_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_3",
+      "candidate_b": "17_hardcase_1",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_4",
+      "candidate_b": "17_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_4",
+      "candidate_b": "17_hardcase_1",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "17_cand_8",
+      "candidate_b": "17_hardcase_1",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "17_cand_2",
+    "question_id": 17,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.024852514266967773,
+      "row_count": 51,
+      "column_count": 2,
+      "columns": [
+        "CharterNum",
+        "AvgWritingScore"
+      ],
+      "sample_rows": [
+        [
+          "0210",
+          630.0
+        ],
+        [
+          "0890",
+          593.0
+        ],
+        [
+          "0290",
+          582.0
+        ],
+        [
+          "0930",
+          579.0
+        ],
+        [
+          "1169",
+          576.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.CharterNum,\n    AVG(f.AvgScrWrite) AS AvgWritingScore\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    f.AvgScrWrite > 499 AND s.Charter IS NOT NULL\nGROUP BY \n    s.CharterNum\nORDER BY \n    AvgWritingScore DESC;\n```",
+        "repair_time_sec": 2.713671922683716,
+        "input_tokens": 1333,
+        "output_tokens": 42
+      }
+    ]
+  },
+  "num_original_candidates": 20,
+  "num_representatives": 6
+}

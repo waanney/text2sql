@@ -1,0 +1,590 @@
+[
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "21_cand_0",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.003192424774169922,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.274501085281372,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.2623698711395264,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.City = 'Los Angeles'\n  AND f.Free_Meal_Count_K_12 > 500\n  AND f.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "21_cand_1",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Free_Meal_Count_K_12",
+      "runtime_sec": 0.003044605255126953,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.City = 'Los Angeles'\n  AND f.Free_Meal_Count_K_12 > 500\n  AND f.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: f.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.City = 'Los Angeles'\n  AND f.Free_Meal_Count_K_12 > 500\n  AND f.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.2996699810028076,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.City = 'Los Angeles'\n  AND f.Free_Meal_Count_K_12 > 500\n  AND f.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: f.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.City = 'Los Angeles'\n  AND f.Free_Meal_Count_K_12 > 500\n  AND f.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.306856632232666,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "21_cand_2",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.0027763843536376953,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.3266384601593018,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.324376106262207,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Los Angeles' \n  AND `Free Meal Count (K-12)` > 500 \n  AND `FRPM Count (K-12)` < 700;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "21_cand_3",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.011623859405517578,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          249
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Los Angeles' \n  AND `Free Meal Count (K-12)` > 500 \n  AND `FRPM Count (K-12)` < 700;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Los Angeles' \n  AND `Free Meal Count (K-12)` > 500 \n  AND `FRPM Count (K-12)` < 700;\n```",
+        "repair_time_sec": 1.9826128482818604,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Los Angeles' \nAND `Free Meal Count (K-12)` > 500 \nAND `FRPM Count (K-12)` < 700;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "21_cand_4",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.011350631713867188,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          249
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Los Angeles' \nAND Free Meal Count (K-12) > 500 \nAND FRPM Count (K-12) < 700;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Los Angeles' \nAND `Free Meal Count (K-12)` > 500 \nAND `FRPM Count (K-12)` < 700;\n```",
+        "repair_time_sec": 1.9309146404266357,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nWHERE `County Name` = 'Los Angeles'\n  AND `Free Meal Count (K-12)` > 500\n  AND `FRPM Count (K-12)` < 700;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "21_cand_5",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.011575698852539062,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          249
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nWHERE County Name = 'Los Angeles'\n  AND `Free Meal Count (K-12)` > 500\n  AND `FRPM Count (K-12)` < 700;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nWHERE `County Name` = 'Los Angeles'\n  AND `Free Meal Count (K-12)` > 500\n  AND `FRPM Count (K-12)` < 700;\n```",
+        "repair_time_sec": 1.9599881172180176,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "21_cand_6",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.003129243850708008,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.FreeMealCount_K_12 > 500\nAND frpm.FreeMealCount_K_12 < 700;",
+        "error": "no such column: frpm.FreeMealCount_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.263139247894287,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.2596142292022705,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "21_cand_7",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.0034003257751464844,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.FreeMealCount_K_12 > 500\nAND frpm.FreeMealCount_K_12 < 700;",
+        "error": "no such column: frpm.FreeMealCount_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.2592573165893555,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.276888847351074,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "21_cand_8",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.003034830093383789,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School\nWHERE schools.County = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.367518663406372,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.3715338706970215,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "21_cand_9",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.0035104751586914062,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.6067004203796387,
+        "input_tokens": 1332,
+        "output_tokens": 41
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.6068687438964844,
+        "input_tokens": 1335,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School AND frpm.County = schools.County\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "21_cand_10",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.0033173561096191406,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School AND frpm.County = schools.County\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School AND frpm.County = schools.County\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.7711429595947266,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School AND frpm.County = schools.County\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School AND frpm.County = schools.County\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.788229465484619,
+        "input_tokens": 1340,
+        "output_tokens": 46
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "21_cand_11",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.0028090476989746094,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.2990944385528564,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.300995349884033,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "21_cand_12",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.0029485225677490234,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.2991983890533447,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.2993648052215576,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "21_cand_13",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.0032203197479248047,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.296891927719116,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.2962355613708496,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles' \n  AND frpm.Free_Meal_Count_K_12 > 500 \n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "21_cand_14",
+    "question_id": 21,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.Free_Meal_Count_K_12",
+      "runtime_sec": 0.0030145645141601562,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles' \n  AND frpm.Free_Meal_Count_K_12 > 500 \n  AND frpm.Free_Meal_Count_K_12 < 700;",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles' \n  AND frpm.Free_Meal_Count_K_12 > 500 \n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.4031903743743896,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles' \n  AND frpm.Free_Meal_Count_K_12 > 500 \n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "error": "no such column: frpm.Free_Meal_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles' \n  AND frpm.Free_Meal_Count_K_12 > 500 \n  AND frpm.Free_Meal_Count_K_12 < 700;\n```",
+        "repair_time_sec": 2.4013023376464844,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  }
+]

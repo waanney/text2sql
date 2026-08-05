@@ -1,0 +1,602 @@
+[
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND sa.NumTstTakr <= 250;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "18_cand_0",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0220947265625,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          12
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.046492099761963,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND sa.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0469491481781006,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.[Percent (%) Eligible Free (Ages 5-17)] <= 250;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "18_cand_1",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021845102310180664,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          17
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Percent_(_Eligible_Free_Ages_5_17) <= 250;",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.[Percent (%) Eligible Free (Ages 5-17)] <= 250;\n```",
+        "repair_time_sec": 2.3191239833831787,
+        "input_tokens": 1326,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "18_cand_2",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.NumTstTakr",
+      "runtime_sec": 0.00605463981628418,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0261013507843018,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.029099941253662,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 1, 12)\nJOIN schools AS sch ON f.CDSCode = sch.CDSCode\nWHERE f.County = 'Fresno' AND f.`Charter Funding Type` = 'Directly funded' AND s.NumTstTakr <= 250;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "18_cand_3",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.County",
+      "runtime_sec": 0.002978801727294922,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 1, 12)\nWHERE f.County = 'Fresno' AND f.Charter Funding Type = 'Directly funded' AND s.NumTstTakr <= 250;",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 1, 12)\nWHERE f.County = 'Fresno' AND f.`Charter Funding Type` = 'Directly funded' AND s.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.432696580886841,
+        "input_tokens": 1333,
+        "output_tokens": 42
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 1, 12)\nWHERE f.County = 'Fresno' AND f.`Charter Funding Type` = 'Directly funded' AND s.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 1, 12)\nJOIN schools AS sch ON f.CDSCode = sch.CDSCode\nWHERE f.County = 'Fresno' AND f.`Charter Funding Type` = 'Directly funded' AND s.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.8156015872955322,
+        "input_tokens": 1336,
+        "output_tokens": 53
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.`County Name` = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "18_cand_4",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.013065338134765625,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          14
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.County = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;",
+        "error": "no such column: frpm.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.`County Name` = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.5990655422210693,
+        "input_tokens": 1331,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 4, LENGTH(f.CDSCode))\nWHERE f.`County Name` = 'Fresno' AND f.`Charter Funding Type` = 'Directly funded' AND s.NumTstTakr <= 250;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "18_cand_5",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019166231155395508,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 4, LENGTH(f.CDSCode))\nWHERE f.County Name = 'Fresno' AND f.Charter Funding Type = 'Directly funded' AND s.NumTstTakr <= 250;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 4, LENGTH(f.CDSCode))\nWHERE f.`County Name` = 'Fresno' AND f.`Charter Funding Type` = 'Directly funded' AND s.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.549269914627075,
+        "input_tokens": 1335,
+        "output_tokens": 44
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "18_cand_6",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.NumTstTakr",
+      "runtime_sec": 0.003014802932739258,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.050705671310425,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0571482181549072,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "18_cand_7",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.NumTstTakr",
+      "runtime_sec": 0.0030384063720703125,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0465800762176514,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0403904914855957,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.NumTstTakr <= 250;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "18_cand_8",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: s.NumTstTakr",
+      "runtime_sec": 0.003026247024536133,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.NumTstTakr <= 250;",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.8382418155670166,
+        "input_tokens": 1342,
+        "output_tokens": 52
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.NumTstTakr <= 250;\n```",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.829106569290161,
+        "input_tokens": 1345,
+        "output_tokens": 52
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Charter_Funding_Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.NCESDist IN (\n    SELECT NCESDist\n    FROM schools\n    WHERE MailStreet LIKE '%Various Schools In District%'\n      OR MailStrAbr LIKE '%Various Schools In District%'\n  )\n  AND s.NumTstTakr <= 250;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "18_cand_9",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Charter_Funding_Type",
+      "runtime_sec": 0.0030367374420166016,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.School Type = 'Elementary Schools (Public)'\n  AND s.NCESDist IN (\n    SELECT NCESDist\n    FROM schools\n    WHERE MailStreet LIKE '%Various Schools In District%'\n      OR MailStrAbr LIKE '%Various Schools In District%'\n  )\n  AND s.NumTstTakr <= 250;",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Charter_Funding_Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.NCESDist IN (\n    SELECT NCESDist\n    FROM schools\n    WHERE MailStreet LIKE '%Various Schools In District%'\n      OR MailStrAbr LIKE '%Various Schools In District%'\n  )\n  AND s.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 4.284144163131714,
+        "input_tokens": 1381,
+        "output_tokens": 87
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Charter_Funding_Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.NCESDist IN (\n    SELECT NCESDist\n    FROM schools\n    WHERE MailStreet LIKE '%Various Schools In District%'\n      OR MailStrAbr LIKE '%Various Schools In District%'\n  )\n  AND s.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.Charter_Funding_Type",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Charter_Funding_Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.NCESDist IN (\n    SELECT NCESDist\n    FROM schools\n    WHERE MailStreet LIKE '%Various Schools In District%'\n      OR MailStrAbr LIKE '%Various Schools In District%'\n  )\n  AND s.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 4.282182693481445,
+        "input_tokens": 1380,
+        "output_tokens": 87
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE s.City = 'Fresno'\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND st.NumTstTakr <= 250;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "18_cand_10",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023125648498535156,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND s.NumTstTakr <= 250;",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND s.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.515929937362671,
+        "input_tokens": 1336,
+        "output_tokens": 45
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND s.NumTstTakr <= 250;\n```",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE s.City = 'Fresno'\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND st.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.9084312915802,
+        "input_tokens": 1339,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "18_cand_11",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.NumTstTakr",
+      "runtime_sec": 0.003202676773071289,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.179260015487671,
+        "input_tokens": 1328,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.181943416595459,
+        "input_tokens": 1331,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "18_cand_12",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.NumTstTakr",
+      "runtime_sec": 0.003053903579711914,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0964388847351074,
+        "input_tokens": 1328,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0917556285858154,
+        "input_tokens": 1331,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "18_cand_13",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.NumTstTakr",
+      "runtime_sec": 0.0031256675720214844,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.089738368988037,
+        "input_tokens": 1328,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "error": "no such column: f.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0963869094848633,
+        "input_tokens": 1331,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.FundingType = 'Directly funded'\nAND schools.County = 'Fresno'\nAND frpm.NumTstTakr <= 250;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "18_cand_14",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.NumTstTakr",
+      "runtime_sec": 0.0033025741577148438,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.FundingType = 'Directly funded'\nAND schools.County = 'Fresno'\nAND frpm.NumTstTakr <= 250;",
+        "error": "no such column: frpm.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.FundingType = 'Directly funded'\nAND schools.County = 'Fresno'\nAND frpm.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.068941354751587,
+        "input_tokens": 1323,
+        "output_tokens": 32
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.FundingType = 'Directly funded'\nAND schools.County = 'Fresno'\nAND frpm.NumTstTakr <= 250;\n```",
+        "error": "no such column: frpm.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.FundingType = 'Directly funded'\nAND schools.County = 'Fresno'\nAND frpm.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.0716488361358643,
+        "input_tokens": 1326,
+        "output_tokens": 32
+      }
+    ]
+  }
+]

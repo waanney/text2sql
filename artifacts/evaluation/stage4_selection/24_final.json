@@ -1,0 +1,178 @@
+{
+  "question_id": 24,
+  "db_id": "california_schools",
+  "final_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
+  "best_candidate_id": "24_cand_0",
+  "ranked_candidates": [
+    [
+      "24_cand_0",
+      4.0
+    ],
+    [
+      "24_cand_6",
+      3.2
+    ],
+    [
+      "24_cand_13",
+      2.4000000000000004
+    ],
+    [
+      "24_cand_9",
+      1.6
+    ],
+    [
+      "24_cand_12",
+      0.8
+    ],
+    [
+      "24_cand_8",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "24_cand_0",
+      "candidate_b": "24_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_0",
+      "candidate_b": "24_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_0",
+      "candidate_b": "24_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_0",
+      "candidate_b": "24_cand_9",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_0",
+      "candidate_b": "24_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_8",
+      "candidate_b": "24_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_8",
+      "candidate_b": "24_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_8",
+      "candidate_b": "24_cand_9",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_8",
+      "candidate_b": "24_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_12",
+      "candidate_b": "24_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_12",
+      "candidate_b": "24_cand_9",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_12",
+      "candidate_b": "24_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_6",
+      "candidate_b": "24_cand_9",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_6",
+      "candidate_b": "24_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "24_cand_9",
+      "candidate_b": "24_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "24_cand_0",
+    "question_id": 24,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.033476829528808594,
+      "row_count": 1068,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "Clovis North High"
+        ],
+        [
+          "Clovis West High"
+        ],
+        [
+          "Buchanan High"
+        ],
+        [
+          "Clovis East High"
+        ],
+        [
+          "Clovis High"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 6
+}

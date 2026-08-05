@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "25_cand_0",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "25_cand_1",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath) AS avg_math_score\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nWHERE s.City = 'Riverside' AND sub.avg_math_score > 400;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "25_cand_2",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.dname = 'Riverside Unified' AND sa.AvgScrMath > 400;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "25_cand_3",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School, s.FundingType\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 400 AND s.County = 'Riverside';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "25_cand_4",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores st ON s.CDSCode = SUBSTR(st.cds, 4)\nWHERE s.County = 'Riverside' AND st.AvgScrMath > 400;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "25_cand_5",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(sa.AvgScrMath) > 400;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "25_cand_6",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds AND s.School = sa.sname\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(sa.AvgScrMath) > 400;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "25_cand_7",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(ss.AvgScrMath) > 400;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "25_cand_8",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(ss.AvgScrMath) > 400;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "25_cand_9",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath) AS avg_math_score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside' AND ss.avg_math_score > 400;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "25_cand_10",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath) AS avg_math_score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside' AND ss.avg_math_score > 400;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "25_cand_11",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath) AS avg_math_score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside' AND ss.avg_math_score > 400;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "25_cand_12",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, f.[Charter Funding Type]\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.[Charter Funding Type]\nHAVING AVG(f.[AvgScrMath]) > 400;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "25_cand_13",
+    "question_id": 25,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Riverside' \nGROUP BY s.School, s.FundingType\nHAVING AVG(f.AvgScrMath) > 400;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "25_cand_14",
+    "question_id": 25,
+    "db_id": "california_schools"
+  }
+]

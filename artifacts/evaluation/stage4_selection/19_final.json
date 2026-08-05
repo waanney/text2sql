@@ -1,0 +1,127 @@
+{
+  "question_id": 19,
+  "db_id": "california_schools",
+  "final_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+  "best_candidate_id": "19_cand_7",
+  "ranked_candidates": [
+    [
+      "19_cand_7",
+      3.2
+    ],
+    [
+      "19_cand_3",
+      2.4000000000000004
+    ],
+    [
+      "19_cand_8",
+      1.6
+    ],
+    [
+      "19_cand_4",
+      0.8
+    ],
+    [
+      "19_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "19_cand_7",
+      "candidate_b": "19_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_7",
+      "candidate_b": "19_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_7",
+      "candidate_b": "19_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_7",
+      "candidate_b": "19_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_3",
+      "candidate_b": "19_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_3",
+      "candidate_b": "19_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_3",
+      "candidate_b": "19_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_4",
+      "candidate_b": "19_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_4",
+      "candidate_b": "19_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "19_cand_6",
+      "candidate_b": "19_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "19_cand_7",
+    "question_id": 19,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.029813051223754883,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(510) 657-3600"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 5
+}

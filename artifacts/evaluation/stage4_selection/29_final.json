@@ -1,0 +1,138 @@
+{
+  "question_id": 29,
+  "db_id": "california_schools",
+  "final_sql": "SELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` LIKE '%K-12%'\nORDER BY f.`Enrollment (K-12)` DESC\nLIMIT 1;",
+  "best_candidate_id": "29_cand_13",
+  "ranked_candidates": [
+    [
+      "29_cand_13",
+      3.2
+    ],
+    [
+      "29_cand_1",
+      2.4000000000000004
+    ],
+    [
+      "29_cand_0",
+      1.6
+    ],
+    [
+      "29_cand_11",
+      0.8
+    ],
+    [
+      "29_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "29_cand_0",
+      "candidate_b": "29_cand_1",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_0",
+      "candidate_b": "29_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_0",
+      "candidate_b": "29_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_0",
+      "candidate_b": "29_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_1",
+      "candidate_b": "29_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_1",
+      "candidate_b": "29_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_1",
+      "candidate_b": "29_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_6",
+      "candidate_b": "29_cand_11",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_6",
+      "candidate_b": "29_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "29_cand_11",
+      "candidate_b": "29_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` LIKE '%K-12%'\nORDER BY f.`Enrollment (K-12)` DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "29_cand_13",
+    "question_id": 29,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021294832229614258,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "OpenDate"
+      ],
+      "sample_rows": [
+        [
+          "2006-08-29"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School Type LIKE '%K-12%'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;",
+        "error": "near \"Type\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` LIKE '%K-12%'\nORDER BY f.`Enrollment (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.999082088470459,
+        "input_tokens": 1324,
+        "output_tokens": 33
+      }
+    ]
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 5
+}

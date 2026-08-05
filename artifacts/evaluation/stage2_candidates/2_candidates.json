@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1;",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "2_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT DISTINCT T2.Zip \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T2.County = 'Fresno' AND T2.SOCType = 'K-12 Schools (Public)';",
+    "sql": "SELECT DISTINCT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Fresno' AND s.District = 'Fresno County Office of Education' AND s.Charter = 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "2_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT DISTINCT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Fresno' AND s.District = 'Fresno County Office of Education' AND s.Charter = 1;",
+    "sql": "SELECT Zip \nFROM schools \nWHERE Charter = 1 AND District = 'Fresno County Office of Education';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "2_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT T1.Zip \nFROM schools AS T1 \nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno' AND T1.District = 'Fresno County Office of Education' AND T1.Charter = 1;",
+    "sql": "SELECT DISTINCT T2.Zip\nFROM frpm AS T1\nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.County = 'Fresno' AND T2.District = 'Fresno County Office of Education' AND T2.Charter = 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "2_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
+    "sql": "SELECT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.Charter_School_(Y_N) = 1 AND schools.County = 'Fresno';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "2_cand_6",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND f.`County Name` = 'Fresno';",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`District Name` = 'Fresno County Office of Education';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "2_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND f.`County Name` = 'Fresno';",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`District Name` = 'Fresno County Office of Education';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "2_cand_10",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
+    "sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County Code = '05' -- Assuming '05' is the county code for Fresno County\n  AND f.`Charter School (Y/N)` = 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "2_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County Code = '05' -- Assuming Fresno County has a specific county code\nAND f.Charter School (Y/N) = 1;",
+    "sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County Code = '05' -- Assuming 05 is the code for Fresno County\nAND f.Charter School (Y/N) = 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "2_cand_13",

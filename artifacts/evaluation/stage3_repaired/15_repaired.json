@@ -1,0 +1,460 @@
+[
+  {
+    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "15_cand_0",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02758336067199707,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "District",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "15_cand_1",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02829909324645996,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "District",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "15_cand_2",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrRead",
+      "runtime_sec": 0.003078937530517578,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+        "error": "no such column: f.AvgScrRead",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.188408613204956,
+        "input_tokens": 1329,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.AvgScrRead",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.226893186569214,
+        "input_tokens": 1332,
+        "output_tokens": 39
+      }
+    ]
+  },
+  {
+    "sql": "SELECT dname\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE StatusType = 'Active'\nGROUP BY dname\nORDER BY AVG(AvgScrRead) DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "15_cand_3",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02508234977722168,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "dname"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT sch.District, AVG(s.AvgScrRead) AS AvgReadingScore\nFROM satscores s\nJOIN schools sch ON s.cds = sch.CDSCode AND s.sname = sch.School AND s.dname = sch.District\nWHERE sch.StatusType = 'Active'\nGROUP BY sch.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "15_cand_4",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02700185775756836,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "District",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT d.District, AVG(s.AvgScrRead) AS AvgReadingScore\nFROM satscores s\nJOIN schools sch ON s.cds = sch.CDSCode AND s.sname = sch.School AND s.dname = sch.District\nWHERE sch.StatusType = 'Active'\nGROUP BY d.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+        "error": "no such column: d.District",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT sch.District, AVG(s.AvgScrRead) AS AvgReadingScore\nFROM satscores s\nJOIN schools sch ON s.cds = sch.CDSCode AND s.sname = sch.School AND s.dname = sch.District\nWHERE sch.StatusType = 'Active'\nGROUP BY sch.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.643721580505371,
+        "input_tokens": 1340,
+        "output_tokens": 49
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.District, AVG(sc.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores sc ON s.CDSCode = REPLACE(sc.cds, ' ', '')\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "15_cand_5",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.017628908157348633,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "District",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "15_cand_6",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: satscores.AvgScrRead",
+      "runtime_sec": 0.002900838851928711,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT frpm.District Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.District Name\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.260634660720825,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.StatusType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.1508870124816895,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "15_cand_7",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: satscores.AvgScrRead",
+      "runtime_sec": 0.003239154815673828,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT frpm.District Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.District Name\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.252346992492676,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.StatusType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.1410553455352783,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "15_cand_8",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.025428295135498047,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "District",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.District\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(sa.AvgScrRead) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "15_cand_9",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02328944206237793,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "District"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(sa.AvgScrRead) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "15_cand_10",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023228168487548828,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "District"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.District AS Active_District,\n    AVG(ss.AvgScrRead) AS Average_Score_Reading\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.StatusType = 'Active'\nGROUP BY \n    s.District\nORDER BY \n    Average_Score_Reading DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "15_cand_11",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02292180061340332,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "Active_District",
+        "Average_Score_Reading"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.District AS ActiveDistrict, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores ss ON s.CDSCode = ss.cds AND ss.rtype = 'D'\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "15_cand_12",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02227306365966797,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "ActiveDistrict",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.District,\n    AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.StatusType = 'Active'\nGROUP BY \n    s.District\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "15_cand_13",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023371219635009766,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "District",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.`FRPM Count (K-12)`) DESC\nLIMIT 1;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "15_cand_14",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.031432390213012695,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "District"
+      ],
+      "sample_rows": [
+        [
+          "Whittier Union High"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.FRPM Count (K-12)) DESC\nLIMIT 1;",
+        "error": "near \"Count\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.`FRPM Count (K-12)`) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.1814258098602295,
+        "input_tokens": 1328,
+        "output_tokens": 37
+      }
+    ]
+  }
+]

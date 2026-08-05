@@ -1,0 +1,230 @@
+{
+  "question_id": 25,
+  "db_id": "california_schools",
+  "final_sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(ss.AvgScrMath) > 400;",
+  "best_candidate_id": "25_cand_8",
+  "ranked_candidates": [
+    [
+      "25_cand_8",
+      4.8
+    ],
+    [
+      "25_cand_6",
+      4.0
+    ],
+    [
+      "25_cand_3",
+      3.2
+    ],
+    [
+      "25_cand_10",
+      2.4000000000000004
+    ],
+    [
+      "25_cand_0",
+      0.8
+    ],
+    [
+      "25_cand_4",
+      0.8
+    ],
+    [
+      "25_cand_5",
+      0.8
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "25_cand_0",
+      "candidate_b": "25_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_0",
+      "candidate_b": "25_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_0",
+      "candidate_b": "25_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_0",
+      "candidate_b": "25_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_0",
+      "candidate_b": "25_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_0",
+      "candidate_b": "25_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_10",
+      "candidate_b": "25_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_10",
+      "candidate_b": "25_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_10",
+      "candidate_b": "25_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_10",
+      "candidate_b": "25_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_10",
+      "candidate_b": "25_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_3",
+      "candidate_b": "25_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_3",
+      "candidate_b": "25_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_3",
+      "candidate_b": "25_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_3",
+      "candidate_b": "25_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_4",
+      "candidate_b": "25_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_4",
+      "candidate_b": "25_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_4",
+      "candidate_b": "25_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_5",
+      "candidate_b": "25_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_5",
+      "candidate_b": "25_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "25_cand_6",
+      "candidate_b": "25_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(ss.AvgScrMath) > 400;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "25_cand_8",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01953601837158203,
+      "row_count": 8,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "Arlington High",
+          null
+        ],
+        [
+          "John W. North High",
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Martin Luther King Jr. High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  "num_original_candidates": 20,
+  "num_representatives": 7
+}

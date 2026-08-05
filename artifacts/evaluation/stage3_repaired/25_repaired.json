@@ -1,0 +1,635 @@
+[
+  {
+    "sql": "```sql\nSELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "25_cand_0",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.FundingType",
+      "runtime_sec": 0.0030393600463867188,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;",
+        "error": "no such column: f.FundingType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "repair_time_sec": 2.2151284217834473,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "error": "no such column: f.FundingType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "repair_time_sec": 2.227195978164673,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "25_cand_1",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.FundingType",
+      "runtime_sec": 0.0031592845916748047,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;",
+        "error": "no such column: f.FundingType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "repair_time_sec": 2.230433225631714,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "error": "no such column: f.FundingType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, f.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "repair_time_sec": 2.2193760871887207,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath) AS avg_math_score\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nWHERE s.City = 'Riverside' AND sub.avg_math_score > 400;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "25_cand_2",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022362232208251953,
+      "row_count": 9,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Norte Vista High",
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          "Arlington High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.dname = 'Riverside Unified' AND sa.AvgScrMath > 400;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "25_cand_3",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.008630752563476562,
+      "row_count": 6,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "Arlington High",
+          null
+        ],
+        [
+          "Martin Luther King Jr. High",
+          null
+        ],
+        [
+          "John W. North High",
+          null
+        ],
+        [
+          "Polytechnic High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT s.School, s.FundingType\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 400 AND s.County = 'Riverside';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "25_cand_4",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019351720809936523,
+      "row_count": 60,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "River Springs Charter",
+          "Directly funded"
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Norte Vista High",
+          null
+        ],
+        [
+          "Banning High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores st ON s.CDSCode = SUBSTR(st.cds, 4)\nWHERE s.County = 'Riverside' AND st.AvgScrMath > 400;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "25_cand_5",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.012803077697753906,
+      "row_count": 0,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores st ON s.CDSCode = SUBSTR(st.cds, 4)\nWHERE s.County = 'Riverside' AND st.AvgScrMath > 400;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores st ON s.CDSCode = SUBSTR(st.cds, 4)\nWHERE s.County = 'Riverside' AND st.AvgScrMath > 400;\n```",
+        "repair_time_sec": 2.0283594131469727,
+        "input_tokens": 1342,
+        "output_tokens": 31
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores st ON s.CDSCode = SUBSTR(st.cds, 4)\nWHERE s.County = 'Riverside' AND st.AvgScrMath > 400;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores st ON s.CDSCode = SUBSTR(st.cds, 4)\nWHERE s.County = 'Riverside' AND st.AvgScrMath > 400;\n```",
+        "repair_time_sec": 2.02561354637146,
+        "input_tokens": 1345,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(sa.AvgScrMath) > 400;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "25_cand_6",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022951602935791016,
+      "row_count": 7,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          "Arlington High",
+          null
+        ],
+        [
+          "John W. North High",
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Martin Luther King Jr. High",
+          null
+        ],
+        [
+          "Norte Vista High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds AND s.School = sa.sname\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(sa.AvgScrMath) > 400;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "25_cand_7",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019047021865844727,
+      "row_count": 7,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          "Arlington High",
+          null
+        ],
+        [
+          "John W. North High",
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Martin Luther King Jr. High",
+          null
+        ],
+        [
+          "Norte Vista High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(ss.AvgScrMath) > 400;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "25_cand_8",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01953601837158203,
+      "row_count": 8,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "Arlington High",
+          null
+        ],
+        [
+          "John W. North High",
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Martin Luther King Jr. High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside'\nGROUP BY s.School, s.FundingType\nHAVING AVG(ss.AvgScrMath) > 400;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "25_cand_9",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019051313400268555,
+      "row_count": 8,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "Arlington High",
+          null
+        ],
+        [
+          "John W. North High",
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Martin Luther King Jr. High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath) AS avg_math_score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside' AND ss.avg_math_score > 400;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "25_cand_10",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022204875946044922,
+      "row_count": 9,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Norte Vista High",
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          "Arlington High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath) AS avg_math_score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside' AND ss.avg_math_score > 400;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "25_cand_11",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022498130798339844,
+      "row_count": 9,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Norte Vista High",
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          "Arlington High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath) AS avg_math_score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nWHERE s.City = 'Riverside' AND ss.avg_math_score > 400;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "25_cand_12",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023444414138793945,
+      "row_count": 9,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FundingType"
+      ],
+      "sample_rows": [
+        [
+          null,
+          null
+        ],
+        [
+          "La Sierra High",
+          null
+        ],
+        [
+          "Norte Vista High",
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          "Arlington High",
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.School, f.[Charter Funding Type]\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.[Charter Funding Type]\nHAVING AVG(f.[AvgScrMath]) > 400;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "25_cand_13",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrMath",
+      "runtime_sec": 0.0029914379119873047,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, f.[Charter Funding Type]\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.[Charter Funding Type]\nHAVING AVG(f.[AvgScrMath]) > 400;",
+        "error": "no such column: f.AvgScrMath",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, f.[Charter Funding Type]\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.[Charter Funding Type]\nHAVING AVG(f.[AvgScrMath]) > 400;\n```",
+        "repair_time_sec": 2.3292839527130127,
+        "input_tokens": 1331,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, f.[Charter Funding Type]\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.[Charter Funding Type]\nHAVING AVG(f.[AvgScrMath]) > 400;\n```",
+        "error": "no such column: f.AvgScrMath",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, f.[Charter Funding Type]\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.City = 'Riverside'\nGROUP BY s.School, f.[Charter Funding Type]\nHAVING AVG(f.[AvgScrMath]) > 400;\n```",
+        "repair_time_sec": 2.3287353515625,
+        "input_tokens": 1333,
+        "output_tokens": 40
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Riverside' \nGROUP BY s.School, s.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "25_cand_14",
+    "question_id": 25,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.AvgScrMath",
+      "runtime_sec": 0.0030486583709716797,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Riverside' \nGROUP BY s.School, s.FundingType\nHAVING AVG(f.AvgScrMath) > 400;",
+        "error": "no such column: f.AvgScrMath",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Riverside' \nGROUP BY s.School, s.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "repair_time_sec": 2.247304916381836,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Riverside' \nGROUP BY s.School, s.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "error": "no such column: f.AvgScrMath",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, s.FundingType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Riverside' \nGROUP BY s.School, s.FundingType\nHAVING AVG(f.AvgScrMath) > 400;\n```",
+        "repair_time_sec": 2.2483909130096436,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  }
+]

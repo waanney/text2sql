@@ -1,85 +1,127 @@
 {
   "question_id": 10,
   "db_id": "california_schools",
-  "final_sql": "SELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;",
-  "best_candidate_id": "10_cand_10",
+  "final_sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = REPLACE(satscores.cds, ' ', '')\nWHERE satscores.rtype = 'D'\nORDER BY satscores.AvgScrRead DESC\nLIMIT 1;",
+  "best_candidate_id": "10_cand_5",
   "ranked_candidates": [
     [
-      "10_cand_10",
+      "10_cand_5",
+      3.2
+    ],
+    [
+      "10_cand_2",
+      2.4000000000000004
+    ],
+    [
+      "10_cand_3",
       1.6
     ],
     [
-      "10_cand_1",
+      "10_cand_6",
       0.8
     ],
     [
-      "10_cand_6",
+      "10_cand_0",
       0.0
     ]
   ],
   "comparison_logs": [
     {
-      "candidate_a": "10_cand_6",
-      "candidate_b": "10_cand_1",
+      "candidate_a": "10_cand_0",
+      "candidate_b": "10_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_0",
+      "candidate_b": "10_cand_2",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_0",
+      "candidate_b": "10_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_0",
+      "candidate_b": "10_cand_5",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "10_cand_6",
-      "candidate_b": "10_cand_10",
+      "candidate_b": "10_cand_2",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "10_cand_1",
-      "candidate_b": "10_cand_10",
+      "candidate_a": "10_cand_6",
+      "candidate_b": "10_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_6",
+      "candidate_b": "10_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_2",
+      "candidate_b": "10_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_2",
+      "candidate_b": "10_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_3",
+      "candidate_b": "10_cand_5",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "```sql\nSELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;\n```",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_2",
-    "candidate_id": "10_cand_10",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = REPLACE(satscores.cds, ' ', '')\nWHERE satscores.rtype = 'D'\nORDER BY satscores.AvgScrRead DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "10_cand_5",
     "question_id": 10,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: T1.School",
-      "runtime_sec": 0.0030508041381835938,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.00928950309753418,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "FRPM Count (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          3.0
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;",
-        "error": "no such column: T1.School",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;\n```\n\nNote: The original query already correctly uses `T1.School`, so no changes were needed for that part. The error message \"no such column: T1.School\" suggests that there might be an issue with the database schema or the way the tables are related, but based on the provided schema, the query should work as intended. If the error persists, it could be due to a different issue not shown in the provided information.",
-        "repair_time_sec": 6.031758069992065,
-        "input_tokens": 604,
-        "output_tokens": 143
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;\n```\n\nNote: The original query already correctly uses `T1.School`, so no changes were needed for that part. The error message \"no such column: T1.School\" suggests that there might be an issue with the database schema or the way the tables are related, but based on the provided schema, the query should work as intended. If the error persists, it could be due to a different issue not shown in the provided information.",
-        "error": "no such column: T1.School",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.799180269241333,
-        "input_tokens": 699,
-        "output_tokens": 50
-      }
-    ]
+    "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 3
+  "num_representatives": 5
 }

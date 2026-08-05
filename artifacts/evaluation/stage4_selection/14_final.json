@@ -1,93 +1,145 @@
 {
   "question_id": 14,
   "db_id": "california_schools",
-  "final_sql": "SELECT s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`Enrollment (Ages 5-17)` DESC\nLIMIT 5;",
-  "best_candidate_id": "14_cand_8",
+  "final_sql": "SELECT \n    s.NCESSchool,\n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+  "best_candidate_id": "14_cand_6",
   "ranked_candidates": [
     [
-      "14_cand_8",
-      1.6
+      "14_cand_6",
+      3.2
     ],
     [
       "14_cand_0",
-      0.8
+      1.6
     ],
     [
-      "14_cand_4",
+      "14_cand_9",
+      1.6
+    ],
+    [
+      "14_cand_13",
+      1.6
+    ],
+    [
+      "14_cand_5",
       0.0
     ]
   ],
   "comparison_logs": [
     {
       "candidate_a": "14_cand_0",
-      "candidate_b": "14_cand_8",
+      "candidate_b": "14_cand_6",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "14_cand_0",
-      "candidate_b": "14_cand_4",
+      "candidate_b": "14_cand_9",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "14_cand_0",
+      "candidate_b": "14_cand_5",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "14_cand_8",
-      "candidate_b": "14_cand_4",
+      "candidate_a": "14_cand_0",
+      "candidate_b": "14_cand_13",
       "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "14_cand_6",
+      "candidate_b": "14_cand_9",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "14_cand_6",
+      "candidate_b": "14_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "14_cand_6",
+      "candidate_b": "14_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "14_cand_9",
+      "candidate_b": "14_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "14_cand_9",
+      "candidate_b": "14_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "14_cand_5",
+      "candidate_b": "14_cand_13",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "```sql\nSELECT s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`Enrollment (Ages 5-17)` DESC\nLIMIT 5;\n```",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "14_cand_8",
+    "sql": "SELECT \n    s.NCESSchool,\n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "14_cand_6",
     "question_id": 14,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.028143644332885742,
+      "runtime_sec": 0.035309791564941406,
       "row_count": 5,
-      "column_count": 1,
+      "column_count": 2,
       "columns": [
-        "NCESSchool"
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
       ],
       "sample_rows": [
         [
-          "11707"
+          "11707",
+          5271.0
         ],
         [
-          "04653"
+          "04653",
+          4734.0
         ],
         [
-          "08283"
+          "08283",
+          4718.0
         ],
         [
-          "02751"
+          "02751",
+          4369.0
         ],
         [
-          "03050"
+          "03050",
+          4334.0
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT TOP 5 s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`Enrollment (Ages 5-17)` DESC;",
-        "error": "near \"5\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`Enrollment (Ages 5-17)` DESC\nLIMIT 5;\n```",
-        "repair_time_sec": 2.7019448280334473,
-        "input_tokens": 582,
-        "output_tokens": 28
-      }
-    ]
+    "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 3
+  "num_representatives": 5
 }

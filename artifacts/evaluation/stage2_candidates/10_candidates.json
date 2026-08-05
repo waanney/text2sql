@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT \n    f.[FRPM Count (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    s.rtype = 'Reading'\nGROUP BY \n    f.School Name\nORDER BY \n    AVG(s.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT \n    f.School Name,\n    f.[FRPM Count (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    s.AvgScrRead = (SELECT MAX(AvgScrRead) FROM satscores)",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "10_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading'\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.AvgScrRead = (SELECT MAX(AvgScrRead) FROM satscores)\nAND frpm.[Percent (%) Eligible FRPM (Ages 5-17)] > 0;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "10_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT f.`FRPM Count (Ages 5-17)`\nFROM frpm f\nJOIN (\n    SELECT cds\n    FROM satscores\n    WHERE rtype = 'Reading'\n    GROUP BY cds\n    ORDER BY AVG(AvgScrRead) DESC\n    LIMIT 1\n) s ON f.CDSCode = s.cds;",
+    "sql": "SELECT \n    f.[FRPM Count (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    f.[Percent (%) Eligible FRPM (Ages 5-17)] = (\n        SELECT \n            MAX([Percent (%) Eligible FRPM (Ages 5-17)])\n        FROM \n            frpm\n    )",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "10_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    f.`FRPM Count (Ages 5-17)`\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    s.rtype = 'Reading'\nORDER BY \n    s.AvgScrRead DESC\nLIMIT 1;",
+    "sql": "SELECT f.FRPM_Count_Ages_5_17\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nORDER BY s.AvgScrRead DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "10_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT T2.`FRPM Count (Ages 5-17)`\nFROM satscores AS T1\nINNER JOIN frpm AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.rtype = 'Reading'\nORDER BY T1.AvgScrRead DESC\nLIMIT 1;",
+    "sql": "SELECT \n    frpm.FRPM_Count_Ages_5_17\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nORDER BY \n    satscores.AvgScrRead DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "10_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    f.`FRPM Count (Ages 5-17)`\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    s.rtype = 'Reading'\nORDER BY \n    s.AvgScrRead DESC\nLIMIT 1;",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = REPLACE(satscores.cds, ' ', '')\nWHERE satscores.rtype = 'D'\nORDER BY satscores.AvgScrRead DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "10_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.rtype = 'Reading'\nGROUP BY frpm.CDSCode\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.AvgScrRead = (SELECT MAX(AvgScrRead) FROM satscores)",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "10_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.rtype = 'Reading'\nGROUP BY frpm.School Name\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.AvgScrRead = (SELECT MAX(AvgScrRead) FROM satscores)",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "10_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    f.`FRPM Count (Ages 5-17)`\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    s.rtype = 'Reading'\nGROUP BY \n    f.School Name\nORDER BY \n    AVG(s.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.[School Name] = schools.School\nWHERE schools.School = 'The California Charter School in the Valley'\nAND schools.District = 'California Advancing Pathways for Students in Los Angeles County ROC/P'\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "10_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    f.[FRPM Count (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    s.rtype = 'Reading'\nGROUP BY \n    f.School Name\nORDER BY \n    AVG(s.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.[School Name] = schools.School\nWHERE schools.District = 'California School for the Blind'\nAND frpm.[Percent (%) Eligible FRPM (Ages 5-17)] = (\n    SELECT MAX(satscores.AvgScrRead)\n    FROM satscores\n    JOIN schools ON satscores.sname = schools.School\n    WHERE schools.District = 'California School for the Blind'\n);",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "10_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT f.`FRPM Count (Ages 5-17)`\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`District Name` = 'California School for the Blind (State Special Schl)'\nAND f.`School Name` = 'California School for the Blind'\nAND s.dname = 'California School for the Blind (State Special Schl)'\nAND s.sname = 'California School for the Blind'\nGROUP BY f.`FRPM Count (Ages 5-17)`\nORDER BY AVG(s.AvgScrRead) DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "10_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT f.`FRPM Count (Ages 5-17)`\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.AvgScrRead = (SELECT MAX(AvgScrRead) FROM satscores)\nAND f.Enrollment (Ages 5-17) IS NOT NULL;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "10_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(T1.`FRPM Count (Ages 5-17)`) AS Total_FRPM_Count\nFROM frpm AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.rtype = 'Reading' AND T2.AvgScrRead IS NOT NULL\nGROUP BY T1.School\nORDER BY AVG(T2.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT f.`FRPM Count (Ages 5-17)`\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.AvgScrRead = (SELECT MAX(AvgScrRead) FROM satscores)\nAND f.AgeGroup = '5-17';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "10_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT f.`FRPM Count (Ages 5-17)`\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.rtype = 'Reading'\nGROUP BY f.School Name\nORDER BY AVG(s.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT f.`FRPM Count (Ages 5-17)`\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.AvgScrRead = (SELECT MAX(AvgScrRead) FROM satscores)\nAND f.AgeGroup = '5-17';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "10_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT TOP 1 f.[FRPM Count (Ages 5-17)]\nFROM frpm f\nJOIN (\n    SELECT cds\n    FROM satscores\n    WHERE rtype = 'Reading'\n    GROUP BY cds\n    ORDER BY AVG(AvgScrRead) DESC\n    LIMIT 1\n) s ON f.CDSCode = s.cds;",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.rtype = 'D'\nORDER BY satscores.AvgScrRead DESC\nLIMIT 1;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "10_cand_14",

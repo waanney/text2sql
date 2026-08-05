@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "24_cand_0",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "24_cand_1",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "24_cand_2",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School \nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "24_cand_3",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "24_cand_4",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School \nFROM frpm f\nJOIN satscores s ON f.CDSCode = REPLACE(s.cds, '0', '')\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NumGE1500 >= 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "24_cand_5",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NCESSchool IN (\n    SELECT s2.NCESSchool\n    FROM schools s2\n    JOIN satscores sa ON s2.CDSCode = sa.cds\n    WHERE sa.NumGE1500 >= 1\n);",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "24_cand_6",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NCESSchool IN (\n    SELECT DISTINCT s2.NCESSchool\n    FROM schools s2\n    JOIN satscores sa ON s2.CDSCode = sa.cds\n    WHERE sa.NumGE1500 >= 1\n);",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "24_cand_7",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.[NumGE1500] >= 1500;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "24_cand_8",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    WHERE NumGE1500 >= 1500\n);",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "24_cand_9",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.NumGE1500 >= 1500\n);",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "24_cand_10",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    WHERE NumGE1500 >= 1500\n);",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "24_cand_11",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1500\n);",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "24_cand_12",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND f.[Percent (%) Eligible Free (Ages 5-17)] > 0.1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "24_cand_13",
+    "question_id": 24,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist \n    FROM satscores \n    WHERE NumGE1500 >= 1\n);",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "24_cand_14",
+    "question_id": 24,
+    "db_id": "california_schools"
+  }
+]

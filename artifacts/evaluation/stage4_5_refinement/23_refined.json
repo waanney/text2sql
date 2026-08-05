@@ -1,0 +1,319 @@
+{
+  "question_id": 23,
+  "db_id": "california_schools",
+  "final_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)],\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
+  "best_candidate_id": "23_cand_3",
+  "ranked_candidates": [
+    [
+      "23_cand_3",
+      4.25
+    ],
+    [
+      "23_cand_4",
+      4.25
+    ],
+    [
+      "23_cand_5",
+      3.2
+    ],
+    [
+      "23_hardcase_3",
+      3.2
+    ],
+    [
+      "23_cand_6",
+      2.4000000000000004
+    ],
+    [
+      "23_cand_13",
+      2.4000000000000004
+    ],
+    [
+      "23_cand_12",
+      1.6
+    ],
+    [
+      "23_hardcase_4",
+      0.8
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "23_cand_6",
+      "candidate_b": "23_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_6",
+      "candidate_b": "23_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_6",
+      "candidate_b": "23_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_6",
+      "candidate_b": "23_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_6",
+      "candidate_b": "23_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_6",
+      "candidate_b": "23_hardcase_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_6",
+      "candidate_b": "23_hardcase_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_3",
+      "candidate_b": "23_cand_4",
+      "winner": "tie",
+      "confidence": 0.5,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_3",
+      "candidate_b": "23_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_3",
+      "candidate_b": "23_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_3",
+      "candidate_b": "23_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_3",
+      "candidate_b": "23_hardcase_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_3",
+      "candidate_b": "23_hardcase_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_4",
+      "candidate_b": "23_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_4",
+      "candidate_b": "23_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_4",
+      "candidate_b": "23_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_4",
+      "candidate_b": "23_hardcase_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_4",
+      "candidate_b": "23_hardcase_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_5",
+      "candidate_b": "23_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_5",
+      "candidate_b": "23_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_5",
+      "candidate_b": "23_hardcase_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_5",
+      "candidate_b": "23_hardcase_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_12",
+      "candidate_b": "23_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_12",
+      "candidate_b": "23_hardcase_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_12",
+      "candidate_b": "23_hardcase_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_13",
+      "candidate_b": "23_hardcase_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_cand_13",
+      "candidate_b": "23_hardcase_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "23_hardcase_3",
+      "candidate_b": "23_hardcase_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)],\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "23_cand_3",
+    "question_id": 23,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.024170875549316406,
+      "row_count": 1239,
+      "column_count": 8,
+      "columns": [
+        "School",
+        "Street",
+        "City",
+        "Zip",
+        "State",
+        "Enrollment (K-12)",
+        "Enrollment (Ages 5-17)",
+        "EnrollmentDifference"
+      ],
+      "sample_rows": [
+        [
+          "Alameda County Community",
+          "313 West Winton Avenue",
+          "Hayward",
+          "94544-1136",
+          "CA",
+          277.0,
+          221.0,
+          56.0
+        ],
+        [
+          "California School for the Deaf-Fremont",
+          "39350 Gallaudet Drive",
+          "Fremont",
+          "94538-2308",
+          "CA",
+          410.0,
+          335.0,
+          75.0
+        ],
+        [
+          "Alameda High",
+          "2201 Encinal Avenue",
+          "Alameda",
+          "94501-4406",
+          "CA",
+          1746.0,
+          1675.0,
+          71.0
+        ],
+        [
+          "Encinal High",
+          "210 Central Avenue",
+          "Alameda",
+          "94501-3278",
+          "CA",
+          1052.0,
+          1003.0,
+          49.0
+        ],
+        [
+          "Island High (Continuation)",
+          "1900 Third Street",
+          "Alameda",
+          "94501-1851",
+          "CA",
+          144.0,
+          112.0,
+          32.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  "num_original_candidates": 20,
+  "num_representatives": 8
+}

@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT \n    f.District Name, \n    AVG(s.AvgScrRead) AS AverageReadingScore\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    f.`District Type` = 'Active'\nGROUP BY \n    f.District Name\nORDER BY \n    AverageReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "15_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    f.DistrictName, \n    AVG(s.AvgScrRead) AS AvgReadingScore\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    f.`District Type` = 'Active'\nGROUP BY \n    f.DistrictName\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "15_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.`District Name`, \n    AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nWHERE \n    frpm.`District Type` = 'Active'\nGROUP BY \n    frpm.`District Name`\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "15_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    T2.District, \n    AVG(T1.AvgScrRead) AS AvgReadingScore\nFROM \n    satscores AS T1\nINNER JOIN \n    schools AS T2 ON T1.cds = T2.CDSCode\nWHERE \n    T2.StatusType = 'Active'\nGROUP BY \n    T2.District\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT dname\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE StatusType = 'Active'\nGROUP BY dname\nORDER BY AVG(AvgScrRead) DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "15_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT T2.District \nFROM satscores AS T1 \nINNER JOIN schools AS T2 ON T1.cds = T2.CDSCode \nWHERE T2.StatusType = 'Active' \nGROUP BY T2.District \nORDER BY AVG(T1.AvgScrRead) DESC \nLIMIT 1;",
+    "sql": "SELECT d.District, AVG(s.AvgScrRead) AS AvgReadingScore\nFROM satscores s\nJOIN schools sch ON s.cds = sch.CDSCode AND s.sname = sch.School AND s.dname = sch.District\nWHERE sch.StatusType = 'Active'\nGROUP BY d.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "15_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT DISTINCT T1.District \nFROM schools AS T1 \nJOIN satscores AS T2 ON T1.CDSCode = T2.cds \nWHERE T1.StatusType = 'Active' \nGROUP BY T1.District \nORDER BY AVG(T2.AvgScrRead) DESC \nLIMIT 1;",
+    "sql": "SELECT s.District, AVG(sc.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores sc ON s.CDSCode = REPLACE(sc.cds, ' ', '')\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "15_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT f.District Name, AVG(s.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`District Type` = 'Active'\nGROUP BY f.District Name\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT frpm.District Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.District Name\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "15_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.District Name, \n    AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nWHERE \n    frpm.`District Type` = 'Active'\nGROUP BY \n    frpm.District Name\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT frpm.District Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.District Name\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "15_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    f.District Name, \n    AVG(s.AvgScrRead) AS AvgReadingScore\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    f.`District Type` = 'Active'\nGROUP BY \n    f.District Name\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "15_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT f.District Name\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`District Type` = 'Active'\nGROUP BY f.District Name\nORDER BY AVG(s.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT s.District\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(sa.AvgScrRead) DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "15_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT f.DistrictName\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`District Type` = 'Active'\nGROUP BY f.DistrictName\nORDER BY AVG(s.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(sa.AvgScrRead) DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "15_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    f.District Name, \n    AVG(s.AvgScrRead) AS AvgReadingScore\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    f.`District Type` = 'Active'\nGROUP BY \n    f.District Name\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT \n    s.District AS Active_District,\n    AVG(ss.AvgScrRead) AS Average_Score_Reading\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.StatusType = 'Active'\nGROUP BY \n    s.District\nORDER BY \n    Average_Score_Reading DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "15_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT f.DistrictName\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`District Type` = 'Active'\nGROUP BY f.DistrictName\nORDER BY AVG(s.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT s.District AS ActiveDistrict, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores ss ON s.CDSCode = ss.cds AND ss.rtype = 'D'\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "15_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    f.District Name AS Active_District, \n    AVG(s.AvgScrRead) AS Average_Score_Reading\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    f.`District Type` = 'Active'\nGROUP BY \n    f.District Name\nORDER BY \n    Average_Score_Reading DESC\nLIMIT 1;",
+    "sql": "SELECT \n    s.District,\n    AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.StatusType = 'Active'\nGROUP BY \n    s.District\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "15_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT T2.District, AVG(T1.AvgScrRead) AS AvgReadingScore\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T2.StatusType = 'Active'\nGROUP BY T2.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.FRPM Count (K-12)) DESC\nLIMIT 1;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "15_cand_14",

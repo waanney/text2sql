@@ -1,0 +1,660 @@
+[
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count__Ages_5_17__ > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count__Ages_5_17__;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "26_cand_0",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Free_Meal_Count__Ages_5_17__",
+      "runtime_sec": 0.0032601356506347656,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count__Ages_5_17__ > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count__Ages_5_17__;",
+        "error": "no such column: f.Free_Meal_Count__Ages_5_17__",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count__Ages_5_17__ > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count__Ages_5_17__;\n```",
+        "repair_time_sec": 3.206939458847046,
+        "input_tokens": 1328,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count__Ages_5_17__ > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count__Ages_5_17__;\n```",
+        "error": "no such column: f.Free_Meal_Count__Ages_5_17__",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count__Ages_5_17__ > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count__Ages_5_17__;\n```",
+        "repair_time_sec": 3.2016005516052246,
+        "input_tokens": 1331,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "26_cand_1",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+      "runtime_sec": 0.002989053726196289,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey';",
+        "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey';\n```",
+        "repair_time_sec": 2.6621813774108887,
+        "input_tokens": 1324,
+        "output_tokens": 33
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey';\n```",
+        "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey';\n```",
+        "repair_time_sec": 2.6584646701812744,
+        "input_tokens": 1327,
+        "output_tokens": 33
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count_Ages_5_17 DESC;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "26_cand_2",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+      "runtime_sec": 0.003591775894165039,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count_Ages_5_17 DESC;",
+        "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count_Ages_5_17 DESC;\n```",
+        "repair_time_sec": 3.1494288444519043,
+        "input_tokens": 1329,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count_Ages_5_17 DESC;\n```",
+        "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Free_Meal_Count_Ages_5_17 > 800\n    AND s.County = 'Monterey'\nORDER BY \n    f.Free_Meal_Count_Ages_5_17 DESC;\n```",
+        "repair_time_sec": 3.147860288619995,
+        "input_tokens": 1332,
+        "output_tokens": 39
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.SOCType = 'High Schools (Public)'\n    AND f.CountyName = 'Monterey'\n    AND f.`Percent (%) Eligible Free (Ages 5-17)` > 800;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "26_cand_3",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.CountyName",
+      "runtime_sec": 0.003010272979736328,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.SOCType = 'High Schools (Public)'\n    AND f.County = 'Monterey'\n    AND f.`Percent (%) Eligible Free (Ages 5-17)` > 800;",
+        "error": "no such column: f.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.SOCType = 'High Schools (Public)'\n    AND f.CountyName = 'Monterey'\n    AND f.`Percent (%) Eligible Free (Ages 5-17)` > 800;\n```",
+        "repair_time_sec": 3.6142990589141846,
+        "input_tokens": 1344,
+        "output_tokens": 53
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.SOCType = 'High Schools (Public)'\n    AND f.CountyName = 'Monterey'\n    AND f.`Percent (%) Eligible Free (Ages 5-17)` > 800;\n```",
+        "error": "no such column: f.CountyName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.SOCType = 'High Schools (Public)'\n    AND f.CountyName = 'Monterey'\n    AND f.`Percent (%) Eligible Free (Ages 5-17)` > 800;\n```",
+        "repair_time_sec": 3.6318345069885254,
+        "input_tokens": 1346,
+        "output_tokens": 53
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Percent (%) Eligible Free (Ages 5-17)` > 80\n    AND s.EILName = 'High School';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "26_cand_4",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.028659582138061523,
+      "row_count": 0,
+      "column_count": 9,
+      "columns": [
+        "School",
+        "Street",
+        "City",
+        "Zip",
+        "State",
+        "MailStreet",
+        "MailCity",
+        "MailZip",
+        "MailState"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Percent (%) Eligible Free (Ages 5-17)` > 800\n    AND s.EILName = 'High School';",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Percent (%) Eligible Free (Ages 5-17)` > 80\n    AND s.EILName = 'High School';\n```",
+        "repair_time_sec": 3.2452266216278076,
+        "input_tokens": 1358,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Percent (%) Eligible Free (Ages 5-17)` > 80\n    AND s.EILName = 'High School';\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    s.MailStreet,\n    s.MailCity,\n    s.MailZip,\n    s.MailState\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Percent (%) Eligible Free (Ages 5-17)` > 80\n    AND s.EILName = 'High School';\n```",
+        "repair_time_sec": 3.252713680267334,
+        "input_tokens": 1361,
+        "output_tokens": 46
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.CountyName = 'Monterey'\nAND f.`Percent (%) Eligible Free (Ages 5-17)` > 0.5;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "26_cand_5",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.CountyName",
+      "runtime_sec": 0.0028769969940185547,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.County Name = 'Monterey'\nAND f.`Percent (%) Eligible Free (Ages 5-17)` > 0.5;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.CountyName = 'Monterey'\nAND f.`Percent (%) Eligible Free (Ages 5-17)` > 0.5;\n```",
+        "repair_time_sec": 3.1741600036621094,
+        "input_tokens": 1346,
+        "output_tokens": 54
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.CountyName = 'Monterey'\nAND f.`Percent (%) Eligible Free (Ages 5-17)` > 0.5;\n```",
+        "error": "no such column: f.CountyName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.CountyName = 'Monterey'\nAND f.`Percent (%) Eligible Free (Ages 5-17)` > 0.5;\n```",
+        "repair_time_sec": 3.1708977222442627,
+        "input_tokens": 1348,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'Monterey'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "26_cand_6",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+      "runtime_sec": 0.0029325485229492188,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'Monterey'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;",
+        "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'Monterey'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "repair_time_sec": 2.6497812271118164,
+        "input_tokens": 1324,
+        "output_tokens": 33
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'Monterey'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'Monterey'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "repair_time_sec": 2.6542091369628906,
+        "input_tokens": 1327,
+        "output_tokens": 33
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND s.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "26_cand_7",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021277189254760742,
+      "row_count": 5,
+      "column_count": 5,
+      "columns": [
+        "School",
+        "Street",
+        "City",
+        "Zip",
+        "State"
+      ],
+      "sample_rows": [
+        [
+          "Alisal High",
+          "777 Williams Road",
+          "Salinas",
+          "93905-1907",
+          "CA"
+        ],
+        [
+          "Everett Alvarez High",
+          "1900 Independence Boulevard",
+          "Salinas",
+          "93906-5300",
+          "CA"
+        ],
+        [
+          "North Salinas High",
+          "55 Kip Drive",
+          "Salinas",
+          "93906-2908",
+          "CA"
+        ],
+        [
+          "Salinas High",
+          "726 South Main Street",
+          "Salinas",
+          "93901-3243",
+          "CA"
+        ],
+        [
+          "Soledad High",
+          "425 Gabilan Drive",
+          "Soledad",
+          "93960-3207",
+          "CA"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.School Type = 'High Schools (Public)'\n    AND f.County = 'Monterey'\n    AND f.Free Meal Count (Ages 5-17) > 800;",
+        "error": "near \"Type\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND f.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "repair_time_sec": 3.035694122314453,
+        "input_tokens": 1339,
+        "output_tokens": 48
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND f.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "error": "no such column: f.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND s.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "repair_time_sec": 3.0456643104553223,
+        "input_tokens": 1341,
+        "output_tokens": 48
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "26_cand_8",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+      "runtime_sec": 0.0030541419982910156,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND f.School_Type = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;",
+        "error": "no such column: f.School_Type",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;\n```",
+        "repair_time_sec": 3.215606689453125,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;\n```",
+        "error": "no such column: f.Free_Meal_Count_Ages_15_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "repair_time_sec": 3.1836626529693604,
+        "input_tokens": 1340,
+        "output_tokens": 46
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "26_cand_9",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+      "runtime_sec": 0.0039234161376953125,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND f.School_Type = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;",
+        "error": "no such column: f.School_Type",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;\n```",
+        "repair_time_sec": 3.2336151599884033,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;\n```",
+        "error": "no such column: f.Free_Meal_Count_Ages_15_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "repair_time_sec": 3.1758244037628174,
+        "input_tokens": 1340,
+        "output_tokens": 46
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "26_cand_10",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.Free_Meal_Count_Ages_5_17",
+      "runtime_sec": 0.002591848373413086,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND f.School_Type = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;",
+        "error": "no such column: f.School_Type",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;\n```",
+        "repair_time_sec": 3.2283036708831787,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_15_17 > 800;\n```",
+        "error": "no such column: f.Free_Meal_Count_Ages_15_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.County = 'California'\n    AND s.City = 'Monterey'\n    AND s.SOCType = 'High Schools (Public)'\n    AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "repair_time_sec": 3.2062489986419678,
+        "input_tokens": 1340,
+        "output_tokens": 46
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.SchoolType LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.FreeMealCountAges5_17 > 800;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "26_cand_11",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.SchoolType",
+      "runtime_sec": 0.0032668113708496094,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.School Type LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.Free Meal Count (Ages 5-17) > 800;",
+        "error": "near \"Type\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.SchoolType LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.FreeMealCountAges5_17 > 800;\n```",
+        "repair_time_sec": 3.0946033000946045,
+        "input_tokens": 1348,
+        "output_tokens": 50
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.SchoolType LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.FreeMealCountAges5_17 > 800;\n```",
+        "error": "no such column: f.SchoolType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.SchoolType LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.FreeMealCountAges5_17 > 800;\n```",
+        "repair_time_sec": 3.089354991912842,
+        "input_tokens": 1344,
+        "output_tokens": 50
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.SchoolType LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "26_cand_12",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.SchoolType",
+      "runtime_sec": 0.0031266212463378906,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.School Type LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.Free Meal Count (Ages 5-17) > 800;",
+        "error": "near \"Type\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.SchoolType LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "repair_time_sec": 3.187008857727051,
+        "input_tokens": 1348,
+        "output_tokens": 55
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.SchoolType LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "error": "no such column: f.SchoolType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.SchoolType LIKE '%High Schools%'\n    AND f.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "repair_time_sec": 3.198823928833008,
+        "input_tokens": 1349,
+        "output_tokens": 55
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND f.`Percent (%) Eligible Free (Ages 5-17)` > 0.5\n    AND f.`Free Meal Count (Ages 5-17)` > 800\n    AND s.County = 'Monterey';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "26_cand_13",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021282196044921875,
+      "row_count": 3,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "FullCommunicationAddress"
+      ],
+      "sample_rows": [
+        [
+          "Alisal High",
+          "777 Williams Road, Salinas, CA 93905-1907"
+        ],
+        [
+          "North Salinas High",
+          "55 Kip Drive, Salinas, CA 93906-2908"
+        ],
+        [
+          "Soledad High",
+          "425 Gabilan Drive, Soledad, CA 93960-3207"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.School Type = 'High Schools (Public)'\n    AND f.Percent (%) Eligible Free (Ages 5-17) > 0.5\n    AND f.Free Meal Count (Ages 5-17) > 800\n    AND s.County = 'Monterey';",
+        "error": "near \"Type\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    CONCAT(s.Street, ', ', s.City, ', ', s.State, ' ', s.Zip) AS FullCommunicationAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND f.`Percent (%) Eligible Free (Ages 5-17)` > 0.5\n    AND f.`Free Meal Count (Ages 5-17)` > 800\n    AND s.County = 'Monterey';\n```",
+        "repair_time_sec": 3.913590669631958,
+        "input_tokens": 1361,
+        "output_tokens": 70
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County_Name = 'Monterey' AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "26_cand_14",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.County_Name",
+      "runtime_sec": 0.003216266632080078,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County Name = 'Monterey' AND f.Free Meal Count (Ages 5-17) > 800;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County_Name = 'Monterey' AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "repair_time_sec": 2.764754295349121,
+        "input_tokens": 1336,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County_Name = 'Monterey' AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "error": "no such column: f.County_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, s.Street, s.City, s.Zip, s.State, s.MailStreet, s.MailCity, s.MailZip, s.MailState\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County_Name = 'Monterey' AND f.Free_Meal_Count_Ages_5_17 > 800;\n```",
+        "repair_time_sec": 2.742439031600952,
+        "input_tokens": 1332,
+        "output_tokens": 39
+      }
+    ]
+  }
+]

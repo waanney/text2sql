@@ -1,19 +1,19 @@
 {
   "question_id": 0,
   "db_id": "california_schools",
-  "final_sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nWHERE \"frpm\".\"County Name\" = 'Alameda';",
-  "best_candidate_id": "0_cand_6",
+  "final_sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate FROM frpm WHERE `County Name` = 'Alameda' AND `School Type` = 'K-12 Schools (Public)'",
+  "best_candidate_id": "0_hardcase_4",
   "ranked_candidates": [
     [
-      "0_cand_6",
+      "0_hardcase_4",
       1.6
     ],
     [
-      "0_hardcase_2",
+      "0_cand_11",
       0.8
     ],
     [
-      "0_cand_11",
+      "0_cand_6",
       0.0
     ]
   ],
@@ -21,36 +21,36 @@
     {
       "candidate_a": "0_cand_6",
       "candidate_b": "0_cand_11",
-      "winner": "A",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "0_cand_6",
-      "candidate_b": "0_hardcase_2",
-      "winner": "A",
+      "candidate_b": "0_hardcase_4",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "0_cand_11",
-      "candidate_b": "0_hardcase_2",
+      "candidate_b": "0_hardcase_4",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nWHERE \"frpm\".\"County Name\" = 'Alameda';",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_0",
-    "candidate_id": "0_cand_6",
+    "sql": "SELECT MAX(`Percent (%) Eligible Free (K-12)`) AS HighestEligibleFreeRate FROM frpm WHERE `County Name` = 'Alameda' AND `School Type` = 'K-12 Schools (Public)'",
+    "source": "targeted_regeneration",
+    "prompt_id": "hardcase_regen_v1_4",
+    "candidate_id": "0_hardcase_4",
     "question_id": 0,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014079570770263672,
+      "runtime_sec": 0.01145625114440918,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -58,7 +58,7 @@
       ],
       "sample_rows": [
         [
-          1.0
+          0.75
         ]
       ],
       "is_empty": false

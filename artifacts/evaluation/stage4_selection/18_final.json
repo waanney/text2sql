@@ -1,0 +1,138 @@
+{
+  "question_id": 18,
+  "db_id": "california_schools",
+  "final_sql": "SELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.`County Name` = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;",
+  "best_candidate_id": "18_cand_4",
+  "ranked_candidates": [
+    [
+      "18_cand_4",
+      3.2
+    ],
+    [
+      "18_cand_1",
+      2.4000000000000004
+    ],
+    [
+      "18_cand_0",
+      1.6
+    ],
+    [
+      "18_cand_10",
+      0.8
+    ],
+    [
+      "18_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "18_cand_0",
+      "candidate_b": "18_cand_1",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_0",
+      "candidate_b": "18_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_0",
+      "candidate_b": "18_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_0",
+      "candidate_b": "18_cand_10",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_1",
+      "candidate_b": "18_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_1",
+      "candidate_b": "18_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_1",
+      "candidate_b": "18_cand_10",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_6",
+      "candidate_b": "18_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_6",
+      "candidate_b": "18_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "18_cand_4",
+      "candidate_b": "18_cand_10",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.`County Name` = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "18_cand_4",
+    "question_id": 18,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.013065338134765625,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          14
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.County = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;",
+        "error": "no such column: frpm.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.`County Name` = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;\n```",
+        "repair_time_sec": 2.5990655422210693,
+        "input_tokens": 1331,
+        "output_tokens": 41
+      }
+    ]
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 5
+}

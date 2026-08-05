@@ -1,70 +1,82 @@
 {
   "question_id": 13,
   "db_id": "california_schools",
-  "final_sql": "SELECT schools.Phone \nFROM schools \nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS SAT_Excellence_Rate \n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds \nORDER BY frpm.SAT_Excellence_Rate DESC \nLIMIT 3;",
-  "best_candidate_id": "13_cand_8",
+  "final_sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS sat_excellence_rate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.sat_excellence_rate DESC\nLIMIT 3;",
+  "best_candidate_id": "13_cand_3",
   "ranked_candidates": [
     [
-      "13_cand_8",
+      "13_cand_3",
+      5.6
+    ],
+    [
+      "13_cand_4",
+      4.0
+    ],
+    [
+      "13_cand_5",
+      4.0
+    ],
+    [
+      "13_cand_10",
       3.2
     ],
     [
-      "13_cand_14",
-      2.4000000000000004
+      "13_cand_11",
+      3.2
     ],
     [
-      "13_cand_6",
+      "13_cand_12",
       1.6
     ],
     [
-      "13_cand_13",
+      "13_cand_14",
       0.8
     ],
     [
-      "13_cand_11",
+      "13_cand_6",
       0.0
     ]
   ],
   "comparison_logs": [
     {
-      "candidate_a": "13_cand_8",
-      "candidate_b": "13_cand_6",
-      "winner": "A",
+      "candidate_a": "13_cand_6",
+      "candidate_b": "13_cand_3",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "13_cand_8",
-      "candidate_b": "13_cand_11",
-      "winner": "A",
+      "candidate_a": "13_cand_6",
+      "candidate_b": "13_cand_4",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "13_cand_8",
-      "candidate_b": "13_cand_13",
-      "winner": "A",
+      "candidate_a": "13_cand_6",
+      "candidate_b": "13_cand_5",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "13_cand_8",
-      "candidate_b": "13_cand_14",
-      "winner": "A",
+      "candidate_a": "13_cand_6",
+      "candidate_b": "13_cand_10",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "13_cand_6",
       "candidate_b": "13_cand_11",
-      "winner": "A",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "13_cand_6",
-      "candidate_b": "13_cand_13",
-      "winner": "A",
+      "candidate_b": "13_cand_12",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
@@ -76,38 +88,164 @@
       "probs": null
     },
     {
-      "candidate_a": "13_cand_11",
-      "candidate_b": "13_cand_13",
+      "candidate_a": "13_cand_3",
+      "candidate_b": "13_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_3",
+      "candidate_b": "13_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_3",
+      "candidate_b": "13_cand_10",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_3",
+      "candidate_b": "13_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_3",
+      "candidate_b": "13_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_3",
+      "candidate_b": "13_cand_14",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_4",
+      "candidate_b": "13_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_4",
+      "candidate_b": "13_cand_10",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_4",
+      "candidate_b": "13_cand_11",
       "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_4",
+      "candidate_b": "13_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_4",
+      "candidate_b": "13_cand_14",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_5",
+      "candidate_b": "13_cand_10",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_5",
+      "candidate_b": "13_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_5",
+      "candidate_b": "13_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_5",
+      "candidate_b": "13_cand_14",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_10",
+      "candidate_b": "13_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_10",
+      "candidate_b": "13_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_10",
+      "candidate_b": "13_cand_14",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_11",
+      "candidate_b": "13_cand_12",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "13_cand_11",
       "candidate_b": "13_cand_14",
-      "winner": "B",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "13_cand_13",
+      "candidate_a": "13_cand_12",
       "candidate_b": "13_cand_14",
-      "winner": "B",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT schools.Phone \nFROM schools \nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS SAT_Excellence_Rate \n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds \nORDER BY frpm.SAT_Excellence_Rate DESC \nLIMIT 3;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "13_cand_8",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS sat_excellence_rate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.sat_excellence_rate DESC\nLIMIT 3;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "13_cand_3",
     "question_id": 13,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.027110576629638672,
+      "runtime_sec": 0.017946481704711914,
       "row_count": 3,
       "column_count": 1,
       "columns": [
@@ -115,13 +253,13 @@
       ],
       "sample_rows": [
         [
-          "(714) 220-3055"
+          "(408) 366-7700"
         ],
         [
           "(562) 229-7745"
         ],
         [
-          "(408) 366-7700"
+          "(408) 366-7600"
         ]
       ],
       "is_empty": false
@@ -129,5 +267,5 @@
     "repair_history": []
   },
   "num_original_candidates": 20,
-  "num_representatives": 5
+  "num_representatives": 8
 }

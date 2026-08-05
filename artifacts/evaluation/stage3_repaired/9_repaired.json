@@ -1,31 +1,46 @@
 [
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.CDSCode = sch.CDSCode\nWHERE f.Charter_School_Number IS NOT NULL\nAND f.Charter_Funding_Type = 'Directly funded'\nAND s.AvgScrMath > 560;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "9_cand_0",
     "question_id": 9,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02714824676513672,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "COUNT(s.NCESSchool)"
-      ],
-      "sample_rows": [
-        [
-          0
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: f.Charter_School_Number",
+      "runtime_sec": 0.002917766571044922,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.CDSCode = sch.CDSCode\nWHERE f.Charter_School_Number IS NOT NULL\nAND f.Charter_Funding_Type = 'Directly funded'\nAND s.AvgScrMath > 560;",
+        "error": "no such column: f.Charter_School_Number",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.CDSCode = sch.CDSCode\nWHERE f.Charter_School_Number IS NOT NULL\nAND f.Charter_Funding_Type = 'Directly funded'\nAND s.AvgScrMath > 560;\n```",
+        "repair_time_sec": 2.4841670989990234,
+        "input_tokens": 1336,
+        "output_tokens": 45
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.CDSCode = sch.CDSCode\nWHERE f.Charter_School_Number IS NOT NULL\nAND f.Charter_Funding_Type = 'Directly funded'\nAND s.AvgScrMath > 560;\n```",
+        "error": "no such column: f.Charter_School_Number",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.CDSCode = sch.CDSCode\nWHERE f.Charter_School_Number IS NOT NULL\nAND f.Charter_Funding_Type = 'Directly funded'\nAND s.AvgScrMath > 560;\n```",
+        "repair_time_sec": 2.460890293121338,
+        "input_tokens": 1339,
+        "output_tokens": 45
+      }
+    ]
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool) AS CharterSchoolCount\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "9_cand_1",
@@ -34,15 +49,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.023755550384521484,
+      "runtime_sec": 0.022104263305664062,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "CharterSchoolCount"
+        "COUNT(*)"
       ],
       "sample_rows": [
         [
-          0
+          2
         ]
       ],
       "is_empty": false
@@ -50,32 +65,47 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool) AS NumberOfCharterSchools\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "9_cand_2",
     "question_id": 9,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.021140336990356445,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "NumberOfCharterSchools"
-      ],
-      "sample_rows": [
-        [
-          0
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: frpm.AvgScrMath",
+      "runtime_sec": 0.003309011459350586,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';",
+        "error": "no such column: frpm.AvgScrMath",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';\n```",
+        "repair_time_sec": 1.7438445091247559,
+        "input_tokens": 1318,
+        "output_tokens": 27
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';\n```",
+        "error": "no such column: frpm.AvgScrMath",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';\n```",
+        "repair_time_sec": 1.7327654361724854,
+        "input_tokens": 1320,
+        "output_tokens": 27
+      }
+    ]
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode) \nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath > 560 AND s.FundingType = 'Direct';",
+    "sql": "SELECT COUNT(DISTINCT s.CDSCode)\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "9_cand_3",
@@ -84,15 +114,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019392967224121094,
+      "runtime_sec": 0.023441553115844727,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(s.CDSCode)"
+        "COUNT(DISTINCT s.CDSCode)"
       ],
       "sample_rows": [
         [
-          0
+          2
         ]
       ],
       "is_empty": false
@@ -100,7 +130,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath > 560 AND s.FundingType = 'Direct Charter';",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.AvgScrMath > 560 AND frpm.`Charter Funding Type` = 'Directly funded';\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "9_cand_4",
@@ -109,23 +139,34 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01909160614013672,
+      "runtime_sec": 0.013567209243774414,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(s.CDSCode)"
+        "COUNT(*)"
       ],
       "sample_rows": [
         [
-          0
+          2
         ]
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.AvgScrMath > 560 AND frpm.Charter Funding Type = 'Directly funded';",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.AvgScrMath > 560 AND frpm.`Charter Funding Type` = 'Directly funded';\n```",
+        "repair_time_sec": 1.9562444686889648,
+        "input_tokens": 1320,
+        "output_tokens": 29
+      }
+    ]
   },
   {
-    "sql": "SELECT COUNT(T2.CDSCode) \nFROM satscores AS T1 \nINNER JOIN schools AS T2 ON T1.cds = T2.CDSCode \nWHERE T1.AvgScrMath > 560 AND T2.FundingType = 'Direct Charter';",
+    "sql": "SELECT COUNT(DISTINCT s.CDSCode)\nFROM satscores ss\nJOIN frpm f ON ss.cds = f.CDSCode\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ss.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "9_cand_5",
@@ -134,15 +175,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022436857223510742,
+      "runtime_sec": 0.021193504333496094,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(T2.CDSCode)"
+        "COUNT(DISTINCT s.CDSCode)"
       ],
       "sample_rows": [
         [
-          0
+          2
         ]
       ],
       "is_empty": false
@@ -150,7 +191,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nGROUP BY schools.NCESSchool\nHAVING AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';\n```",
+    "sql": "SELECT COUNT(schools.School)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE satscores.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "9_cand_6",
@@ -159,30 +200,23 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.025702476501464844,
-      "row_count": 0,
+      "runtime_sec": 0.022997379302978516,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(schools.NCESSchool)"
+        "COUNT(schools.School)"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          2
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';",
-        "error": "misuse of aggregate: AVG()",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nGROUP BY schools.NCESSchool\nHAVING AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';\n```",
-        "repair_time_sec": 3.1593098640441895,
-        "input_tokens": 579,
-        "output_tokens": 29
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nGROUP BY schools.NCESSchool\nHAVING AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';\n```",
+    "sql": "SELECT COUNT(schools.School)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE satscores.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "9_cand_7",
@@ -191,30 +225,23 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.05956435203552246,
-      "row_count": 0,
+      "runtime_sec": 0.02216053009033203,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(schools.NCESSchool)"
+        "COUNT(schools.School)"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          2
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';",
-        "error": "misuse of aggregate: AVG()",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nGROUP BY schools.NCESSchool\nHAVING AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';\n```",
-        "repair_time_sec": 3.08430552482605,
-        "input_tokens": 579,
-        "output_tokens": 29
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    GROUP BY cds\n    HAVING AVG(AvgScrMath) > 560\n) ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter';",
+    "sql": "```sql\nSELECT COUNT(s.School)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nGROUP BY s.School\nHAVING AVG(sa.AvgScrMath) > 560 AND s.FundingType = 'Directly funded';\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "9_cand_8",
@@ -223,55 +250,77 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01572895050048828,
-      "row_count": 1,
+      "runtime_sec": 0.02619147300720215,
+      "row_count": 2,
       "column_count": 1,
       "columns": [
-        "COUNT(s.NCESSchool)"
+        "COUNT(s.School)"
       ],
       "sample_rows": [
         [
-          0
+          1
+        ],
+        [
+          2
         ]
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(s.School)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE AVG(sa.AvgScrMath) > 560 AND s.FundingType = 'Directly funded';",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(s.School)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nGROUP BY s.School\nHAVING AVG(sa.AvgScrMath) > 560 AND s.FundingType = 'Directly funded';\n```",
+        "repair_time_sec": 2.04943585395813,
+        "input_tokens": 1320,
+        "output_tokens": 33
+      }
+    ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';\n```",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE AVG(sa.AvgScrMath) > 560 AND f.`Charter Funding Type` = 'Directly funded';\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "9_cand_9",
     "question_id": 9,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.01892709732055664,
-      "row_count": 0,
-      "column_count": 1,
-      "columns": [
-        "COUNT(s.NCESSchool)"
-      ],
+      "success": false,
+      "error": "misuse of aggregate: AVG()",
+      "runtime_sec": 0.002671957015991211,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
       "sample_rows": [],
-      "is_empty": true
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';",
-        "error": "misuse of aggregate: AVG()",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';\n```",
-        "repair_time_sec": 2.966362476348877,
-        "input_tokens": 582,
-        "output_tokens": 32
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE AVG(sa.AvgScrMath) > 560 AND f.FundingType = 'Directly funded';",
+        "error": "no such column: f.FundingType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE AVG(sa.AvgScrMath) > 560 AND f.CharterFundingType = 'Directly funded';\n```",
+        "repair_time_sec": 2.2194321155548096,
+        "input_tokens": 1329,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE AVG(sa.AvgScrMath) > 560 AND f.CharterFundingType = 'Directly funded';\n```",
+        "error": "no such column: f.CharterFundingType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE AVG(sa.AvgScrMath) > 560 AND f.`Charter Funding Type` = 'Directly funded';\n```",
+        "repair_time_sec": 2.2376091480255127,
+        "input_tokens": 1332,
+        "output_tokens": 41
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(DISTINCT T1.NCESSchool)\nFROM schools AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nGROUP BY T1.NCESSchool\nHAVING AVG(T2.AvgScrMath) > 560 AND T1.FundingType LIKE '%charter%'\n```",
+    "sql": "SELECT COUNT(s.School)\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nWHERE sat.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "9_cand_10",
@@ -280,30 +329,23 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.026650428771972656,
-      "row_count": 0,
+      "runtime_sec": 0.02363419532775879,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(DISTINCT T1.NCESSchool)"
+        "COUNT(s.School)"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          2
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(DISTINCT T1.NCESSchool)\nFROM schools AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE AVG(T2.AvgScrMath) > 560 AND T1.FundingType LIKE '%charter%'",
-        "error": "misuse of aggregate: AVG()",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT COUNT(DISTINCT T1.NCESSchool)\nFROM schools AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nGROUP BY T1.NCESSchool\nHAVING AVG(T2.AvgScrMath) > 560 AND T1.FundingType LIKE '%charter%'\n```",
-        "repair_time_sec": 3.259638547897339,
-        "input_tokens": 586,
-        "output_tokens": 36
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';\n```",
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "9_cand_11",
@@ -312,30 +354,23 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020238876342773438,
-      "row_count": 0,
+      "runtime_sec": 0.023972034454345703,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
         "COUNT(s.NCESSchool)"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          2
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';",
-        "error": "misuse of aggregate: AVG()",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';\n```",
-        "repair_time_sec": 2.918745994567871,
-        "input_tokens": 582,
-        "output_tokens": 32
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND (SELECT AVG(AvgScrMath) FROM satscores WHERE cds = s.CDSCode) > 560;\n```",
+    "sql": "```sql\nSELECT COUNT(sc.NCESSchool)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE s.AvgScrMath > 560 AND sc.FundingType = 'Directly funded';\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "9_cand_12",
@@ -344,15 +379,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020724058151245117,
+      "runtime_sec": 0.024194955825805664,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(s.NCESSchool)"
+        "COUNT(sc.NCESSchool)"
       ],
       "sample_rows": [
         [
-          0
+          2
         ]
       ],
       "is_empty": false
@@ -360,18 +395,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND AVG(ss.AvgScrMath) > 560;",
-        "error": "misuse of aggregate: AVG()",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND (SELECT AVG(AvgScrMath) FROM satscores WHERE cds = s.CDSCode) > 560;\n```",
-        "repair_time_sec": 3.058666944503784,
-        "input_tokens": 582,
-        "output_tokens": 37
+        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.AvgScrMath > 560 AND sc.FundingType = 'Directly funded';",
+        "error": "no such column: s.NCESSchool",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(sc.NCESSchool)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.AvgScrMath > 560 AND sc.FundingType = 'Directly funded';\n```",
+        "repair_time_sec": 2.228452205657959,
+        "input_tokens": 1329,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(sc.NCESSchool)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.AvgScrMath > 560 AND sc.FundingType = 'Directly funded';\n```",
+        "error": "no such column: f.AvgScrMath",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(sc.NCESSchool)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE s.AvgScrMath > 560 AND sc.FundingType = 'Directly funded';\n```",
+        "repair_time_sec": 2.2236294746398926,
+        "input_tokens": 1332,
+        "output_tokens": 39
       }
     ]
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter'\nGROUP BY s.NCESSchool\nHAVING AVG(ss.AvgScrMath) > 560;",
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.FundingType = 'Directly funded'\nAND sa.AvgScrMath > 560;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "9_cand_13",
@@ -380,40 +425,59 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020169734954833984,
-      "row_count": 0,
+      "runtime_sec": 0.022797822952270508,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
         "COUNT(s.NCESSchool)"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          2
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    GROUP BY cds\n    HAVING AVG(AvgScrMath) > 560\n) ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter';",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`Charter School Number` IN (\n    SELECT `Charter School Number`\n    FROM frpm\n    GROUP BY `Charter School Number`\n    HAVING AVG(AvgScrMath) > 560\n)\nAND f.`FundingType` = 'Directly funded';\n```",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "9_cand_14",
     "question_id": 9,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.01818251609802246,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "COUNT(s.CDSCode)"
-      ],
-      "sample_rows": [
-        [
-          0
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: f.FundingType",
+      "runtime_sec": 0.002942800521850586,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.Charter School Number IN (\n    SELECT Charter School Number\n    FROM frpm\n    GROUP BY Charter School Number\n    HAVING AVG(AvgScrMath) > 560\n)\nAND f.FundingType = 'Directly funded';",
+        "error": "near \"School\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`Charter School Number` IN (\n    SELECT `Charter School Number`\n    FROM frpm\n    GROUP BY `Charter School Number`\n    HAVING AVG(AvgScrMath) > 560\n)\nAND f.FundingType = 'Directly funded';\n```",
+        "repair_time_sec": 2.7377359867095947,
+        "input_tokens": 1344,
+        "output_tokens": 53
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`Charter School Number` IN (\n    SELECT `Charter School Number`\n    FROM frpm\n    GROUP BY `Charter School Number`\n    HAVING AVG(AvgScrMath) > 560\n)\nAND f.FundingType = 'Directly funded';\n```",
+        "error": "no such column: f.FundingType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`Charter School Number` IN (\n    SELECT `Charter School Number`\n    FROM frpm\n    GROUP BY `Charter School Number`\n    HAVING AVG(AvgScrMath) > 560\n)\nAND f.`FundingType` = 'Directly funded';\n```",
+        "repair_time_sec": 2.7810332775115967,
+        "input_tokens": 1346,
+        "output_tokens": 53
+      }
+    ]
   }
 ]

@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT s.School, MAX(ss.NumTstTakr) AS MaxTestTakers\nFROM frpm f\nJOIN satscores ss ON f.CDSCode = ss.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY MaxTestTakers DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "22_cand_0",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT frpm.School Name, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "22_cand_1",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT \n    frpm.School Name, \n    satscores.NumTstTakr AS TotalTestTakers\nFROM \n    frpm\nJOIN \n    satscores ON frpm.CDSCode = satscores.cds\nWHERE \n    frpm.County = 'Contra Costa'\nORDER BY \n    TotalTestTakers DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "22_cand_2",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = SUBSTR(ss.cds, 1, 10)\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "22_cand_3",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.County, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "22_cand_4",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, ss.NumTstTakr\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.County = 'Contra Costa'\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "22_cand_5",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT frpm.School Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "22_cand_6",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT frpm.School Name, frpm.School Code, satscores.NumTstTakr\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.County = 'Contra Costa'\nORDER BY satscores.NumTstTakr DESC\nLIMIT 1;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "22_cand_7",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE f.`County Name` = 'Contra Costa'\nGROUP BY s.School\nORDER BY SUM(f.`Enrollment (Ages 5-17)`) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "22_cand_8",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE f.`County Name` = 'Contra Costa'\nGROUP BY s.School\nORDER BY SUM(f.`Enrollment (Ages 5-17)`) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "22_cand_9",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, COUNT(ss.NumTstTakr) AS TotalTestTakers\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds AND s.County = ss.cname\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "22_cand_10",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.School Code = ss.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "22_cand_11",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, s.County, SUM(ss.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores ss ON f.School Code = ss.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE s.County = 'Contra Costa'\nGROUP BY s.School, s.County\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "22_cand_12",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School, MAX(f.NumTstTakr) AS TotalTestTakers\nFROM frpm f\nJOIN satscores sa ON f.School Name = sa.sname AND f.School Code = sa.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County = 'Contra Costa'\nGROUP BY s.School\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "22_cand_13",
+    "question_id": 22,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.FRPM_Count DESC\nLIMIT 1;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "22_cand_14",
+    "question_id": 22,
+    "db_id": "california_schools"
+  }
+]

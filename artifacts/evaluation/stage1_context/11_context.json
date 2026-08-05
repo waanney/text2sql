@@ -4,12 +4,13 @@
   "question": "Please list the codes of the schools with a total enrollment of over 500.",
   "evidence": "Total enrollment can be represented by `Enrollment (K-12)` + `Enrollment (Ages 5-17)`",
   "intent": {
-    "output_phrase": "List the codes of the schools with a total enrollment of over 500",
+    "output_phrase": "List the codes of the schools with a total enrollment of over 500.",
     "operation": "filter",
     "literals": [
       "schools",
       "codes",
-      "enrollment"
+      "total enrollment",
+      "over 500"
     ],
     "filter_phrases": [
       {
@@ -19,20 +20,25 @@
       },
       {
         "operator": ">",
-        "value": 500
+        "value": "500"
       }
     ],
     "aggregation": null,
     "time_phrases": null,
-    "question_skeleton": "List the [output] of the [entities] with a [total_enrollment] of over [threshold]"
+    "question_skeleton": "List the [output] of the [entities] with a [aggregation] [operation] of [value]."
   },
   "literals": [
     "schools",
     "codes",
-    "enrollment"
+    "total enrollment",
+    "over 500"
   ],
   "matched_values": [],
   "evidence_constraints": [
+    {
+      "type": "value_link",
+      "constraint": "Value 'with a' matches value 'Learning with a Purpose' in table 'schools', column 'School'"
+    },
     {
       "phrase": "Total enrollment can be represented by `Enrollment (K-12)` + `Enrollment (Ages 5-17)`",
       "column": "frpm.Enrollment (K-12)",
@@ -55,18 +61,18 @@
   "top_tables": [
     {
       "table": "frpm",
-      "score": 0.18246753246753245
+      "score": 0.17377188029361942
     },
     {
       "table": "schools",
-      "score": 0.08987993138936536
+      "score": 0.08332467532467533
     }
   ],
   "top_columns": [
     {
       "table": "frpm",
       "column": "Enrollment (Ages 5-17)",
-      "semantic_score": 0.3333333333333333,
+      "semantic_score": 0.30434782608695654,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.42857142857142855,
@@ -76,12 +82,12 @@
       "null_ratio": 0.0014019627478469858,
       "distinct_count": 1845,
       "query_log_support": 0.0,
-      "relevance_score": 0.18246753246753245
+      "relevance_score": 0.17377188029361942
     },
     {
       "table": "frpm",
       "column": "Enrollment (K-12)",
-      "semantic_score": 0.2822085889570552,
+      "semantic_score": 0.2569832402234637,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.2857142857142857,
@@ -91,12 +97,12 @@
       "null_ratio": 0.0,
       "distinct_count": 1882,
       "query_log_support": 0.0,
-      "relevance_score": 0.1457015377260776
+      "relevance_score": 0.13813393310600014
     },
     {
       "table": "frpm",
       "column": "Percent (%) Eligible Free (Ages 5-17)",
-      "semantic_score": 0.29508196721311475,
+      "semantic_score": 0.271356783919598,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.2857142857142857,
@@ -106,12 +112,12 @@
       "null_ratio": 0.007810935309433206,
       "distinct_count": 8552,
       "query_log_support": 0.0,
-      "relevance_score": 0.13138173302107728
+      "relevance_score": 0.12426417803302225
     },
     {
       "table": "frpm",
       "column": "Percent (%) Eligible FRPM (Ages 5-17)",
-      "semantic_score": 0.29508196721311475,
+      "semantic_score": 0.271356783919598,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.2857142857142857,
@@ -121,12 +127,12 @@
       "null_ratio": 0.0072100941317844985,
       "distinct_count": 8557,
       "query_log_support": 0.0,
-      "relevance_score": 0.13138173302107728
+      "relevance_score": 0.12426417803302225
     },
     {
       "table": "frpm",
       "column": "FRPM Count (Ages 5-17)",
-      "semantic_score": 0.23809523809523808,
+      "semantic_score": 0.21739130434782608,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.2857142857142857,
@@ -136,12 +142,12 @@
       "null_ratio": 0.0072100941317844985,
       "distinct_count": 1330,
       "query_log_support": 0.0,
-      "relevance_score": 0.11428571428571427
+      "relevance_score": 0.10807453416149068
     },
     {
       "table": "frpm",
       "column": "Free Meal Count (Ages 5-17)",
-      "semantic_score": 0.23121387283236994,
+      "semantic_score": 0.21164021164021163,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.2857142857142857,
@@ -151,12 +157,12 @@
       "null_ratio": 0.007810935309433206,
       "distinct_count": 1205,
       "query_log_support": 0.0,
-      "relevance_score": 0.11222130470685382
+      "relevance_score": 0.10634920634920633
     },
     {
       "table": "schools",
       "column": "NCESSchool",
-      "semantic_score": 0.2389937106918239,
+      "semantic_score": 0.21714285714285714,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -166,12 +172,12 @@
       "null_ratio": 0.2849711636322515,
       "distinct_count": 12321,
       "query_log_support": 0.0,
-      "relevance_score": 0.08987993138936536
+      "relevance_score": 0.08332467532467533
     },
     {
       "table": "frpm",
       "column": "Percent (%) Eligible Free (K-12)",
-      "semantic_score": 0.2247191011235955,
+      "semantic_score": 0.20618556701030927,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.14285714285714285,
@@ -181,12 +187,12 @@
       "null_ratio": 0.005607850991387943,
       "distinct_count": 8658,
       "query_log_support": 0.0,
-      "relevance_score": 0.08884430176565007
+      "relevance_score": 0.08328424153166421
     },
     {
       "table": "frpm",
       "column": "Percent (%) Eligible FRPM (K-12)",
-      "semantic_score": 0.2247191011235955,
+      "semantic_score": 0.20618556701030927,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.14285714285714285,
@@ -196,12 +202,12 @@
       "null_ratio": 0.005007009813739235,
       "distinct_count": 8623,
       "query_log_support": 0.0,
-      "relevance_score": 0.08884430176565007
+      "relevance_score": 0.08328424153166421
     },
     {
       "table": "schools",
       "column": "School",
-      "semantic_score": 0.2064516129032258,
+      "semantic_score": 0.1871345029239766,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -211,27 +217,12 @@
       "null_ratio": 0.07740585774058577,
       "distinct_count": 13875,
       "query_log_support": 0.0,
-      "relevance_score": 0.08011730205278593
-    },
-    {
-      "table": "frpm",
-      "column": "FRPM Count (K-12)",
-      "semantic_score": 0.18404907975460122,
-      "literal_match": 0,
-      "output_match": 0.0,
-      "filter_match": 0.14285714285714285,
-      "is_id_like": 0,
-      "is_date_like": 0,
-      "is_numeric_like": 0,
-      "null_ratio": 0.005007009813739235,
-      "distinct_count": 1361,
-      "query_log_support": 0.0,
-      "relevance_score": 0.07664329535495179
+      "relevance_score": 0.07432216905901116
     },
     {
       "table": "schools",
       "column": "EILCode",
-      "semantic_score": 0.19230769230769232,
+      "semantic_score": 0.18604651162790697,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -241,12 +232,12 @@
       "null_ratio": 0.07740585774058577,
       "distinct_count": 7,
       "query_log_support": 0.0,
-      "relevance_score": 0.07587412587412588
+      "relevance_score": 0.07399577167019028
     },
     {
       "table": "schools",
       "column": "EdOpsCode",
-      "semantic_score": 0.189873417721519,
+      "semantic_score": 0.1839080459770115,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -256,12 +247,27 @@
       "null_ratio": 0.32291077688567227,
       "distinct_count": 13,
       "query_log_support": 0.0,
-      "relevance_score": 0.07514384349827388
+      "relevance_score": 0.07335423197492164
+    },
+    {
+      "table": "frpm",
+      "column": "FRPM Count (K-12)",
+      "semantic_score": 0.16759776536312848,
+      "literal_match": 0,
+      "output_match": 0.0,
+      "filter_match": 0.14285714285714285,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.005007009813739235,
+      "distinct_count": 1361,
+      "query_log_support": 0.0,
+      "relevance_score": 0.07170790103750997
     },
     {
       "table": "frpm",
       "column": "Free Meal Count (K-12)",
-      "semantic_score": 0.17857142857142858,
+      "semantic_score": 0.16304347826086957,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.14285714285714285,
@@ -271,12 +277,12 @@
       "null_ratio": 0.005607850991387943,
       "distinct_count": 1216,
       "query_log_support": 0.0,
-      "relevance_score": 0.075
+      "relevance_score": 0.0703416149068323
     },
     {
       "table": "schools",
       "column": "MailStreet",
-      "semantic_score": 0.18867924528301888,
+      "semantic_score": 0.17142857142857143,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -286,12 +292,27 @@
       "null_ratio": 0.01651023408345584,
       "distinct_count": 12395,
       "query_log_support": 0.0,
-      "relevance_score": 0.07478559176672385
+      "relevance_score": 0.06961038961038961
+    },
+    {
+      "table": "schools",
+      "column": "County",
+      "semantic_score": 0.16374269005847952,
+      "literal_match": 0,
+      "output_match": 0.09090909090909091,
+      "filter_match": 0.0,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.0,
+      "distinct_count": 58,
+      "query_log_support": 0.0,
+      "relevance_score": 0.06730462519936203
     },
     {
       "table": "schools",
       "column": "Street",
-      "semantic_score": 0.18064516129032257,
+      "semantic_score": 0.16374269005847952,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -301,12 +322,27 @@
       "null_ratio": 0.016623317878548004,
       "distinct_count": 13593,
       "query_log_support": 0.0,
-      "relevance_score": 0.07237536656891495
+      "relevance_score": 0.06730462519936203
+    },
+    {
+      "table": "schools",
+      "column": "CDSCode",
+      "semantic_score": 0.16279069767441862,
+      "literal_match": 0,
+      "output_match": 0.09090909090909091,
+      "filter_match": 0.0,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.0,
+      "distinct_count": 17686,
+      "query_log_support": 0.0,
+      "relevance_score": 0.06701902748414376
     },
     {
       "table": "schools",
       "column": "Virtual",
-      "semantic_score": 0.1794871794871795,
+      "semantic_score": 0.16279069767441862,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -316,12 +352,12 @@
       "null_ratio": 0.38832975234648875,
       "distinct_count": 3,
       "query_log_support": 0.0,
-      "relevance_score": 0.07202797202797202
+      "relevance_score": 0.06701902748414376
     },
     {
       "table": "schools",
       "column": "EILName",
-      "semantic_score": 0.1794871794871795,
+      "semantic_score": 0.16279069767441862,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -331,42 +367,27 @@
       "null_ratio": 0.07740585774058577,
       "distinct_count": 7,
       "query_log_support": 0.0,
-      "relevance_score": 0.07202797202797202
+      "relevance_score": 0.06701902748414376
     },
     {
       "table": "schools",
-      "column": "District",
-      "semantic_score": 0.17834394904458598,
+      "column": "Latitude",
+      "semantic_score": 0.16184971098265896,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
       "is_id_like": 0,
       "is_date_like": 0,
       "is_numeric_like": 0,
-      "null_ratio": 0.0,
-      "distinct_count": 1411,
+      "null_ratio": 0.2727015718647518,
+      "distinct_count": 11436,
       "query_log_support": 0.0,
-      "relevance_score": 0.07168500289519397
-    },
-    {
-      "table": "schools",
-      "column": "OpenDate",
-      "semantic_score": 0.17834394904458598,
-      "literal_match": 0,
-      "output_match": 0.09090909090909091,
-      "filter_match": 0.0,
-      "is_id_like": 0,
-      "is_date_like": 1,
-      "is_numeric_like": 0,
-      "null_ratio": 0.07740585774058577,
-      "distinct_count": 1406,
-      "query_log_support": 0.0,
-      "relevance_score": 0.07168500289519397
+      "relevance_score": 0.06673673147661587
     },
     {
       "table": "schools",
       "column": "GSserved",
-      "semantic_score": 0.17834394904458598,
+      "semantic_score": 0.16184971098265896,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -376,87 +397,42 @@
       "null_ratio": 0.3247201176071469,
       "distinct_count": 81,
       "query_log_support": 0.0,
-      "relevance_score": 0.07168500289519397
+      "relevance_score": 0.06673673147661587
     },
     {
       "table": "schools",
-      "column": "AdmLName1",
-      "semantic_score": 0.17721518987341772,
+      "column": "District",
+      "semantic_score": 0.16184971098265896,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
       "is_id_like": 0,
       "is_date_like": 0,
       "is_numeric_like": 0,
-      "null_ratio": 0.33845979871084475,
-      "distinct_count": 6394,
+      "null_ratio": 0.0,
+      "distinct_count": 1411,
       "query_log_support": 0.0,
-      "relevance_score": 0.0713463751438435
+      "relevance_score": 0.06673673147661587
     },
     {
       "table": "schools",
-      "column": "AdmFName1",
-      "semantic_score": 0.17721518987341772,
+      "column": "OpenDate",
+      "semantic_score": 0.16184971098265896,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
       "is_id_like": 0,
-      "is_date_like": 0,
+      "is_date_like": 1,
       "is_numeric_like": 0,
-      "null_ratio": 0.33845979871084475,
-      "distinct_count": 2327,
+      "null_ratio": 0.07740585774058577,
+      "distinct_count": 1406,
       "query_log_support": 0.0,
-      "relevance_score": 0.0713463751438435
-    },
-    {
-      "table": "schools",
-      "column": "StreetAbr",
-      "semantic_score": 0.17721518987341772,
-      "literal_match": 0,
-      "output_match": 0.09090909090909091,
-      "filter_match": 0.0,
-      "is_id_like": 0,
-      "is_date_like": 0,
-      "is_numeric_like": 0,
-      "null_ratio": 0.016623317878548004,
-      "distinct_count": 13633,
-      "query_log_support": 0.0,
-      "relevance_score": 0.0713463751438435
-    },
-    {
-      "table": "schools",
-      "column": "AdmLName2",
-      "semantic_score": 0.17721518987341772,
-      "literal_match": 0,
-      "output_match": 0.09090909090909091,
-      "filter_match": 0.0,
-      "is_id_like": 0,
-      "is_date_like": 0,
-      "is_numeric_like": 0,
-      "null_ratio": 0.9756304421576388,
-      "distinct_count": 363,
-      "query_log_support": 0.0,
-      "relevance_score": 0.0713463751438435
-    },
-    {
-      "table": "schools",
-      "column": "AdmFName3",
-      "semantic_score": 0.17721518987341772,
-      "literal_match": 0,
-      "output_match": 0.09090909090909091,
-      "filter_match": 0.0,
-      "is_id_like": 0,
-      "is_date_like": 0,
-      "is_numeric_like": 0,
-      "null_ratio": 0.9976252403030645,
-      "distinct_count": 40,
-      "query_log_support": 0.0,
-      "relevance_score": 0.0713463751438435
+      "relevance_score": 0.06673673147661587
     },
     {
       "table": "schools",
       "column": "AdmFName2",
-      "semantic_score": 0.17721518987341772,
+      "semantic_score": 0.16091954022988506,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -466,27 +442,27 @@
       "null_ratio": 0.9756304421576388,
       "distinct_count": 285,
       "query_log_support": 0.0,
-      "relevance_score": 0.0713463751438435
+      "relevance_score": 0.0664576802507837
     },
     {
       "table": "schools",
-      "column": "GSoffered",
-      "semantic_score": 0.17721518987341772,
+      "column": "AdmLName2",
+      "semantic_score": 0.16091954022988506,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
       "is_id_like": 0,
       "is_date_like": 0,
       "is_numeric_like": 0,
-      "null_ratio": 0.21949564627388896,
-      "distinct_count": 94,
+      "null_ratio": 0.9756304421576388,
+      "distinct_count": 363,
       "query_log_support": 0.0,
-      "relevance_score": 0.0713463751438435
+      "relevance_score": 0.0664576802507837
     },
     {
       "table": "schools",
-      "column": "AdmLName3",
-      "semantic_score": 0.17721518987341772,
+      "column": "AdmFName3",
+      "semantic_score": 0.16091954022988506,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
@@ -494,32 +470,62 @@
       "is_date_like": 0,
       "is_numeric_like": 0,
       "null_ratio": 0.9976252403030645,
-      "distinct_count": 42,
+      "distinct_count": 40,
       "query_log_support": 0.0,
-      "relevance_score": 0.0713463751438435
+      "relevance_score": 0.0664576802507837
     },
     {
       "table": "schools",
-      "column": "MailStrAbr",
-      "semantic_score": 0.1761006289308176,
+      "column": "AdmLName1",
+      "semantic_score": 0.16091954022988506,
       "literal_match": 0,
       "output_match": 0.09090909090909091,
       "filter_match": 0.0,
       "is_id_like": 0,
       "is_date_like": 0,
       "is_numeric_like": 0,
-      "null_ratio": 0.01651023408345584,
-      "distinct_count": 12429,
+      "null_ratio": 0.33845979871084475,
+      "distinct_count": 6394,
       "query_log_support": 0.0,
-      "relevance_score": 0.07101200686106346
+      "relevance_score": 0.0664576802507837
+    },
+    {
+      "table": "schools",
+      "column": "StreetAbr",
+      "semantic_score": 0.16091954022988506,
+      "literal_match": 0,
+      "output_match": 0.09090909090909091,
+      "filter_match": 0.0,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.016623317878548004,
+      "distinct_count": 13633,
+      "query_log_support": 0.0,
+      "relevance_score": 0.0664576802507837
+    },
+    {
+      "table": "schools",
+      "column": "AdmFName1",
+      "semantic_score": 0.16091954022988506,
+      "literal_match": 0,
+      "output_match": 0.09090909090909091,
+      "filter_match": 0.0,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.33845979871084475,
+      "distinct_count": 2327,
+      "query_log_support": 0.0,
+      "relevance_score": 0.0664576802507837
     }
   ],
   "top_joins": [],
   "business_rules": [],
   "few_shot_examples": [],
   "confidence": {
-    "schema_linking": 0.18246753246753245,
+    "schema_linking": 0.17377188029361942,
     "literal_mapping": 0.0,
-    "evidence_parsing": 1.0
+    "evidence_parsing": 0.6666666666666666
   }
 }

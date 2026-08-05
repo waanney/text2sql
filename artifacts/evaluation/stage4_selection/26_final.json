@@ -1,0 +1,152 @@
+{
+  "question_id": 26,
+  "db_id": "california_schools",
+  "final_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND s.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;",
+  "best_candidate_id": "26_cand_7",
+  "ranked_candidates": [
+    [
+      "26_cand_7",
+      2.4000000000000004
+    ],
+    [
+      "26_cand_13",
+      1.6
+    ],
+    [
+      "26_cand_4",
+      0.8
+    ],
+    [
+      "26_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "26_cand_6",
+      "candidate_b": "26_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "26_cand_6",
+      "candidate_b": "26_cand_7",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "26_cand_6",
+      "candidate_b": "26_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "26_cand_4",
+      "candidate_b": "26_cand_7",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "26_cand_4",
+      "candidate_b": "26_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "26_cand_7",
+      "candidate_b": "26_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND s.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "26_cand_7",
+    "question_id": 26,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021277189254760742,
+      "row_count": 5,
+      "column_count": 5,
+      "columns": [
+        "School",
+        "Street",
+        "City",
+        "Zip",
+        "State"
+      ],
+      "sample_rows": [
+        [
+          "Alisal High",
+          "777 Williams Road",
+          "Salinas",
+          "93905-1907",
+          "CA"
+        ],
+        [
+          "Everett Alvarez High",
+          "1900 Independence Boulevard",
+          "Salinas",
+          "93906-5300",
+          "CA"
+        ],
+        [
+          "North Salinas High",
+          "55 Kip Drive",
+          "Salinas",
+          "93906-2908",
+          "CA"
+        ],
+        [
+          "Salinas High",
+          "726 South Main Street",
+          "Salinas",
+          "93901-3243",
+          "CA"
+        ],
+        [
+          "Soledad High",
+          "425 Gabilan Drive",
+          "Soledad",
+          "93960-3207",
+          "CA"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.School Type = 'High Schools (Public)'\n    AND f.County = 'Monterey'\n    AND f.Free Meal Count (Ages 5-17) > 800;",
+        "error": "near \"Type\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND f.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "repair_time_sec": 3.035694122314453,
+        "input_tokens": 1339,
+        "output_tokens": 48
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND f.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "error": "no such column: f.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`School Type` = 'High Schools (Public)'\n    AND s.County = 'Monterey'\n    AND f.`Free Meal Count (Ages 5-17)` > 800;\n```",
+        "repair_time_sec": 3.0456643104553223,
+        "input_tokens": 1341,
+        "output_tokens": 48
+      }
+    ]
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 4
+}

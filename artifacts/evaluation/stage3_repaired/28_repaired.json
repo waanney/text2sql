@@ -1,0 +1,732 @@
+[
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.DOCType,\n    AVG(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) AS avg_diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Charter Funding Type` = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    avg_diff > (SELECT AVG(EnrollmentDiff) \n                FROM \n                    (SELECT \n                         f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)` AS EnrollmentDiff\n                     FROM \n                         frpm f\n                     JOIN \n                         schools s ON f.CDSCode = s.CDSCode\n                     WHERE \n                         f.`Charter Funding Type` = 'Locally funded') AS subquery);\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "28_cand_0",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.028867244720458984,
+      "row_count": 49,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "DOCType",
+        "avg_diff"
+      ],
+      "sample_rows": [
+        [
+          "Arundel Elementary",
+          "Elementary School District",
+          23.0
+        ],
+        [
+          "Butterfield Charter High",
+          "Unified School District",
+          48.0
+        ],
+        [
+          "Calahan Community Charter",
+          "Unified School District",
+          22.0
+        ],
+        [
+          "Castle Rock",
+          "County Office of Education (COE)",
+          79.0
+        ],
+        [
+          "Castlemont Elementary",
+          "Elementary School District",
+          19.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) AS avg_diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Charter Funding Type` = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    avg_diff > (SELECT AVG(EnrollmentDiff) FROM \n                 (SELECT \n                      f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)` AS EnrollmentDiff\n                  FROM \n                      frpm f\n                  JOIN \n                      schools s ON f.CDSCode = s.CDSCode\n                  WHERE \n                      f.`Charter Funding Type` = 'Locally funded')) AS avg_diff;",
+        "error": "near \"AS\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.DOCType,\n    AVG(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) AS avg_diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Charter Funding Type` = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    avg_diff > (SELECT AVG(EnrollmentDiff) \n                FROM \n                    (SELECT \n                         f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)` AS EnrollmentDiff\n                     FROM \n                         frpm f\n                     JOIN \n                         schools s ON f.CDSCode = s.CDSCode\n                     WHERE \n                         f.`Charter Funding Type` = 'Locally funded') AS subquery);\n```",
+        "repair_time_sec": 5.489975452423096,
+        "input_tokens": 1379,
+        "output_tokens": 88
+      }
+    ]
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) AS avg_diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Charter Funding Type` = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    avg_diff > (SELECT AVG(avg_diff) FROM \n                 (SELECT AVG(f2.`Enrollment (K-12)` - f2.`Enrollment (Ages 5-17)`) AS avg_diff\n                  FROM frpm f2\n                  JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n                  WHERE f2.`Charter Funding Type` = 'Locally funded'\n                  GROUP BY s2.School, s2.DOCType));",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "28_cand_1",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02752208709716797,
+      "row_count": 49,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "DOCType",
+        "avg_diff"
+      ],
+      "sample_rows": [
+        [
+          "Arundel Elementary",
+          "Elementary School District",
+          23.0
+        ],
+        [
+          "Butterfield Charter High",
+          "Unified School District",
+          48.0
+        ],
+        [
+          "Calahan Community Charter",
+          "Unified School District",
+          22.0
+        ],
+        [
+          "Castle Rock",
+          "County Office of Education (COE)",
+          79.0
+        ],
+        [
+          "Castlemont Elementary",
+          "Elementary School District",
+          19.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS AvgDiff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    ABS(AvgDiff) > (SELECT AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)])) \n                    FROM frpm f2 \n                    WHERE f2.[Charter Funding Type] = 'Locally funded');",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "28_cand_2",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.030797243118286133,
+      "row_count": 49,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "DOCType",
+        "AvgDiff"
+      ],
+      "sample_rows": [
+        [
+          "Arundel Elementary",
+          "Elementary School District",
+          23.0
+        ],
+        [
+          "Butterfield Charter High",
+          "Unified School District",
+          48.0
+        ],
+        [
+          "Calahan Community Charter",
+          "Unified School District",
+          22.0
+        ],
+        [
+          "Castle Rock",
+          "County Office of Education (COE)",
+          79.0
+        ],
+        [
+          "Castlemont Elementary",
+          "Elementary School District",
+          19.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nWITH avg_diff AS (\n    SELECT AVG(s.Enrollment_Ages_5_17 - s.Enrollment_K_12) AS avg_difference\n    FROM schools s\n    JOIN frpm f ON s.CDSCode = f.CDSCode\n    WHERE f.Charter_Funding_Type = 'Locally funded'\n)\nSELECT s.School, s.DOCType, (s.Enrollment_Ages_5_17 - s.Enrollment_K_12) AS diff\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Locally funded' \nAND (s.Enrollment_Ages_5_17 - s.Enrollment_K_12) > (SELECT avg_difference FROM avg_diff);\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "28_cand_3",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: s.Enrollment_Ages_5_17",
+      "runtime_sec": 0.0033113956451416016,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "WITH avg_diff AS (\n    SELECT AVG(Enrollment (Ages 5-17) - Enrollment (K-12)) AS avg_difference\n    FROM frpm\n    WHERE Charter Funding Type = 'Locally funded'\n)\nSELECT s.School, s.DOCType, (s.Enrollment (Ages 5-17) - s.Enrollment (K-12)) AS diff\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Locally funded' AND (s.Enrollment (Ages 5-17) - s.Enrollment (K-12)) > (SELECT avg_difference FROM avg_diff);",
+        "error": "near \"5\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nWITH avg_diff AS (\n    SELECT AVG(s.Enrollment_Ages_5_17 - s.Enrollment_K_12) AS avg_difference\n    FROM schools s\n    JOIN frpm f ON s.CDSCode = f.CDSCode\n    WHERE f.Charter_Funding_Type = 'Locally funded'\n)\nSELECT s.School, s.DOCType, (s.Enrollment_Ages_5_17 - s.Enrollment_K_12) AS diff\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Locally funded' \nAND (s.Enrollment_Ages_5_17 - s.Enrollment_K_12) > (SELECT avg_difference FROM avg_diff);\n```",
+        "repair_time_sec": 4.737290382385254,
+        "input_tokens": 1372,
+        "output_tokens": 78
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nWITH avg_diff AS (\n    SELECT AVG(s.Enrollment_Ages_5_17 - s.Enrollment_K_12) AS avg_difference\n    FROM schools s\n    JOIN frpm f ON s.CDSCode = f.CDSCode\n    WHERE f.Charter_Funding_Type = 'Locally funded'\n)\nSELECT s.School, s.DOCType, (s.Enrollment_Ages_5_17 - s.Enrollment_K_12) AS diff\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Locally funded' \nAND (s.Enrollment_Ages_5_17 - s.Enrollment_K_12) > (SELECT avg_difference FROM avg_diff);\n```",
+        "error": "no such column: s.Enrollment_Ages_5_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nWITH avg_diff AS (\n    SELECT AVG(s.Enrollment_Ages_5_17 - s.Enrollment_K_12) AS avg_difference\n    FROM schools s\n    JOIN frpm f ON s.CDSCode = f.CDSCode\n    WHERE f.Charter_Funding_Type = 'Locally funded'\n)\nSELECT s.School, s.DOCType, (s.Enrollment_Ages_5_17 - s.Enrollment_K_12) AS diff\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Locally funded' \nAND (s.Enrollment_Ages_5_17 - s.Enrollment_K_12) > (SELECT avg_difference FROM avg_diff);\n```",
+        "repair_time_sec": 4.683504819869995,
+        "input_tokens": 1371,
+        "output_tokens": 78
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nWITH AverageDifference AS (\n    SELECT AVG(f.[Enrollment['Ages 5-17']] - f.[Enrollment['K-12']]) AS avg_diff\n    FROM frpm f\n    WHERE f.[Charter Funding Type] = 'Locally funded'\n)\nSELECT \n    s.School,\n    s.DOCType,\n    f.[Enrollment['Ages 5-17']] - f.[Enrollment['K-12']] AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded' AND\n    f.[Enrollment['Ages 5-17']] - f.[Enrollment['K-12']] > (SELECT avg_diff FROM AverageDifference);\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "28_cand_4",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unrecognized token: \"]\"",
+      "runtime_sec": 0.0005540847778320312,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "WITH AverageDifference AS (\n    SELECT AVG(Enrollment('Ages 5-17') - Enrollment('K-12')) AS avg_diff\n    FROM frpm\n    WHERE Charter Funding Type = 'Locally funded'\n)\nSELECT \n    s.School,\n    s.DOCType,\n    f.Enrollment('Ages 5-17') - f.Enrollment('K-12') AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded' AND\n    f.Enrollment('Ages 5-17') - f.Enrollment('K-12') > (SELECT avg_diff FROM AverageDifference);",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nWITH AverageDifference AS (\n    SELECT AVG(f.Enrollment['Ages 5-17'] - f.Enrollment['K-12']) AS avg_diff\n    FROM frpm f\n    WHERE f.[Charter Funding Type] = 'Locally funded'\n)\nSELECT \n    s.School,\n    s.DOCType,\n    f.Enrollment['Ages 5-17'] - f.Enrollment['K-12'] AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded' AND\n    f.Enrollment['Ages 5-17'] - f.Enrollment['K-12'] > (SELECT avg_diff FROM AverageDifference);\n```",
+        "repair_time_sec": 4.893375635147095,
+        "input_tokens": 1367,
+        "output_tokens": 78
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nWITH AverageDifference AS (\n    SELECT AVG(f.Enrollment['Ages 5-17'] - f.Enrollment['K-12']) AS avg_diff\n    FROM frpm f\n    WHERE f.[Charter Funding Type] = 'Locally funded'\n)\nSELECT \n    s.School,\n    s.DOCType,\n    f.Enrollment['Ages 5-17'] - f.Enrollment['K-12'] AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded' AND\n    f.Enrollment['Ages 5-17'] - f.Enrollment['K-12'] > (SELECT avg_diff FROM AverageDifference);\n```",
+        "error": "near \"['Ages 5-17']\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nWITH AverageDifference AS (\n    SELECT AVG(f.[Enrollment['Ages 5-17']] - f.[Enrollment['K-12']]) AS avg_diff\n    FROM frpm f\n    WHERE f.[Charter Funding Type] = 'Locally funded'\n)\nSELECT \n    s.School,\n    s.DOCType,\n    f.[Enrollment['Ages 5-17']] - f.[Enrollment['K-12']] AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded' AND\n    f.[Enrollment['Ages 5-17']] - f.[Enrollment['K-12']] > (SELECT avg_diff FROM AverageDifference);\n```",
+        "repair_time_sec": 5.05172324180603,
+        "input_tokens": 1372,
+        "output_tokens": 78
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.School, s.DOCType, AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS diff\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.FundingType = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING diff > (\n    SELECT AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS avg_diff\n    FROM frpm f\n    JOIN schools s ON f.CDSCode = s.CDSCode\n    WHERE s.FundingType = 'Locally funded'\n);",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "28_cand_5",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026308774948120117,
+      "row_count": 86,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "DOCType",
+        "diff"
+      ],
+      "sample_rows": [
+        [
+          "Arundel Elementary",
+          "Elementary School District",
+          23.0
+        ],
+        [
+          "Binkley Elementary Charter",
+          "Elementary School District",
+          13.0
+        ],
+        [
+          "Butterfield Charter High",
+          "Unified School District",
+          48.0
+        ],
+        [
+          "Calahan Community Charter",
+          "Unified School District",
+          22.0
+        ],
+        [
+          "Capri Elementary",
+          "Elementary School District",
+          15.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.DOCType,\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType, f.[Enrollment (K-12)], f.[Enrollment (Ages 5-17)]\nHAVING \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > (\n        SELECT \n            AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)]))\n        FROM \n            frpm f2\n        JOIN \n            schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE \n            f2.[Charter Funding Type] = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "28_cand_6",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.028251171112060547,
+      "row_count": 49,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "DOCType",
+        "EnrollmentDifference"
+      ],
+      "sample_rows": [
+        [
+          "YouthBuild Charter School of California",
+          "County Office of Education (COE)",
+          1261.0
+        ],
+        [
+          "Come Back Kids",
+          "County Office of Education (COE)",
+          340.0
+        ],
+        [
+          "Visions In Education",
+          "Unified School District",
+          333.0
+        ],
+        [
+          "Soledad Enrichment Action Charter High",
+          "County Office of Education (COE)",
+          295.0
+        ],
+        [
+          "Stanislaus Alternative Charter",
+          "County Office of Education (COE)",
+          261.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.DOCType,\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nHAVING \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > (\n        SELECT \n            AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)]))\n        FROM \n            frpm f2\n        JOIN \n            schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE \n            f2.[Charter Funding Type] = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;",
+        "error": "HAVING clause on a non-aggregate query",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.DOCType,\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType, f.[Enrollment (K-12)], f.[Enrollment (Ages 5-17)]\nHAVING \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > (\n        SELECT \n            AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)]))\n        FROM \n            frpm f2\n        JOIN \n            schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE \n            f2.[Charter Funding Type] = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;\n```",
+        "repair_time_sec": 6.691084861755371,
+        "input_tokens": 1381,
+        "output_tokens": 100
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.School_Name,\n    frpm.DOCType,\n    ABS(frpm.Enrollment_Ages_5_17 - frpm.Enrollment_K_12) AS EnrollmentDifference\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\nGROUP BY \n    frpm.School_Name, frpm.DOCType, frpm.Enrollment_Ages_5_17, frpm.Enrollment_K_12\nHAVING \n    EnrollmentDifference > (\n        SELECT \n            AVG(ABS(frpm.Enrollment_Ages_5_17 - frpm.Enrollment_K_12))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "28_cand_7",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.003149271011352539,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    frpm.School Name,\n    frpm.DOCType,\n    ABS(frpm.Enrollment (Ages 5-17) - frpm.Enrollment (K-12)) AS EnrollmentDifference\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter Funding Type = 'Locally funded'\nHAVING \n    EnrollmentDifference > (\n        SELECT \n            AVG(ABS(frpm.Enrollment (Ages 5-17) - frpm.Enrollment (K-12)))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter Funding Type = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name,\n    frpm.DOCType,\n    ABS(frpm.Enrollment_Ages_5_17 - frpm.Enrollment_K_12) AS EnrollmentDifference\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\nGROUP BY \n    frpm.School_Name, frpm.DOCType, frpm.Enrollment_Ages_5_17, frpm.Enrollment_K_12\nHAVING \n    EnrollmentDifference > (\n        SELECT \n            AVG(ABS(frpm.Enrollment_Ages_5_17 - frpm.Enrollment_K_12))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;\n```",
+        "repair_time_sec": 5.8488194942474365,
+        "input_tokens": 1368,
+        "output_tokens": 71
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.School_Name,\n    frpm.DOCType,\n    ABS(frpm.Enrollment_Ages_5_17 - frpm.Enrollment_K_12) AS EnrollmentDifference\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\nGROUP BY \n    frpm.School_Name, frpm.DOCType, frpm.Enrollment_Ages_5_17, frpm.Enrollment_K_12\nHAVING \n    EnrollmentDifference > (\n        SELECT \n            AVG(ABS(frpm.Enrollment_Ages_5_17 - frpm.Enrollment_K_12))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name,\n    frpm.DOCType,\n    ABS(frpm.Enrollment_Ages_5_17 - frpm.Enrollment_K_12) AS EnrollmentDifference\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\nGROUP BY \n    frpm.School_Name, frpm.DOCType, frpm.Enrollment_Ages_5_17, frpm.Enrollment_K_12\nHAVING \n    EnrollmentDifference > (\n        SELECT \n            AVG(ABS(frpm.Enrollment_Ages_5_17 - frpm.Enrollment_K_12))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;\n```",
+        "repair_time_sec": 5.789963483810425,
+        "input_tokens": 1365,
+        "output_tokens": 71
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "28_cand_8",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.003919839859008789,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    frpm.School Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter Funding Type = 'Locally funded'\n    AND (frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17)) > (\n        SELECT \n            AVG(frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter Funding Type = 'Locally funded'\n    );",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "repair_time_sec": 4.366741418838501,
+        "input_tokens": 1359,
+        "output_tokens": 54
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "repair_time_sec": 4.353050231933594,
+        "input_tokens": 1348,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "28_cand_9",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.0034942626953125,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    frpm.School Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter Funding Type = 'Locally funded'\n    AND (frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17)) > (\n        SELECT \n            AVG(frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter Funding Type = 'Locally funded'\n    );",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "repair_time_sec": 4.306147575378418,
+        "input_tokens": 1359,
+        "output_tokens": 54
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "repair_time_sec": 4.347471714019775,
+        "input_tokens": 1348,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "28_cand_10",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.School_Name",
+      "runtime_sec": 0.003030538558959961,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    frpm.School Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter Funding Type = 'Locally funded'\n    AND (frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17)) > (\n        SELECT \n            AVG(frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter Funding Type = 'Locally funded'\n    );",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "repair_time_sec": 4.334714651107788,
+        "input_tokens": 1359,
+        "output_tokens": 54
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "error": "no such column: frpm.School_Name",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.School_Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter_Funding_Type = 'Locally funded'\n    AND (frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17) > (\n        SELECT \n            AVG(frpm.Enrollment_K_12 - frpm.Enrollment_Ages_5_17)\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter_Funding_Type = 'Locally funded'\n    );\n```",
+        "repair_time_sec": 4.362174034118652,
+        "input_tokens": 1348,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.DOCType,\n    AVG(f.[Enrollment (Ages 5-17)]) - AVG(f.[Enrollment (K-12)]) AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    diff > (SELECT AVG(diff) FROM \n            (SELECT \n                 AVG(f2.[Enrollment (Ages 5-17)]) - AVG(f2.[Enrollment (K-12)]) AS diff\n             FROM \n                 frpm f2\n             JOIN \n                 schools s2 ON f2.CDSCode = s2.CDSCode\n             WHERE \n                 f2.[Charter Funding Type] = 'Locally funded'\n             GROUP BY \n                 s2.School, s2.DOCType));\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "28_cand_11",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03172492980957031,
+      "row_count": 273,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "DOCType",
+        "diff"
+      ],
+      "sample_rows": [
+        [
+          "Academies of the Antelope Valley",
+          "High School District",
+          0.0
+        ],
+        [
+          "Academy of Careers and Exploration",
+          "Elementary School District",
+          -10.0
+        ],
+        [
+          "Alfred B. Nobel Charter Middle",
+          "Unified School District",
+          0.0
+        ],
+        [
+          "Alianza Charter",
+          "Unified School District",
+          0.0
+        ],
+        [
+          "Alpha Charter",
+          "Elementary School District",
+          -1.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.Enrollment (Ages 5-17)) - AVG(f.Enrollment (K-12)) AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    diff > (SELECT AVG(diff) FROM \n            (SELECT \n                 AVG(f2.Enrollment (Ages 5-17)) - AVG(f2.Enrollment (K-12)) AS diff\n             FROM \n                 frpm f2\n             JOIN \n                 schools s2 ON f2.CDSCode = s2.CDSCode\n             WHERE \n                 f2.Charter Funding Type = 'Locally funded'\n             GROUP BY \n                 s2.School, s2.DOCType));",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.DOCType,\n    AVG(f.[Enrollment (Ages 5-17)]) - AVG(f.[Enrollment (K-12)]) AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    diff > (SELECT AVG(diff) FROM \n            (SELECT \n                 AVG(f2.[Enrollment (Ages 5-17)]) - AVG(f2.[Enrollment (K-12)]) AS diff\n             FROM \n                 frpm f2\n             JOIN \n                 schools s2 ON f2.CDSCode = s2.CDSCode\n             WHERE \n                 f2.[Charter Funding Type] = 'Locally funded'\n             GROUP BY \n                 s2.School, s2.DOCType));\n```",
+        "repair_time_sec": 5.817315101623535,
+        "input_tokens": 1381,
+        "output_tokens": 91
+      }
+    ]
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) AS AvgDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    ABS(AvgDifference) > (SELECT AVG(ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)])) \n                          FROM frpm f \n                          JOIN schools s ON f.CDSCode = s.CDSCode \n                          WHERE f.[Charter Funding Type] = 'Locally funded');",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "28_cand_12",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026630640029907227,
+      "row_count": 49,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "DOCType",
+        "AvgDifference"
+      ],
+      "sample_rows": [
+        [
+          "Arundel Elementary",
+          "Elementary School District",
+          -23.0
+        ],
+        [
+          "Butterfield Charter High",
+          "Unified School District",
+          -48.0
+        ],
+        [
+          "Calahan Community Charter",
+          "Unified School District",
+          -22.0
+        ],
+        [
+          "Castle Rock",
+          "County Office of Education (COE)",
+          -79.0
+        ],
+        [
+          "Castlemont Elementary",
+          "Elementary School District",
+          -19.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    s.DOCType,\n    AVG(f.[Enrollment (Ages 5-17)]) - AVG(f.[Enrollment (K-12)]) AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    diff > (SELECT AVG(diff) FROM (SELECT AVG(f2.[Enrollment (Ages 5-17)]) - AVG(f2.[Enrollment (K-12)]) AS diff\n                                    FROM frpm f2\n                                    JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n                                    WHERE f2.[Charter Funding Type] = 'Locally funded' GROUP BY s2.School, s2.DOCType));\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "28_cand_13",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.029189348220825195,
+      "row_count": 273,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "DOCType",
+        "diff"
+      ],
+      "sample_rows": [
+        [
+          "Academies of the Antelope Valley",
+          "High School District",
+          0.0
+        ],
+        [
+          "Academy of Careers and Exploration",
+          "Elementary School District",
+          -10.0
+        ],
+        [
+          "Alfred B. Nobel Charter Middle",
+          "Unified School District",
+          0.0
+        ],
+        [
+          "Alianza Charter",
+          "Unified School District",
+          0.0
+        ],
+        [
+          "Alpha Charter",
+          "Elementary School District",
+          -1.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.Enrollment (Ages 5-17)) - AVG(f.Enrollment (K-12)) AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    diff > (SELECT AVG(diff) FROM (SELECT AVG(f2.Enrollment (Ages 5-17)) - AVG(f2.Enrollment (K-12)) AS diff\n                                    FROM frpm f2\n                                    JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n                                    WHERE f2.Charter Funding Type = 'Locally funded' GROUP BY s2.School, s2.DOCType));",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    s.DOCType,\n    AVG(f.[Enrollment (Ages 5-17)]) - AVG(f.[Enrollment (K-12)]) AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    diff > (SELECT AVG(diff) FROM (SELECT AVG(f2.[Enrollment (Ages 5-17)]) - AVG(f2.[Enrollment (K-12)]) AS diff\n                                    FROM frpm f2\n                                    JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n                                    WHERE f2.[Charter Funding Type] = 'Locally funded' GROUP BY s2.School, s2.DOCType));\n```",
+        "repair_time_sec": 5.53374171257019,
+        "input_tokens": 1381,
+        "output_tokens": 91
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter Funding Type` = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > \n       (SELECT AVG(ABS(f2.`Enrollment (K-12)` - f2.`Enrollment (Ages 5-17)`))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.`Charter Funding Type` = 'Locally funded');\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "28_cand_14",
+    "question_id": 28,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02674698829650879,
+      "row_count": 49,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "DOCType"
+      ],
+      "sample_rows": [
+        [
+          "Arundel Elementary",
+          "Elementary School District"
+        ],
+        [
+          "Butterfield Charter High",
+          "Unified School District"
+        ],
+        [
+          "Calahan Community Charter",
+          "Unified School District"
+        ],
+        [
+          "Castle Rock",
+          "County Office of Education (COE)"
+        ],
+        [
+          "Castlemont Elementary",
+          "Elementary School District"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Charter Funding Type = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > \n       (SELECT AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)]))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.Charter Funding Type = 'Locally funded');",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter Funding Type` = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > \n       (SELECT AVG(ABS(f2.`Enrollment (K-12)` - f2.`Enrollment (Ages 5-17)`))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.`Charter Funding Type` = 'Locally funded');\n```",
+        "repair_time_sec": 4.593919992446899,
+        "input_tokens": 1366,
+        "output_tokens": 75
+      }
+    ]
+  }
+]

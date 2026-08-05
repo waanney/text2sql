@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.Enrollment (K-12)) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.FRPM Count (K-12) IN (\n    SELECT MAX(FRPM Count (K-12))\n    FROM frpm\n)",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "8_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.Enrollment (K-12)) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.FRPM Count (K-12) IN (\n    SELECT MAX(FRPM Count (K-12))\n    FROM frpm\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "8_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "8_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.FRPM Count (K-12) = (SELECT MAX(FRPM Count (K-12)) FROM frpm);",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "8_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = SUBSTR(s.cds, 4, 10)\nWHERE f.FRPM Count (K-12) = (SELECT MAX(FRPM Count (K-12)) FROM frpm);",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "8_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(NumTstTakr) AS TotalSATTestTakers\nFROM satscores\nWHERE cds IN (\n    SELECT CDSCode\n    FROM frpm\n    ORDER BY `FRPM Count (K-12)` DESC\n    LIMIT 1\n);",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = SUBSTR(s.cds, 5)\nWHERE f.FRPM Count (K-12) = (SELECT MAX(FRPM Count (K-12)) FROM frpm);",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "8_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(satscores.NumTstTakr)\nFROM satscores\nJOIN schools ON satscores.sname = schools.School\nWHERE schools.GSoffered = 'K-12'\nORDER BY frpm['FRPM Count (K-12)'] DESC\nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "8_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(satscores.NumTstTakr)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM Count (K-12) IN (\n    SELECT MAX(FRPM Count (K-12))\n    FROM frpm\n);",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "8_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.FRPM_Count_K_12 = (SELECT MAX(FRPM_Count_K_12) FROM frpm);",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "8_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "8_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.FRPM_Count_K_12 = (SELECT MAX(FRPM_Count_K_12) FROM frpm);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.FRPM Count (K-12) IN (\n    SELECT MAX(FRPM Count (K-12))\n    FROM frpm\n);",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "8_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.FRPM_Count_K_12 = (SELECT MAX(FRPM_Count_K_12) FROM frpm);",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "8_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.FRPM Count (K-12) IN (\n    SELECT MAX(FRPM Count (K-12))\n    FROM frpm\n);",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "8_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n    WHERE `FRPM Count (K-12)` IS NOT NULL\n);",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "8_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "sql": "SELECT SUM(s.NumTstTakr)\nFROM satscores s\nJOIN frpm f ON s.cds = f.CDSCode\nWHERE f.School Type = 'K-12 Schools (Public)'\nORDER BY f.FRPM Count (K-12) DESC\nLIMIT 1;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "8_cand_14",

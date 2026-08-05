@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "18_cand_0",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Percent_(_Eligible_Free_Ages_5_17) <= 250;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "18_cand_1",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "18_cand_2",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 1, 12)\nWHERE f.County = 'Fresno' AND f.Charter Funding Type = 'Directly funded' AND s.NumTstTakr <= 250;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "18_cand_3",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.County = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "18_cand_4",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 4, LENGTH(f.CDSCode))\nWHERE f.County Name = 'Fresno' AND f.Charter Funding Type = 'Directly funded' AND s.NumTstTakr <= 250;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "18_cand_5",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "18_cand_6",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "18_cand_7",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.NumTstTakr <= 250;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "18_cand_8",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.School Type = 'Elementary Schools (Public)'\n  AND s.NCESDist IN (\n    SELECT NCESDist\n    FROM schools\n    WHERE MailStreet LIKE '%Various Schools In District%'\n      OR MailStrAbr LIKE '%Various Schools In District%'\n  )\n  AND s.NumTstTakr <= 250;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "18_cand_9",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND s.NumTstTakr <= 250;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "18_cand_10",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "18_cand_11",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "18_cand_12",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "18_cand_13",
+    "question_id": 18,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.FundingType = 'Directly funded'\nAND schools.County = 'Fresno'\nAND frpm.NumTstTakr <= 250;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "18_cand_14",
+    "question_id": 18,
+    "db_id": "california_schools"
+  }
+]
