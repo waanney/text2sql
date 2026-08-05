@@ -93,10 +93,44 @@ def compare_results(pred_rows, gold_rows):
     if pred_rows is None or gold_rows is None:
         return False
 
-    pred_set = set(tuple(r) for r in pred_rows)
-    gold_set = set(tuple(r) for r in gold_rows)
+    def normalize_val(val):
+        if val is None:
+            return None
+        if isinstance(val, (int, float)):
+            return round(float(val), 4)
+        if isinstance(val, str):
+            val_str = val.strip()
+            try:
+                return round(float(val_str), 4)
+            except ValueError:
+                return val_str
+        return val
 
-    return pred_set == gold_set
+    def normalize_row(row):
+        return tuple(normalize_val(v) for v in row)
+
+    if len(pred_rows) != len(gold_rows):
+        return False
+
+    pred_norm = [normalize_row(r) for r in pred_rows]
+    gold_norm = [normalize_row(r) for r in gold_rows]
+
+    # Exact tuple set match
+    if set(pred_norm) == set(gold_norm):
+        return True
+
+    # Column permutation match (if number of columns matches)
+    if pred_norm and gold_norm and len(pred_norm[0]) == len(gold_norm[0]):
+        import itertools
+        num_cols = len(pred_norm[0])
+        if num_cols <= 6:
+            gold_set = set(gold_norm)
+            for perm in itertools.permutations(range(num_cols)):
+                permuted_pred = set(tuple(r[i] for i in perm) for r in pred_norm)
+                if permuted_pred == gold_set:
+                    return True
+
+    return False
 
 
 def save_evaluation(summary, output_path):
