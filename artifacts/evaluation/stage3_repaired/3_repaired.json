@@ -1,0 +1,602 @@
+[
+  {
+    "sql": "```sql\nSELECT s.\"Mailing Street Address\"\nFROM frpm f\nJOIN schools s ON f.\"School Code\" = s.\"CDSCode\"\nWHERE f.\"FRPM Count (K-12)\" = (SELECT MAX(\"FRPM Count (K-12)\") FROM frpm)\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "3_cand_0",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001475811004638672,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT s.\"Mailing Street Address\"\nFROM frpm f\nJOIN schools s ON f.\"School Code\" = s.\"CDSCode\"\nWHERE f.\"FRPM Count (K-12)\" = (SELECT MAX(\"FRPM Count (K-12)\") FROM frpm)\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.\"Mailing Street Address\"\nFROM frpm f\nJOIN schools s ON f.\"School Code\" = s.\"CDSCode\"\nWHERE f.\"FRPM Count (K-12)\" = (SELECT MAX(\"FRPM Count (K-12)\") FROM frpm)\nLIMIT 1;\n```",
+        "repair_time_sec": 1.3272991180419922,
+        "input_tokens": 109,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.\"Mailing Street Address\"\nFROM frpm f\nJOIN schools s ON f.\"School Code\" = s.\"CDSCode\"\nWHERE f.\"FRPM Count (K-12)\" = (SELECT MAX(\"FRPM Count (K-12)\") FROM frpm)\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.\"Mailing Street Address\"\nFROM frpm f\nJOIN schools s ON f.\"School Code\" = s.\"CDSCode\"\nWHERE f.\"FRPM Count (K-12)\" = (SELECT MAX(\"FRPM Count (K-12)\") FROM frpm)\nLIMIT 1;\n```",
+        "repair_time_sec": 1.3261756896972656,
+        "input_tokens": 109,
+        "output_tokens": 39
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.MailingStreetAddress\nFROM frpm f\nJOIN schools s ON f.SchoolCode = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "3_cand_1",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 9.369850158691406e-05,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT s.MailingStreetAddress\nFROM frpm f\nJOIN schools s ON f.SchoolCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.MailingStreetAddress\nFROM frpm f\nJOIN schools s ON f.SchoolCode = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.9989242553710938,
+        "input_tokens": 98,
+        "output_tokens": 28
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.MailingStreetAddress\nFROM frpm f\nJOIN schools s ON f.SchoolCode = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.MailingStreetAddress\nFROM frpm f\nJOIN schools s ON f.SchoolCode = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.9784276485443115,
+        "input_tokens": 98,
+        "output_tokens": 28
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.MailingStreetAddress\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.SchoolCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "3_cand_2",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00016760826110839844,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT s.MailingStreetAddress\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.SchoolCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.MailingStreetAddress\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.SchoolCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.9799678325653076,
+        "input_tokens": 98,
+        "output_tokens": 28
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.MailingStreetAddress\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.SchoolCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.MailingStreetAddress\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.SchoolCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.976900577545166,
+        "input_tokens": 98,
+        "output_tokens": 28
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT DISTINCT T1.street_address \nFROM public_schools AS T1\nJOIN frpm_data AS T2 ON T1.school_id = T2.school_id\nWHERE T1.grade_level = 'K-12'\nORDER BY T2.frpm DESC\nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "3_cand_3",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00013971328735351562,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT DISTINCT T1.street_address \nFROM public_schools AS T1\nJOIN frpm_data AS T2 ON T1.school_id = T2.school_id\nWHERE T1.grade_level = 'K-12'\nORDER BY T2.frpm DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT DISTINCT T1.street_address \nFROM public_schools AS T1\nJOIN frpm_data AS T2 ON T1.school_id = T2.school_id\nWHERE T1.grade_level = 'K-12'\nORDER BY T2.frpm DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.2178065776824951,
+        "input_tokens": 105,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT DISTINCT T1.street_address \nFROM public_schools AS T1\nJOIN frpm_data AS T2 ON T1.school_id = T2.school_id\nWHERE T1.grade_level = 'K-12'\nORDER BY T2.frpm DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT DISTINCT T1.street_address \nFROM public_schools AS T1\nJOIN frpm_data AS T2 ON T1.school_id = T2.school_id\nWHERE T1.grade_level = 'K-12'\nORDER BY T2.frpm DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.211618423461914,
+        "input_tokens": 105,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT T2.MailingStreetAddress\nFROM (\n    SELECT SchoolID, COUNT(*) AS FRPMCount\n    FROM FactSchDemographics\n    WHERE GradeLevel = 'K-12'\n    GROUP BY SchoolID\n    ORDER BY FRPMCount DESC\n    LIMIT 1\n) AS TopSchool\nJOIN DimSchool AS T2 ON TopSchool.SchoolID = T2.SchoolID;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "3_cand_4",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001475811004638672,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT T2.MailingStreetAddress\nFROM (\n    SELECT SchoolID, COUNT(*) AS FRPMCount\n    FROM FactSchDemographics\n    WHERE GradeLevel = 'K-12'\n    GROUP BY SchoolID\n    ORDER BY FRPMCount DESC\n    LIMIT 1\n) AS TopSchool\nJOIN DimSchool AS T2 ON TopSchool.SchoolID = T2.SchoolID;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT T2.MailingStreetAddress\nFROM (\n    SELECT SchoolID, COUNT(*) AS FRPMCount\n    FROM FactSchDemographics\n    WHERE GradeLevel = 'K-12'\n    GROUP BY SchoolID\n    ORDER BY FRPMCount DESC\n    LIMIT 1\n) AS TopSchool\nJOIN DimSchool AS T2 ON TopSchool.SchoolID = T2.SchoolID;\n```",
+        "repair_time_sec": 1.7174289226531982,
+        "input_tokens": 118,
+        "output_tokens": 48
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT T2.MailingStreetAddress\nFROM (\n    SELECT SchoolID, COUNT(*) AS FRPMCount\n    FROM FactSchDemographics\n    WHERE GradeLevel = 'K-12'\n    GROUP BY SchoolID\n    ORDER BY FRPMCount DESC\n    LIMIT 1\n) AS TopSchool\nJOIN DimSchool AS T2 ON TopSchool.SchoolID = T2.SchoolID;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT T2.MailingStreetAddress\nFROM (\n    SELECT SchoolID, COUNT(*) AS FRPMCount\n    FROM FactSchDemographics\n    WHERE GradeLevel = 'K-12'\n    GROUP BY SchoolID\n    ORDER BY FRPMCount DESC\n    LIMIT 1\n) AS TopSchool\nJOIN DimSchool AS T2 ON TopSchool.SchoolID = T2.SchoolID;\n```",
+        "repair_time_sec": 1.7088322639465332,
+        "input_tokens": 118,
+        "output_tokens": 48
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.address_line_1\nFROM schools s\nJOIN (\n    SELECT school_id, COUNT(*) AS frpm_count\n    FROM k12_students\n    WHERE grade_level BETWEEN 1 AND 12\n    GROUP BY school_id\n) sub ON s.school_id = sub.school_id\nORDER BY sub.frpm_count DESC\nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "3_cand_5",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001480579376220703,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT s.address_line_1\nFROM schools s\nJOIN (\n    SELECT school_id, COUNT(*) AS frpm_count\n    FROM k12_students\n    WHERE grade_level BETWEEN 1 AND 12\n    GROUP BY school_id\n) sub ON s.school_id = sub.school_id\nORDER BY sub.frpm_count DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.address_line_1\nFROM schools s\nJOIN (\n    SELECT school_id, COUNT(*) AS frpm_count\n    FROM k12_students\n    WHERE grade_level BETWEEN 1 AND 12\n    GROUP BY school_id\n) sub ON s.school_id = sub.school_id\nORDER BY sub.frpm_count DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.5287854671478271,
+        "input_tokens": 118,
+        "output_tokens": 48
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.address_line_1\nFROM schools s\nJOIN (\n    SELECT school_id, COUNT(*) AS frpm_count\n    FROM k12_students\n    WHERE grade_level BETWEEN 1 AND 12\n    GROUP BY school_id\n) sub ON s.school_id = sub.school_id\nORDER BY sub.frpm_count DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.address_line_1\nFROM schools s\nJOIN (\n    SELECT school_id, COUNT(*) AS frpm_count\n    FROM k12_students\n    WHERE grade_level BETWEEN 1 AND 12\n    GROUP BY school_id\n) sub ON s.school_id = sub.school_id\nORDER BY sub.frpm_count DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.5123634338378906,
+        "input_tokens": 118,
+        "output_tokens": 48
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "3_cand_6",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00015020370483398438,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.7567274570465088,
+        "input_tokens": 91,
+        "output_tokens": 20
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.757645845413208,
+        "input_tokens": 91,
+        "output_tokens": 20
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "3_cand_7",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001647472381591797,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.7572958469390869,
+        "input_tokens": 91,
+        "output_tokens": 20
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.7569916248321533,
+        "input_tokens": 91,
+        "output_tokens": 20
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    `Mailing Street Address` \nFROM \n    frpm \nORDER BY \n    `FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "3_cand_8",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001468658447265625,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    Mailing Street Address \nFROM \n    frpm \nORDER BY \n    \"FRPM Count (K-12)\" DESC \nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    `Mailing Street Address` \nFROM \n    frpm \nORDER BY \n    `FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 0.8273334503173828,
+        "input_tokens": 91,
+        "output_tokens": 20
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    `Mailing Street Address` \nFROM \n    frpm \nORDER BY \n    `FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    `Mailing Street Address` \nFROM \n    frpm \nORDER BY \n    `FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 0.8078725337982178,
+        "input_tokens": 91,
+        "output_tokens": 20
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    `Mailing Street Address`\nFROM \n    frpm\nORDER BY \n    `FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "3_cand_9",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001499652862548828,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    Mailing Street Address\nFROM \n    frpm\nORDER BY \n    \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    `Mailing Street Address`\nFROM \n    frpm\nORDER BY \n    `FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.8001034259796143,
+        "input_tokens": 91,
+        "output_tokens": 20
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    `Mailing Street Address`\nFROM \n    frpm\nORDER BY \n    `FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    `Mailing Street Address`\nFROM \n    frpm\nORDER BY \n    `FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.8000497817993164,
+        "input_tokens": 91,
+        "output_tokens": 20
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    `Mailing Street Address` \nFROM \n    frpm \nORDER BY \n    `FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "3_cand_10",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001583099365234375,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    Mailing Street Address \nFROM \n    frpm \nORDER BY \n    \"FRPM Count (K-12)\" DESC \nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    `Mailing Street Address` \nFROM \n    frpm \nORDER BY \n    `FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 0.8147411346435547,
+        "input_tokens": 91,
+        "output_tokens": 20
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    `Mailing Street Address` \nFROM \n    frpm \nORDER BY \n    `FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    `Mailing Street Address` \nFROM \n    frpm \nORDER BY \n    `FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 0.8149294853210449,
+        "input_tokens": 91,
+        "output_tokens": 20
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT f.`School Name`, f.`Mailing Street Address`\nFROM frpm f\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n)\nAND f.`Mailing Street Address` IS NOT NULL;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "3_cand_11",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00012135505676269531,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT f.School Name, f.Mailing Street Address\nFROM frpm f\nWHERE f.[FRPM Count (K-12)] = (\n    SELECT MAX([FRPM Count (K-12)])\n    FROM frpm\n)\nAND f.[Mailing Street Address] IS NOT NULL;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT f.`School Name`, f.`Mailing Street Address`\nFROM frpm f\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n)\nAND f.`Mailing Street Address` IS NOT NULL;\n```",
+        "repair_time_sec": 1.348193645477295,
+        "input_tokens": 110,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT f.`School Name`, f.`Mailing Street Address`\nFROM frpm f\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n)\nAND f.`Mailing Street Address` IS NOT NULL;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT f.`School Name`, f.`Mailing Street Address`\nFROM frpm f\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n)\nAND f.`Mailing Street Address` IS NOT NULL;\n```",
+        "repair_time_sec": 1.361678123474121,
+        "input_tokens": 110,
+        "output_tokens": 40
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT f.`School Name`, f.`Mailing Street Address`\nFROM frpm f\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n)\nAND f.`Mailing Street Address` IS NOT NULL;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "3_cand_12",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00015974044799804688,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT f.School Name, f.Mailing Street Address\nFROM frpm f\nWHERE f.[FRPM Count (K-12)] = (\n    SELECT MAX([FRPM Count (K-12)])\n    FROM frpm\n)\nAND f.[Mailing Street Address] IS NOT NULL;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT f.`School Name`, f.`Mailing Street Address`\nFROM frpm f\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n)\nAND f.`Mailing Street Address` IS NOT NULL;\n```",
+        "repair_time_sec": 1.3357963562011719,
+        "input_tokens": 110,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT f.`School Name`, f.`Mailing Street Address`\nFROM frpm f\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n)\nAND f.`Mailing Street Address` IS NOT NULL;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT f.`School Name`, f.`Mailing Street Address`\nFROM frpm f\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n)\nAND f.`Mailing Street Address` IS NOT NULL;\n```",
+        "repair_time_sec": 1.341221809387207,
+        "input_tokens": 110,
+        "output_tokens": 40
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "3_cand_13",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 7.748603820800781e-05,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.7222342491149902,
+        "input_tokens": 91,
+        "output_tokens": 20
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.710007905960083,
+        "input_tokens": 91,
+        "output_tokens": 20
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "3_cand_14",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001480579376220703,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.6699600219726562,
+        "input_tokens": 91,
+        "output_tokens": 20
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 0.6815133094787598,
+        "input_tokens": 91,
+        "output_tokens": 20
+      }
+    ]
+  }
+]

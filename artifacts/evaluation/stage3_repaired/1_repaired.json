@@ -1,0 +1,602 @@
+[
+  {
+    "sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nORDER BY \n    CAST(REPLACE(trim(\"Percent (%) Eligible Free (Ages 5-17)\", '%'), ',', '') AS REAL) ASC\nLIMIT 3;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "1_cand_0",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00015306472778320312,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nORDER BY \n    CAST(\"Percent (%) Eligible Free (Ages 5-17)\" AS REAL) ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.216672420501709,
+        "input_tokens": 94,
+        "output_tokens": 33
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nORDER BY \n    CAST(\"Percent (%) Eligible Free (Ages 5-17)\" AS REAL) ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nORDER BY \n    CAST(REPLACE(trim(\"Percent (%) Eligible Free (Ages 5-17)\", '%'), ',', '') AS REAL) ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.3465189933776855,
+        "input_tokens": 104,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nWHERE \n    \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "1_cand_1",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001647472381591797,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nWHERE \n    \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nWHERE \n    \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.3132941722869873,
+        "input_tokens": 107,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nWHERE \n    \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nWHERE \n    \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.3127672672271729,
+        "input_tokens": 107,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    PERCENTAGE as \"Lowest Three Eligible Free Rates\"\nFROM (\n    SELECT \n        \"Percent (%) Eligible Free (Ages 5-17)\" AS PERCENTAGE,\n        ROW_NUMBER() OVER(ORDER BY \"Percent (%) Eligible Free (Ages 5-17)\") AS RN\n    FROM frpm\n)\nWHERE RN <= 3;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "1_cand_2",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.000152587890625,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    PERCENTAGE as \"Lowest Three Eligible Free Rates\"\nFROM (\n    SELECT \n        \"Percent (%) Eligible Free (Ages 5-17)\" AS PERCENTAGE,\n        ROW_NUMBER() OVER(ORDER BY \"Percent (%) Eligible Free (Ages 5-17)\") AS RN\n    FROM frpm\n)\nWHERE RN <= 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    PERCENTAGE as \"Lowest Three Eligible Free Rates\"\nFROM (\n    SELECT \n        \"Percent (%) Eligible Free (Ages 5-17)\" AS PERCENTAGE,\n        ROW_NUMBER() OVER(ORDER BY \"Percent (%) Eligible Free (Ages 5-17)\") AS RN\n    FROM frpm\n)\nWHERE RN <= 3;\n```",
+        "repair_time_sec": 1.6643381118774414,
+        "input_tokens": 120,
+        "output_tokens": 50
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    PERCENTAGE as \"Lowest Three Eligible Free Rates\"\nFROM (\n    SELECT \n        \"Percent (%) Eligible Free (Ages 5-17)\" AS PERCENTAGE,\n        ROW_NUMBER() OVER(ORDER BY \"Percent (%) Eligible Free (Ages 5-17)\") AS RN\n    FROM frpm\n)\nWHERE RN <= 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    PERCENTAGE as \"Lowest Three Eligible Free Rates\"\nFROM (\n    SELECT \n        \"Percent (%) Eligible Free (Ages 5-17)\" AS PERCENTAGE,\n        ROW_NUMBER() OVER(ORDER BY \"Percent (%) Eligible Free (Ages 5-17)\") AS RN\n    FROM frpm\n)\nWHERE RN <= 3;\n```",
+        "repair_time_sec": 1.6484160423278809,
+        "input_tokens": 120,
+        "output_tokens": 50
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT rate\nFROM student_free_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation'\nORDER BY rate ASC\nLIMIT 3;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "1_cand_3",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00023245811462402344,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT rate\nFROM student_free_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation'\nORDER BY rate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT rate\nFROM student_free_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation'\nORDER BY rate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 0.7959942817687988,
+        "input_tokens": 98,
+        "output_tokens": 28
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT rate\nFROM student_free_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation'\nORDER BY rate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT rate\nFROM student_free_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation'\nORDER BY rate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 0.7866091728210449,
+        "input_tokens": 98,
+        "output_tokens": 28
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT rate\nFROM student_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation' AND is_free = true\nORDER BY rate ASC\nLIMIT 3;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "1_cand_4",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001571178436279297,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT rate\nFROM student_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation' AND is_free = true\nORDER BY rate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT rate\nFROM student_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation' AND is_free = true\nORDER BY rate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 0.8782274723052979,
+        "input_tokens": 104,
+        "output_tokens": 33
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT rate\nFROM student_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation' AND is_free = true\nORDER BY rate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT rate\nFROM student_rates\nWHERE age BETWEEN 5 AND 17 AND school_type = 'continuation' AND is_free = true\nORDER BY rate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 0.8731520175933838,
+        "input_tokens": 104,
+        "output_tokens": 33
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT fee_rate\nFROM student_fee\nWHERE age BETWEEN 5 AND 17\nAND school_type = 'continuation'\nORDER BY fee_rate ASC\nLIMIT 3;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "1_cand_5",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00014281272888183594,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT TOP 3 fee_rate\nFROM student_fee\nWHERE age BETWEEN 5 AND 17\nAND school_type = 'continuation'\nORDER BY fee_rate ASC;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT fee_rate\nFROM student_fee\nWHERE age BETWEEN 5 AND 17\nAND school_type = 'continuation'\nORDER BY fee_rate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 0.8207681179046631,
+        "input_tokens": 98,
+        "output_tokens": 28
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT fee_rate\nFROM student_fee\nWHERE age BETWEEN 5 AND 17\nAND school_type = 'continuation'\nORDER BY fee_rate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT fee_rate\nFROM student_fee\nWHERE age BETWEEN 5 AND 17\nAND school_type = 'continuation'\nORDER BY fee_rate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 0.8205506801605225,
+        "input_tokens": 98,
+        "output_tokens": 28
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "1_cand_6",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 7.009506225585938e-05,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.6837973594665527,
+        "input_tokens": 111,
+        "output_tokens": 41
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.6901524066925049,
+        "input_tokens": 111,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup BETWEEN 5 AND 17\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "1_cand_7",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00014090538024902344,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup BETWEEN 5 AND 17\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup BETWEEN 5 AND 17\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.6939799785614014,
+        "input_tokens": 114,
+        "output_tokens": 44
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup BETWEEN 5 AND 17\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup BETWEEN 5 AND 17\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.6928527355194092,
+        "input_tokens": 114,
+        "output_tokens": 44
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.Percent AS \"Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent ASC\nLIMIT 3;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "1_cand_8",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00014925003051757812,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    frpm.Percent (%) Eligible Free (Ages 5-17)\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent (%) Eligible Free (Ages 5-17) ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.Percent AS \"Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.1598217487335205,
+        "input_tokens": 106,
+        "output_tokens": 29
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.Percent AS \"Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.Percent AS \"Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.1588866710662842,
+        "input_tokens": 100,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS Lowest_Free_Rates\nFROM \n    frpm\nWHERE \n    \"Educational_Option_Type\" = 'Continuation High Schools'\nORDER BY \n    \"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "1_cand_9",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.0001533031463623047,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS Lowest_Free_Rates\nFROM \n    frpm\nWHERE \n    \"Educational_Option_Type\" = 'Continuation High Schools'\nORDER BY \n    \"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS Lowest_Free_Rates\nFROM \n    frpm\nWHERE \n    \"Educational_Option_Type\" = 'Continuation High Schools'\nORDER BY \n    \"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.4959156513214111,
+        "input_tokens": 109,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS Lowest_Free_Rates\nFROM \n    frpm\nWHERE \n    \"Educational_Option_Type\" = 'Continuation High Schools'\nORDER BY \n    \"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    \"Percent (%) Eligible Free (Ages 5-17)\" AS Lowest_Free_Rates\nFROM \n    frpm\nWHERE \n    \"Educational_Option_Type\" = 'Continuation High Schools'\nORDER BY \n    \"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.4911408424377441,
+        "input_tokens": 109,
+        "output_tokens": 39
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.Percent AS \"Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent ASC\nLIMIT 3;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "1_cand_10",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 8.821487426757812e-05,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    frpm.Percent (%) Eligible Free (Ages 5-17)\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent (%) Eligible Free (Ages 5-17) ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.Percent AS \"Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.1645634174346924,
+        "input_tokens": 106,
+        "output_tokens": 29
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.Percent AS \"Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.Percent AS \"Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nWHERE \n    Educational_Option_Type = 'Continuation High Schools'\nORDER BY \n    frpm.Percent ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.1521756649017334,
+        "input_tokens": 100,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "1_cand_11",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00013637542724609375,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.6288304328918457,
+        "input_tokens": 111,
+        "output_tokens": 41
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.6356003284454346,
+        "input_tokens": 111,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.\"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "1_cand_12",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.000148773193359375,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    frpm.\"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.\"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.4423151016235352,
+        "input_tokens": 107,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.\"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.\"Percent (%) Eligible Free (Ages 5-17)\" AS FreeRate\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.StatusType = 'Continuation'\nORDER BY \n    FreeRate ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.4391109943389893,
+        "input_tokens": 107,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT DISTINCT frpm.\"Percent (%) Eligible Free (Ages 5-17)\"\nFROM frpm\nJOIN schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE schools.StatusType = 'Continuation'\nORDER BY frpm.\"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "1_cand_13",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00011134147644042969,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT TOP 3 frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE schools.StatusType = 'Continuation'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT DISTINCT frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE schools.StatusType = 'Continuation'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.4908192157745361,
+        "input_tokens": 111,
+        "output_tokens": 42
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT DISTINCT frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM frpm\nJOIN schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE schools.StatusType = 'Continuation'\nORDER BY frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT DISTINCT frpm.\"Percent (%) Eligible Free (Ages 5-17)\"\nFROM frpm\nJOIN schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE schools.StatusType = 'Continuation'\nORDER BY frpm.\"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.5281009674072266,
+        "input_tokens": 113,
+        "output_tokens": 42
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \"Percent (%) Eligible Free (Ages 5-17)\"\nFROM frpm\nWHERE \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \"Percent (%) Eligible Free (Ages 5-17)\"\nLIMIT 3;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "1_cand_14",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 8.058547973632812e-05,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \"Percent (%) Eligible Free (Ages 5-17)\"\nFROM frpm\nWHERE \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \"Percent (%) Eligible Free (Ages 5-17)\"\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \"Percent (%) Eligible Free (Ages 5-17)\"\nFROM frpm\nWHERE \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \"Percent (%) Eligible Free (Ages 5-17)\"\nLIMIT 3;\n```",
+        "repair_time_sec": 1.2784252166748047,
+        "input_tokens": 110,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \"Percent (%) Eligible Free (Ages 5-17)\"\nFROM frpm\nWHERE \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \"Percent (%) Eligible Free (Ages 5-17)\"\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \"Percent (%) Eligible Free (Ages 5-17)\"\nFROM frpm\nWHERE \"Percent (%) Eligible Free (Ages 5-17)\" IS NOT NULL\nORDER BY \"Percent (%) Eligible Free (Ages 5-17)\"\nLIMIT 3;\n```",
+        "repair_time_sec": 1.286783218383789,
+        "input_tokens": 110,
+        "output_tokens": 40
+      }
+    ]
+  }
+]

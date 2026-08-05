@@ -1,0 +1,55 @@
+{
+  "question_id": 2,
+  "db_id": "california_schools",
+  "final_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+  "best_candidate_id": "2_cand_6",
+  "ranked_candidates": [
+    [
+      "2_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "2_cand_6",
+    "question_id": 2,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00016236305236816406,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.School Code = schools.School Code\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+        "repair_time_sec": 1.1412315368652344,
+        "input_tokens": 106,
+        "output_tokens": 36
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+        "repair_time_sec": 1.1299397945404053,
+        "input_tokens": 106,
+        "output_tokens": 36
+      }
+    ]
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 1
+}

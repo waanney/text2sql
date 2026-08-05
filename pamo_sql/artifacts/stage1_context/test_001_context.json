@@ -1,0 +1,94 @@
+{
+  "question_id": "test_001",
+  "db_id": "california_schools",
+  "question": "What is the zip code of all charter schools in Fresno County Office of Education?",
+  "evidence": "charter school refers to Charter School (Y/N) = 1",
+  "intent": {
+    "output_phrase": "The zip codes of all charter schools in Fresno County Office of Education",
+    "operation": "select",
+    "literals": [
+      "zip code",
+      "Charter School (Y/N)",
+      "1"
+    ],
+    "filter_phrases": [
+      "Charter School (Y/N) = 1",
+      "Fresno County Office of Education"
+    ],
+    "aggregation": null,
+    "time_phrases": null,
+    "question_skeleton": "What is the [attribute] of all [entity]s in [location]?"
+  },
+  "literals": [
+    "zip code",
+    "Charter School (Y/N)",
+    "1"
+  ],
+  "matched_values": [],
+  "evidence_constraints": [
+    {
+      "phrase": "charter school refers to Charter School (Y/N) = 1",
+      "column": "schools.Charter_School_Y_N",
+      "operator": "=",
+      "value": "1",
+      "needs_cast": false,
+      "cast_type": null,
+      "confidence": 1.0
+    },
+    {
+      "phrase": "all charter schools in Fresno County Office of Education",
+      "column": "schools.District",
+      "operator": "=",
+      "value": "Fresno County Office of Education",
+      "needs_cast": false,
+      "cast_type": null,
+      "confidence": 1.0
+    }
+  ],
+  "top_tables": [
+    {
+      "table": "schools",
+      "score": 0.18238095238095237
+    }
+  ],
+  "top_columns": [
+    {
+      "table": "schools",
+      "column": "Zip",
+      "semantic_score": 0.2857142857142857,
+      "literal_match": 0,
+      "output_match": 0.3333333333333333,
+      "filter_match": 0.2,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.0,
+      "distinct_count": 500,
+      "query_log_support": 0.0,
+      "relevance_score": 0.18238095238095237
+    },
+    {
+      "table": "schools",
+      "column": "District",
+      "semantic_score": 0.2621359223300971,
+      "literal_match": 0,
+      "output_match": 0.08333333333333333,
+      "filter_match": 0.1,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.0,
+      "distinct_count": 100,
+      "query_log_support": 0.0,
+      "relevance_score": 0.11030744336569578
+    }
+  ],
+  "top_joins": [],
+  "business_rules": [],
+  "few_shot_examples": [],
+  "confidence": {
+    "schema_linking": 0.18238095238095237,
+    "literal_mapping": 0.0,
+    "evidence_parsing": 1.0
+  }
+}

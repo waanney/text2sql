@@ -1,0 +1,55 @@
+{
+  "question_id": 1,
+  "db_id": "california_schools",
+  "final_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+  "best_candidate_id": "1_cand_6",
+  "ranked_candidates": [
+    [
+      "1_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "1_cand_6",
+    "question_id": 1,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 7.009506225585938e-05,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.6837973594665527,
+        "input_tokens": 111,
+        "output_tokens": 41
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.NCESSchool = schools.NCESSchool\nWHERE \n    schools.AgeGroup = '5-17'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.6901524066925049,
+        "input_tokens": 111,
+        "output_tokens": 41
+      }
+    ]
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 1
+}

@@ -1,0 +1,55 @@
+{
+  "question_id": 4,
+  "db_id": "california_schools",
+  "final_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolID = f.SchoolID\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+  "best_candidate_id": "4_cand_6",
+  "ranked_candidates": [
+    [
+      "4_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [],
+  "selected_candidate": {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolID = f.SchoolID\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "4_cand_6",
+    "question_id": 4,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.000148773193359375,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.School = f.School\nWHERE f.[Charter School (Y/N)] = 'Yes'\nAND f.[Charter Funding Type] = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolID = f.SchoolID\nWHERE f.[Charter School (Y/N)] = 'Yes'\nAND f.[Charter Funding Type] = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 1.3876399993896484,
+        "input_tokens": 109,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolID = f.SchoolID\nWHERE f.[Charter School (Y/N)] = 'Yes'\nAND f.[Charter Funding Type] = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+        "error": "unable to open database file",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolID = f.SchoolID\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 1.405177354812622,
+        "input_tokens": 109,
+        "output_tokens": 39
+      }
+    ]
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 1
+}

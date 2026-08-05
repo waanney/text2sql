@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "2_cand_0",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "2_cand_1",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "2_cand_2",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT zip_code\nFROM charter_schools\nWHERE county = 'Fresno County Office of Education';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "2_cand_3",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT zip_code\nFROM schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "2_cand_4",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT zip_code\nFROM public_schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "2_cand_5",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.School Code = schools.School Code\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "2_cand_6",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.School Code = schools.School Code\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.Charter School (Y/N) = 'Yes';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "2_cand_7",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "2_cand_8",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "2_cand_9",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "2_cand_10",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "2_cand_11",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes' AND s.County = 'Fresno';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "2_cand_12",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "2_cand_13",
+    "question_id": 2,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.NCESSchool \nWHERE Charter_School_(Y_N) = 'Yes' AND County = 'Fresno';\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "2_cand_14",
+    "question_id": 2,
+    "db_id": "california_schools"
+  }
+]

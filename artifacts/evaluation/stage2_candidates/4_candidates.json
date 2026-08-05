@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.NCESSchool = f.School_Code\nWHERE s.OpenDate > '2000-01-01' AND f.[Charter School (Y/N)] = 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "4_cand_0",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.NCESSchool = f.School Code\nWHERE s.OpenDate > '2000-01-01' AND f.`Charter School (Y/N)` = 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "4_cand_1",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.NCESSchool = f.School Code\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` LIKE '%direct%'\nAND s.OpenDate > '2000-01-01';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "4_cand_2",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT phone_number\nFROM schools\nWHERE funding_source = 'direct_charter' AND opening_date > '2000-01-01';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "4_cand_3",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT phone_number\nFROM schools\nWHERE funding_source = 'direct_charter' AND opening_date > '2000-01-01';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "4_cand_4",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT phone_number\nFROM schools\nWHERE funding_type = 'direct_charter' AND opening_date > '2000-01-01';\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "4_cand_5",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.School = f.School\nWHERE f.[Charter School (Y/N)] = 'Yes'\nAND f.[Charter Funding Type] = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "4_cand_6",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.School Code\nWHERE s.Charter = 'Yes'\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "4_cand_7",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.`School Code`\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.OpenDate >= '2000-01-01'\n  AND s.Phone IS NOT NULL;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "4_cand_8",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.`School Code`\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate >= '2000-01-01'\nAND s.Phone IS NOT NULL;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "4_cand_9",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.`School Code`\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate >= '2000-01-01'\nAND s.Phone IS NOT NULL;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "4_cand_10",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "4_cand_11",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "4_cand_12",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "4_cand_13",
+    "question_id": 4,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.School = f.School\nWHERE s.Charter = 'Yes'\nAND f.[Charter Funding Type] = 'Direct'\nAND s.OpenDate > '2000-01-01';\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "4_cand_14",
+    "question_id": 4,
+    "db_id": "california_schools"
+  }
+]

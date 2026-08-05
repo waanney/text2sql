@@ -1,0 +1,59 @@
+[
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = '1';\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "test_001_cand_0",
+    "question_id": "test_001",
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 0.00021457672119140625,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.District = 'Fresno County Office of Education'\nAND f.`Charter School (Y/N)` = '1';\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "test_001_cand_1",
+    "question_id": "test_001",
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 4.673004150390625e-05,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 'Yes' AND s.District = 'Fresno County Office of Education';\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "test_001_cand_2",
+    "question_id": "test_001",
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "unable to open database file",
+      "runtime_sec": 3.790855407714844e-05,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": []
+  }
+]
