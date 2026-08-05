@@ -1,0 +1,700 @@
+[
+  {
+    "sql": "SELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "14_cand_0",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027587413787841797,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "14_cand_1",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026636838912963867,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "14_cand_2",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02752375602722168,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.NCESSchool \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`Enrollment (Ages 5-17)` DESC \nLIMIT 5;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "14_cand_3",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02820587158203125,
+      "row_count": 5,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "11707"
+        ],
+        [
+          "04653"
+        ],
+        [
+          "08283"
+        ],
+        [
+          "02751"
+        ],
+        [
+          "03050"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T1.NCESSchool, T1.CDSCode \nFROM schools AS T1 \nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T2.`Enrollment (Ages 5-17)` DESC \nLIMIT 5;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "14_cand_4",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.028202295303344727,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "CDSCode"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          "33103300110833"
+        ],
+        [
+          "04653",
+          "19648731936749"
+        ],
+        [
+          "08283",
+          "34674473430717"
+        ],
+        [
+          "02751",
+          "19647251936947"
+        ],
+        [
+          "03050",
+          "19647331933746"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T1.NCESSchool \nFROM schools AS T1 \nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T2.`Enrollment (Ages 5-17)` DESC \nLIMIT 5;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "14_cand_5",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.025550127029418945,
+      "row_count": 5,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "11707"
+        ],
+        [
+          "04653"
+        ],
+        [
+          "08283"
+        ],
+        [
+          "02751"
+        ],
+        [
+          "03050"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT \n    schools.NCESSchool, \n    frpm.[Enrollment (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nORDER BY \n    frpm.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "14_cand_6",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027239084243774414,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    schools.NCESSchool, \n    frpm.Enrollment (Ages 5-17)\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nORDER BY \n    frpm.Enrollment (Ages 5-17) DESC\nLIMIT 5;",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    schools.NCESSchool, \n    frpm.[Enrollment (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nORDER BY \n    frpm.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+        "repair_time_sec": 3.3816754817962646,
+        "input_tokens": 583,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    schools.NCESSchool, \n    frpm.[Enrollment (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nORDER BY \n    frpm.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "14_cand_7",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027364492416381836,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    schools.NCESSchool, \n    frpm.Enrollment (Ages 5-17)\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nORDER BY \n    frpm.Enrollment (Ages 5-17) DESC\nLIMIT 5;",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    schools.NCESSchool, \n    frpm.[Enrollment (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nORDER BY \n    frpm.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+        "repair_time_sec": 3.1896369457244873,
+        "input_tokens": 583,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`Enrollment (Ages 5-17)` DESC\nLIMIT 5;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "14_cand_8",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.028143644332885742,
+      "row_count": 5,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "11707"
+        ],
+        [
+          "04653"
+        ],
+        [
+          "08283"
+        ],
+        [
+          "02751"
+        ],
+        [
+          "03050"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 5 s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`Enrollment (Ages 5-17)` DESC;",
+        "error": "near \"5\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`Enrollment (Ages 5-17)` DESC\nLIMIT 5;\n```",
+        "repair_time_sec": 2.7019448280334473,
+        "input_tokens": 582,
+        "output_tokens": 28
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "14_cand_9",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027135848999023438,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 5 \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC;",
+        "error": "near \"5\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+        "repair_time_sec": 3.21252179145813,
+        "input_tokens": 586,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "14_cand_10",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026630163192749023,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 5 \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC;",
+        "error": "near \"5\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+        "repair_time_sec": 3.301962375640869,
+        "input_tokens": 586,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "14_cand_11",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026360034942626953,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 5 \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC;",
+        "error": "near \"5\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+        "repair_time_sec": 3.341420888900757,
+        "input_tokens": 586,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "SELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "14_cand_12",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02563762664794922,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "14_cand_13",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.025830984115600586,
+      "row_count": 5,
+      "column_count": 2,
+      "columns": [
+        "NCESSchool",
+        "Enrollment (Ages 5-17)"
+      ],
+      "sample_rows": [
+        [
+          "11707",
+          5271.0
+        ],
+        [
+          "04653",
+          4734.0
+        ],
+        [
+          "08283",
+          4718.0
+        ],
+        [
+          "02751",
+          4369.0
+        ],
+        [
+          "03050",
+          4334.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 5 \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC;",
+        "error": "near \"5\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;\n```",
+        "repair_time_sec": 3.212251663208008,
+        "input_tokens": 586,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "SELECT T2.NCESSchool \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`Enrollment (Ages 5-17)` DESC \nLIMIT 5;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "14_cand_14",
+    "question_id": 14,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026035547256469727,
+      "row_count": 5,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "11707"
+        ],
+        [
+          "04653"
+        ],
+        [
+          "08283"
+        ],
+        [
+          "02751"
+        ],
+        [
+          "03050"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  }
+]

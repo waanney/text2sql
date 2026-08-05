@@ -1,6 +1,6 @@
 [
   {
-    "sql": "```sql\nSELECT s.\"Mailing Street Address\"\nFROM frpm f\nJOIN schools s ON f.\"School Code\" = s.\"CDSCode\"\nWHERE f.\"FRPM Count (K-12)\" = (SELECT MAX(\"FRPM Count (K-12)\") FROM frpm)\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "3_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT s.MailingStreetAddress\nFROM frpm f\nJOIN schools s ON f.SchoolCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet\nFROM frpm AS T1\nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nORDER BY T1.`FRPM Count (K-12)` DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "3_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT s.MailingStreetAddress\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.SchoolCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet\nFROM frpm AS T1\nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nORDER BY T1.`FRPM Count (K-12)` DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "3_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT DISTINCT T1.street_address \nFROM public_schools AS T1\nJOIN frpm_data AS T2 ON T1.school_id = T2.school_id\nWHERE T1.grade_level = 'K-12'\nORDER BY T2.frpm DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "3_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT T2.MailingStreetAddress\nFROM (\n    SELECT SchoolID, COUNT(*) AS FRPMCount\n    FROM FactSchDemographics\n    WHERE GradeLevel = 'K-12'\n    GROUP BY SchoolID\n    ORDER BY FRPMCount DESC\n    LIMIT 1\n) AS TopSchool\nJOIN DimSchool AS T2 ON TopSchool.SchoolID = T2.SchoolID;\n```",
+    "sql": "SELECT T1.MailStreet \nFROM schools AS T1 \nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T2.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "3_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT s.address_line_1\nFROM schools s\nJOIN (\n    SELECT school_id, COUNT(*) AS frpm_count\n    FROM k12_students\n    WHERE grade_level BETWEEN 1 AND 12\n    GROUP BY school_id\n) sub ON s.school_id = sub.school_id\nORDER BY sub.frpm_count DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailingStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "3_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "3_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY frpm.\"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "3_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT \n    Mailing Street Address \nFROM \n    frpm \nORDER BY \n    \"FRPM Count (K-12)\" DESC \nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "3_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT \n    Mailing Street Address\nFROM \n    frpm\nORDER BY \n    \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "3_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT \n    Mailing Street Address \nFROM \n    frpm \nORDER BY \n    \"FRPM Count (K-12)\" DESC \nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.`FRPM Count (K-12)` = (SELECT MAX(`FRPM Count (K-12)`) FROM frpm);",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "3_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT f.School Name, f.Mailing Street Address\nFROM frpm f\nWHERE f.[FRPM Count (K-12)] = (\n    SELECT MAX([FRPM Count (K-12)])\n    FROM frpm\n)\nAND f.[Mailing Street Address] IS NOT NULL;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "3_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT f.School Name, f.Mailing Street Address\nFROM frpm f\nWHERE f.[FRPM Count (K-12)] = (\n    SELECT MAX([FRPM Count (K-12)])\n    FROM frpm\n)\nAND f.[Mailing Street Address] IS NOT NULL;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.School Code = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "3_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT frpm.\"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet\nFROM frpm AS T1\nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T1.`FRPM Count (K-12)` = (SELECT MAX(`FRPM Count (K-12)`) FROM frpm WHERE `School Type` LIKE '%K-12%')\nAND T2.School Type LIKE '%K-12%'\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "3_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "```sql\nSELECT \"Mailing Street Address\"\nFROM frpm\nORDER BY \"FRPM Count (K-12)\" DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`FRPM Count (K-12)` DESC \nLIMIT 1;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "3_cand_14",

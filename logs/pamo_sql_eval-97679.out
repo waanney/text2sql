@@ -1,0 +1,343 @@
+=== Starting PAMO-SQL Evaluation Job ===
+Wed Aug  5 18:32:48 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.48.01              Driver Version: 590.48.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100 80GB PCIe          On  |   00000000:CA:00.0 Off |                   On |
+| N/A   43C    P0            119W /  300W |   12066MiB /  81920MiB |     N/A      Default |
+|                                         |                        |              Enabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| MIG devices:                                                                            |
++------------------+----------------------------------+-----------+-----------------------+
+| GPU  GI  CI  MIG |              Shared Memory-Usage |        Vol|        Shared         |
+|      ID  ID  Dev |                Shared BAR1-Usage | SM     Unc| CE ENC  DEC  OFA  JPG |
+|                  |                                  |        ECC|                       |
+|==================+==================================+===========+=======================|
+|  0    2   0   0  |              89MiB / 40192MiB    | 42      0 |  3   0    2    0    0 |
+|                  |               0MiB / 24543MiB    |           |                       |
++------------------+----------------------------------+-----------+-----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+{"timestamp": "2026-08-05T16:33:31.738587Z", "level": "INFO", "logger": "pamo_sql", "message": "Running dataset evaluation on pamo_sql/data/raw/bird/dev.json"}
+{"timestamp": "2026-08-05T16:33:31.754829Z", "level": "INFO", "logger": "pamo_sql", "message": "Using LLM Pairwise Selector"}
+{"timestamp": "2026-08-05T16:33:31.755054Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 1/1534: Question ID 0"}
+{"timestamp": "2026-08-05T16:33:31.841008Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 0", "extra": {"question_input": {"question_id": 0, "question": "What is the highest eligible free rate for K-12 students in the schools in Alameda County?", "db_id": "california_schools", "evidence": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`"}}}
+{"timestamp": "2026-08-05T16:33:31.841304Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:33:49.891441Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/0_context.json"}
+{"timestamp": "2026-08-05T16:33:49.891806Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:34:10.045062Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:34:10.045438Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:34:17.850796Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T16:34:17.851041Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T16:34:17.910944Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT * FROM sqlite_master;"}
+{"timestamp": "2026-08-05T16:34:17.911162Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T16:34:17.911373Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T16:34:17.911500Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 0"}
+{"timestamp": "2026-08-05T16:34:17.911922Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 2/1534: Question ID 1"}
+{"timestamp": "2026-08-05T16:34:17.926839Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 1", "extra": {"question_input": {"question_id": 1, "question": "Please list the lowest three eligible free rates for students aged 5-17 in continuation schools.", "db_id": "california_schools", "evidence": "Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`"}}}
+{"timestamp": "2026-08-05T16:34:17.926921Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:34:20.696611Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/1_context.json"}
+{"timestamp": "2026-08-05T16:34:20.696699Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:34:40.567159Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:34:40.567407Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:34:48.663739Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T16:34:48.663952Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T16:34:48.666220Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT * FROM sqlite_master;"}
+{"timestamp": "2026-08-05T16:34:48.666306Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T16:34:48.666388Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T16:34:48.666443Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 1"}
+{"timestamp": "2026-08-05T16:34:48.666657Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 3/1534: Question ID 2"}
+{"timestamp": "2026-08-05T16:34:48.675237Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 2", "extra": {"question_input": {"question_id": 2, "question": "Please list the zip code of all the charter schools in Fresno County Office of Education.", "db_id": "california_schools", "evidence": "Charter schools refers to `Charter School (Y/N)` = 1 in the table fprm"}}}
+{"timestamp": "2026-08-05T16:34:48.675322Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:34:51.469550Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/2_context.json"}
+{"timestamp": "2026-08-05T16:34:51.469634Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:35:11.705365Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:35:11.705598Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:35:19.874846Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T16:35:19.875085Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T16:35:19.890934Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT * FROM sqlite_master;"}
+{"timestamp": "2026-08-05T16:35:19.891081Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T16:35:19.891225Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T16:35:19.891325Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 2"}
+{"timestamp": "2026-08-05T16:35:19.891711Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 4/1534: Question ID 3"}
+{"timestamp": "2026-08-05T16:35:19.904624Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 3", "extra": {"question_input": {"question_id": 3, "question": "What is the unabbreviated mailing street address of the school with the highest FRPM count for K-12 students?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T16:35:19.904761Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:35:21.299878Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/3_context.json"}
+{"timestamp": "2026-08-05T16:35:21.299976Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:35:41.238114Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:35:41.238354Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:35:49.101610Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T16:35:49.101820Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T16:35:49.104170Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT * FROM sqlite_master;"}
+{"timestamp": "2026-08-05T16:35:49.104318Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T16:35:49.104462Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T16:35:49.104560Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 3"}
+{"timestamp": "2026-08-05T16:35:49.104811Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 5/1534: Question ID 4"}
+{"timestamp": "2026-08-05T16:35:49.116561Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 4", "extra": {"question_input": {"question_id": 4, "question": "Please list the phone numbers of the direct charter-funded schools that are opened after 2000/1/1.", "db_id": "california_schools", "evidence": "Charter schools refers to `Charter School (Y/N)` = 1 in the frpm"}}}
+{"timestamp": "2026-08-05T16:35:49.116652Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:35:51.922745Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/4_context.json"}
+{"timestamp": "2026-08-05T16:35:51.922975Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:36:12.236119Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:36:12.236520Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:36:20.107062Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T16:36:20.107233Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T16:36:20.109379Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT * FROM sqlite_master;"}
+{"timestamp": "2026-08-05T16:36:20.109514Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T16:36:20.109659Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T16:36:20.109742Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 4"}
+{"timestamp": "2026-08-05T16:36:20.110140Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 6/1534: Question ID 5"}
+{"timestamp": "2026-08-05T16:36:20.118676Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 5", "extra": {"question_input": {"question_id": 5, "question": "How many schools with an average score in Math greater than 400 in the SAT test are exclusively virtual?", "db_id": "california_schools", "evidence": "Exclusively virtual refers to Virtual = 'F'"}}}
+{"timestamp": "2026-08-05T16:36:20.118777Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:36:22.841479Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/5_context.json"}
+{"timestamp": "2026-08-05T16:36:22.841584Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:36:42.938339Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:36:42.938589Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:36:51.382541Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T16:36:51.382765Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T16:36:51.393266Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT * FROM sqlite_master;"}
+{"timestamp": "2026-08-05T16:36:51.393432Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T16:36:51.393594Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T16:36:51.393718Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 5"}
+{"timestamp": "2026-08-05T16:36:51.394081Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 7/1534: Question ID 6"}
+{"timestamp": "2026-08-05T16:36:51.407343Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 6", "extra": {"question_input": {"question_id": 6, "question": "Among the schools with the SAT test takers of over 500, please list the schools that are magnet schools or offer a magnet program.", "db_id": "california_schools", "evidence": "Magnet schools or offer a magnet program means that Magnet = 1"}}}
+{"timestamp": "2026-08-05T16:36:51.407465Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:36:53.949718Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/6_context.json"}
+{"timestamp": "2026-08-05T16:36:53.949850Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:37:13.731060Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:37:13.731300Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:37:21.847392Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T16:37:21.847627Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T16:37:21.877954Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT * FROM sqlite_master;"}
+{"timestamp": "2026-08-05T16:37:21.878151Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T16:37:21.878337Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T16:37:21.878463Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 6"}
+{"timestamp": "2026-08-05T16:37:21.878905Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 8/1534: Question ID 7"}
+{"timestamp": "2026-08-05T16:37:21.896816Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 7", "extra": {"question_input": {"question_id": 7, "question": "What is the phone number of the school that has the highest number of test takers with an SAT score of over 1500?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T16:37:21.896921Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:37:23.250304Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/7_context.json"}
+{"timestamp": "2026-08-05T16:37:23.250386Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:37:43.027624Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:37:43.027878Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:37:50.786608Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-05T16:37:50.786862Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-05T16:37:50.789651Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT * FROM sqlite_master;"}
+{"timestamp": "2026-08-05T16:37:50.789803Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-05T16:37:50.789892Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-05T16:37:50.789953Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 7"}
+{"timestamp": "2026-08-05T16:37:50.790166Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 9/1534: Question ID 8"}
+{"timestamp": "2026-08-05T16:37:50.798198Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 8", "extra": {"question_input": {"question_id": 8, "question": "What is the number of SAT test takers of the schools with the highest FRPM count for K-12 students?", "db_id": "california_schools", "evidence": ""}}}
+{"timestamp": "2026-08-05T16:37:50.798284Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:37:52.101296Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/8_context.json"}
+{"timestamp": "2026-08-05T16:37:52.101377Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+[llm_client] API call error: Connection error.. Falling back to mock/dummy response.
+{"timestamp": "2026-08-05T16:38:12.475541Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-05T16:38:12.475795Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}

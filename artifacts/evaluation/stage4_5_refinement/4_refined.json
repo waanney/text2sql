@@ -6,10 +6,14 @@
   "ranked_candidates": [
     [
       "4_cand_8",
-      1.6
+      2.4000000000000004
     ],
     [
       "4_cand_4",
+      1.6
+    ],
+    [
+      "4_hardcase_0",
       0.8
     ],
     [
@@ -33,9 +37,30 @@
       "probs": null
     },
     {
+      "candidate_a": "4_cand_6",
+      "candidate_b": "4_hardcase_0",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
       "candidate_a": "4_cand_4",
       "candidate_b": "4_cand_8",
       "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "4_cand_4",
+      "candidate_b": "4_hardcase_0",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "4_cand_8",
+      "candidate_b": "4_hardcase_0",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     }
@@ -77,6 +102,6 @@
     },
     "repair_history": []
   },
-  "num_original_candidates": 15,
-  "num_representatives": 3
+  "num_original_candidates": 20,
+  "num_representatives": 4
 }

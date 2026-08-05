@@ -27,8 +27,17 @@
     {
       "phrase": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`",
       "column": "frpm.Free Meal Count (K-12)",
+      "operator": "/",
+      "value": "frpm.Enrollment (K-12)",
+      "needs_cast": false,
+      "cast_type": null,
+      "confidence": 1.0
+    },
+    {
+      "phrase": "`County Name` = 'Alameda'",
+      "column": "frpm.County Name",
       "operator": "=",
-      "value": "(SELECT frpm.Free Meal Count (K-12) / frpm.Enrollment (K-12) FROM frpm JOIN schools ON frpm.School Code = schools.School Code WHERE schools.County = 'Alameda' ORDER BY frpm.Free Meal Count (K-12) DESC LIMIT 1)",
+      "value": "'Alameda'",
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0

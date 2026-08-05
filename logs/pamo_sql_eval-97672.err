@@ -1,0 +1,17 @@
+
+CondaError: Run 'conda init' before 'conda activate'
+
+Traceback (most recent call last):
+  File "/home/buiminhquan/text2sql/pamo_sql/pipelines/run_dataset.py", line 13, in <module>
+    from pipelines.run_single_question import run_single_question
+  File "/home/buiminhquan/text2sql/pamo_sql/pipelines/__init__.py", line 1, in <module>
+    from pipelines.run_single_question import run_single_question
+  File "/home/buiminhquan/text2sql/pamo_sql/pipelines/run_single_question.py", line 23, in <module>
+    from stage1_understanding.extract_question import extract_question_info
+  File "/home/buiminhquan/text2sql/pamo_sql/stage1_understanding/extract_question.py", line 1, in <module>
+    from common.llm_client import call_llm, clean_json_response
+  File "/home/buiminhquan/text2sql/pamo_sql/common/__init__.py", line 3, in <module>
+    from common.embedding_utils import cosine_similarity, get_embedding
+  File "/home/buiminhquan/text2sql/pamo_sql/common/embedding_utils.py", line 1, in <module>
+    import numpy as np
+ModuleNotFoundError: No module named 'numpy'

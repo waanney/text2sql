@@ -1,9 +1,13 @@
 {
   "question_id": 1,
   "db_id": "california_schools",
-  "final_sql": "SELECT \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
-  "best_candidate_id": "1_cand_8",
+  "final_sql": "SELECT DISTINCT `Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE `School Type` = 'Continuation High Schools'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+  "best_candidate_id": "1_hardcase_0",
   "ranked_candidates": [
+    [
+      "1_hardcase_0",
+      4.0
+    ],
     [
       "1_cand_8",
       3.2
@@ -55,6 +59,13 @@
       "probs": null
     },
     {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_hardcase_0",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
       "candidate_a": "1_cand_2",
       "candidate_b": "1_cand_3",
       "winner": "A",
@@ -76,6 +87,13 @@
       "probs": null
     },
     {
+      "candidate_a": "1_cand_2",
+      "candidate_b": "1_hardcase_0",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
       "candidate_a": "1_cand_3",
       "candidate_b": "1_cand_6",
       "winner": "B",
@@ -90,24 +108,45 @@
       "probs": null
     },
     {
+      "candidate_a": "1_cand_3",
+      "candidate_b": "1_hardcase_0",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
       "candidate_a": "1_cand_6",
       "candidate_b": "1_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_6",
+      "candidate_b": "1_hardcase_0",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_8",
+      "candidate_b": "1_hardcase_0",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "1_cand_8",
+    "sql": "SELECT DISTINCT `Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE `School Type` = 'Continuation High Schools'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+    "source": "targeted_regeneration",
+    "prompt_id": "hardcase_regen_v1_0",
+    "candidate_id": "1_hardcase_0",
     "question_id": 1,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011457443237304688,
+      "runtime_sec": 0.02451801300048828,
       "row_count": 3,
       "column_count": 1,
       "columns": [
@@ -118,16 +157,16 @@
           null
         ],
         [
-          null
+          0.0434782608695652
         ],
         [
-          null
+          0.0704225352112676
         ]
       ],
       "is_empty": false
     },
     "repair_history": []
   },
-  "num_original_candidates": 15,
-  "num_representatives": 5
+  "num_original_candidates": 20,
+  "num_representatives": 6
 }

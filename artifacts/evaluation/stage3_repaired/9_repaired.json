@@ -1,0 +1,419 @@
+[
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "9_cand_0",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02714824676513672,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.NCESSchool)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool) AS CharterSchoolCount\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "9_cand_1",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023755550384521484,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "CharterSchoolCount"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool) AS NumberOfCharterSchools\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "9_cand_2",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021140336990356445,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "NumberOfCharterSchools"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(s.CDSCode) \nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath > 560 AND s.FundingType = 'Direct';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "9_cand_3",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019392967224121094,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.CDSCode)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath > 560 AND s.FundingType = 'Direct Charter';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "9_cand_4",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01909160614013672,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.CDSCode)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(T2.CDSCode) \nFROM satscores AS T1 \nINNER JOIN schools AS T2 ON T1.cds = T2.CDSCode \nWHERE T1.AvgScrMath > 560 AND T2.FundingType = 'Direct Charter';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "9_cand_5",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022436857223510742,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(T2.CDSCode)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nGROUP BY schools.NCESSchool\nHAVING AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "9_cand_6",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.025702476501464844,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "COUNT(schools.NCESSchool)"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nGROUP BY schools.NCESSchool\nHAVING AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';\n```",
+        "repair_time_sec": 3.1593098640441895,
+        "input_tokens": 579,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nGROUP BY schools.NCESSchool\nHAVING AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "9_cand_7",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.05956435203552246,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "COUNT(schools.NCESSchool)"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nGROUP BY schools.NCESSchool\nHAVING AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';\n```",
+        "repair_time_sec": 3.08430552482605,
+        "input_tokens": 579,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    GROUP BY cds\n    HAVING AVG(AvgScrMath) > 560\n) ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "9_cand_8",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01572895050048828,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.NCESSchool)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "9_cand_9",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01892709732055664,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.NCESSchool)"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';\n```",
+        "repair_time_sec": 2.966362476348877,
+        "input_tokens": 582,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(DISTINCT T1.NCESSchool)\nFROM schools AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nGROUP BY T1.NCESSchool\nHAVING AVG(T2.AvgScrMath) > 560 AND T1.FundingType LIKE '%charter%'\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "9_cand_10",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026650428771972656,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "COUNT(DISTINCT T1.NCESSchool)"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(DISTINCT T1.NCESSchool)\nFROM schools AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE AVG(T2.AvgScrMath) > 560 AND T1.FundingType LIKE '%charter%'",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(DISTINCT T1.NCESSchool)\nFROM schools AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nGROUP BY T1.NCESSchool\nHAVING AVG(T2.AvgScrMath) > 560 AND T1.FundingType LIKE '%charter%'\n```",
+        "repair_time_sec": 3.259638547897339,
+        "input_tokens": 586,
+        "output_tokens": 36
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "9_cand_11",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.020238876342773438,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.NCESSchool)"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';\n```",
+        "repair_time_sec": 2.918745994567871,
+        "input_tokens": 582,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND (SELECT AVG(AvgScrMath) FROM satscores WHERE cds = s.CDSCode) > 560;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "9_cand_12",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.020724058151245117,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.NCESSchool)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND AVG(ss.AvgScrMath) > 560;",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND (SELECT AVG(AvgScrMath) FROM satscores WHERE cds = s.CDSCode) > 560;\n```",
+        "repair_time_sec": 3.058666944503784,
+        "input_tokens": 582,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter'\nGROUP BY s.NCESSchool\nHAVING AVG(ss.AvgScrMath) > 560;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "9_cand_13",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.020169734954833984,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.NCESSchool)"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    GROUP BY cds\n    HAVING AVG(AvgScrMath) > 560\n) ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter';",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "9_cand_14",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01818251609802246,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.CDSCode)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  }
+]

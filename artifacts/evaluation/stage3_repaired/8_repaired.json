@@ -1,0 +1,473 @@
+[
+  {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "8_cand_0",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.19684290885925293,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "8_cand_1",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.015146493911743164,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "8_cand_2",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.015065431594848633,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "8_cand_3",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01434636116027832,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` = (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "8_cand_4",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.015068769454956055,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT SUM(NumTstTakr) AS TotalSATTestTakers\nFROM satscores\nWHERE cds IN (\n    SELECT CDSCode\n    FROM frpm\n    ORDER BY `FRPM Count (K-12)` DESC\n    LIMIT 1\n);",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "8_cand_5",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.013930320739746094,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "8_cand_6",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.FRPM_Count_K_12",
+      "runtime_sec": 0.0029752254486083984,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);",
+        "error": "no such column: frpm.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.2951035499572754,
+        "input_tokens": 583,
+        "output_tokens": 29
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);\n```",
+        "error": "no such column: frpm.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.402416706085205,
+        "input_tokens": 586,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "8_cand_7",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: frpm.FRPM_Count_K_12",
+      "runtime_sec": 0.0030710697174072266,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);",
+        "error": "no such column: frpm.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.274575710296631,
+        "input_tokens": 583,
+        "output_tokens": 29
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);\n```",
+        "error": "no such column: frpm.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(satscores.NumTstTakr) AS TotalSATTestTakers\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM_Count_K_12 = (\n    SELECT MAX(FRPM_Count_K_12)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.2220780849456787,
+        "input_tokens": 586,
+        "output_tokens": 29
+      }
+    ]
+  },
+  {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "8_cand_8",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.012682914733886719,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "8_cand_9",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.012215852737426758,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` = (SELECT MAX(`FRPM Count (K-12)`) FROM frpm);\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "8_cand_10",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.013775110244750977,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.FRPM_Count_K_12 = (SELECT MAX(FRPM_Count_K_12) FROM frpm);",
+        "error": "no such column: f.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.FRPM_Count_K_12 = (SELECT MAX(FRPM_Count_K_12) FROM frpm);\n```",
+        "repair_time_sec": 3.1555488109588623,
+        "input_tokens": 583,
+        "output_tokens": 29
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.FRPM_Count_K_12 = (SELECT MAX(FRPM_Count_K_12) FROM frpm);\n```",
+        "error": "no such column: f.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` = (SELECT MAX(`FRPM Count (K-12)`) FROM frpm);\n```",
+        "repair_time_sec": 3.2988879680633545,
+        "input_tokens": 586,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "8_cand_11",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: s.NumTstTakr",
+      "runtime_sec": 0.00327301025390625,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.2678956985473633,
+        "input_tokens": 591,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.2284507751464844,
+        "input_tokens": 594,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "8_cand_12",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: s.NumTstTakr",
+      "runtime_sec": 0.0029723644256591797,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.4036965370178223,
+        "input_tokens": 591,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.1359479427337646,
+        "input_tokens": 594,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "8_cand_13",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: s.NumTstTakr",
+      "runtime_sec": 0.0029506683349609375,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.244691848754883,
+        "input_tokens": 591,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 3.260887384414673,
+        "input_tokens": 594,
+        "output_tokens": 37
+      }
+    ]
+  },
+  {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "8_cand_14",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01272439956665039,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  }
+]

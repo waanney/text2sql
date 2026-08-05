@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr > 500;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "6_cand_0",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT \n    s.School\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.Magnet = 1\n    AND ss.NumTstTakr > 500;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "6_cand_1",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr > 500;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "6_cand_2",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.NumTstTakr > 500 AND (s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%')",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "6_cand_3",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT T1.School\nFROM schools AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE T2.NumTstTakr > 500 AND (T1.Magnet = 1 OR T1.GSoffered LIKE '%Magnet%')",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "6_cand_4",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School, s.District, s.County\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.NumTstTakr > 500 AND (s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%')\nORDER BY s.School;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "6_cand_5",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 OR s.School LIKE '%Magnet%'\nAND ss.NumTstTakr > 500;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "6_cand_6",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr > 500;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "6_cand_7",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Free Meal Count (Ages 5-17)` >= 500 AND s.Magnet = 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "6_cand_8",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Free Meal Count (Ages 5-17)` >= 500 AND s.Magnet = 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "6_cand_9",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Free Meal Count (Ages 5-17)` >= 500 AND s.Magnet = 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "6_cand_10",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%'\nAND ss.NumTstTakr > 500;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "6_cand_11",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%'\nAND ss.NumTstTakr > 500;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "6_cand_12",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE s.Magnet = 1 AND st.NumTstTakr > 500;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "6_cand_13",
+    "question_id": 6,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT DISTINCT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Educational_Option_Type LIKE '%magnet%');",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "6_cand_14",
+    "question_id": 6,
+    "db_id": "california_schools"
+  }
+]

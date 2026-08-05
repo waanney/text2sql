@@ -1,0 +1,52 @@
+{
+  "question_id": 8,
+  "db_id": "california_schools",
+  "final_sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+  "best_candidate_id": "8_cand_8",
+  "ranked_candidates": [
+    [
+      "8_cand_8",
+      0.8
+    ],
+    [
+      "8_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "8_cand_8",
+      "candidate_b": "8_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "SELECT SUM(s.NumTstTakr) AS TotalSATTestTakers\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "8_cand_8",
+    "question_id": 8,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.012682914733886719,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "TotalSATTestTakers"
+      ],
+      "sample_rows": [
+        [
+          459
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 2
+}

@@ -1,0 +1,52 @@
+{
+  "question_id": 9,
+  "db_id": "california_schools",
+  "final_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    GROUP BY cds\n    HAVING AVG(AvgScrMath) > 560\n) ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter';",
+  "best_candidate_id": "9_cand_8",
+  "ranked_candidates": [
+    [
+      "9_cand_8",
+      0.8
+    ],
+    [
+      "9_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "9_cand_8",
+      "candidate_b": "9_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    GROUP BY cds\n    HAVING AVG(AvgScrMath) > 560\n) ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "9_cand_8",
+    "question_id": 9,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01572895050048828,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(s.NCESSchool)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 2
+}

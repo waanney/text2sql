@@ -1,0 +1,133 @@
+{
+  "question_id": 13,
+  "db_id": "california_schools",
+  "final_sql": "SELECT schools.Phone \nFROM schools \nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS SAT_Excellence_Rate \n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds \nORDER BY frpm.SAT_Excellence_Rate DESC \nLIMIT 3;",
+  "best_candidate_id": "13_cand_8",
+  "ranked_candidates": [
+    [
+      "13_cand_8",
+      3.2
+    ],
+    [
+      "13_cand_14",
+      2.4000000000000004
+    ],
+    [
+      "13_cand_6",
+      1.6
+    ],
+    [
+      "13_cand_13",
+      0.8
+    ],
+    [
+      "13_cand_11",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "13_cand_8",
+      "candidate_b": "13_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_8",
+      "candidate_b": "13_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_8",
+      "candidate_b": "13_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_8",
+      "candidate_b": "13_cand_14",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_6",
+      "candidate_b": "13_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_6",
+      "candidate_b": "13_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_6",
+      "candidate_b": "13_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_11",
+      "candidate_b": "13_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_11",
+      "candidate_b": "13_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "13_cand_13",
+      "candidate_b": "13_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "SELECT schools.Phone \nFROM schools \nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS SAT_Excellence_Rate \n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds \nORDER BY frpm.SAT_Excellence_Rate DESC \nLIMIT 3;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "13_cand_8",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027110576629638672,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  "num_original_candidates": 20,
+  "num_representatives": 5
+}

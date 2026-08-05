@@ -1,126 +1,117 @@
 [
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "2_cand_0",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.00016999244689941406,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022607803344726562,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.028075933456421,
-        "input_tokens": 102,
-        "output_tokens": 32
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0367891788482666,
-        "input_tokens": 102,
-        "output_tokens": 32
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
+    "sql": "SELECT DISTINCT T2.Zip\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T1.`Charter School (Y/N)` = 1 AND T2.County = 'Fresno';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "2_cand_1",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.00014448165893554688,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022024154663085938,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0093731880187988,
-        "input_tokens": 101,
-        "output_tokens": 31
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0029833316802979,
-        "input_tokens": 101,
-        "output_tokens": 31
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "2_cand_2",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 7.05718994140625e-05,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02217411994934082,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0160019397735596,
-        "input_tokens": 102,
-        "output_tokens": 32
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0092618465423584,
-        "input_tokens": 102,
-        "output_tokens": 32
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT zip_code\nFROM charter_schools\nWHERE county = 'Fresno County Office of Education';\n```",
+    "sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno' AND T1.District = 'Office of Education' AND T1.Charter = 1;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "2_cand_3",
@@ -128,8 +119,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 8.749961853027344e-05,
+      "error": "no such column: T2.Zip",
+      "runtime_sec": 0.0038690567016601562,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -139,28 +130,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "```sql\nSELECT zip_code\nFROM charter_schools\nWHERE county = 'Fresno County Office of Education';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT zip_code\nFROM charter_schools\nWHERE county = 'Fresno County Office of Education';\n```",
-        "repair_time_sec": 0.525665283203125,
-        "input_tokens": 88,
-        "output_tokens": 18
+        "original_sql": "SELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno' AND T1.District = 'Office of Education' AND T1.Charter = 1;",
+        "error": "no such column: T2.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno' AND T1.District = 'Office of Education' AND T1.Charter = 1;\n```",
+        "repair_time_sec": 3.0633339881896973,
+        "input_tokens": 594,
+        "output_tokens": 40
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT zip_code\nFROM charter_schools\nWHERE county = 'Fresno County Office of Education';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT zip_code\nFROM charter_schools\nWHERE county = 'Fresno County Office of Education';\n```",
-        "repair_time_sec": 0.524160623550415,
-        "input_tokens": 88,
-        "output_tokens": 18
+        "original_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno' AND T1.District = 'Office of Education' AND T1.Charter = 1;\n```",
+        "error": "no such column: T2.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno' AND T1.District = 'Office of Education' AND T1.Charter = 1;\n```",
+        "repair_time_sec": 3.2377710342407227,
+        "input_tokens": 596,
+        "output_tokens": 40
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT zip_code\nFROM schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
+    "sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County Office of Education' AND T1.Charter = 1;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "2_cand_4",
@@ -168,8 +159,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.00018262863159179688,
+      "error": "no such column: T2.Zip",
+      "runtime_sec": 0.003318309783935547,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -179,28 +170,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "```sql\nSELECT zip_code\nFROM schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT zip_code\nFROM schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
-        "repair_time_sec": 0.6459779739379883,
-        "input_tokens": 93,
-        "output_tokens": 23
+        "original_sql": "SELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County Office of Education' AND T1.Charter = 1;",
+        "error": "no such column: T2.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County Office of Education' AND T1.Charter = 1;\n```",
+        "repair_time_sec": 3.066272497177124,
+        "input_tokens": 591,
+        "output_tokens": 37
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT zip_code\nFROM schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT zip_code\nFROM schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
-        "repair_time_sec": 0.6403734683990479,
-        "input_tokens": 93,
-        "output_tokens": 23
+        "original_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County Office of Education' AND T1.Charter = 1;\n```",
+        "error": "no such column: T2.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County Office of Education' AND T1.Charter = 1;\n```",
+        "repair_time_sec": 3.0548856258392334,
+        "input_tokens": 594,
+        "output_tokens": 37
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT zip_code\nFROM public_schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
+    "sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County' AND T1.District = 'Fresno County Office of Education' AND T1.Charter = 1;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "2_cand_5",
@@ -208,8 +199,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.0001499652862548828,
+      "error": "no such column: T2.Zip",
+      "runtime_sec": 0.002832651138305664,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -219,108 +210,86 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "```sql\nSELECT zip_code\nFROM public_schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT zip_code\nFROM public_schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
-        "repair_time_sec": 0.6910865306854248,
-        "input_tokens": 93,
-        "output_tokens": 23
+        "original_sql": "SELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County' AND T1.District = 'Fresno County Office of Education' AND T1.Charter = 1;",
+        "error": "no such column: T2.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County' AND T1.District = 'Fresno County Office of Education' AND T1.Charter = 1;\n```",
+        "repair_time_sec": 3.157888889312744,
+        "input_tokens": 598,
+        "output_tokens": 44
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT zip_code\nFROM public_schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT zip_code\nFROM public_schools\nWHERE county = 'Fresno County Office of Education' AND school_type = 'charter';\n```",
-        "repair_time_sec": 0.6831767559051514,
-        "input_tokens": 93,
-        "output_tokens": 23
+        "original_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County' AND T1.District = 'Fresno County Office of Education' AND T1.Charter = 1;\n```",
+        "error": "no such column: T2.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT T2.Zip \nFROM schools AS T1 \nINNER JOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.County = 'Fresno County' AND T1.District = 'Fresno County Office of Education' AND T1.Charter = 1;\n```",
+        "repair_time_sec": 3.1429715156555176,
+        "input_tokens": 600,
+        "output_tokens": 44
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno County';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "2_cand_6",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.00016236305236816406,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.018171072006225586,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
       "sample_rows": [],
-      "is_empty": null
+      "is_empty": true
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.School Code = schools.School Code\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
-        "repair_time_sec": 1.1412315368652344,
-        "input_tokens": 106,
-        "output_tokens": 36
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
-        "repair_time_sec": 1.1299397945404053,
-        "input_tokens": 106,
-        "output_tokens": 36
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "2_cand_7",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.00013899803161621094,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02120065689086914,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.School Code = schools.School Code\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.Charter School (Y/N) = 'Yes';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
-        "repair_time_sec": 1.1390140056610107,
-        "input_tokens": 106,
-        "output_tokens": 36
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm\nJOIN schools ON frpm.`School Code` = schools.`School Code`\nWHERE frpm.County = 'Fresno County Office of Education' AND frpm.`Charter School (Y/N)` = 'Yes';\n```",
-        "repair_time_sec": 1.1497159004211426,
-        "input_tokens": 106,
-        "output_tokens": 36
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
+    "sql": "```sql\nSELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "2_cand_8",
@@ -328,8 +297,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.00014901161193847656,
+      "error": "no such column: frpm.Zip",
+      "runtime_sec": 0.003070831298828125,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -339,28 +308,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "repair_time_sec": 0.7005949020385742,
-        "input_tokens": 92,
-        "output_tokens": 22
+        "original_sql": "SELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';",
+        "error": "no such column: frpm.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';\n```",
+        "repair_time_sec": 2.7452120780944824,
+        "input_tokens": 583,
+        "output_tokens": 29
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "repair_time_sec": 0.7039937973022461,
-        "input_tokens": 92,
-        "output_tokens": 22
+        "original_sql": "```sql\nSELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';\n```",
+        "error": "no such column: frpm.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';\n```",
+        "repair_time_sec": 2.7993929386138916,
+        "input_tokens": 586,
+        "output_tokens": 29
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
+    "sql": "```sql\nSELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "2_cand_9",
@@ -368,8 +337,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.0001609325408935547,
+      "error": "no such column: frpm.Zip",
+      "runtime_sec": 0.003023862838745117,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -379,224 +348,209 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "repair_time_sec": 0.7035079002380371,
-        "input_tokens": 92,
-        "output_tokens": 22
+        "original_sql": "SELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';",
+        "error": "no such column: frpm.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';\n```",
+        "repair_time_sec": 2.922800302505493,
+        "input_tokens": 583,
+        "output_tokens": 29
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "repair_time_sec": 0.7033228874206543,
-        "input_tokens": 92,
-        "output_tokens": 22
+        "original_sql": "```sql\nSELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';\n```",
+        "error": "no such column: frpm.Zip",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1 AND schools.County = 'Fresno';\n```",
+        "repair_time_sec": 2.9343061447143555,
+        "input_tokens": 586,
+        "output_tokens": 29
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
+    "sql": "SELECT DISTINCT T2.Zip\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T1.`Charter School (Y/N)` = 1 AND T2.County = 'Fresno';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "2_cand_10",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.00015616416931152344,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021599769592285156,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "repair_time_sec": 0.7013723850250244,
-        "input_tokens": 92,
-        "output_tokens": 22
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT Zip \nFROM frpm \nWHERE `Charter School (Y/N)` = 1 AND `County Name` = 'Fresno';\n```",
-        "repair_time_sec": 0.6988527774810791,
-        "input_tokens": 92,
-        "output_tokens": 22
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "2_cand_11",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.0001628398895263672,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02156662940979004,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0597832202911377,
-        "input_tokens": 102,
-        "output_tokens": 32
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0387332439422607,
-        "input_tokens": 102,
-        "output_tokens": 32
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes' AND s.County = 'Fresno';\n```",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "2_cand_12",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 8.654594421386719e-05,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021603822708129883,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes' AND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes' AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0441319942474365,
-        "input_tokens": 102,
-        "output_tokens": 32
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes' AND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes' AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0457160472869873,
-        "input_tokens": 102,
-        "output_tokens": 32
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
+    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "2_cand_13",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.0001685619354248047,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021630287170410156,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0284464359283447,
-        "input_tokens": 102,
-        "output_tokens": 32
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.`School Code` = s.NCESSchool\nWHERE f.`Charter School (Y/N)` = 'Yes'\nAND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.0301060676574707,
-        "input_tokens": 102,
-        "output_tokens": 32
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.NCESSchool \nWHERE Charter_School__YN_ = 'Yes' AND County = 'Fresno';\n```",
+    "sql": "SELECT DISTINCT T2.Zip \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nWHERE T1.`Charter School (Y/N)` = 1 AND T2.County = 'Fresno';",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "2_cand_14",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "unable to open database file",
-      "runtime_sec": 0.00017213821411132812,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021137237548828125,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.NCESSchool \nWHERE Charter_School_(Y_N) = 'Yes' AND County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.NCESSchool \nWHERE Charter_School__YN_ = 'Yes' AND County = 'Fresno';\n```",
-        "repair_time_sec": 0.9156484603881836,
-        "input_tokens": 97,
-        "output_tokens": 27
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.NCESSchool \nWHERE Charter_School__YN_ = 'Yes' AND County = 'Fresno';\n```",
-        "error": "unable to open database file",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.NCESSchool \nWHERE Charter_School__YN_ = 'Yes' AND County = 'Fresno';\n```",
-        "repair_time_sec": 0.9304680824279785,
-        "input_tokens": 97,
-        "output_tokens": 27
-      }
-    ]
+    "repair_history": []
   }
 ]

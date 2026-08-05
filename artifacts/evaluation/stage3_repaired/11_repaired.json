@@ -1,0 +1,588 @@
+[
+  {
+    "sql": "SELECT \n    s.NCESSchool\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)` > 500;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "11_cand_0",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.04262971878051758,
+      "row_count": 7806,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "10546"
+        ],
+        [
+          "10947"
+        ],
+        [
+          "12901"
+        ],
+        [
+          "13008"
+        ],
+        [
+          "04257"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)` > 500;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "11_cand_1",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03021717071533203,
+      "row_count": 7806,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "10546"
+        ],
+        [
+          "10947"
+        ],
+        [
+          "12901"
+        ],
+        [
+          "13008"
+        ],
+        [
+          "04257"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.NCESSchool\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)` > 500;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "11_cand_2",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0359036922454834,
+      "row_count": 7806,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "10546"
+        ],
+        [
+          "10947"
+        ],
+        [
+          "12901"
+        ],
+        [
+          "13008"
+        ],
+        [
+          "04257"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT CDSCode FROM frpm WHERE `Enrollment (K-12)` > 500;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "11_cand_3",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.015188932418823242,
+      "row_count": 5362,
+      "column_count": 1,
+      "columns": [
+        "CDSCode"
+      ],
+      "sample_rows": [
+        [
+          "01100170109835"
+        ],
+        [
+          "01100176001788"
+        ],
+        [
+          "01611190111765"
+        ],
+        [
+          "01611190122085"
+        ],
+        [
+          "01611190130229"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT CDSCode FROM frpm WHERE `Enrollment (Ages 5-17)` > 500;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "11_cand_4",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022837162017822266,
+      "row_count": 5230,
+      "column_count": 1,
+      "columns": [
+        "CDSCode"
+      ],
+      "sample_rows": [
+        [
+          "01100170109835"
+        ],
+        [
+          "01100176001788"
+        ],
+        [
+          "01611190111765"
+        ],
+        [
+          "01611190122085"
+        ],
+        [
+          "01611190130229"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT CDSCode FROM frpm WHERE Enrollment_5_17 > 500;",
+        "error": "no such column: Enrollment_5_17",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT CDSCode FROM frpm WHERE `Enrollment (Ages 5-17)` > 500;\n```",
+        "repair_time_sec": 2.2690789699554443,
+        "input_tokens": 566,
+        "output_tokens": 15
+      }
+    ]
+  },
+  {
+    "sql": "SELECT CDSCode \nFROM frpm \nWHERE `Enrollment (K-12)` > 500;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "11_cand_5",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019068241119384766,
+      "row_count": 5362,
+      "column_count": 1,
+      "columns": [
+        "CDSCode"
+      ],
+      "sample_rows": [
+        [
+          "01100170109835"
+        ],
+        [
+          "01100176001788"
+        ],
+        [
+          "01611190111765"
+        ],
+        [
+          "01611190122085"
+        ],
+        [
+          "01611190130229"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT DISTINCT f.CDSCode, s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Enrollment (Ages 5-17)` > 500;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "11_cand_6",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.034647226333618164,
+      "row_count": 5230,
+      "column_count": 2,
+      "columns": [
+        "CDSCode",
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "01100170109835",
+          "FAME Public Charter"
+        ],
+        [
+          "01100176001788",
+          "Cox Academy"
+        ],
+        [
+          "01611190111765",
+          "Ruby Bridges Elementary"
+        ],
+        [
+          "01611190122085",
+          "The Academy of Alameda"
+        ],
+        [
+          "01611190130229",
+          "Alameda High"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT DISTINCT f.CDSCode, f.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Enrollment (Ages 5-17)` > 500;",
+        "error": "no such column: f.School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT f.CDSCode, s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Enrollment (Ages 5-17)` > 500;\n```",
+        "repair_time_sec": 2.8563175201416016,
+        "input_tokens": 582,
+        "output_tokens": 28
+      }
+    ]
+  },
+  {
+    "sql": "SELECT f.CDSCode\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY f.CDSCode\nHAVING SUM(f.`Enrollment (Ages 5-17)`) > 500;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "11_cand_7",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.09016275405883789,
+      "row_count": 5230,
+      "column_count": 1,
+      "columns": [
+        "CDSCode"
+      ],
+      "sample_rows": [
+        [
+          "01100170109835"
+        ],
+        [
+          "01100176001788"
+        ],
+        [
+          "01611190111765"
+        ],
+        [
+          "01611190122085"
+        ],
+        [
+          "01611190130229"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)`) > 500;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "11_cand_8",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.07842016220092773,
+      "row_count": 7801,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "10546"
+        ],
+        [
+          "10947"
+        ],
+        [
+          "12901"
+        ],
+        [
+          "13008"
+        ],
+        [
+          "04257"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)`) > 500;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "11_cand_9",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02819347381591797,
+      "row_count": 7801,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "10546"
+        ],
+        [
+          "10947"
+        ],
+        [
+          "12901"
+        ],
+        [
+          "13008"
+        ],
+        [
+          "04257"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)`) > 500;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "11_cand_10",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03469729423522949,
+      "row_count": 7801,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "10546"
+        ],
+        [
+          "10947"
+        ],
+        [
+          "12901"
+        ],
+        [
+          "13008"
+        ],
+        [
+          "04257"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Enrollment (Ages 5-17)` + f.`Enrollment (K-12)` > 500;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "11_cand_11",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03216886520385742,
+      "row_count": 7801,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "10546"
+        ],
+        [
+          "10947"
+        ],
+        [
+          "12901"
+        ],
+        [
+          "13008"
+        ],
+        [
+          "04257"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT T2.NCESSchool\nFROM frpm AS T1\nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T1.`Enrollment (Ages 5-17)` + T1.`Enrollment (K-12)` > 500;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "11_cand_12",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03123331069946289,
+      "row_count": 7801,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          "10546"
+        ],
+        [
+          "10947"
+        ],
+        [
+          "12901"
+        ],
+        [
+          "13008"
+        ],
+        [
+          "04257"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT T1.NCESSchool\nFROM schools AS T1\nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode\nGROUP BY T1.NCESSchool\nHAVING SUM(T2.`Enrollment (K-12)`) + SUM(T2.`Enrollment (Ages 5-17)`) > 500;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "11_cand_13",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.036149024963378906,
+      "row_count": 7801,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "00001"
+        ],
+        [
+          "00002"
+        ],
+        [
+          "00003"
+        ],
+        [
+          "00004"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT School_Code \nFROM frpm \nGROUP BY School_Code \nHAVING SUM(Enrollment_Ages_5_17) > 500;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "11_cand_14",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: School_Code",
+      "runtime_sec": 0.0027883052825927734,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT School_Code \nFROM frpm \nGROUP BY School_Code \nHAVING SUM(Enrollment (Ages 5-17)) > 500;",
+        "error": "near \"5\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT School_Code \nFROM frpm \nGROUP BY School_Code \nHAVING SUM(`Enrollment (Ages 5-17)`) > 500;\n```",
+        "repair_time_sec": 2.374053955078125,
+        "input_tokens": 573,
+        "output_tokens": 19
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT School_Code \nFROM frpm \nGROUP BY School_Code \nHAVING SUM(`Enrollment (Ages 5-17)`) > 500;\n```",
+        "error": "no such column: School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT School_Code \nFROM frpm \nGROUP BY School_Code \nHAVING SUM(Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 2.4021637439727783,
+        "input_tokens": 575,
+        "output_tokens": 16
+      }
+    ]
+  }
+]

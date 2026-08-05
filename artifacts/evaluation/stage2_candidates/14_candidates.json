@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "14_cand_0",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "14_cand_1",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "14_cand_2",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT T2.NCESSchool \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`Enrollment (Ages 5-17)` DESC \nLIMIT 5;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "14_cand_3",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT T1.NCESSchool, T1.CDSCode \nFROM schools AS T1 \nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T2.`Enrollment (Ages 5-17)` DESC \nLIMIT 5;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "14_cand_4",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT T1.NCESSchool \nFROM schools AS T1 \nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T2.`Enrollment (Ages 5-17)` DESC \nLIMIT 5;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "14_cand_5",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT \n    schools.NCESSchool, \n    frpm.Enrollment (Ages 5-17)\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nORDER BY \n    frpm.Enrollment (Ages 5-17) DESC\nLIMIT 5;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "14_cand_6",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT \n    schools.NCESSchool, \n    frpm.Enrollment (Ages 5-17)\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nORDER BY \n    frpm.Enrollment (Ages 5-17) DESC\nLIMIT 5;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "14_cand_7",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 5 s.NCESSchool\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`Enrollment (Ages 5-17)` DESC;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "14_cand_8",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 5 \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "14_cand_9",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 5 \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "14_cand_10",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 5 \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "14_cand_11",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC\nLIMIT 5;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "14_cand_12",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 5 \n    s.NCESSchool, \n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nORDER BY \n    f.[Enrollment (Ages 5-17)] DESC;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "14_cand_13",
+    "question_id": 14,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT T2.NCESSchool \nFROM frpm AS T1 \nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.`Enrollment (Ages 5-17)` DESC \nLIMIT 5;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "14_cand_14",
+    "question_id": 14,
+    "db_id": "california_schools"
+  }
+]

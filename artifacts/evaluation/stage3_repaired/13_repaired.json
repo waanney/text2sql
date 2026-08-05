@@ -1,0 +1,567 @@
+[
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "13_cand_0",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02496170997619629,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.244664430618286,
+        "input_tokens": 595,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "13_cand_1",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026014328002929688,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.1939706802368164,
+        "input_tokens": 595,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "13_cand_2",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0257718563079834,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.230579137802124,
+        "input_tokens": 595,
+        "output_tokens": 41
+      }
+    ]
+  },
+  {
+    "sql": "SELECT T1.Phone \nFROM schools AS T1 \nJOIN satscores AS T2 ON T1.CDSCode = T2.cds \nORDER BY T2.AvgScrRead + T2.AvgScrMath + T2.AvgScrWrite DESC \nLIMIT 3;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "13_cand_3",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026403188705444336,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7600"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T1.Phone \nFROM schools AS T1 \nJOIN satscores AS T2 ON T1.CDSCode = T2.cds \nORDER BY T2.AvgScrRead + T2.AvgScrMath + T2.AvgScrWrite DESC \nLIMIT 3;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "13_cand_4",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03183126449584961,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7600"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nORDER BY (T1.AvgScrRead + T1.AvgScrMath + T1.AvgScrWrite) / 3 DESC\nLIMIT 3;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "13_cand_5",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019958972930908203,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7600"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS SAT_Score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.SAT_Score DESC\nLIMIT 3;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "13_cand_6",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.018546581268310547,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7600"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS SAT_Score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.SAT_Score DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS SAT_Score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.SAT_Score DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.342991590499878,
+        "input_tokens": 599,
+        "output_tokens": 45
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS SATExcellenceRate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.SATExcellenceRate DESC\nLIMIT 3;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "13_cand_7",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.017789125442504883,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7600"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS SATExcellenceRate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.SATExcellenceRate DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS SATExcellenceRate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.SATExcellenceRate DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.3328678607940674,
+        "input_tokens": 599,
+        "output_tokens": 45
+      }
+    ]
+  },
+  {
+    "sql": "SELECT schools.Phone \nFROM schools \nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS SAT_Excellence_Rate \n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds \nORDER BY frpm.SAT_Excellence_Rate DESC \nLIMIT 3;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "13_cand_8",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027110576629638672,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT schools.Phone\nFROM schools\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS `SAT Excellence Rate`\n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds\nORDER BY frpm.`SAT Excellence Rate` DESC\nLIMIT 3;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "13_cand_9",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.024441242218017578,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT DISTINCT school.Phone\nFROM schools AS school\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS `SAT Excellence Rate`\n    FROM satscores\n) AS frpm ON school.CDSCode = frpm.cds\nORDER BY `SAT Excellence Rate` DESC\nLIMIT 3;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "13_cand_10",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02670574188232422,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 schools.Phone\nFROM schools\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS `SAT Excellence Rate`\n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds\nORDER BY `SAT Excellence Rate` DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT DISTINCT TOP 3 schools.Phone\nFROM schools\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS `SAT Excellence Rate`\n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds\nORDER BY `SAT Excellence Rate` DESC;\n```",
+        "repair_time_sec": 3.245605945587158,
+        "input_tokens": 600,
+        "output_tokens": 48
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT DISTINCT TOP 3 schools.Phone\nFROM schools\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS `SAT Excellence Rate`\n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds\nORDER BY `SAT Excellence Rate` DESC;\n```",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT DISTINCT school.Phone\nFROM schools AS school\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS `SAT Excellence Rate`\n    FROM satscores\n) AS frpm ON school.CDSCode = frpm.cds\nORDER BY `SAT Excellence Rate` DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.456155776977539,
+        "input_tokens": 604,
+        "output_tokens": 50
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.rtype = 'SAT'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "13_cand_11",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.007946491241455078,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.rtype = 'SAT'\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.rtype = 'SAT'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.27148175239563,
+        "input_tokens": 590,
+        "output_tokens": 40
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Public'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "13_cand_12",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.020116806030273438,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Public'\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Public'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.2621030807495117,
+        "input_tokens": 590,
+        "output_tokens": 40
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nORDER BY ss.AvgScrMath DESC\nLIMIT 3;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "13_cand_13",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.025152206420898438,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ],
+        [
+          "(408) 366-7600"
+        ],
+        [
+          "(562) 229-7745"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nORDER BY ss.AvgScrMath DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nORDER BY ss.AvgScrMath DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.49372935295105,
+        "input_tokens": 579,
+        "output_tokens": 26
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, COUNT(*) AS num_students, SUM(NumGE1500) AS total_excellent\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nORDER BY CAST(ss.total_excellent AS REAL) / ss.num_students DESC\nLIMIT 3;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "13_cand_14",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02283453941345215,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(213) 241-1000"
+        ],
+        [
+          "(619) 725-8000"
+        ],
+        [
+          "(408) 522-2200"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, COUNT(*) AS num_students, SUM(NumGE1500) AS total_excellent\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nORDER BY CAST(ss.total_excellent AS REAL) / ss.num_students DESC;",
+        "error": "near \"3\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, COUNT(*) AS num_students, SUM(NumGE1500) AS total_excellent\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nORDER BY CAST(ss.total_excellent AS REAL) / ss.num_students DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 3.6625075340270996,
+        "input_tokens": 603,
+        "output_tokens": 49
+      }
+    ]
+  }
+]

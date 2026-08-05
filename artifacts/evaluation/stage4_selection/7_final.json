@@ -1,0 +1,127 @@
+{
+  "question_id": 7,
+  "db_id": "california_schools",
+  "final_sql": "SELECT T1.Phone \nFROM schools AS T1 \nJOIN satscores AS T2 ON T1.CDSCode = T2.cds \nWHERE T2.NumGE1500 > 0 \nORDER BY T2.NumGE1500 DESC \nLIMIT 1;",
+  "best_candidate_id": "7_cand_3",
+  "ranked_candidates": [
+    [
+      "7_cand_3",
+      3.2
+    ],
+    [
+      "7_cand_8",
+      2.4000000000000004
+    ],
+    [
+      "7_cand_11",
+      1.6
+    ],
+    [
+      "7_cand_12",
+      0.8
+    ],
+    [
+      "7_cand_6",
+      0.0
+    ]
+  ],
+  "comparison_logs": [
+    {
+      "candidate_a": "7_cand_6",
+      "candidate_b": "7_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_6",
+      "candidate_b": "7_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_6",
+      "candidate_b": "7_cand_11",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_6",
+      "candidate_b": "7_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_3",
+      "candidate_b": "7_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_3",
+      "candidate_b": "7_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_3",
+      "candidate_b": "7_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_8",
+      "candidate_b": "7_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_8",
+      "candidate_b": "7_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "7_cand_11",
+      "candidate_b": "7_cand_12",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    }
+  ],
+  "selected_candidate": {
+    "sql": "SELECT T1.Phone \nFROM schools AS T1 \nJOIN satscores AS T2 ON T1.CDSCode = T2.cds \nWHERE T2.NumGE1500 > 0 \nORDER BY T2.NumGE1500 DESC \nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "7_cand_3",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.017288684844970703,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(213) 241-1000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  "num_original_candidates": 15,
+  "num_representatives": 5
+}

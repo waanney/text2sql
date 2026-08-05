@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "13_cand_0",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "13_cand_1",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.ExcellenceRate DESC;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "13_cand_2",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT T1.Phone \nFROM schools AS T1 \nJOIN satscores AS T2 ON T1.CDSCode = T2.cds \nORDER BY T2.AvgScrRead + T2.AvgScrMath + T2.AvgScrWrite DESC \nLIMIT 3;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "13_cand_3",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT T1.Phone \nFROM schools AS T1 \nJOIN satscores AS T2 ON T1.CDSCode = T2.cds \nORDER BY T2.AvgScrRead + T2.AvgScrMath + T2.AvgScrWrite DESC \nLIMIT 3;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "13_cand_4",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nORDER BY (T1.AvgScrRead + T1.AvgScrMath + T1.AvgScrWrite) / 3 DESC\nLIMIT 3;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "13_cand_5",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS SAT_Score\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nORDER BY ss.SAT_Score DESC;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "13_cand_6",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS SATExcellenceRate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.SATExcellenceRate DESC;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "13_cand_7",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT schools.Phone \nFROM schools \nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS SAT_Excellence_Rate \n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds \nORDER BY frpm.SAT_Excellence_Rate DESC \nLIMIT 3;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "13_cand_8",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT schools.Phone\nFROM schools\nJOIN (\n    SELECT cds, CAST(NumGE1500 AS REAL) / NumTstTakr AS `SAT Excellence Rate`\n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds\nORDER BY frpm.`SAT Excellence Rate` DESC\nLIMIT 3;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "13_cand_9",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 schools.Phone\nFROM schools\nJOIN (\n    SELECT cds, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS `SAT Excellence Rate`\n    FROM satscores\n) AS frpm ON schools.CDSCode = frpm.cds\nORDER BY `SAT Excellence Rate` DESC;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "13_cand_10",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.rtype = 'SAT'\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "13_cand_11",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Public'\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "13_cand_12",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nORDER BY ss.AvgScrMath DESC;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "13_cand_13",
+    "question_id": 13,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT TOP 3 s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, COUNT(*) AS num_students, SUM(NumGE1500) AS total_excellent\n    FROM satscores\n    GROUP BY cds\n) ss ON s.CDSCode = ss.cds\nORDER BY CAST(ss.total_excellent AS REAL) / ss.num_students DESC;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "13_cand_14",
+    "question_id": 13,
+    "db_id": "california_schools"
+  }
+]

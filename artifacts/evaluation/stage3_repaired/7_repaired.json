@@ -1,0 +1,417 @@
+[
+  {
+    "sql": "```sql\nSELECT \n    s.Phone\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nJOIN \n    satscores ss ON f.CDSCode = ss.cds\nWHERE \n    ss.AvgScrRead + ss.AvgScrMath > 3000 AND ss.NumGE1500 > 0\nORDER BY \n    ss.NumGE1500 DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "7_cand_0",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0076978206634521484,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.Phone\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    s.AvgScrRead + s.AvgScrMath > 3000 AND s.NumGE1500 > 0\nORDER BY \n    s.NumGE1500 DESC\nLIMIT 1;",
+        "error": "no such column: s.Phone",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.Phone\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nJOIN \n    satscores ss ON f.CDSCode = ss.cds\nWHERE \n    ss.AvgScrRead + ss.AvgScrMath > 3000 AND ss.NumGE1500 > 0\nORDER BY \n    ss.NumGE1500 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 4.027924537658691,
+        "input_tokens": 592,
+        "output_tokens": 48
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.Phone\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.AvgScrMath + s.AvgScrRead > 3000 AND s.NumGE1500 > 0\nORDER BY \n    s.NumTstTakr DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "7_cand_1",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.008180856704711914,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.Phone\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nWHERE \n    s.AvgScrMath + s.AvgScrRead > 3000 AND s.NumGE1500 > 0\nORDER BY \n    s.NumTstTakr DESC\nLIMIT 1;",
+        "error": "no such column: s.Phone",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.Phone\nFROM \n    frpm f\nJOIN \n    satscores s ON f.CDSCode = s.cds\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.AvgScrMath + s.AvgScrRead > 3000 AND s.NumGE1500 > 0\nORDER BY \n    s.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 3.8630905151367188,
+        "input_tokens": 592,
+        "output_tokens": 48
+      }
+    ]
+  },
+  {
+    "sql": "SELECT \n    T2.Phone\nFROM \n    satscores AS T1\nJOIN \n    schools AS T2 ON T1.cds = T2.CDSCode\nWHERE \n    T1.AvgScrMath + T1.AvgScrRead >= 1500\nGROUP BY \n    T2.School, T2.Phone\nORDER BY \n    COUNT(T1.NumTstTakr) DESC\nLIMIT 1;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "7_cand_2",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.007208108901977539,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T1.Phone \nFROM schools AS T1 \nJOIN satscores AS T2 ON T1.CDSCode = T2.cds \nWHERE T2.NumGE1500 > 0 \nORDER BY T2.NumGE1500 DESC \nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "7_cand_3",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.017288684844970703,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(213) 241-1000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.AvgScrRead + T1.AvgScrMath + T1.AvgScrWrite > 3 * 1500\nORDER BY T1.NumGE1500 DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "7_cand_4",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.00854182243347168,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.Phone \nFROM satscores AS T1 \nINNER JOIN schools AS T2 ON T1.cds = T2.CDSCode \nWHERE T1.NumGE1500 > 0 \nORDER BY T1.NumGE1500 DESC \nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "7_cand_5",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0182340145111084,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(213) 241-1000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrWrite > 1500\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "7_cand_6",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.008787870407104492,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrMath + ss.AvgScrRead > 3000 AND ss.AvgScrMath + ss.AvgScrRead - ss.AvgScrWrite > 1500\nORDER BY ss.NumTstTakr DESC\nLIMIT 1;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "7_cand_7",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.00831913948059082,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nINNER JOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.NumTstTakr > 1500\nGROUP BY T2.School\nORDER BY COUNT(T1.NumTstTakr) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "7_cand_8",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.012642145156860352,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(559) 327-9000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.NumTstTakr > 1500\nGROUP BY T2.School\nORDER BY COUNT(T1.NumTstTakr) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "7_cand_9",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.013814926147460938,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(559) 327-9000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nINNER JOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.NumTstTakr > 1500\nGROUP BY T2.School\nORDER BY COUNT(T1.NumTstTakr) DESC\nLIMIT 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "7_cand_10",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01789379119873047,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(559) 327-9000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.NumTstTakr > 1500\nGROUP BY s.Phone\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "7_cand_11",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01057744026184082,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(916) 686-5085"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.NumTstTakr > 1500\nGROUP BY s.Phone\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "no such column: s.Phone",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.NumTstTakr > 1500\nGROUP BY s.Phone\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 3.1880550384521484,
+        "input_tokens": 588,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.NumTstTakr > 1500\nGROUP BY s.Phone\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "no such column: s.Phone",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.NumTstTakr > 1500\nGROUP BY s.Phone\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 3.453847646713257,
+        "input_tokens": 591,
+        "output_tokens": 44
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.NumTstTakr > 1500\nGROUP BY f.`School Name`\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "7_cand_12",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02825760841369629,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(562) 997-8000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.NumTstTakr > 1500\nGROUP BY f.School Name\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.NumTstTakr > 1500\nGROUP BY f.`School Name`\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 3.2294933795928955,
+        "input_tokens": 590,
+        "output_tokens": 36
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE s.NumTstTakr > 1500\nGROUP BY f.`School Name`\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "no such column: s.Phone",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.NumTstTakr > 1500\nGROUP BY f.`School Name`\nORDER BY COUNT(s.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 3.489794969558716,
+        "input_tokens": 592,
+        "output_tokens": 45
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    WHERE NumTstTakr > 1500\n    GROUP BY cds\n    ORDER BY COUNT(*) DESC\n    LIMIT 1\n) ss ON s.CDSCode = ss.cds;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "7_cand_13",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.007402658462524414,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(559) 327-9000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.Phone \nFROM satscores AS T1 \nJOIN schools AS T2 ON T1.cds = T2.CDSCode \nWHERE T1.NumGE1500 > 0 \nGROUP BY T2.School \nORDER BY SUM(T1.NumGE1500) DESC \nLIMIT 1;",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "7_cand_14",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026274919509887695,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(559) 327-9000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  }
+]

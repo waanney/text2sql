@@ -1,0 +1,122 @@
+[
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "9_cand_0",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool) AS CharterSchoolCount\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "9_cand_1",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool) AS NumberOfCharterSchools\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND ss.AvgScrMath > 560;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "9_cand_2",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.CDSCode) \nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath > 560 AND s.FundingType = 'Direct';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "9_cand_3",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath > 560 AND s.FundingType = 'Direct Charter';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "9_cand_4",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(T2.CDSCode) \nFROM satscores AS T1 \nINNER JOIN schools AS T2 ON T1.cds = T2.CDSCode \nWHERE T1.AvgScrMath > 560 AND T2.FundingType = 'Direct Charter';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "9_cand_5",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "9_cand_6",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(schools.NCESSchool)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE AVG(satscores.AvgScrMath) > 560 AND schools.FundingType = 'Charter';",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "9_cand_7",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    GROUP BY cds\n    HAVING AVG(AvgScrMath) > 560\n) ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "9_cand_8",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "9_cand_9",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(DISTINCT T1.NCESSchool)\nFROM schools AS T1\nJOIN satscores AS T2 ON T1.CDSCode = T2.cds\nWHERE AVG(T2.AvgScrMath) > 560 AND T1.FundingType LIKE '%charter%'",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "9_cand_10",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE AVG(ss.AvgScrMath) > 560 AND s.FundingType = 'Charter';",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "9_cand_11",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter' AND AVG(ss.AvgScrMath) > 560;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "9_cand_12",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter'\nGROUP BY s.NCESSchool\nHAVING AVG(ss.AvgScrMath) > 560;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "9_cand_13",
+    "question_id": 9,
+    "db_id": "california_schools"
+  },
+  {
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN (\n    SELECT cds\n    FROM satscores\n    GROUP BY cds\n    HAVING AVG(AvgScrMath) > 560\n) ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Charter';",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "9_cand_14",
+    "question_id": 9,
+    "db_id": "california_schools"
+  }
+]
