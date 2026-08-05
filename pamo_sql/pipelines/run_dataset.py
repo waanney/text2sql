@@ -16,10 +16,12 @@ from stage4_sql_prm_selection.infer_sql_prm import SQLPRMSelector
 from common.logging_utils import log_event
 
 
+from common.schema_utils import get_rich_schema_ddl, extract_value_links
+
+
 def load_schema_and_profiles(db_id, raw_bird_dir):
     """
-    Mock schema & profile loader.
-    In production, this would load actual descriptions, DDL, and light schema.
+    Rich schema & profile loader with representative column data samples.
     """
     db_path = Path(raw_bird_dir) / "database" / db_id / f"{db_id}.sqlite"
     
@@ -33,9 +35,9 @@ def load_schema_and_profiles(db_id, raw_bird_dir):
     else:
         profiles = []
 
-    # Get schema DDL
-    ddl_schema = ""
-    if db_path.exists():
+    # Get enriched DDL schema with 3 sample values per column
+    ddl_schema = get_rich_schema_ddl(str(db_path))
+    if not ddl_schema and db_path.exists():
         import sqlite3
         try:
             conn = sqlite3.connect(str(db_path))

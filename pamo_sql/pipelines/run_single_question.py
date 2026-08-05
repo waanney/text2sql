@@ -32,6 +32,7 @@ from stage4_sql_prm_selection.final_selector import select_final_sql
 from stage4_sql_prm_selection.llm_tie_breaker import LLMPairwiseSelector
 from stage4_5_hardcase_refinement.rerun_selection import rerun_selection_if_hard
 from common.logging_utils import log_event
+from common.schema_utils import extract_value_links
 
 
 def run_single_question(
@@ -70,18 +71,28 @@ def run_single_question(
     literals = q_info.get("literals", [])
     literal_matches = retrieve_literal_matches(literals, column_summaries)
     candidate_cols = retrieve_candidate_columns(q_info, column_summaries)
-
-    # Evidence constraints (new in v2)
+    # Evidence & Value-linking constraints
     evidence_constraints = []
-    if stages.get("use_evidence_constraints", True) and question_input.get("evidence"):
-        log_event("DEBUG", "Parsing evidence constraints...")
-        evidence_constraints = extract_evidence_constraints(
+    if stages.get("use_evidence_constraints", True):
+        log_event("DEBUG", "Extracting value-based schema links...")
+        value_hints = extract_value_links(
             question_input["question"],
-            question_input["evidence"],
-            [{"table": c["table"], "column": c["column"]} for c in candidate_cols[:30]],
-            column_summaries[:20]
+            question_input.get("evidence", ""),
+            db_path
         )
-        log_event("DEBUG", f"Extracted evidence constraints: {evidence_constraints}")
+        for hint in value_hints:
+            evidence_constraints.append({"type": "value_link", "constraint": hint})
+
+        if question_input.get("evidence"):
+            log_event("DEBUG", "Parsing evidence constraints...")
+            parsed_constraints = extract_evidence_constraints(
+                question_input["question"],
+                question_input["evidence"],
+                [{"table": c["table"], "column": c["column"]} for c in candidate_cols[:30]],
+                column_summaries[:20]
+            )
+            evidence_constraints.extend(parsed_constraints)
+        log_event("DEBUG", f"Extracted evidence constraints & value links: {evidence_constraints}")
 
     # Build features & rank
     feature_df = build_column_feature_table(q_info, candidate_cols, literal_matches)

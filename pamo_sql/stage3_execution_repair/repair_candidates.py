@@ -15,17 +15,22 @@ def repair_all_candidates(candidates, db_path, ddl_schema, max_rounds=2, use_rep
 
         while rounds <= max_rounds:
             exec_meta = execute_sql(db_path, sql)
-            if exec_meta["success"]:
+            # If query succeeded and returned rows, it is valid
+            if exec_meta["success"] and not exec_meta.get("is_empty", False):
                 success = True
                 break
             
             if not use_repair or rounds == max_rounds:
+                success = exec_meta["success"]
                 break
             
-            # Diagnose & Repair
-            error_msg = exec_meta["error"]
+            # Diagnose & Repair (Syntax Error or Empty Result Set)
+            if not exec_meta["success"]:
+                error_msg = exec_meta["error"]
+            else:
+                error_msg = "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators."
+
             diag = diagnose_sqlite_error(error_msg)
-            
             repair_result = fix_sql_query(sql, error_msg, ddl_schema)
             
             history.append({
