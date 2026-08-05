@@ -25,12 +25,12 @@ python3 -c "import accelerate" 2>/dev/null || pip install --quiet accelerate
 echo "=== Starting PAMO-SQL Evaluation Job ==="
 nvidia-smi
 
-# 1. Run dataset evaluation (limit 5 questions for quick test)
+# 1. Run dataset evaluation (limit 30 questions)
 python3 pamo_sql/pipelines/run_dataset.py \
   --dataset pamo_sql/data/raw/bird/dev.json \
   --bird_dir pamo_sql/data/raw/bird \
   --output_dir artifacts/evaluation \
-  --limit 5
+  --limit 30
 
 # 2. Evaluate Execution Accuracy
 python3 pamo_sql/stage5_evaluation/evaluate_ex.py \
