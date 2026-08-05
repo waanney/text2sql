@@ -1,8 +1,8 @@
 # Model configuration for PAMO-SQL
 
 llm:
-  provider: "openai"  # openai | gemini | local
-  model: "gpt-4o-mini"
+  provider: "local"  # openai | gemini | local
+  model: "Qwen/Qwen2.5-Coder-7B-Instruct"
   temperature: 0.2
   max_tokens: 2048
   timeout_sec: 60

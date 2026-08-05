@@ -3,15 +3,51 @@ import json
 import re
 from typing import Any, Dict
 
+_local_pipeline = None
+
+def get_local_pipeline():
+    """
+    Lazy load local Hugging Face CausalLM model on CUDA GPU.
+    Default model: Qwen/Qwen2.5-Coder-7B-Instruct (state-of-the-art open model for Text-to-SQL).
+    """
+    global _local_pipeline
+    if _local_pipeline is None:
+        import torch
+        from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+
+        model_name = os.environ.get("LOCAL_MODEL_NAME", "Qwen/Qwen2.5-Coder-7B-Instruct")
+        print(f"[llm_client] Loading local model '{model_name}' on GPU (CUDA)...")
+        
+        tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            torch_dtype=torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16,
+            device_map="auto",
+            trust_remote_code=True
+        )
+        _local_pipeline = pipeline(
+            "text-generation",
+            model=model,
+            tokenizer=tokenizer
+        )
+        print(f"[llm_client] Local model '{model_name}' loaded successfully on GPU!")
+    return _local_pipeline
+
+
 def call_llm(prompt: str, temperature: float = 0.2) -> str:
     """
-    Call the LLM using standard OpenAI client or similar.
-    Fallback to env variables or mock response if not configured.
+    Call LLM using:
+    1. Local OpenAI-compatible server (vLLM / Ollama) if OPENAI_API_BASE is set.
+    2. OpenAI API if OPENAI_API_KEY is set.
+    3. Direct local GPU Hugging Face inference if CUDA is available or USE_LOCAL_LLM=1.
+    4. Fallback mock response if offline / CPU only without keys.
     """
     api_key = os.environ.get("OPENAI_API_KEY")
     base_url = os.environ.get("OPENAI_API_BASE")
+    use_local_llm = os.environ.get("USE_LOCAL_LLM", "0").lower() in ("1", "true", "yes")
     
-    if api_key or base_url:
+    # Mode 1: OpenAI API or Local vLLM/Ollama Server via OpenAI Client
+    if (api_key or base_url) and not use_local_llm:
         try:
             from openai import OpenAI
             client = OpenAI(
@@ -26,9 +62,30 @@ def call_llm(prompt: str, temperature: float = 0.2) -> str:
             )
             return response.choices[0].message.content.strip()
         except Exception as e:
-            print(f"[llm_client] API call error: {e}. Falling back to mock/dummy response.")
-    
-    # Fallback/mock responses for development/offline testing
+            print(f"[llm_client] Remote API call error: {e}. Switching to local GPU inference...")
+
+    # Mode 2: Direct Local GPU Model via Hugging Face Transformers
+    try:
+        import torch
+        if torch.cuda.is_available() or use_local_llm:
+            pipe = get_local_pipeline()
+            messages = [{"role": "user", "content": prompt}]
+            outputs = pipe(
+                messages,
+                max_new_tokens=2048,
+                temperature=temperature if temperature > 0 else 0.01,
+                do_sample=temperature > 0,
+            )
+            generated_text = outputs[0]["generated_text"]
+            if isinstance(generated_text, list):
+                content = generated_text[-1].get("content", "")
+            else:
+                content = str(generated_text)
+            return content.strip()
+    except Exception as e:
+        print(f"[llm_client] Local GPU inference error: {e}. Falling back to mock response.")
+
+    # Mode 3: Fallback/mock responses for development/offline testing
     prompt_lower = prompt.lower()
     if "extract structured information" in prompt_lower:
         return json.dumps({
