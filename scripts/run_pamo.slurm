@@ -2,7 +2,7 @@
 #SBATCH --job-name=pamo_sql_eval
 #SBATCH --output=logs/%x-%j.out
 #SBATCH --error=logs/%x-%j.err
-#SBATCH --gpus=a100_7g.80gb:1
+#SBATCH --gpus=a100_3g.40gb:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
 #SBATCH --time=12:00:00
@@ -11,8 +11,11 @@
 # Create log directory if not exists
 mkdir -p logs
 
-# Activate Conda environment
-source ~/.bashrc
+# Initialize & activate Conda environment safely in non-interactive batch job
+CONDA_BASE=$(conda info --base 2>/dev/null || echo "$HOME/miniconda3")
+if [ -f "$CONDA_BASE/etc/profile.d/conda.sh" ]; then
+    source "$CONDA_BASE/etc/profile.d/conda.sh"
+fi
 conda activate pamo_sql
 
 export PYTHONPATH=$(pwd)/pamo_sql:$PYTHONPATH
