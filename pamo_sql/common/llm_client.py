@@ -25,7 +25,7 @@ def get_local_pipeline():
             # Try loading with device_map="auto" (requires accelerate)
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch_dtype,
+                dtype=torch_dtype,
                 device_map="auto",
                 trust_remote_code=True
             )
@@ -33,7 +33,7 @@ def get_local_pipeline():
             print(f"[llm_client] Warning: device_map='auto' failed ({e}). Loading model directly to CUDA...")
             model = AutoModelForCausalLM.from_pretrained(
                 model_name,
-                torch_dtype=torch_dtype,
+                dtype=torch_dtype,
                 trust_remote_code=True
             )
             if torch.cuda.is_available():

@@ -10,6 +10,7 @@ scikit-learn>=1.0.0
 # SQL-PRM selector (Option 2: classification model)
 torch>=2.0.0
 transformers>=4.35.0
+accelerate>=0.20.0
 datasets>=2.14.0
 
 # Optional: LoRA fine-tuning (Option 3)
