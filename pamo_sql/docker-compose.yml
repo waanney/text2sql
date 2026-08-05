@@ -97,13 +97,13 @@ services:
         --output_dir artifacts/models/sql_prm_selector
     profiles: ["train"]
     # Uncomment below for GPU training:
-    # deploy:
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           count: 1
-    #           capabilities: [gpu]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     networks:
       - pamo-net
 
