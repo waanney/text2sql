@@ -25,9 +25,10 @@ DDL schema:
 {ddl_schema}
 
 Rules:
-- If evidence says a phrase maps to a column/operator/value, use it.
-- If a numeric comparison is applied to a TEXT column, consider CAST.
-- Do not ignore evidence.
+- STRICT PROJECTION: SELECT ONLY the target attributes requested in the question. Do NOT include extra unasked columns in SELECT.
+- FORMULA BINDING: If evidence defines a ratio/rate formula (e.g. A / B), strictly use CAST(A AS REAL) / B.
+- If evidence says a phrase maps to a column/operator/value, use it directly.
+- Do not ignore evidence constraints.
 - Return only SQL.
 """
 

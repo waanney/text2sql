@@ -14,7 +14,7 @@ Relevant schema:
 Relevant columns:
 {context["top_columns"][:15]}
 
-Return only SQL.
+Return only SQL. Only SELECT the exact target attributes requested.
 """
     return [{
         "sql": call_llm(prompt, temperature=0),

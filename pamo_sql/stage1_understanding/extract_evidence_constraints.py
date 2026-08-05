@@ -38,10 +38,11 @@ Column profiles:
 
 Return a JSON list. Each item must have:
 - phrase: the part of evidence being parsed
-- column: table.column_name
-- operator: SQL operator (=, >, <, >=, <=, LIKE, IN, !=, IS NULL, IS NOT NULL)
-- value: the literal value to filter on
-- needs_cast: true/false (whether the column needs CAST for the comparison)
+- type: 'filter' or 'formula'
+- column: table.column_name (or expression for formula, e.g. "CAST(A AS REAL) / B")
+- operator: SQL operator (=, >, <, >=, <=, LIKE, IN, !=, IS NULL, IS NOT NULL) if filter
+- value: the literal value to filter on (or null if formula)
+- needs_cast: true/false (whether the column needs CAST)
 - cast_type: REAL/INTEGER/TEXT/null
 - confidence: 0.0 to 1.0
 

@@ -21,11 +21,10 @@ DDL schema:
 {ddl_schema}
 
 Think carefully about:
-1. required output
-2. filters
-3. joins
-4. aggregation
-5. SQL dialect
+1. STRICT PROJECTION: SELECT ONLY the specific columns/attributes explicitly requested by the user question. Do NOT add extra metadata, ID, or intermediate calculation columns unless requested.
+2. EVIDENCE BINDING: Use exact formulas provided in Evidence (e.g., if evidence defines rate = A / B, use CAST(A AS REAL) / B in SELECT/WHERE).
+3. SUBQUERY STRUCTURE: If question asks for "the entity with the highest/lowest X", consider using nested subqueries WHERE col = (SELECT col FROM table ORDER BY X DESC LIMIT 1).
+4. required filters, joins, aggregations, and SQLite dialect.
 
 Return only SQL.
 """
