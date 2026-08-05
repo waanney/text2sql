@@ -19,6 +19,7 @@ fi
 conda activate pamo_sql
 
 export PYTHONPATH=$(pwd)/pamo_sql:$PYTHONPATH
+python3 -c "import accelerate" 2>/dev/null || pip install --quiet --user accelerate
 
 echo "=== Starting PAMO-SQL Evaluation Job ==="
 nvidia-smi

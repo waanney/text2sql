@@ -19,12 +19,26 @@ def get_local_pipeline():
         print(f"[llm_client] Loading local model '{model_name}' on GPU (CUDA)...")
         
         tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
-        model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            torch_dtype=torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16,
-            device_map="auto",
-            trust_remote_code=True
-        )
+        torch_dtype = torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16
+        
+        try:
+            # Try loading with device_map="auto" (requires accelerate)
+            model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype=torch_dtype,
+                device_map="auto",
+                trust_remote_code=True
+            )
+        except Exception as e:
+            print(f"[llm_client] Warning: device_map='auto' failed ({e}). Loading model directly to CUDA...")
+            model = AutoModelForCausalLM.from_pretrained(
+                model_name,
+                torch_dtype=torch_dtype,
+                trust_remote_code=True
+            )
+            if torch.cuda.is_available():
+                model = model.to("cuda")
+
         _local_pipeline = pipeline(
             "text-generation",
             model=model,
