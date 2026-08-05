@@ -1,9 +1,11 @@
 import sqlite3
 import time
+from common.sql_utils import clean_sql
 
 
 def execute_sql(db_path: str, sql: str, timeout_sec=10):
     start = time.time()
+    sql = clean_sql(sql)
 
     try:
         conn = sqlite3.connect(db_path, timeout=timeout_sec)

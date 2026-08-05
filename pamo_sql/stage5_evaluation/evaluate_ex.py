@@ -75,9 +75,13 @@ def safe_execute(db_path, sql, timeout=10):
     NOTE: Direct execution of raw SQL strings carries a risk of SQL injection.
     This is intended and acceptable only for offline evaluation of gold-labeled datasets.
     """
+    if not sql:
+        return None
     try:
+        from common.sql_utils import clean_sql
+        cleaned_sql = clean_sql(sql)
         conn = sqlite3.connect(db_path, timeout=timeout)
-        cursor = conn.execute(sql)
+        cursor = conn.execute(cleaned_sql)
         rows = cursor.fetchall()
         conn.close()
         return rows

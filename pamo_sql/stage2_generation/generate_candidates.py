@@ -47,10 +47,13 @@ def generate_all_candidates(context_path, ddl_schema, light_schema, output_path,
     if use_simple and simple_n > 0:
         candidates += generate_simple_sql(context, light_schema, n=simple_n)
 
+    from common.sql_utils import clean_sql
+
     for idx, c in enumerate(candidates):
         c["candidate_id"] = f'{context["question_id"]}_cand_{idx}'
         c["question_id"] = context["question_id"]
         c["db_id"] = context["db_id"]
+        c["sql"] = clean_sql(c.get("sql", ""))
 
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:

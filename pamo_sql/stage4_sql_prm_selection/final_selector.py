@@ -29,13 +29,16 @@ def select_final_sql(context, candidates, selector, output_path=None):
         selector=selector
     )
 
+    from common.sql_utils import clean_sql
+
     best_id = ranked[0][0]
     best_candidate = next(c for c in representatives if c["candidate_id"] == best_id)
+    final_sql = clean_sql(best_candidate.get("sql", ""))
 
     output = {
         "question_id": context["question_id"],
         "db_id": context["db_id"],
-        "final_sql": best_candidate["sql"],
+        "final_sql": final_sql,
         "best_candidate_id": best_id,
         "ranked_candidates": ranked,
         "comparison_logs": comparison_logs,

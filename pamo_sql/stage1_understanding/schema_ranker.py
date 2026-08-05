@@ -3,13 +3,16 @@ import os
 
 def rule_based_rank_columns(feature_df):
     df = feature_df.copy()
+    if df.empty or "semantic_score" not in df.columns:
+        df["relevance_score"] = 0.0
+        return df
 
     df["relevance_score"] = (
-        0.30 * df["semantic_score"]
-        + 0.25 * df["literal_match"]
-        + 0.20 * df["output_match"]
-        + 0.15 * df["filter_match"]
-        + 0.10 * df["query_log_support"]
+        0.30 * df.get("semantic_score", 0.0)
+        + 0.25 * df.get("literal_match", 0.0)
+        + 0.20 * df.get("output_match", 0.0)
+        + 0.15 * df.get("filter_match", 0.0)
+        + 0.10 * df.get("query_log_support", 0.0)
     )
 
     return df.sort_values("relevance_score", ascending=False)

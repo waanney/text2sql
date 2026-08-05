@@ -48,7 +48,7 @@ def build_column_feature_table(
         rows.append({
             "table": table,
             "column": column,
-            "semantic_score": item["semantic_score"],
+            "semantic_score": item.get("semantic_score", 0.0),
             "literal_match": has_literal_match,
             "output_match": output_match,
             "filter_match": filter_match,
@@ -60,6 +60,13 @@ def build_column_feature_table(
             "query_log_support": log_support,
         })
 
+    cols = [
+        "table", "column", "semantic_score", "literal_match", "output_match",
+        "filter_match", "is_id_like", "is_date_like", "is_numeric_like",
+        "null_ratio", "distinct_count", "query_log_support"
+    ]
+    if not rows:
+        return pd.DataFrame(columns=cols)
     return pd.DataFrame(rows)
 
 
