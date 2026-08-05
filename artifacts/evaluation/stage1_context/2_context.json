@@ -26,6 +26,46 @@
   "matched_values": [],
   "evidence_constraints": [
     {
+      "type": "value_link",
+      "constraint": "Value 'schools in' matches value 'Elemen Schools In 1 School Dist. (Public)' in table 'frpm', column 'School Type'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'schools in' matches value 'Various Schools In District' in table 'schools', column 'MailStreet'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'schools in' matches value 'Various Schools In District' in table 'schools', column 'MailStrAbr'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'schools in' matches value 'Elemen Schools In 1 School Dist. (Public)' in table 'schools', column 'SOCType'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Education Charter' matches value 'SBE - Lifeline Education Charter' in table 'frpm', column 'District Name'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Education Charter' matches value 'Lifeline Education Charter' in table 'frpm', column 'School Name'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Education Charter' matches value 'Lifeline Education Charter' in table 'satscores', column 'sname'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Education Charter' matches value 'SBE - Lifeline Education Charter' in table 'satscores', column 'dname'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Education Charter' matches value 'State Board of Education Charter' in table 'schools', column 'District'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Education Charter' matches value 'New Millennium Institute of Education Charter' in table 'schools', column 'School'"
+    },
+    {
       "phrase": "Charter schools refers to `Charter School (Y/N)` = 1 in the table fprm",
       "column": "frpm.Charter School (Y/N)",
       "operator": "=",
@@ -512,6 +552,6 @@
   "confidence": {
     "schema_linking": 0.18863387978142077,
     "literal_mapping": 0.0,
-    "evidence_parsing": 1.0
+    "evidence_parsing": 0.16666666666666666
   }
 }

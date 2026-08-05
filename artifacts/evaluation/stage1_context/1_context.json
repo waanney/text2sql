@@ -16,7 +16,7 @@
       "Students aged 5-17",
       "Continuation schools"
     ],
-    "aggregation": "rank",
+    "aggregation": "average",
     "time_phrases": [],
     "question_skeleton": "List the {output_phrase}"
   },
@@ -29,19 +29,30 @@
   "matched_values": [],
   "evidence_constraints": [
     {
+      "type": "value_link",
+      "constraint": "Value 'for students' matches value 'California Advancing Pathways for Students in Los Angeles County ROC/P' in table 'schools', column 'District'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'for students' matches value 'California Advancing Pathways for Students in Los Angeles County' in table 'schools', column 'School'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'in continuation' matches value 'Albert Einstein Continuation' in table 'frpm', column 'School Name'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'in continuation' matches value 'Albert Einstein Continuation' in table 'satscores', column 'sname'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'in continuation' matches value 'Arvin Continuation High' in table 'schools', column 'School'"
+    },
+    {
       "phrase": "Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`",
       "column": "frpm.Percent (%) Eligible Free (Ages 5-17)",
       "operator": "=",
-      "value": "(SELECT `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)` FROM frpm WHERE `School Type` = 'Continuation High Schools')",
-      "needs_cast": false,
-      "cast_type": null,
-      "confidence": 1.0
-    },
-    {
-      "phrase": "`School Type` = 'Continuation High Schools'",
-      "column": "frpm.School Type",
-      "operator": "=",
-      "value": "'Continuation High Schools'",
+      "value": "(SELECT Free_Meal_Count__Ages_5_17 / Enrollment__Ages_5_17 FROM frpm WHERE Educational_Option_Type = 'Continuation High Schools' ORDER BY Percent___Eligible_Free_Ages_5_17 ASC LIMIT 3)",
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
@@ -515,6 +526,6 @@
   "confidence": {
     "schema_linking": 0.10326923076923077,
     "literal_mapping": 0.0,
-    "evidence_parsing": 1.0
+    "evidence_parsing": 0.16666666666666666
   }
 }

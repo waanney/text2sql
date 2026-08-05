@@ -1,115 +1,200 @@
 {
   "question_id": 1,
   "db_id": "california_schools",
-  "final_sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
-  "best_candidate_id": "1_cand_8",
+  "final_sql": "SELECT \n    `School Name`, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+  "best_candidate_id": "1_cand_4",
   "ranked_candidates": [
     [
-      "1_cand_8",
+      "1_cand_4",
+      4.8
+    ],
+    [
+      "1_cand_14",
+      4.8
+    ],
+    [
+      "1_cand_6",
       4.0
     ],
     [
-      "1_cand_10",
-      3.2
+      "1_cand_8",
+      4.0
     ],
     [
       "1_cand_5",
       2.4000000000000004
     ],
     [
-      "1_cand_6",
+      "1_cand_12",
       1.6
     ],
     [
-      "1_cand_0",
+      "1_cand_1",
       0.8
     ],
     [
-      "1_cand_3",
+      "1_cand_0",
       0.0
     ]
   ],
   "comparison_logs": [
     {
       "candidate_a": "1_cand_0",
-      "candidate_b": "1_cand_3",
+      "candidate_b": "1_cand_1",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_0",
+      "candidate_b": "1_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_1",
+      "candidate_b": "1_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_1",
+      "candidate_b": "1_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_1",
+      "candidate_b": "1_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_1",
+      "candidate_b": "1_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_1",
+      "candidate_b": "1_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_1",
+      "candidate_b": "1_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_12",
+      "candidate_b": "1_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_12",
+      "candidate_b": "1_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_12",
+      "candidate_b": "1_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_12",
+      "candidate_b": "1_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_12",
+      "candidate_b": "1_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_4",
+      "candidate_b": "1_cand_5",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "1_cand_0",
+      "candidate_a": "1_cand_4",
       "candidate_b": "1_cand_6",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "1_cand_0",
-      "candidate_b": "1_cand_5",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_0",
+      "candidate_a": "1_cand_4",
       "candidate_b": "1_cand_8",
-      "winner": "B",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "1_cand_0",
-      "candidate_b": "1_cand_10",
-      "winner": "B",
+      "candidate_a": "1_cand_4",
+      "candidate_b": "1_cand_14",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "1_cand_3",
+      "candidate_a": "1_cand_5",
       "candidate_b": "1_cand_6",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_3",
-      "candidate_b": "1_cand_5",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_3",
-      "candidate_b": "1_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_3",
-      "candidate_b": "1_cand_10",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_6",
-      "candidate_b": "1_cand_5",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_6",
-      "candidate_b": "1_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "1_cand_6",
-      "candidate_b": "1_cand_10",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -123,44 +208,76 @@
     },
     {
       "candidate_a": "1_cand_5",
-      "candidate_b": "1_cand_10",
+      "candidate_b": "1_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_6",
+      "candidate_b": "1_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "1_cand_6",
+      "candidate_b": "1_cand_14",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "1_cand_8",
-      "candidate_b": "1_cand_10",
-      "winner": "A",
+      "candidate_b": "1_cand_14",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT \n    MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS Lowest_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "1_cand_8",
+    "sql": "```sql\nSELECT \n    `School Name`, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "1_cand_4",
     "question_id": 1,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010990619659423828,
-      "row_count": 1,
-      "column_count": 1,
+      "runtime_sec": 0.012485504150390625,
+      "row_count": 0,
+      "column_count": 2,
       "columns": [
-        "Lowest_Free_Rate"
+        "School Name",
+        "Percent (%) Eligible Free (Ages 5-17)"
       ],
-      "sample_rows": [
-        [
-          0.0434782608695652
-        ]
-      ],
-      "is_empty": false
+      "sample_rows": [],
+      "is_empty": true
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    School, \n    Percent (%) Eligible Free (Ages 5-17)\nFROM \n    frpm\nWHERE \n    School Type = 'Continuation Schools'\nORDER BY \n    \"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;",
+        "error": "near \"%\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    School, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.2824645042419434,
+        "input_tokens": 1328,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    School, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
+        "error": "no such column: School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    `School Name`, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.3310835361480713,
+        "input_tokens": 1331,
+        "output_tokens": 39
+      }
+    ]
   },
   "num_original_candidates": 20,
-  "num_representatives": 6
+  "num_representatives": 8
 }

@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1 AND f.[Charter Funding Type] = 'Direct' AND s.OpenDate > '2000-01-01';",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "4_cand_0",
@@ -9,19 +9,56 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011277198791503906,
-      "row_count": 0,
+      "runtime_sec": 0.031207561492919922,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.School_Code\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate > '2000-01-01';",
+        "error": "no such column: s.SchoolCode",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.2888596057891846,
+        "input_tokens": 1331,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.2844622135162354,
+        "input_tokens": 1333,
+        "output_tokens": 40
+      }
+    ]
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND f.`Charter Funding Type` = 'Direct' AND s.OpenDate > '2000-01-01';",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Charter School (Y/N)] = 1 AND f.[Charter Funding Type] = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "4_cand_1",
@@ -30,19 +67,56 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010436058044433594,
-      "row_count": 0,
+      "runtime_sec": 0.036872148513793945,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.School_Code\nWHERE f.[Charter School (Y/N)] = 1 AND f.[Charter Funding Type] = 'Directly funded' AND s.OpenDate > '2000-01-01';",
+        "error": "no such column: s.SchoolCode",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE f.[Charter School (Y/N)] = 1 AND f.[Charter Funding Type] = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.261906147003174,
+        "input_tokens": 1331,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE f.[Charter School (Y/N)] = 1 AND f.[Charter Funding Type] = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Charter School (Y/N)] = 1 AND f.[Charter Funding Type] = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.2688467502593994,
+        "input_tokens": 1333,
+        "output_tokens": 40
+      }
+    ]
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Direct'\nAND s.OpenDate > '2000-01-01';",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "4_cand_2",
@@ -51,19 +125,56 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010481119155883789,
-      "row_count": 0,
+      "runtime_sec": 0.029781341552734375,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.SchoolCode = f.School_Code\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Directly funded' AND s.OpenDate > '2000-01-01';",
+        "error": "no such column: s.SchoolCode",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.0865018367767334,
+        "input_tokens": 1328,
+        "output_tokens": 37
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.0877678394317627,
+        "input_tokens": 1331,
+        "output_tokens": 37
+      }
+    ]
   },
   {
-    "sql": "SELECT Phone \nFROM schools \nWHERE Charter = 1 AND FundingType = 'Direct' AND OpenDate > '2000-01-01';",
+    "sql": "SELECT Phone\nFROM schools\nWHERE Charter = 1 AND FundingType = 'Directly funded' AND OpenDate > '2000-01-01';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "4_cand_3",
@@ -72,19 +183,35 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.017669677734375,
-      "row_count": 0,
+      "runtime_sec": 0.021718978881835938,
+      "row_count": 1067,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": []
   },
   {
-    "sql": "SELECT Phone \nFROM schools \nWHERE Charter = 1 AND FundingType = 'Direct' AND OpenDate > '2000-01-01';",
+    "sql": "SELECT Phone \nFROM schools \nWHERE Charter = 1 AND FundingType = 'Directly funded' AND OpenDate > '2000-01-01';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "4_cand_4",
@@ -93,19 +220,35 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01811361312866211,
-      "row_count": 0,
+      "runtime_sec": 0.020877361297607422,
+      "row_count": 1067,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": []
   },
   {
-    "sql": "SELECT Phone \nFROM schools \nWHERE Charter = 1 AND CharterNum IS NOT NULL AND OpenDate > '2000-01-01';",
+    "sql": "SELECT Phone \nFROM schools \nWHERE Charter = 1 AND FundingType = 'Directly funded' AND OpenDate > '2000-01-01';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "4_cand_5",
@@ -114,8 +257,8 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01909637451171875,
-      "row_count": 1390,
+      "runtime_sec": 0.020470142364501953,
+      "row_count": 1067,
       "column_count": 1,
       "columns": [
         "Phone"
@@ -142,7 +285,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Direct'\n  AND s.OpenDate > '2000-01-01';",
+    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate > '2000-01-01';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "4_cand_6",
@@ -151,19 +294,35 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01076507568359375,
-      "row_count": 0,
+      "runtime_sec": 0.02944636344909668,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Direct' AND s.OpenDate > '2000-01-01';",
+    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.OpenDate > '2000-01-01';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "4_cand_7",
@@ -172,19 +331,35 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010347843170166016,
-      "row_count": 0,
+      "runtime_sec": 0.030018091201782227,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": []
   },
   {
-    "sql": "SELECT schools.Phone\nFROM schools\nJOIN frpm ON schools.CDSCode = frpm.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1\n  AND frpm.`Charter Funding Type` = 'Directly funded'\n  AND schools.OpenDate >= '2000-01-01'\n  AND schools.Phone IS NOT NULL;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.OpenDate >= '2000-01-01';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "4_cand_8",
@@ -193,27 +368,27 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02568840980529785,
-      "row_count": 694,
+      "runtime_sec": 0.024181127548217773,
+      "row_count": 732,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
       "sample_rows": [
         [
+          null
+        ],
+        [
           "(510) 596-8901"
+        ],
+        [
+          null
         ],
         [
           "(510) 686-4131"
         ],
         [
           "(510) 452-2063"
-        ],
-        [
-          "(510) 842-1181"
-        ],
-        [
-          "(510) 748-4008"
         ]
       ],
       "is_empty": false
@@ -221,7 +396,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT schools.Phone\nFROM schools\nJOIN frpm ON schools.CDSCode = frpm.CDSCode\nWHERE frpm.`Charter School (Y/N)` = 1\n  AND frpm.`Charter Funding Type` = 'Directly funded'\n  AND schools.OpenDate >= '2000-01-01'\n  AND schools.Phone IS NOT NULL;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`Charter Funding Type` = 'Directly funded'\nAND s.OpenDate >= '2000-01-01';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "4_cand_9",
@@ -230,27 +405,27 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.026401996612548828,
-      "row_count": 694,
+      "runtime_sec": 0.024732589721679688,
+      "row_count": 732,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
       "sample_rows": [
         [
+          null
+        ],
+        [
           "(510) 596-8901"
+        ],
+        [
+          null
         ],
         [
           "(510) 686-4131"
         ],
         [
           "(510) 452-2063"
-        ],
-        [
-          "(510) 842-1181"
-        ],
-        [
-          "(510) 748-4008"
         ]
       ],
       "is_empty": false
@@ -258,7 +433,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT \n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    f.`Charter School (Y/N)` = 1 \n    AND f.`Charter Funding Type` = 'Directly funded' \n    AND s.OpenDate >= '2000-01-01' \n    AND s.Phone IS NOT NULL;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Directly funded'\n  AND s.OpenDate >= '2000-01-01';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "4_cand_10",
@@ -267,27 +442,27 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.026660919189453125,
-      "row_count": 694,
+      "runtime_sec": 0.024187088012695312,
+      "row_count": 732,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
       "sample_rows": [
         [
+          null
+        ],
+        [
           "(510) 596-8901"
+        ],
+        [
+          null
         ],
         [
           "(510) 686-4131"
         ],
         [
           "(510) 452-2063"
-        ],
-        [
-          "(510) 842-1181"
-        ],
-        [
-          "(510) 748-4008"
         ]
       ],
       "is_empty": false
@@ -295,7 +470,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Charter = 1 AND f.`Charter Funding Type` = 'Direct' AND s.OpenDate > '2000-01-01';",
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "4_cand_11",
@@ -304,19 +479,56 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011007547378540039,
-      "row_count": 0,
+      "runtime_sec": 0.027272462844848633,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.2577497959136963,
+        "input_tokens": 1332,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.26122784614563,
+        "input_tokens": 1333,
+        "output_tokens": 40
+      }
+    ]
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\n  AND f.`Charter Funding Type` = 'Direct'\n  AND s.OpenDate > '2000-01-01';",
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "4_cand_12",
@@ -325,19 +537,56 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010214805603027344,
-      "row_count": 0,
+      "runtime_sec": 0.0305178165435791,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.260033369064331,
+        "input_tokens": 1332,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.2581303119659424,
+        "input_tokens": 1333,
+        "output_tokens": 40
+      }
+    ]
   },
   {
-    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Direct'\nAND s.OpenDate > '2000-01-01';",
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "4_cand_13",
@@ -346,19 +595,56 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01019287109375,
-      "row_count": 0,
+      "runtime_sec": 0.030466794967651367,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.256154775619507,
+        "input_tokens": 1332,
+        "output_tokens": 40
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nAND f.[Charter Funding Type] = 'Directly funded'\nAND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.254976987838745,
+        "input_tokens": 1333,
+        "output_tokens": 40
+      }
+    ]
   },
   {
-    "sql": "SELECT T2.Phone\nFROM frpm AS T1\nINNER JOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T1.`Charter School (Y/N)` = 1 AND T1.`Charter Funding Type` = 'Direct' AND T2.OpenDate > '2000-01-01';",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND f.`Charter Funding Type` = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "4_cand_14",
@@ -367,15 +653,42 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.010352849960327148,
-      "row_count": 0,
+      "runtime_sec": 0.031816720962524414,
+      "row_count": 751,
       "column_count": 1,
       "columns": [
         "Phone"
       ],
-      "sample_rows": [],
-      "is_empty": true
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "(510) 596-8901"
+        ],
+        [
+          null
+        ],
+        [
+          "(510) 686-4131"
+        ],
+        [
+          "(510) 452-2063"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.Charter School (Y/N) = 1 AND f.Charter Funding Type = 'Directly funded' AND s.OpenDate > '2000-01-01';",
+        "error": "near \"School\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND f.`Charter Funding Type` = 'Directly funded' AND s.OpenDate > '2000-01-01';\n```",
+        "repair_time_sec": 2.234375238418579,
+        "input_tokens": 1331,
+        "output_tokens": 40
+      }
+    ]
   }
 ]
