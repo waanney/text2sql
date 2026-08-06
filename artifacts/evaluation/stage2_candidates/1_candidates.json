@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT \n    Percent (%) Eligible Free (Ages 5-17)\nFROM \n    frpm\nORDER BY \n    Percent (%) Eligible Free (Ages 5-17) ASC\nLIMIT 3;",
+    "sql": "SELECT \n    `School Name`, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "1_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    MIN(\"Percent (%) Eligible Free (Ages 5-17)\") AS LowestRate,\n    MAX(\"Percent (%) Eligible Free (Ages 5-17)\") AS HighestRate,\n    AVG(\"Percent (%) Eligible Free (Ages 5-17)\") AS AverageRate\nFROM \n    frpm;",
+    "sql": "SELECT \n    `School Name`, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "1_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    Percent (%) Eligible Free (Ages 5-17) AS FreeRate\nFROM \n    frpm\nWHERE \n    Enrollment (Ages 5-17) > 0\nORDER BY \n    FreeRate ASC\nLIMIT 3;",
+    "sql": "SELECT \n    \"School Name\",\n    \"Percent (%) Eligible Free (Ages 5-17)\"\nFROM \n    frpm\nORDER BY \n    \"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "1_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestEligibleFreeRate\nFROM frpm\nWHERE `School Type` = 'Continuation Schools'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
+    "sql": "SELECT \n    `School Name`, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools (Public)'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "1_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(`Percent (%) Eligible Free (Ages 5-17)`) AS LowestEligibleFreeRate\nFROM frpm\nWHERE `School Type` = 'Continuation Schools'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)`\nLIMIT 3;",
+    "sql": "SELECT \n    s.School, \n    f.\"Percent (%) Eligible Free (Ages 5-17)\"\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.SOCType = 'Continuation'\nORDER BY \n    f.\"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "1_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(\"Percent (%) Eligible Free (Ages 5-17)\") AS LowestEligibleFreeRate\nFROM frpm\nWHERE \"School Type\" = 'Continuation Schools'\nORDER BY \"Percent (%) Eligible Free (Ages 5-17)\"\nLIMIT 3;",
+    "sql": "SELECT `School Name`, `Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm\nWHERE `School Type` = 'Continuation Schools'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "1_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.SchoolType LIKE '%Continuation%'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;",
+    "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.GSserved = 'K-12'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "1_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.School LIKE '%Continuation%'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+    "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.GSserved = 'K-12'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "1_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    (CAST(`Free Meal Count (Ages 5-17)` AS REAL) / `Enrollment (Ages 5-17)`) AS Eligible_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    Eligible_Free_Rate ASC\nLIMIT 3;",
+    "sql": "SELECT \n    `School Name`, \n    CAST(`Free Meal Count (Ages 5-17)` AS REAL) / `Enrollment (Ages 5-17)` AS `Eligible Free Rate`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Eligible Free Rate` ASC\nLIMIT 3;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "1_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    (CAST(`Free Meal Count (Ages 5-17)` AS REAL) / `Enrollment (Ages 5-17)`) AS Eligible_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    Eligible_Free_Rate ASC\nLIMIT 3;",
+    "sql": "SELECT \n    `School Name`, \n    `Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "1_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    (CAST(`Free Meal Count (Ages 5-17)` AS REAL) / `Enrollment (Ages 5-17)`) AS Eligible_Free_Rate\nFROM \n    frpm\nWHERE \n    `School Type` = 'Continuation High Schools'\nORDER BY \n    Eligible_Free_Rate ASC\nLIMIT 3;",
+    "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.`School Type` = 'Continuation High Schools'\n    AND schools.School IN ('Albert Einstein Continuation', 'Arvin Continuation High')\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "1_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType = 'Active'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;",
+    "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.SchoolType = 'Continuation Schools'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "1_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.[Percent (%) Eligible Free (Ages 5-17)]\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType = 'Active'\nORDER BY \n    frpm.[Percent (%) Eligible Free (Ages 5-17)] ASC\nLIMIT 3;",
+    "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.SchoolType = 'Continuation Schools'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "1_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.`Percent (%) Eligible Free (Ages 5-17)`\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    schools.StatusType = 'Active'\n    AND schools.School LIKE '%Continuation%'\nORDER BY \n    frpm.`Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
+    "sql": "SELECT \n    s.School, \n    f.\"Percent (%) Eligible Free (Ages 5-17)\"\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    s.SchoolType = 'Continuation Schools'\nORDER BY \n    f.\"Percent (%) Eligible Free (Ages 5-17)\" ASC\nLIMIT 3;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "1_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    MIN(\"Percent (%) Eligible Free (Ages 5-17)\") AS Lowest_Free_Rate_1,\n    MIN(\"Percent (%) Eligible Free (Ages 5-17)\") OVER (ORDER BY \"Percent (%) Eligible Free (Ages 5-17)\") AS Lowest_Free_Rate_2,\n    MIN(\"Percent (%) Eligible Free (Ages 5-17)\") OVER (ORDER BY \"Percent (%) Eligible Free (Ages 5-17)\") AS Lowest_Free_Rate_3\nFROM \n    frpm\nWHERE \n    \"School Type\" = 'Continuation Schools' AND\n    \"Low Grade\" BETWEEN '5' AND '17';",
+    "sql": "SELECT `Percent (%) Eligible Free (Ages 5-17)`\nFROM frpm\nWHERE `School Type` = 'Continuation Schools'\nORDER BY `Percent (%) Eligible Free (Ages 5-17)` ASC\nLIMIT 3;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "1_cand_14",

@@ -1,0 +1,56 @@
+=== Starting PAMO-SQL Evaluation Job ===
+Thu Aug  6 03:37:24 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.48.01              Driver Version: 590.48.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100 80GB PCIe          On  |   00000000:65:00.0 Off |                   On |
+| N/A   32C    P0             44W /  300W |     177MiB /  81920MiB |     N/A      Default |
+|                                         |                        |              Enabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| MIG devices:                                                                            |
++------------------+----------------------------------+-----------+-----------------------+
+| GPU  GI  CI  MIG |              Shared Memory-Usage |        Vol|        Shared         |
+|      ID  ID  Dev |                Shared BAR1-Usage | SM     Unc| CE ENC  DEC  OFA  JPG |
+|                  |                                  |        ECC|                       |
+|==================+==================================+===========+=======================|
+|  0    1   0   0  |              89MiB / 40192MiB    | 42      0 |  3   0    2    0    0 |
+|                  |               0MiB / 24543MiB    |           |                       |
++------------------+----------------------------------+-----------+-----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+{"timestamp": "2026-08-06T01:37:30.773324Z", "level": "INFO", "logger": "pamo_sql", "message": "Running dataset evaluation on pamo_sql/data/raw/bird/dev.json"}
+{"timestamp": "2026-08-06T01:37:30.780330Z", "level": "INFO", "logger": "pamo_sql", "message": "Using LLM Pairwise Selector"}
+{"timestamp": "2026-08-06T01:37:30.780476Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 1/30: Question ID 0"}
+{"timestamp": "2026-08-06T01:37:31.107809Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 0", "extra": {"question_input": {"question_id": 0, "question": "What is the highest eligible free rate for K-12 students in the schools in Alameda County?", "db_id": "california_schools", "evidence": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`"}}}
+{"timestamp": "2026-08-06T01:37:31.107962Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+[llm_client] Loading local model 'Qwen/Qwen2.5-Coder-14B-Instruct' on GPU (CUDA)...
+[llm_client] Local model 'Qwen/Qwen2.5-Coder-14B-Instruct' loaded successfully on GPU!
+{"timestamp": "2026-08-06T01:43:05.372844Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/0_context.json"}
+{"timestamp": "2026-08-06T01:43:05.373399Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-06T01:44:12.891594Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-06T01:44:12.892099Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
+{"timestamp": "2026-08-06T01:44:13.143647Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 3 Complete. Candidates executed and repaired."}
+{"timestamp": "2026-08-06T01:44:13.143896Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 4: Selection..."}
+{"timestamp": "2026-08-06T01:44:13.186392Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4 Complete. Final SQL selected: SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nJOIN \"schools\" ON \"frpm\".\"CDSCode\" = \"schools\".\"CDSCode\"\nWHERE \"schools\".\"County\" = 'Alameda';"}
+{"timestamp": "2026-08-06T01:44:13.186706Z", "level": "INFO", "logger": "pamo_sql", "message": "Checking Stage 4.5: Hard-case Refinement..."}
+{"timestamp": "2026-08-06T01:44:13.186950Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 4.5 Refinement Not Triggered."}
+{"timestamp": "2026-08-06T01:44:13.187080Z", "level": "INFO", "logger": "pamo_sql", "message": "PAMO-SQL pipeline execution finished for question: 0"}
+{"timestamp": "2026-08-06T01:44:13.188150Z", "level": "INFO", "logger": "pamo_sql", "message": "Processing 2/30: Question ID 1"}
+{"timestamp": "2026-08-06T01:44:13.447878Z", "level": "INFO", "logger": "pamo_sql", "message": "Starting PAMO-SQL pipeline for question: 1", "extra": {"question_input": {"question_id": 1, "question": "Please list the lowest three eligible free rates for students aged 5-17 in continuation schools.", "db_id": "california_schools", "evidence": "Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`"}}}
+{"timestamp": "2026-08-06T01:44:13.448127Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 1: Understanding..."}
+{"timestamp": "2026-08-06T01:45:57.265724Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 1 Complete. Context saved to artifacts/evaluation/stage1_context/1_context.json"}
+{"timestamp": "2026-08-06T01:45:57.265983Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 2: Candidate Generation..."}
+{"timestamp": "2026-08-06T01:47:26.120033Z", "level": "INFO", "logger": "pamo_sql", "message": "Stage 2 Complete. Generated 15 candidates."}
+{"timestamp": "2026-08-06T01:47:26.120296Z", "level": "INFO", "logger": "pamo_sql", "message": "Running Stage 3: Execution and Repair..."}
