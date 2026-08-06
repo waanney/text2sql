@@ -20,6 +20,7 @@ conda activate pamo_sql
 
 export PYTHONPATH=$(pwd)/pamo_sql:$PYTHONPATH
 export USE_LOCAL_LLM=1
+export LOCAL_MODEL_NAME="Qwen/Qwen2.5-Coder-14B-Instruct"
 python3 -c "import accelerate" 2>/dev/null || pip install --quiet accelerate
 
 echo "=== Starting PAMO-SQL Evaluation Job ==="

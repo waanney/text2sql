@@ -15,7 +15,7 @@ def get_local_pipeline():
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 
-        model_name = os.environ.get("LOCAL_MODEL_NAME", "Qwen/Qwen2.5-Coder-7B-Instruct")
+        model_name = os.environ.get("LOCAL_MODEL_NAME", "Qwen/Qwen2.5-Coder-14B-Instruct")
         print(f"[llm_client] Loading local model '{model_name}' on GPU (CUDA)...")
         
         tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
