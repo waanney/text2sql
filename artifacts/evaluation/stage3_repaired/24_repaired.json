@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.033476829528808594,
+      "runtime_sec": 0.0381929874420166,
       "row_count": 1068,
       "column_count": 1,
       "columns": [
@@ -37,7 +37,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
+    "sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "24_cand_1",
@@ -46,7 +46,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.030476808547973633,
+      "runtime_sec": 0.03203868865966797,
       "row_count": 1068,
       "column_count": 1,
       "columns": [
@@ -74,7 +74,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
+    "sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1 \n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 > 0\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "24_cand_2",
@@ -83,7 +83,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.030493974685668945,
+      "runtime_sec": 0.029082775115966797,
       "row_count": 1068,
       "column_count": 1,
       "columns": [
@@ -111,7 +111,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
+    "sql": "```sql\nSELECT DISTINCT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "24_cand_3",
@@ -120,7 +120,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: s.NumGE1500",
-      "runtime_sec": 0.0028214454650878906,
+      "runtime_sec": 0.0027992725372314453,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -130,28 +130,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.School \nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;",
+        "original_sql": "SELECT DISTINCT s.School \nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;",
         "error": "no such column: s.School",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
-        "repair_time_sec": 2.053257942199707,
-        "input_tokens": 1324,
-        "output_tokens": 33
+        "fixed_sql": "```sql\nSELECT DISTINCT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
+        "repair_time_sec": 1.9652676582336426,
+        "input_tokens": 1326,
+        "output_tokens": 35
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
+        "original_sql": "```sql\nSELECT DISTINCT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
         "error": "no such column: s.NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
-        "repair_time_sec": 2.04508638381958,
-        "input_tokens": 1327,
-        "output_tokens": 33
+        "fixed_sql": "```sql\nSELECT DISTINCT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
+        "repair_time_sec": 1.969104528427124,
+        "input_tokens": 1328,
+        "output_tokens": 35
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;\n```",
+    "sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "24_cand_4",
@@ -160,7 +160,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.00978851318359375,
+      "runtime_sec": 0.010500907897949219,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -172,63 +172,81 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.School\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;",
+        "original_sql": "SELECT s.School \nFROM frpm f\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;",
         "error": "no such column: s.School",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;\n```",
-        "repair_time_sec": 2.564939022064209,
+        "fixed_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;\n```",
+        "repair_time_sec": 2.426353693008423,
         "input_tokens": 1326,
         "output_tokens": 44
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;\n```",
+        "original_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;\n```",
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;\n```",
-        "repair_time_sec": 2.571272850036621,
+        "fixed_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores sa ON f.CDSCode = SUBSTR(sa.cds, 4)\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND sa.NumGE1500 >= 1;\n```",
+        "repair_time_sec": 2.42960262298584,
         "input_tokens": 1358,
         "output_tokens": 44
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN satscores s ON f.CDSCode = REPLACE(s.cds, '0', '')\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NumGE1500 >= 1;\n```",
+    "sql": "```sql\nSELECT sc.School\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "24_cand_5",
     "question_id": 24,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: s.School",
-      "runtime_sec": 0.0028390884399414062,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023925304412841797,
+      "row_count": 1068,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "Clovis North High"
+        ],
+        [
+          "Clovis West High"
+        ],
+        [
+          "Buchanan High"
+        ],
+        [
+          "Clovis East High"
+        ],
+        [
+          "Clovis High"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.School \nFROM frpm f\nJOIN satscores s ON f.CDSCode = REPLACE(s.cds, '0', '')\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NumGE1500 >= 1;",
+        "original_sql": "SELECT s.School\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;",
         "error": "no such column: s.School",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN satscores s ON f.CDSCode = REPLACE(s.cds, '0', '')\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NumGE1500 >= 1;\n```",
-        "repair_time_sec": 2.5940051078796387,
-        "input_tokens": 1327,
-        "output_tokens": 45
+        "fixed_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
+        "repair_time_sec": 2.3064866065979004,
+        "input_tokens": 1324,
+        "output_tokens": 42
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN satscores s ON f.CDSCode = REPLACE(s.cds, '0', '')\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NumGE1500 >= 1;\n```",
+        "original_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
         "error": "no such column: s.School",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School \nFROM frpm f\nJOIN satscores s ON f.CDSCode = REPLACE(s.cds, '0', '')\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NumGE1500 >= 1;\n```",
-        "repair_time_sec": 2.6061601638793945,
-        "input_tokens": 1339,
-        "output_tokens": 45
+        "fixed_sql": "```sql\nSELECT sc.School\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1 AND s.NumGE1500 >= 1;\n```",
+        "repair_time_sec": 2.304699182510376,
+        "input_tokens": 1336,
+        "output_tokens": 42
       }
     ]
   },
@@ -242,7 +260,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03454136848449707,
+      "runtime_sec": 0.034998178482055664,
       "row_count": 1048,
       "column_count": 1,
       "columns": [
@@ -270,7 +288,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.NCESSchool IN (\n    SELECT DISTINCT s2.NCESSchool\n    FROM schools s2\n    JOIN satscores sa ON s2.CDSCode = sa.cds\n    WHERE sa.NumGE1500 >= 1\n);",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` > 0.1\nAND s.CDSCode IN (\n    SELECT cds\n    FROM satscores\n    WHERE NumGE1500 >= 1\n);",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "24_cand_7",
@@ -279,8 +297,8 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03517293930053711,
-      "row_count": 1048,
+      "runtime_sec": 0.022529125213623047,
+      "row_count": 1068,
       "column_count": 1,
       "columns": [
         "School"
@@ -316,7 +334,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: s.NumGE1500",
-      "runtime_sec": 0.0029458999633789062,
+      "runtime_sec": 0.002639293670654297,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -330,7 +348,7 @@
         "error": "no such column: s.NumGE1500",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NumGE1500 >= 1500;\n```",
-        "repair_time_sec": 2.1863186359405518,
+        "repair_time_sec": 2.0403683185577393,
         "input_tokens": 1324,
         "output_tokens": 33
       },
@@ -340,60 +358,23 @@
         "error": "no such column: s.NumGE1500",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NumGE1500 >= 1500;\n```",
-        "repair_time_sec": 2.1708924770355225,
+        "repair_time_sec": 2.0362937450408936,
         "input_tokens": 1327,
         "output_tokens": 33
       }
     ]
   },
   {
-    "sql": "SELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    WHERE NumGE1500 >= 1500\n);",
+    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NumGE1500 >= 1500;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "24_cand_9",
     "question_id": 24,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.9634373188018799,
-      "row_count": 9159,
-      "column_count": 1,
-      "columns": [
-        "School"
-      ],
-      "sample_rows": [
-        [
-          "FAME Public Charter"
-        ],
-        [
-          "Envision Academy for Arts & Technology"
-        ],
-        [
-          "Aspire California College Preparatory Academy"
-        ],
-        [
-          "Community School for Creative Education"
-        ],
-        [
-          "Urban Montessori Charter"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.cds IN (\n        SELECT cds\n        FROM satscores\n        GROUP BY cds\n        HAVING COUNT(*) >= 1500\n    )\n);\n```",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_2",
-    "candidate_id": "24_cand_10",
-    "question_id": 24,
-    "db_id": "california_schools",
-    "execution_metadata": {
       "success": false,
-      "error": "no such column: d.NCESDist",
-      "runtime_sec": 0.0032036304473876953,
+      "error": "no such column: s.NumGE1500",
+      "runtime_sec": 0.002956867218017578,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -403,28 +384,68 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.NumGE1500 >= 1500\n);",
-        "error": "no such column: d.NCESDist",
+        "original_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.[NumGE1500] >= 1500;",
+        "error": "no such column: s.NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.cds IN (\n        SELECT cds\n        FROM satscores\n        GROUP BY cds\n        HAVING COUNT(*) >= 1500\n    )\n);\n```",
-        "repair_time_sec": 3.3325891494750977,
-        "input_tokens": 1337,
-        "output_tokens": 62
+        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NumGE1500 >= 1500;\n```",
+        "repair_time_sec": 2.0389678478240967,
+        "input_tokens": 1324,
+        "output_tokens": 33
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.cds IN (\n        SELECT cds\n        FROM satscores\n        GROUP BY cds\n        HAVING COUNT(*) >= 1500\n    )\n);\n```",
-        "error": "no such column: d.NCESDist",
+        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NumGE1500 >= 1500;\n```",
+        "error": "no such column: s.NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.cds IN (\n        SELECT cds\n        FROM satscores\n        GROUP BY cds\n        HAVING COUNT(*) >= 1500\n    )\n);\n```",
-        "repair_time_sec": 3.334338665008545,
-        "input_tokens": 1355,
-        "output_tokens": 62
+        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NumGE1500 >= 1500;\n```",
+        "repair_time_sec": 2.038644790649414,
+        "input_tokens": 1327,
+        "output_tokens": 33
       }
     ]
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    WHERE NumGE1500 >= 1500\n);",
+    "sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.cds IN (\n        SELECT cds\n        FROM frpm\n        WHERE [Percent (%) Eligible Free (K-12)] > 0.1\n    )\n);\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "24_cand_10",
+    "question_id": 24,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: d.NCESDist",
+      "runtime_sec": 0.005173921585083008,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.NumGE1500 >= 1500\n);",
+        "error": "no such column: d.NCESDist",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.NumGE1500 >= 1500\n);\n```",
+        "repair_time_sec": 2.6011316776275635,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.NumGE1500 >= 1500\n);\n```",
+        "error": "no such column: d.NCESDist",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores d\n    WHERE d.cds IN (\n        SELECT cds\n        FROM frpm\n        WHERE [Percent (%) Eligible Free (K-12)] > 0.1\n    )\n);\n```",
+        "repair_time_sec": 3.134573459625244,
+        "input_tokens": 1340,
+        "output_tokens": 63
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND f.[Percent (%) Eligible Free (Ages 5-17)] > 0.1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "24_cand_11",
@@ -433,8 +454,8 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 1.8259811401367188,
-      "row_count": 9159,
+      "runtime_sec": 0.040616512298583984,
+      "row_count": 9142,
       "column_count": 1,
       "columns": [
         "School"
@@ -470,7 +491,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03411293029785156,
+      "runtime_sec": 0.04099106788635254,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -486,7 +507,7 @@
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
         "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1500\n);\n```",
-        "repair_time_sec": 2.8978610038757324,
+        "repair_time_sec": 2.717764377593994,
         "input_tokens": 1362,
         "output_tokens": 50
       },
@@ -496,14 +517,14 @@
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
         "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1500\n);\n```",
-        "repair_time_sec": 2.9264252185821533,
+        "repair_time_sec": 2.7221200466156006,
         "input_tokens": 1365,
         "output_tokens": 50
       }
     ]
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND f.[Percent (%) Eligible Free (Ages 5-17)] > 0.1;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores st\n    JOIN schools d ON st.cds = d.CDSCode\n    WHERE st.NumGE1500 >= 1500\n);",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "24_cand_13",
@@ -512,27 +533,27 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.030475378036499023,
-      "row_count": 9142,
+      "runtime_sec": 0.03202962875366211,
+      "row_count": 1226,
       "column_count": 1,
       "columns": [
         "School"
       ],
       "sample_rows": [
         [
-          "FAME Public Charter"
+          "N.E.W. Academy of Science and Arts"
         ],
         [
-          "Envision Academy for Arts & Technology"
+          "Stella Middle Charter Academy"
         ],
         [
-          "Aspire California College Preparatory Academy"
+          "High Tech LA"
         ],
         [
-          "Community School for Creative Education"
+          "Accelerated Charter Elementary"
         ],
         [
-          "Urban Montessori Charter"
+          "Wallis Annenberg High"
         ]
       ],
       "is_empty": false
@@ -540,7 +561,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.School \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist \n    FROM satscores \n    WHERE NumGE1500 >= 1\n);",
+    "sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    GROUP BY NCESDist\n    HAVING MAX(AvgScrMath) >= 1500\n);\n```",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "24_cand_14",
@@ -549,31 +570,36 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 1.744009017944336,
-      "row_count": 9159,
+      "runtime_sec": 3.4557108879089355,
+      "row_count": 0,
       "column_count": 1,
       "columns": [
         "School"
       ],
-      "sample_rows": [
-        [
-          "FAME Public Charter"
-        ],
-        [
-          "Envision Academy for Arts & Technology"
-        ],
-        [
-          "Aspire California College Preparatory Academy"
-        ],
-        [
-          "Community School for Creative Education"
-        ],
-        [
-          "Urban Montessori Charter"
-        ]
-      ],
-      "is_empty": false
+      "sample_rows": [],
+      "is_empty": true
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    GROUP BY NCESDist\n    HAVING MAX(AvgScrMath) >= 1500\n);",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    GROUP BY NCESDist\n    HAVING MAX(AvgScrMath) >= 1500\n);\n```",
+        "repair_time_sec": 2.7243454456329346,
+        "input_tokens": 1361,
+        "output_tokens": 49
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    GROUP BY NCESDist\n    HAVING MAX(AvgScrMath) >= 1500\n);\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.School\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT NCESDist\n    FROM satscores\n    GROUP BY NCESDist\n    HAVING MAX(AvgScrMath) >= 1500\n);\n```",
+        "repair_time_sec": 2.723921060562134,
+        "input_tokens": 1363,
+        "output_tokens": 49
+      }
+    ]
   }
 ]

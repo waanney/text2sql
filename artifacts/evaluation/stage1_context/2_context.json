@@ -4,7 +4,7 @@
   "question": "Please list the zip code of all the charter schools in Fresno County Office of Education.",
   "evidence": "Charter schools refers to `Charter School (Y/N)` = 1 in the table fprm",
   "intent": {
-    "output_phrase": "zip code of all the charter schools in Fresno County Office of Education",
+    "output_phrase": "The zip codes of all charter schools in Fresno County Office of Education.",
     "operation": "select",
     "literals": [
       "zip code",
@@ -27,58 +27,70 @@
   "evidence_constraints": [
     {
       "type": "value_link",
-      "constraint": "Value 'schools in' matches value 'Elemen Schools In 1 School Dist. (Public)' in table 'frpm', column 'School Type'"
+      "constraint": "Value 'Charter School' matches value 'American Indian Public Charter School II' in table 'frpm', column 'School Name'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'schools in' matches value 'Various Schools In District' in table 'schools', column 'MailStreet'"
+      "constraint": "Value 'Charter School' matches value 'Pivot Charter School North Valley' in table 'satscores', column 'sname'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'schools in' matches value 'Various Schools In District' in table 'schools', column 'MailStrAbr'"
+      "constraint": "Value 'Charter School' matches value 'American Indian Public Charter School II' in table 'schools', column 'School'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'schools in' matches value 'Elemen Schools In 1 School Dist. (Public)' in table 'schools', column 'SOCType'"
+      "constraint": "Value 'Education Charter' matches value 'SBE - Lifeline Education Charter' in table 'frpm', column 'District Name'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'in the' matches value 'The California Charter School in the Valley' in table 'schools', column 'School'"
+      "constraint": "Value 'Education Charter' matches value 'Lifeline Education Charter' in table 'frpm', column 'School Name'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'charter schools' matches value 'John Muir Charter Schools' in table 'schools', column 'School'"
+      "constraint": "Value 'Education Charter' matches value 'Lifeline Education Charter' in table 'satscores', column 'sname'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'Fresno County Office of' matches value 'Fresno County Office of Education' in table 'frpm', column 'District Name'"
+      "constraint": "Value 'Education Charter' matches value 'SBE - Lifeline Education Charter' in table 'satscores', column 'dname'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'Fresno County Office of' matches value 'Fresno County Office of Education' in table 'satscores', column 'dname'"
+      "constraint": "Value 'Education Charter' matches value 'State Board of Education Charter' in table 'schools', column 'District'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'Fresno County Office of' matches value 'Fresno County Office of Education' in table 'schools', column 'District'"
+      "constraint": "Value 'Education Charter' matches value 'New Millennium Institute of Education Charter' in table 'schools', column 'School'"
     },
     {
       "type": "value_link",
-      "constraint": "Value 'County Office of Education' matches value 'Alameda County Office of Education' in table 'frpm', column 'District Name'"
+      "constraint": "Value 'County Office of' matches value 'Alameda County Office of Education' in table 'frpm', column 'District Name'"
     },
     {
       "phrase": "Charter schools refers to `Charter School (Y/N)` = 1 in the table fprm",
-      "column": "frpm.Charter School (Y/N)",
+      "type": "filter",
+      "column": "fprm.Charter School (Y/N)",
       "operator": "=",
-      "value": "1",
+      "value": 1,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
     },
     {
-      "phrase": "in Fresno County Office of Education",
-      "column": "frpm.County Name",
+      "phrase": "List the zip code of all the charter schools in Fresno County Office of Education",
+      "type": "filter",
+      "column": "schools.County",
       "operator": "=",
       "value": "Fresno",
+      "needs_cast": false,
+      "cast_type": null,
+      "confidence": 1.0
+    },
+    {
+      "phrase": "List the zip code of all the charter schools in Fresno County Office of Education",
+      "type": "select",
+      "column": "schools.MailZip",
+      "operator": null,
+      "value": null,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
@@ -87,18 +99,18 @@
   "top_tables": [
     {
       "table": "frpm",
-      "score": 0.12774774774774775
+      "score": 0.12688057040998219
     },
     {
       "table": "schools",
-      "score": 0.10183908045977011
+      "score": 0.10121212121212121
     }
   ],
   "top_columns": [
     {
       "table": "frpm",
       "column": "Charter School (Y/N)",
-      "semantic_score": 0.2702702702702703,
+      "semantic_score": 0.26737967914438504,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.2,
@@ -108,12 +120,12 @@
       "null_ratio": 0.004506308832365312,
       "distinct_count": 2,
       "query_log_support": 0.0,
-      "relevance_score": 0.12774774774774775
+      "relevance_score": 0.12688057040998219
     },
     {
       "table": "frpm",
       "column": "Charter School Number",
-      "semantic_score": 0.24731182795698925,
+      "semantic_score": 0.24468085106382978,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.2,
@@ -123,12 +135,12 @@
       "null_ratio": 0.8831363909473262,
       "distinct_count": 1152,
       "query_log_support": 0.0,
-      "relevance_score": 0.12086021505376343
+      "relevance_score": 0.12007092198581559
     },
     {
       "table": "frpm",
       "column": "2013-14 CALPADS Fall 1 Certification Status",
-      "semantic_score": 0.27884615384615385,
+      "semantic_score": 0.2857142857142857,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.2,
@@ -138,12 +150,12 @@
       "null_ratio": 0.0,
       "distinct_count": 1,
       "query_log_support": 0.0,
-      "relevance_score": 0.11365384615384615
+      "relevance_score": 0.1157142857142857
     },
     {
       "table": "schools",
       "column": "School",
-      "semantic_score": 0.1839080459770115,
+      "semantic_score": 0.18181818181818182,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.2,
@@ -153,41 +165,11 @@
       "null_ratio": 0.07740585774058577,
       "distinct_count": 13875,
       "query_log_support": 0.0,
-      "relevance_score": 0.10183908045977011
-    },
-    {
-      "table": "frpm",
-      "column": "School Code",
-      "semantic_score": 0.18181818181818182,
-      "literal_match": 0,
-      "output_match": 0.08333333333333333,
-      "filter_match": 0.2,
-      "is_id_like": 0,
-      "is_date_like": 0,
-      "is_numeric_like": 0,
-      "null_ratio": 0.0,
-      "distinct_count": 9942,
-      "query_log_support": 0.0,
       "relevance_score": 0.10121212121212121
     },
     {
       "table": "schools",
       "column": "County",
-      "semantic_score": 0.1839080459770115,
-      "literal_match": 0,
-      "output_match": 0.16666666666666666,
-      "filter_match": 0.0,
-      "is_id_like": 0,
-      "is_date_like": 0,
-      "is_numeric_like": 0,
-      "null_ratio": 0.0,
-      "distinct_count": 58,
-      "query_log_support": 0.0,
-      "relevance_score": 0.08850574712643677
-    },
-    {
-      "table": "frpm",
-      "column": "County Code",
       "semantic_score": 0.18181818181818182,
       "literal_match": 0,
       "output_match": 0.16666666666666666,
@@ -201,24 +183,24 @@
       "relevance_score": 0.08787878787878788
     },
     {
-      "table": "schools",
-      "column": "Charter",
-      "semantic_score": 0.16,
+      "table": "frpm",
+      "column": "School Code",
+      "semantic_score": 0.1797752808988764,
       "literal_match": 0,
-      "output_match": 0.16666666666666666,
-      "filter_match": 0.0,
+      "output_match": 0.0,
+      "filter_match": 0.2,
       "is_id_like": 0,
       "is_date_like": 0,
       "is_numeric_like": 0,
-      "null_ratio": 0.07740585774058577,
-      "distinct_count": 2,
+      "null_ratio": 0.0,
+      "distinct_count": 9942,
       "query_log_support": 0.0,
-      "relevance_score": 0.08133333333333334
+      "relevance_score": 0.08393258426966291
     },
     {
       "table": "frpm",
       "column": "School Type",
-      "semantic_score": 0.17045454545454544,
+      "semantic_score": 0.16853932584269662,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.2,
@@ -228,12 +210,12 @@
       "null_ratio": 0.004506308832365312,
       "distinct_count": 17,
       "query_log_support": 0.0,
-      "relevance_score": 0.08113636363636363
+      "relevance_score": 0.08056179775280899
     },
     {
       "table": "schools",
       "column": "NCESSchool",
-      "semantic_score": 0.21348314606741572,
+      "semantic_score": 0.2111111111111111,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -243,12 +225,12 @@
       "null_ratio": 0.2849711636322515,
       "distinct_count": 12321,
       "query_log_support": 0.0,
-      "relevance_score": 0.08071161048689138
+      "relevance_score": 0.07999999999999999
     },
     {
       "table": "schools",
       "column": "Zip",
-      "semantic_score": 0.15204678362573099,
+      "semantic_score": 0.15028901734104047,
       "literal_match": 0,
       "output_match": 0.16666666666666666,
       "filter_match": 0.0,
@@ -258,12 +240,27 @@
       "null_ratio": 0.01656677598100192,
       "distinct_count": 11184,
       "query_log_support": 0.0,
-      "relevance_score": 0.07894736842105263
+      "relevance_score": 0.07842003853564547
+    },
+    {
+      "table": "schools",
+      "column": "Charter",
+      "semantic_score": 0.14689265536723164,
+      "literal_match": 0,
+      "output_match": 0.16666666666666666,
+      "filter_match": 0.0,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.07740585774058577,
+      "distinct_count": 2,
+      "query_log_support": 0.0,
+      "relevance_score": 0.07740112994350282
     },
     {
       "table": "frpm",
       "column": "School Name",
-      "semantic_score": 0.1590909090909091,
+      "semantic_score": 0.15730337078651685,
       "literal_match": 0,
       "output_match": 0.0,
       "filter_match": 0.2,
@@ -273,12 +270,12 @@
       "null_ratio": 0.0,
       "distinct_count": 8652,
       "query_log_support": 0.0,
-      "relevance_score": 0.07772727272727273
+      "relevance_score": 0.07719101123595505
     },
     {
       "table": "schools",
       "column": "EdOpsCode",
-      "semantic_score": 0.2033898305084746,
+      "semantic_score": 0.2011173184357542,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -288,12 +285,12 @@
       "null_ratio": 0.32291077688567227,
       "distinct_count": 13,
       "query_log_support": 0.0,
-      "relevance_score": 0.07768361581920905
+      "relevance_score": 0.07700186219739293
     },
     {
       "table": "frpm",
       "column": "Charter Funding Type",
-      "semantic_score": 0.1945945945945946,
+      "semantic_score": 0.1925133689839572,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -303,12 +300,12 @@
       "null_ratio": 0.8831363909473262,
       "distinct_count": 3,
       "query_log_support": 0.0,
-      "relevance_score": 0.07504504504504504
+      "relevance_score": 0.07442067736185383
     },
     {
       "table": "schools",
       "column": "GSoffered",
-      "semantic_score": 0.192090395480226,
+      "semantic_score": 0.18994413407821228,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -318,12 +315,12 @@
       "null_ratio": 0.21949564627388896,
       "distinct_count": 94,
       "query_log_support": 0.0,
-      "relevance_score": 0.07429378531073447
+      "relevance_score": 0.07364990689013035
     },
     {
       "table": "schools",
       "column": "EILCode",
-      "semantic_score": 0.18285714285714286,
+      "semantic_score": 0.1807909604519774,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -333,12 +330,12 @@
       "null_ratio": 0.07740585774058577,
       "distinct_count": 7,
       "query_log_support": 0.0,
-      "relevance_score": 0.07152380952380952
+      "relevance_score": 0.07090395480225989
     },
     {
       "table": "schools",
       "column": "SOCType",
-      "semantic_score": 0.18285714285714286,
+      "semantic_score": 0.1807909604519774,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -348,12 +345,12 @@
       "null_ratio": 0.07740585774058577,
       "distinct_count": 20,
       "query_log_support": 0.0,
-      "relevance_score": 0.07152380952380952
+      "relevance_score": 0.07090395480225989
     },
     {
       "table": "schools",
       "column": "Latitude",
-      "semantic_score": 0.18181818181818182,
+      "semantic_score": 0.1797752808988764,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -363,12 +360,27 @@
       "null_ratio": 0.2727015718647518,
       "distinct_count": 11436,
       "query_log_support": 0.0,
-      "relevance_score": 0.07121212121212121
+      "relevance_score": 0.07059925093632959
+    },
+    {
+      "table": "frpm",
+      "column": "County Code",
+      "semantic_score": 0.1797752808988764,
+      "literal_match": 0,
+      "output_match": 0.08333333333333333,
+      "filter_match": 0.0,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.0,
+      "distinct_count": 58,
+      "query_log_support": 0.0,
+      "relevance_score": 0.07059925093632959
     },
     {
       "table": "schools",
       "column": "FundingType",
-      "semantic_score": 0.1787709497206704,
+      "semantic_score": 0.17679558011049723,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -378,12 +390,12 @@
       "null_ratio": 0.9071582042293339,
       "distinct_count": 3,
       "query_log_support": 0.0,
-      "relevance_score": 0.07029795158286778
+      "relevance_score": 0.06970534069981583
     },
     {
       "table": "schools",
       "column": "DOCType",
-      "semantic_score": 0.17142857142857143,
+      "semantic_score": 0.1694915254237288,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -393,12 +405,12 @@
       "null_ratio": 0.0,
       "distinct_count": 12,
       "query_log_support": 0.0,
-      "relevance_score": 0.0680952380952381
+      "relevance_score": 0.06751412429378531
     },
     {
       "table": "schools",
       "column": "CDSCode",
-      "semantic_score": 0.17142857142857143,
+      "semantic_score": 0.1694915254237288,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -408,12 +420,12 @@
       "null_ratio": 0.0,
       "distinct_count": 17686,
       "query_log_support": 0.0,
-      "relevance_score": 0.0680952380952381
+      "relevance_score": 0.06751412429378531
     },
     {
       "table": "schools",
       "column": "MailZip",
-      "semantic_score": 0.17142857142857143,
+      "semantic_score": 0.1694915254237288,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -423,12 +435,12 @@
       "null_ratio": 0.01651023408345584,
       "distinct_count": 10298,
       "query_log_support": 0.0,
-      "relevance_score": 0.0680952380952381
+      "relevance_score": 0.06751412429378531
     },
     {
       "table": "schools",
       "column": "Longitude",
-      "semantic_score": 0.1694915254237288,
+      "semantic_score": 0.16759776536312848,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -438,12 +450,12 @@
       "null_ratio": 0.2727015718647518,
       "distinct_count": 11278,
       "query_log_support": 0.0,
-      "relevance_score": 0.06751412429378531
+      "relevance_score": 0.06694599627560521
     },
     {
       "table": "schools",
       "column": "StreetAbr",
-      "semantic_score": 0.1694915254237288,
+      "semantic_score": 0.16759776536312848,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -453,12 +465,12 @@
       "null_ratio": 0.016623317878548004,
       "distinct_count": 13633,
       "query_log_support": 0.0,
-      "relevance_score": 0.06751412429378531
+      "relevance_score": 0.06694599627560521
     },
     {
       "table": "schools",
       "column": "StatusType",
-      "semantic_score": 0.16853932584269662,
+      "semantic_score": 0.16666666666666666,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -468,12 +480,12 @@
       "null_ratio": 0.0,
       "distinct_count": 4,
       "query_log_support": 0.0,
-      "relevance_score": 0.06722846441947565
+      "relevance_score": 0.06666666666666667
     },
     {
       "table": "schools",
       "column": "Virtual",
-      "semantic_score": 0.16,
+      "semantic_score": 0.15819209039548024,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -483,27 +495,12 @@
       "null_ratio": 0.38832975234648875,
       "distinct_count": 3,
       "query_log_support": 0.0,
-      "relevance_score": 0.06466666666666666
-    },
-    {
-      "table": "schools",
-      "column": "MailCity",
-      "semantic_score": 0.1590909090909091,
-      "literal_match": 0,
-      "output_match": 0.08333333333333333,
-      "filter_match": 0.0,
-      "is_id_like": 0,
-      "is_date_like": 0,
-      "is_numeric_like": 0,
-      "null_ratio": 0.01651023408345584,
-      "distinct_count": 1132,
-      "query_log_support": 0.0,
-      "relevance_score": 0.06439393939393939
+      "relevance_score": 0.06412429378531073
     },
     {
       "table": "schools",
       "column": "District",
-      "semantic_score": 0.1590909090909091,
+      "semantic_score": 0.15730337078651685,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -513,12 +510,12 @@
       "null_ratio": 0.0,
       "distinct_count": 1411,
       "query_log_support": 0.0,
-      "relevance_score": 0.06439393939393939
+      "relevance_score": 0.06385767790262172
     },
     {
       "table": "schools",
-      "column": "MailState",
-      "semantic_score": 0.15819209039548024,
+      "column": "MailCity",
+      "semantic_score": 0.15730337078651685,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -526,14 +523,14 @@
       "is_date_like": 0,
       "is_numeric_like": 0,
       "null_ratio": 0.01651023408345584,
-      "distinct_count": 1,
+      "distinct_count": 1132,
       "query_log_support": 0.0,
-      "relevance_score": 0.06412429378531073
+      "relevance_score": 0.06385767790262172
     },
     {
       "table": "schools",
       "column": "EdOpsName",
-      "semantic_score": 0.15819209039548024,
+      "semantic_score": 0.1564245810055866,
       "literal_match": 0,
       "output_match": 0.08333333333333333,
       "filter_match": 0.0,
@@ -543,15 +540,30 @@
       "null_ratio": 0.32291077688567227,
       "distinct_count": 13,
       "query_log_support": 0.0,
-      "relevance_score": 0.06412429378531073
+      "relevance_score": 0.06359404096834265
+    },
+    {
+      "table": "schools",
+      "column": "MailState",
+      "semantic_score": 0.1564245810055866,
+      "literal_match": 0,
+      "output_match": 0.08333333333333333,
+      "filter_match": 0.0,
+      "is_id_like": 0,
+      "is_date_like": 0,
+      "is_numeric_like": 0,
+      "null_ratio": 0.01651023408345584,
+      "distinct_count": 1,
+      "query_log_support": 0.0,
+      "relevance_score": 0.06359404096834265
     }
   ],
   "top_joins": [],
   "business_rules": [],
   "few_shot_examples": [],
   "confidence": {
-    "schema_linking": 0.12774774774774775,
+    "schema_linking": 0.12688057040998219,
     "literal_mapping": 0.0,
-    "evidence_parsing": 0.16666666666666666
+    "evidence_parsing": 0.23076923076923078
   }
 }

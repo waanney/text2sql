@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr > 500;",
+    "sql": "SELECT School \nFROM schools \nWHERE Magnet = 1 AND GSserved > 500;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "6_cand_0",
@@ -9,21 +9,27 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.3520951271057129,
-      "row_count": 3,
+      "runtime_sec": 0.021231651306152344,
+      "row_count": 494,
       "column_count": 1,
       "columns": [
         "School"
       ],
       "sample_rows": [
         [
-          "Millikan High"
+          "California School for the Blind"
         ],
         [
-          "Polytechnic High"
+          "Alameda Science and Technology Institute"
         ],
         [
-          "Troy High"
+          "Maya Lin"
+        ],
+        [
+          "Encinal Junior Jets"
+        ],
+        [
+          "Longfellow Arts and Technology Middle"
         ]
       ],
       "is_empty": false
@@ -31,7 +37,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.NCESDist,\n    s.CharterNum,\n    s.OpenDate,\n    s.ClosedDate\nFROM \n    schools s\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    s.Magnet = 1\n    AND sa.NumTstTakr > 500;",
+    "sql": "SELECT School \nFROM schools \nWHERE Magnet = 1 AND GSserved >= 500;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "6_cand_1",
@@ -40,37 +46,27 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.0332036018371582,
-      "row_count": 3,
-      "column_count": 5,
+      "runtime_sec": 0.01920628547668457,
+      "row_count": 494,
+      "column_count": 1,
       "columns": [
-        "School",
-        "NCESDist",
-        "CharterNum",
-        "OpenDate",
-        "ClosedDate"
+        "School"
       ],
       "sample_rows": [
         [
-          "Millikan High",
-          "0622500",
-          null,
-          "1956-09-01",
-          null
+          "California School for the Blind"
         ],
         [
-          "Polytechnic High",
-          "0622500",
-          null,
-          "1980-07-01",
-          null
+          "Alameda Science and Technology Institute"
         ],
         [
-          "Troy High",
-          "0614760",
-          null,
-          "1980-07-01",
-          null
+          "Maya Lin"
+        ],
+        [
+          "Encinal Junior Jets"
+        ],
+        [
+          "Longfellow Arts and Technology Middle"
         ]
       ],
       "is_empty": false
@@ -78,47 +74,44 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND s.NumTstTakr > 500;\n```",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Magnet = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "6_cand_2",
     "question_id": 6,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: s.NumTstTakr",
-      "runtime_sec": 0.003730297088623047,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02507305145263672,
+      "row_count": 504,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "California School for the Blind"
+        ],
+        [
+          "Alameda Science and Technology Institute"
+        ],
+        [
+          "Maya Lin"
+        ],
+        [
+          "Encinal Junior Jets"
+        ],
+        [
+          "Longfellow Arts and Technology Middle"
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND s.NumTstTakr > 500;",
-        "error": "no such column: s.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND s.NumTstTakr > 500;\n```",
-        "repair_time_sec": 1.726773977279663,
-        "input_tokens": 1319,
-        "output_tokens": 28
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND s.NumTstTakr > 500;\n```",
-        "error": "no such column: s.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND s.NumTstTakr > 500;\n```",
-        "repair_time_sec": 1.7521107196807861,
-        "input_tokens": 1322,
-        "output_tokens": 28
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "SELECT s.School, s.Magnet, s.EILName, s.GSoffered\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nWHERE sat.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%' OR s.GSoffered LIKE '%Magnet%');",
+    "sql": "```sql\nSELECT s.School, s.Magnet\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Magnet IS NOT NULL);\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "6_cand_3",
@@ -127,7 +120,61 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.023487567901611328,
+      "runtime_sec": 0.022603273391723633,
+      "row_count": 18,
+      "column_count": 2,
+      "columns": [
+        "School",
+        "Magnet"
+      ],
+      "sample_rows": [
+        [
+          "Arcadia High",
+          0
+        ],
+        [
+          "Crescenta Valley High",
+          0
+        ],
+        [
+          "Millikan High",
+          1
+        ],
+        [
+          "Polytechnic High",
+          1
+        ],
+        [
+          "Granada Hills Charter High",
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.Magnet\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);",
+        "error": "no such column: s.MagnetProgram",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School, s.Magnet\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Magnet IS NOT NULL);\n```",
+        "repair_time_sec": 1.9830145835876465,
+        "input_tokens": 1327,
+        "output_tokens": 36
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.School, s.Magnet, s.EILName, s.GSoffered\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%' OR s.GSoffered LIKE '%Magnet%');",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "6_cand_4",
+    "question_id": 6,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021257638931274414,
       "row_count": 3,
       "column_count": 4,
       "columns": [
@@ -161,89 +208,55 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 1, 12)\nWHERE sat.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILCode LIKE '%MAGNET%');\n```",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_1",
-    "candidate_id": "6_cand_4",
-    "question_id": 6,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.013704538345336914,
-      "row_count": 0,
-      "column_count": 1,
-      "columns": [
-        "School"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.School\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 1, 12)\nWHERE sat.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILCode LIKE '%MAGNET%');",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 1, 12)\nWHERE sat.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILCode LIKE '%MAGNET%');\n```",
-        "repair_time_sec": 2.3200838565826416,
-        "input_tokens": 1348,
-        "output_tokens": 36
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 1, 12)\nWHERE sat.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILCode LIKE '%MAGNET%');\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 1, 12)\nWHERE sat.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILCode LIKE '%MAGNET%');\n```",
-        "repair_time_sec": 2.319481134414673,
-        "input_tokens": 1350,
-        "output_tokens": 36
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT DISTINCT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = REPLACE(st.cds, ' ', '')\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);\n```",
+    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Magnet IS NOT NULL);\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "6_cand_5",
     "question_id": 6,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: s.MagnetProgram",
-      "runtime_sec": 0.0027077198028564453,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03149724006652832,
+      "row_count": 18,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "Arcadia High"
+        ],
+        [
+          "Crescenta Valley High"
+        ],
+        [
+          "Millikan High"
+        ],
+        [
+          "Polytechnic High"
+        ],
+        [
+          "Granada Hills Charter High"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = REPLACE(st.cds, ' ', '')\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);",
+        "original_sql": "SELECT s.School\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);",
         "error": "no such column: s.MagnetProgram",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = REPLACE(st.cds, ' ', '')\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);\n```",
-        "repair_time_sec": 2.116206169128418,
-        "input_tokens": 1331,
-        "output_tokens": 40
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT DISTINCT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = REPLACE(st.cds, ' ', '')\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);\n```",
-        "error": "no such column: s.MagnetProgram",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = REPLACE(st.cds, ' ', '')\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);\n```",
-        "repair_time_sec": 2.1165547370910645,
-        "input_tokens": 1333,
-        "output_tokens": 40
+        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Magnet IS NOT NULL);\n```",
+        "repair_time_sec": 1.88407301902771,
+        "input_tokens": 1326,
+        "output_tokens": 35
       }
     ]
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Charter = 1);",
+    "sql": "SELECT \n    s.School,\n    s.Magnet\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.School = sa.sname\nWHERE \n    f.`2013-14 CALPADS Fall 1 Certification Status` = 1\n    AND sa.NumTstTakr > 500\n    AND (s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%');",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "6_cand_6",
@@ -252,27 +265,29 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.023710966110229492,
-      "row_count": 5,
-      "column_count": 1,
+      "runtime_sec": 0.02953195571899414,
+      "row_count": 4,
+      "column_count": 2,
       "columns": [
-        "School"
+        "School",
+        "Magnet"
       ],
       "sample_rows": [
         [
-          "Millikan High"
+          "Millikan High",
+          1
         ],
         [
-          "Polytechnic High"
+          "Polytechnic High",
+          1
         ],
         [
-          "Granada Hills Charter High"
+          "Troy High",
+          1
         ],
         [
-          "Troy High"
-        ],
-        [
-          "Franklin High"
+          "Franklin High",
+          1
         ]
       ],
       "is_empty": false
@@ -280,7 +295,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Charter = 1);",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE s.Magnet = 1 AND sa.NumTstTakr > 500;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "6_cand_7",
@@ -289,8 +304,8 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02519392967224121,
-      "row_count": 5,
+      "runtime_sec": 0.03040289878845215,
+      "row_count": 4,
       "column_count": 1,
       "columns": [
         "School"
@@ -301,9 +316,6 @@
         ],
         [
           "Polytechnic High"
-        ],
-        [
-          "Granada Hills Charter High"
         ],
         [
           "Troy High"
@@ -317,7 +329,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.NumTstTakr >= 500 AND s.Magnet = 1;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrMath >= 500 AND s.Magnet = 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "6_cand_8",
@@ -326,21 +338,27 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.021499156951904297,
-      "row_count": 3,
+      "runtime_sec": 0.02414989471435547,
+      "row_count": 42,
       "column_count": 1,
       "columns": [
         "School"
       ],
       "sample_rows": [
         [
-          "Millikan High"
+          "Design Science Early College High"
         ],
         [
-          "Polytechnic High"
+          "Anderson W. Clark Magnet High"
         ],
         [
-          "Troy High"
+          "California Academy of Mathematics and Science"
+        ],
+        [
+          "Grover Cleveland Charter High"
+        ],
+        [
+          "Los Angeles Center for Enriched Studies"
         ]
       ],
       "is_empty": false
@@ -348,7 +366,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.NumTstTakr >= 500 AND s.Magnet = 1;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrMath >= 500 AND s.Magnet = 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "6_cand_9",
@@ -357,21 +375,27 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02130722999572754,
-      "row_count": 3,
+      "runtime_sec": 0.0243380069732666,
+      "row_count": 42,
       "column_count": 1,
       "columns": [
         "School"
       ],
       "sample_rows": [
         [
-          "Millikan High"
+          "Design Science Early College High"
         ],
         [
-          "Polytechnic High"
+          "Anderson W. Clark Magnet High"
         ],
         [
-          "Troy High"
+          "California Academy of Mathematics and Science"
+        ],
+        [
+          "Grover Cleveland Charter High"
+        ],
+        [
+          "Los Angeles Center for Enriched Studies"
         ]
       ],
       "is_empty": false
@@ -379,7 +403,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr >= 500;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath >= 500 AND s.Magnet = 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "6_cand_10",
@@ -388,7 +412,124 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.021686315536499023,
+      "runtime_sec": 0.031229257583618164,
+      "row_count": 42,
+      "column_count": 1,
+      "columns": [
+        "School"
+      ],
+      "sample_rows": [
+        [
+          "Design Science Early College High"
+        ],
+        [
+          "Anderson W. Clark Magnet High"
+        ],
+        [
+          "California Academy of Mathematics and Science"
+        ],
+        [
+          "Grover Cleveland Charter High"
+        ],
+        [
+          "Los Angeles Center for Enriched Studies"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND sa.NumTstTakr > 500;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "6_cand_11",
+    "question_id": 6,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.School_Code",
+      "runtime_sec": 0.004685640335083008,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;\n```",
+        "repair_time_sec": 2.5142018795013428,
+        "input_tokens": 1336,
+        "output_tokens": 45
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;\n```",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND sa.NumTstTakr > 500;\n```",
+        "repair_time_sec": 2.88100004196167,
+        "input_tokens": 1339,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 \nOR 'Magnet Program' IN (SELECT DISTINCT GSoffered FROM schools WHERE Magnet = 1)\nAND s.CDSCode IN (SELECT cds FROM satscores WHERE NumTstTakr > 500);\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "6_cand_12",
+    "question_id": 6,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.School_Code",
+      "runtime_sec": 0.0030231475830078125,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 OR 'Magnet Program' IN (SELECT DISTINCT GSoffered FROM schools WHERE Magnet = 1)\nAND s.NumTstTakr > 500;",
+        "error": "no such column: s.NumTstTakr",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 \nOR 'Magnet Program' IN (SELECT DISTINCT GSoffered FROM schools WHERE Magnet = 1)\nAND s.CDSCode IN (SELECT cds FROM satscores WHERE NumTstTakr > 500);\n```",
+        "repair_time_sec": 2.515883445739746,
+        "input_tokens": 1336,
+        "output_tokens": 54
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 \nOR 'Magnet Program' IN (SELECT DISTINCT GSoffered FROM schools WHERE Magnet = 1)\nAND s.CDSCode IN (SELECT cds FROM satscores WHERE NumTstTakr > 500);\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 \nOR 'Magnet Program' IN (SELECT DISTINCT GSoffered FROM schools WHERE Magnet = 1)\nAND s.CDSCode IN (SELECT cds FROM satscores WHERE NumTstTakr > 500);\n```",
+        "repair_time_sec": 2.517489433288574,
+        "input_tokens": 1348,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE s.Magnet = 1 AND st.NumTstTakr > 500;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "6_cand_13",
+    "question_id": 6,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019740819931030273,
       "row_count": 3,
       "column_count": 1,
       "columns": [
@@ -410,174 +551,42 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Magnet = 1 OR s.Charter = 1\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_0",
-    "candidate_id": "6_cand_11",
-    "question_id": 6,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: s.NumTstTakr",
-      "runtime_sec": 0.003020763397216797,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Magnet = 1 OR s.Charter = 1\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;",
-        "error": "no such column: s.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Magnet = 1 OR s.Charter = 1\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;\n```",
-        "repair_time_sec": 2.5516600608825684,
-        "input_tokens": 1336,
-        "output_tokens": 45
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Magnet = 1 OR s.Charter = 1\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;\n```",
-        "error": "no such column: s.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Magnet = 1 OR s.Charter = 1\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;\n```",
-        "repair_time_sec": 2.540982484817505,
-        "input_tokens": 1339,
-        "output_tokens": 45
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_1",
-    "candidate_id": "6_cand_12",
-    "question_id": 6,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: s.NumTstTakr",
-      "runtime_sec": 0.002913951873779297,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500;",
-        "error": "no such column: s.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500;\n```",
-        "repair_time_sec": 2.305035352706909,
-        "input_tokens": 1331,
-        "output_tokens": 40
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500;\n```",
-        "error": "no such column: s.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500;\n```",
-        "repair_time_sec": 2.30596661567688,
-        "input_tokens": 1333,
-        "output_tokens": 40
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE (s.Magnet = 1 OR s.Charter = 1) \nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 \nAND s.NumTstTakr > 500;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_2",
-    "candidate_id": "6_cand_13",
-    "question_id": 6,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: s.NumTstTakr",
-      "runtime_sec": 0.002902507781982422,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 OR s.Charter = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500;",
-        "error": "no such column: s.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE (s.Magnet = 1 OR s.Charter = 1) \nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 \nAND s.NumTstTakr > 500;\n```",
-        "repair_time_sec": 2.584979772567749,
-        "input_tokens": 1336,
-        "output_tokens": 45
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE (s.Magnet = 1 OR s.Charter = 1) \nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 \nAND s.NumTstTakr > 500;\n```",
-        "error": "no such column: s.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE (s.Magnet = 1 OR s.Charter = 1) \nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 \nAND s.NumTstTakr > 500;\n```",
-        "repair_time_sec": 2.594548463821411,
-        "input_tokens": 1339,
-        "output_tokens": 45
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores f ON s.CDSCode = f.cds\nWHERE f.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');\n```",
+    "sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');\n```",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "6_cand_14",
     "question_id": 6,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02395772933959961,
-      "row_count": 3,
-      "column_count": 1,
-      "columns": [
-        "School"
-      ],
-      "sample_rows": [
-        [
-          "Millikan High"
-        ],
-        [
-          "Polytechnic High"
-        ],
-        [
-          "Troy High"
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: s.NumTstTakr",
+      "runtime_sec": 0.004370689392089844,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');",
-        "error": "no such column: f.NumTstTakr",
+        "original_sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');",
+        "error": "no such column: s.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');\n```",
-        "repair_time_sec": 2.0333268642425537,
-        "input_tokens": 1324,
-        "output_tokens": 33
+        "fixed_sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');\n```",
+        "repair_time_sec": 2.491971969604492,
+        "input_tokens": 1336,
+        "output_tokens": 45
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');\n```",
-        "error": "no such column: f.NumTstTakr",
+        "original_sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');\n```",
+        "error": "no such column: s.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School\nFROM schools s\nJOIN satscores f ON s.CDSCode = f.cds\nWHERE f.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');\n```",
-        "repair_time_sec": 2.036559820175171,
-        "input_tokens": 1327,
-        "output_tokens": 33
+        "fixed_sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');\n```",
+        "repair_time_sec": 2.4924588203430176,
+        "input_tokens": 1339,
+        "output_tokens": 45
       }
     ]
   }

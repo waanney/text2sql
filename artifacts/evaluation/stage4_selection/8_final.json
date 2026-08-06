@@ -1,75 +1,43 @@
 {
   "question_id": 8,
   "db_id": "california_schools",
-  "final_sql": "SELECT SUM(s.NumTstTakr)\nFROM satscores s\nJOIN frpm f ON s.cds = f.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
-  "best_candidate_id": "8_cand_14",
+  "final_sql": "SELECT SUM(satscores.NumTstTakr)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);",
+  "best_candidate_id": "8_cand_6",
   "ranked_candidates": [
     [
-      "8_cand_14",
-      3.2
-    ],
-    [
-      "8_cand_7",
+      "8_cand_6",
       2.4000000000000004
     ],
     [
-      "8_cand_5",
+      "8_cand_4",
       1.6
     ],
     [
-      "8_cand_4",
+      "8_cand_14",
       0.8
     ],
     [
-      "8_cand_6",
+      "8_cand_9",
       0.0
     ]
   ],
   "comparison_logs": [
     {
-      "candidate_a": "8_cand_6",
-      "candidate_b": "8_cand_7",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "8_cand_6",
+      "candidate_a": "8_cand_9",
       "candidate_b": "8_cand_4",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "8_cand_6",
-      "candidate_b": "8_cand_5",
+      "candidate_a": "8_cand_9",
+      "candidate_b": "8_cand_6",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "8_cand_6",
-      "candidate_b": "8_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "8_cand_7",
-      "candidate_b": "8_cand_4",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "8_cand_7",
-      "candidate_b": "8_cand_5",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "8_cand_7",
+      "candidate_a": "8_cand_9",
       "candidate_b": "8_cand_14",
       "winner": "B",
       "confidence": 0.8,
@@ -77,7 +45,7 @@
     },
     {
       "candidate_a": "8_cand_4",
-      "candidate_b": "8_cand_5",
+      "candidate_b": "8_cand_6",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -85,37 +53,37 @@
     {
       "candidate_a": "8_cand_4",
       "candidate_b": "8_cand_14",
-      "winner": "B",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "8_cand_5",
+      "candidate_a": "8_cand_6",
       "candidate_b": "8_cand_14",
-      "winner": "B",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "```sql\nSELECT SUM(s.NumTstTakr)\nFROM satscores s\nJOIN frpm f ON s.cds = f.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-    "source": "simple_generator",
-    "prompt_id": "simple_v1",
-    "candidate_id": "8_cand_14",
+    "sql": "```sql\nSELECT SUM(satscores.NumTstTakr)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "8_cand_6",
     "question_id": 8,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.013300657272338867,
+      "runtime_sec": 0.01351475715637207,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "SUM(s.NumTstTakr)"
+        "SUM(satscores.NumTstTakr)"
       ],
       "sample_rows": [
         [
-          2936
+          459
         ]
       ],
       "is_empty": false
@@ -123,16 +91,16 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT SUM(s.NumTstTakr)\nFROM satscores s\nJOIN frpm f ON s.cds = f.CDSCode\nWHERE f.School Type = 'K-12 Schools (Public)'\nORDER BY f.FRPM Count (K-12) DESC\nLIMIT 1;",
-        "error": "near \"Type\": syntax error",
+        "original_sql": "SELECT SUM(satscores.NumTstTakr)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.FRPM Count (K-12) IN (\n    SELECT MAX(FRPM Count (K-12))\n    FROM frpm\n);",
+        "error": "near \"Count\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT SUM(s.NumTstTakr)\nFROM satscores s\nJOIN frpm f ON s.cds = f.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.251383066177368,
-        "input_tokens": 1328,
-        "output_tokens": 37
+        "fixed_sql": "```sql\nSELECT SUM(satscores.NumTstTakr)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.`FRPM Count (K-12)` IN (\n    SELECT MAX(`FRPM Count (K-12)`)\n    FROM frpm\n);\n```",
+        "repair_time_sec": 2.2533798217773438,
+        "input_tokens": 1323,
+        "output_tokens": 32
       }
     ]
   },
   "num_original_candidates": 15,
-  "num_representatives": 5
+  "num_representatives": 4
 }

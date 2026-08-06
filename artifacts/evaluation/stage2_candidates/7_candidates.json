@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumGE1500 > 0 AND st.AvgScrMath + st.AvgScrRead + st.AvgScrWrite > 3 * 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumGE1500) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrWrite > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "7_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School Code = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "7_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.Phone,\n    COUNT(st.NumTstTakr) AS NumTestTakers\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores st ON s.School = st.sname\nWHERE \n    st.AvgScrSAT > 1500\nGROUP BY \n    s.Phone\nORDER BY \n    NumTestTakers DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.HighGrade IN ('11', '12')\nAND f.School Type = 'High Schools (Public)'\nAND s.State = 'CA'\nORDER BY f.NumTstTakr DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "7_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumGE1500 > 0\nORDER BY st.NumGE1500 DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "7_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumGE1500 > 0\nORDER BY st.NumGE1500 DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "7_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.NumGE1500 > 0\nORDER BY T1.NumGE1500 DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "7_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "7_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON f.School Code = st.cds\nWHERE st.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumTstTakr) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sat.NumTstTakr) DESC\nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "7_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "7_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "7_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrSAT > 1500\nGROUP BY s.School\nORDER BY COUNT(ss.NumTstTakr) DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "7_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School Code = s.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE sats.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "7_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School Code = sa.cds\nWHERE sa.NumTstTakr > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School Code = s.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE sats.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "7_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School Code = sa.cds\nWHERE sa.NumTstTakr > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "7_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumGE1500 > 0\nGROUP BY s.School\nORDER BY SUM(st.NumGE1500) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School Type = 'High Schools (Public)'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nGROUP BY s.School\nORDER BY SUM(f.NumTstTakr) DESC\nLIMIT 1;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "7_cand_14",

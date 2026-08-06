@@ -1,46 +1,31 @@
 [
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.Enrollment('Ages 5-17') < 100;\n```",
+    "sql": "SELECT COUNT(*) \nFROM schools \nWHERE District = 'Alameda County Office of Education' \n  AND StatusType = 'Merged' \n  AND NCESSchool IN (\n    SELECT NCESSchool \n    FROM satscores \n    WHERE NumTstTakr < 100\n  );",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "16_cand_0",
     "question_id": 16,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "near \"(\": syntax error",
-      "runtime_sec": 0.003529071807861328,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03473830223083496,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
-        "error": "no such column: f.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.040461540222168,
-        "input_tokens": 1324,
-        "output_tokens": 33
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
-        "error": "no such column: f.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.Enrollment('Ages 5-17') < 100;\n```",
-        "repair_time_sec": 2.1676268577575684,
-        "input_tokens": 1327,
-        "output_tokens": 35
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
+    "sql": "```sql\nSELECT COUNT(*) \nFROM schools \nWHERE County = 'Alameda' AND StatusType = 'Merged' AND NumTstTakr < 100;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "16_cand_1",
@@ -48,8 +33,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: frpm.NumTstTakr",
-      "runtime_sec": 0.0036301612854003906,
+      "error": "no such column: NumTstTakr",
+      "runtime_sec": 0.004359245300292969,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -59,65 +44,50 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;",
-        "error": "no such column: frpm.NumTstTakr",
+        "original_sql": "SELECT COUNT(*) \nFROM schools \nWHERE County = 'Alameda' AND StatusType = 'Merged' AND NumTstTakr < 100;",
+        "error": "no such column: NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "repair_time_sec": 1.8010036945343018,
-        "input_tokens": 1316,
-        "output_tokens": 26
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nWHERE County = 'Alameda' AND StatusType = 'Merged' AND NumTstTakr < 100;\n```",
+        "repair_time_sec": 1.4541904926300049,
+        "input_tokens": 1314,
+        "output_tokens": 23
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "error": "no such column: frpm.NumTstTakr",
+        "original_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nWHERE County = 'Alameda' AND StatusType = 'Merged' AND NumTstTakr < 100;\n```",
+        "error": "no such column: NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "repair_time_sec": 1.8021342754364014,
-        "input_tokens": 1319,
-        "output_tokens": 26
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nWHERE County = 'Alameda' AND StatusType = 'Merged' AND NumTstTakr < 100;\n```",
+        "repair_time_sec": 1.452437162399292,
+        "input_tokens": 1316,
+        "output_tokens": 23
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
+    "sql": "SELECT COUNT(*) \nFROM schools \nWHERE District = 'Alameda County Office of Education' \nAND StatusType = 'Merged' \nAND NCESSchool IN (\n    SELECT NCESSchool \n    FROM satscores \n    GROUP BY NCESSchool \n    HAVING SUM(NumTstTakr) < 100\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "16_cand_2",
     "question_id": 16,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: frpm.NumTstTakr",
-      "runtime_sec": 0.0029878616333007812,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.031816959381103516,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;",
-        "error": "no such column: frpm.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "repair_time_sec": 1.7988300323486328,
-        "input_tokens": 1316,
-        "output_tokens": 26
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "error": "no such column: frpm.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "repair_time_sec": 1.80568528175354,
-        "input_tokens": 1319,
-        "output_tokens": 26
-      }
-    ]
+    "repair_history": []
   },
   {
     "sql": "SELECT COUNT(*)\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
@@ -129,7 +99,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.0196993350982666,
+      "runtime_sec": 0.020748376846313477,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -145,7 +115,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(*) \nFROM satscores \nJOIN schools ON satscores.cds = schools.CDSCode \nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "16_cand_4",
@@ -154,7 +124,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02009749412536621,
+      "runtime_sec": 0.027027606964111328,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -170,7 +140,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.`County Name` = 'Alameda' AND satscores.NumTstTakr < 100;\n```",
+    "sql": "SELECT COUNT(*)\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "16_cand_5",
@@ -179,133 +149,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014190673828125,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "COUNT(*)"
-      ],
-      "sample_rows": [
-        [
-          47
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.School Name\nWHERE frpm.County = 'Alameda' AND satscores.NumTstTakr < 100;",
-        "error": "near \"Name\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.County = 'Alameda' AND satscores.NumTstTakr < 100;\n```",
-        "repair_time_sec": 1.9317200183868408,
-        "input_tokens": 1318,
-        "output_tokens": 27
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.County = 'Alameda' AND satscores.NumTstTakr < 100;\n```",
-        "error": "no such column: frpm.County",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.`County Name` = 'Alameda' AND satscores.NumTstTakr < 100;\n```",
-        "repair_time_sec": 1.9763352870941162,
-        "input_tokens": 1320,
-        "output_tokens": 28
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.Enrollment_12 < 100;\n```",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_0",
-    "candidate_id": "16_cand_6",
-    "question_id": 16,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: frpm.Enrollment_12",
-      "runtime_sec": 0.0031485557556152344,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;",
-        "error": "no such column: frpm.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.0277695655822754,
-        "input_tokens": 1322,
-        "output_tokens": 31
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "error": "no such column: frpm.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.Enrollment_12 < 100;\n```",
-        "repair_time_sec": 2.021226644515991,
-        "input_tokens": 1324,
-        "output_tokens": 31
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.Enrollment_12 < 100;\n```",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_1",
-    "candidate_id": "16_cand_7",
-    "question_id": 16,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: frpm.Enrollment_12",
-      "runtime_sec": 0.002866983413696289,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;",
-        "error": "no such column: frpm.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.077887773513794,
-        "input_tokens": 1322,
-        "output_tokens": 31
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;\n```",
-        "error": "no such column: frpm.NumTstTakr",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.Enrollment_12 < 100;\n```",
-        "repair_time_sec": 2.024186611175537,
-        "input_tokens": 1324,
-        "output_tokens": 31
-      }
-    ]
-  },
-  {
-    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.StatusType = 'Merged'\nAND schools.County = 'Alameda'\nAND satscores.NumTstTakr < 100;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "16_cand_8",
-    "question_id": 16,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.019835472106933594,
+      "runtime_sec": 0.02234029769897461,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -321,127 +165,178 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Merged'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.District = 'Alameda County Office of Education'\n  AND f.NumTstTakr < 100;\n```",
+    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "16_cand_6",
+    "question_id": 16,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02093338966369629,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "16_cand_7",
+    "question_id": 16,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.020466089248657227,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Merged'\n  AND s.County = 'Alameda'\n  AND ss.NumTstTakr < 100;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "16_cand_8",
+    "question_id": 16,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.025960683822631836,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.StatusType = 'Merged'\n  AND s.County = 'Alameda'\n  AND sa.NumTstTakr < 100;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "16_cand_9",
     "question_id": 16,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.School_Type",
-      "runtime_sec": 0.0028541088104248047,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02219986915588379,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Merged'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.District = 'Alameda County Office of Education'\n  AND f.NumTstTakr < 100;",
-        "error": "no such column: f.School_Type",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Merged'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.District = 'Alameda County Office of Education'\n  AND f.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.5680348873138428,
-        "input_tokens": 1337,
-        "output_tokens": 46
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Merged'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.District = 'Alameda County Office of Education'\n  AND f.NumTstTakr < 100;\n```",
-        "error": "no such column: f.School_Type",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Merged'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.District = 'Alameda County Office of Education'\n  AND f.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.563764810562134,
-        "input_tokens": 1340,
-        "output_tokens": 46
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged'\nAND frpm.School_Type = 'Elementary Schools (Public)'\nAND frpm.NumTstTakr < 100;\n```",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE s.StatusType = 'Merged'\n  AND s.County = 'Alameda'\n  AND st.NumTstTakr < 100;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "16_cand_10",
     "question_id": 16,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: frpm.School_Type",
-      "runtime_sec": 0.0051326751708984375,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.020249366760253906,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged'\nAND frpm.School_Type = 'Elementary Schools (Public)'\nAND frpm.NumTstTakr < 100;",
-        "error": "no such column: frpm.School_Type",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged'\nAND frpm.School_Type = 'Elementary Schools (Public)'\nAND frpm.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.1954121589660645,
-        "input_tokens": 1324,
-        "output_tokens": 33
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged'\nAND frpm.School_Type = 'Elementary Schools (Public)'\nAND frpm.NumTstTakr < 100;\n```",
-        "error": "no such column: frpm.School_Type",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged'\nAND frpm.School_Type = 'Elementary Schools (Public)'\nAND frpm.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.201383590698242,
-        "input_tokens": 1327,
-        "output_tokens": 33
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores f ON s.CDSCode = f.cds\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "16_cand_11",
     "question_id": 16,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.NumTstTakr",
-      "runtime_sec": 0.003214597702026367,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02596306800842285,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
         "error": "no such column: f.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.1163079738616943,
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "repair_time_sec": 1.942920207977295,
         "input_tokens": 1324,
         "output_tokens": 33
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
         "error": "no such column: f.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.115556240081787,
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores f ON s.CDSCode = f.cds\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "repair_time_sec": 1.944930076599121,
         "input_tokens": 1327,
         "output_tokens": 33
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+    "sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "16_cand_12",
@@ -450,7 +345,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: f.NumTstTakr",
-      "runtime_sec": 0.002586841583251953,
+      "runtime_sec": 0.004675149917602539,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -460,82 +355,94 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
+        "original_sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
         "error": "no such column: f.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.10530424118042,
+        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "repair_time_sec": 2.012753486633301,
         "input_tokens": 1324,
         "output_tokens": 33
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "original_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
         "error": "no such column: f.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.1127500534057617,
+        "fixed_sql": "```sql\nSELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "repair_time_sec": 2.0176427364349365,
         "input_tokens": 1327,
         "output_tokens": 33
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.Enrollment('Ages 5-17') < 100;\n```",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores f ON s.CDSCode = f.cds\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "16_cand_13",
     "question_id": 16,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "near \"(\": syntax error",
-      "runtime_sec": 0.0031249523162841797,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027049779891967773,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
         "error": "no such column: f.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.063331127166748,
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "repair_time_sec": 1.9389948844909668,
         "input_tokens": 1324,
         "output_tokens": 33
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
         "error": "no such column: f.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.Enrollment('Ages 5-17') < 100;\n```",
-        "repair_time_sec": 2.2007086277008057,
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores f ON s.CDSCode = f.cds\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;\n```",
+        "repair_time_sec": 1.9387445449829102,
         "input_tokens": 1327,
-        "output_tokens": 35
+        "output_tokens": 33
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.School_Code = sch.School\nWHERE sch.County = 'Alameda' AND sch.StatusType = 'Merged' AND s.NumTstTakr < 100;\n```",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.CDSCode = sch.CDSCode\nWHERE sch.County = 'Alameda' AND sch.StatusType = 'Merged' AND s.NumTstTakr < 100;\n```",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "16_cand_14",
     "question_id": 16,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.School_Code",
-      "runtime_sec": 0.0035691261291503906,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02612924575805664,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          0
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
@@ -544,7 +451,7 @@
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.School_Code = sch.NCESSchool\nWHERE sch.County = 'Alameda' AND sch.StatusType = 'Merged' AND s.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.435274600982666,
+        "repair_time_sec": 2.3062808513641357,
         "input_tokens": 1335,
         "output_tokens": 42
       },
@@ -553,8 +460,8 @@
         "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.School_Code = sch.NCESSchool\nWHERE sch.County = 'Alameda' AND sch.StatusType = 'Merged' AND s.NumTstTakr < 100;\n```",
         "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.School_Code = sch.School\nWHERE sch.County = 'Alameda' AND sch.StatusType = 'Merged' AND s.NumTstTakr < 100;\n```",
-        "repair_time_sec": 2.445413112640381,
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.CDSCode = sch.CDSCode\nWHERE sch.County = 'Alameda' AND sch.StatusType = 'Merged' AND s.NumTstTakr < 100;\n```",
+        "repair_time_sec": 2.3057618141174316,
         "input_tokens": 1336,
         "output_tokens": 42
       }

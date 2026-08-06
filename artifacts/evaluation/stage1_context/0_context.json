@@ -26,26 +26,6 @@
   "evidence_constraints": [
     {
       "type": "value_link",
-      "constraint": "Value 'schools in' matches value 'Elemen Schools In 1 School Dist. (Public)' in table 'frpm', column 'School Type'"
-    },
-    {
-      "type": "value_link",
-      "constraint": "Value 'schools in' matches value 'Various Schools In District' in table 'schools', column 'MailStreet'"
-    },
-    {
-      "type": "value_link",
-      "constraint": "Value 'schools in' matches value 'Various Schools In District' in table 'schools', column 'MailStrAbr'"
-    },
-    {
-      "type": "value_link",
-      "constraint": "Value 'schools in' matches value 'Elemen Schools In 1 School Dist. (Public)' in table 'schools', column 'SOCType'"
-    },
-    {
-      "type": "value_link",
-      "constraint": "Value 'in the' matches value 'The California Charter School in the Valley' in table 'schools', column 'School'"
-    },
-    {
-      "type": "value_link",
       "constraint": "Value 'students in' matches value 'California Advancing Pathways for Students in Los Angeles County ROC/P' in table 'schools', column 'District'"
     },
     {
@@ -65,17 +45,39 @@
       "constraint": "Value 'Alameda County' matches value 'Alameda County Office of Education' in table 'satscores', column 'dname'"
     },
     {
+      "type": "value_link",
+      "constraint": "Value 'Alameda County' matches value 'Alameda County Office of Education' in table 'schools', column 'District'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'Alameda County' matches value 'Alameda County Juvenile Hall/Court' in table 'schools', column 'School'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'in the' matches value 'The California Charter School in the Valley' in table 'schools', column 'School'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'schools in' matches value 'Elemen Schools In 1 School Dist. (Public)' in table 'frpm', column 'School Type'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'schools in' matches value 'Various Schools In District' in table 'schools', column 'MailStreet'"
+    },
+    {
       "phrase": "Eligible free rate for K-12 = `Free Meal Count (K-12)` / `Enrollment (K-12)`",
-      "column": "frpm.Free Meal Count (K-12)",
-      "operator": "/",
-      "value": "frpm.Enrollment (K-12)",
-      "needs_cast": false,
-      "cast_type": null,
+      "type": "formula",
+      "column": "(CAST(`Free Meal Count (K-12)` AS REAL) / `Enrollment (K-12)`)",
+      "operator": null,
+      "value": null,
+      "needs_cast": true,
+      "cast_type": "REAL",
       "confidence": 1.0
     },
     {
       "phrase": "`County Name` = 'Alameda'",
-      "column": "frpm.County Name",
+      "type": "filter",
+      "column": "`frpm`.`County Name`",
       "operator": "=",
       "value": "'Alameda'",
       "needs_cast": false,

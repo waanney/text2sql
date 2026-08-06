@@ -1,55 +1,257 @@
 {
   "question_id": 6,
   "db_id": "california_schools",
-  "final_sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr > 500;",
-  "best_candidate_id": "6_cand_7",
+  "final_sql": "SELECT School \nFROM schools \nWHERE Magnet = 1 AND GSserved > 500;",
+  "best_candidate_id": "6_cand_0",
   "ranked_candidates": [
     [
-      "6_cand_7",
-      3.2
-    ],
-    [
-      "6_cand_5",
-      2.4000000000000004
-    ],
-    [
-      "6_cand_6",
-      1.6
+      "6_cand_0",
+      7.199999999999999
     ],
     [
       "6_cand_8",
-      0.8
+      5.6
     ],
     [
-      "6_cand_14",
+      "6_cand_2",
+      4.0
+    ],
+    [
+      "6_cand_4",
+      4.0
+    ],
+    [
+      "6_cand_5",
+      4.0
+    ],
+    [
+      "6_cand_6",
+      4.0
+    ],
+    [
+      "6_cand_3",
+      3.2
+    ],
+    [
+      "6_cand_7",
+      2.4000000000000004
+    ],
+    [
+      "6_cand_13",
+      1.6
+    ],
+    [
+      "6_cand_11",
       0.0
     ]
   ],
   "comparison_logs": [
     {
-      "candidate_a": "6_cand_7",
+      "candidate_a": "6_cand_0",
+      "candidate_b": "6_cand_2",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_0",
+      "candidate_b": "6_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_0",
+      "candidate_b": "6_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_0",
       "candidate_b": "6_cand_5",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "6_cand_7",
+      "candidate_a": "6_cand_0",
       "candidate_b": "6_cand_6",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "6_cand_7",
+      "candidate_a": "6_cand_0",
+      "candidate_b": "6_cand_7",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_0",
       "candidate_b": "6_cand_8",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "6_cand_7",
-      "candidate_b": "6_cand_14",
+      "candidate_a": "6_cand_0",
+      "candidate_b": "6_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_0",
+      "candidate_b": "6_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_2",
+      "candidate_b": "6_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_2",
+      "candidate_b": "6_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_2",
+      "candidate_b": "6_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_2",
+      "candidate_b": "6_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_2",
+      "candidate_b": "6_cand_7",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_2",
+      "candidate_b": "6_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_2",
+      "candidate_b": "6_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_2",
+      "candidate_b": "6_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_3",
+      "candidate_b": "6_cand_4",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_3",
+      "candidate_b": "6_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_3",
+      "candidate_b": "6_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_3",
+      "candidate_b": "6_cand_7",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_3",
+      "candidate_b": "6_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_3",
+      "candidate_b": "6_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_3",
+      "candidate_b": "6_cand_13",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_4",
+      "candidate_b": "6_cand_5",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_4",
+      "candidate_b": "6_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_4",
+      "candidate_b": "6_cand_7",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_4",
+      "candidate_b": "6_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_4",
+      "candidate_b": "6_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_4",
+      "candidate_b": "6_cand_13",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -63,14 +265,35 @@
     },
     {
       "candidate_a": "6_cand_5",
-      "candidate_b": "6_cand_8",
+      "candidate_b": "6_cand_7",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "6_cand_5",
-      "candidate_b": "6_cand_14",
+      "candidate_b": "6_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_5",
+      "candidate_b": "6_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_5",
+      "candidate_b": "6_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_6",
+      "candidate_b": "6_cand_7",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -84,44 +307,92 @@
     },
     {
       "candidate_a": "6_cand_6",
-      "candidate_b": "6_cand_14",
+      "candidate_b": "6_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_6",
+      "candidate_b": "6_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_7",
+      "candidate_b": "6_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_7",
+      "candidate_b": "6_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_7",
+      "candidate_b": "6_cand_13",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "6_cand_8",
-      "candidate_b": "6_cand_14",
+      "candidate_b": "6_cand_11",
       "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_8",
+      "candidate_b": "6_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "6_cand_11",
+      "candidate_b": "6_cand_13",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr > 500;",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_1",
-    "candidate_id": "6_cand_7",
+    "sql": "SELECT School \nFROM schools \nWHERE Magnet = 1 AND GSserved > 500;",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "6_cand_0",
     "question_id": 6,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02797842025756836,
-      "row_count": 3,
+      "runtime_sec": 0.021231651306152344,
+      "row_count": 494,
       "column_count": 1,
       "columns": [
         "School"
       ],
       "sample_rows": [
         [
-          "Millikan High"
+          "California School for the Blind"
         ],
         [
-          "Polytechnic High"
+          "Alameda Science and Technology Institute"
         ],
         [
-          "Troy High"
+          "Maya Lin"
+        ],
+        [
+          "Encinal Junior Jets"
+        ],
+        [
+          "Longfellow Arts and Technology Middle"
         ]
       ],
       "is_empty": false
@@ -129,5 +400,5 @@
     "repair_history": []
   },
   "num_original_candidates": 20,
-  "num_representatives": 5
+  "num_representatives": 10
 }

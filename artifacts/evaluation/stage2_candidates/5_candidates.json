@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools\nWHERE Virtual = 'F'\nAND NCESSchool IN (\n    SELECT NCESSchool\n    FROM satscores\n    GROUP BY NCESSchool\n    HAVING AVG(AvgScrMath) > 400\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "5_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools\nWHERE Virtual = 'F'\nAND NCESSchool IN (\n    SELECT NCESSchool\n    FROM satscores\n    GROUP BY NCESSchool\n    HAVING AVG(AvgScrMath) > 400\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "5_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F' AND ss.AvgScrMath > 400;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "5_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.AvgScrMath > 400 AND T2.Virtual = 'V';",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'V';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "5_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'V';",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores st ON s.CDSCode = SUBSTR(st.cds, 3)\nWHERE st.AvgScrMath > 400 AND s.Virtual = 'V';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "5_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'V';",
+    "sql": "SELECT COUNT(DISTINCT s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds AND s.School = sa.sname\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'V';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "5_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND s.Charter = 0\nAND AVG(ss.AvgScrMath) > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND ss.AvgScrMath > 400;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "5_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND ss.AvgScrMath > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.Virtual = 'P'\nAND sa.AvgScrMath > 400;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "5_cand_7",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.Virtual = 'P'\nGROUP BY s.CDSCode\nHAVING AVG(sa.AvgScrMath) > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND AVG(ss.AvgScrMath) > 400;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "5_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.School = sa.sname\nWHERE s.Virtual = 'P'\nGROUP BY s.CDSCode\nHAVING AVG(sa.AvgScrMath) > 400;",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.Virtual = 'P'\nGROUP BY s.CDSCode\nHAVING AVG(sa.AvgScrMath) > 400;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "5_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'P';",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE AVG(ss.AvgScrMath) > 400 AND s.Virtual = 'P';",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "5_cand_14",

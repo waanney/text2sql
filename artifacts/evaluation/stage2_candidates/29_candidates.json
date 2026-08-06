@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT MIN(OpenDate) AS OpenDate\nFROM schools\nWHERE School IN (\n    SELECT School\n    FROM frpm\n    WHERE `Enrollment (K-12)` = (\n        SELECT MAX(`Enrollment (K-12)`)\n        FROM frpm\n    )\n);",
+    "sql": "SELECT OpenDate \nFROM schools \nWHERE School IN (\n    SELECT School \n    FROM frpm \n    WHERE 'Enrollment (K-12)' = (\n        SELECT MAX('Enrollment (K-12)') \n        FROM frpm\n    )\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "29_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(OpenDate) AS OpenDate\nFROM schools\nWHERE GSoffered = 'K-12';",
+    "sql": "SELECT OpenDate \nFROM schools \nWHERE School IN (\n    SELECT School \n    FROM frpm \n    WHERE `Enrollment (K-12)` = (\n        SELECT MAX(`Enrollment (K-12)`) \n        FROM frpm\n    )\n)\nORDER BY OpenDate ASC \nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "29_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(OpenDate) AS OpenDate\nFROM schools\nWHERE GSoffered = 'K-12';",
+    "sql": "SELECT OpenDate \nFROM schools \nWHERE School IN (\n    SELECT School \n    FROM frpm \n    GROUP BY School \n    ORDER BY SUM(Enrollment (K-12)) DESC \n    LIMIT 1\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "29_cand_2",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(OpenDate) AS First_Open_Date\nFROM schools\nWHERE GSoffered = 'K-12';",
+    "sql": "SELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY Enrollment DESC \nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "29_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT OpenDate \nFROM schools \nWHERE GSoffered = 'K-12' \nORDER BY Enrollment DESC \nLIMIT 1;",
+    "sql": "SELECT MIN(OpenDate) AS FirstOpenDate\nFROM schools\nWHERE GSoffered = 'K-12';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "29_cand_5",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    MIN(schools.OpenDate) AS First_Open_Date\nFROM \n    frpm\nJOIN \n    schools ON frpm.School Code = schools.CDSCode\nWHERE \n    frpm.School Type = 'K-12 Schools (Public)'\nORDER BY \n    frpm.Enrollment (K-12) DESC\nLIMIT 1;",
+    "sql": "SELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm\nJOIN schools ON frpm.School Code = schools.CDSCode\nWHERE frpm.School Type = 'K-12 Schools (Public)'\nORDER BY frpm.Enrollment (K-12) DESC\nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "29_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(s.OpenDate)\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.School Name = 'District Office'\nAND f.[Enrollment (K-12)] >= CAST(500 AS REAL)\nAND s.OpenDate IS NOT NULL;",
+    "sql": "SELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nAND f.`Enrollment (K-12)` IS NOT NULL\nAND s.OpenDate IS NOT NULL;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "29_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.School Name,\n    frpm.OpenDate\nFROM \n    frpm\nJOIN \n    schools ON frpm.School Code = schools.CDSCode\nWHERE \n    frpm.School Name = 'District Office'\n    AND frpm.Enrollment (K-12) >= CAST(500 AS REAL)\n    AND schools.OpenDate IS NOT NULL\nORDER BY \n    frpm.Enrollment (K-12) DESC\nLIMIT 1;",
+    "sql": "SELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nAND f.`Enrollment (K-12)` = (SELECT MAX(Enrollment (K-12)) FROM frpm WHERE `School Type` = 'K-12 Schools (Public)');",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "29_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm\nJOIN schools s ON frpm.School Code = s.CDSCode\nWHERE frpm.School Name = 'District Office'\nAND frpm.Enrollment (K-12) >= 500\nAND s.OpenDate IS NOT NULL;",
+    "sql": "SELECT MIN(s.OpenDate) AS OpenDate\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nAND f.`Enrollment (K-12)` IS NOT NULL\nAND s.OpenDate IS NOT NULL;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "29_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.OpenDate\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.[Enrollment (K-12)] IS NOT NULL AND s.StatusType = 'Active'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;",
+    "sql": "SELECT MIN(s.OpenDate)\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.High Grade = '12'\nORDER BY f.Enrollment (K-12) DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "29_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.OpenDate\nFROM \n    frpm f\nJOIN \n    schools s ON f.School Code = s.CDSCode\nWHERE \n    f.High Grade = '12'\nORDER BY \n    f.Enrollment (K-12) DESC\nLIMIT 1;",
+    "sql": "SELECT MIN(s.OpenDate) AS First_Open_Date\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.High_Grade = '12'\nGROUP BY s.School\nORDER BY COUNT(f.School_Code) DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "29_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.OpenDate\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School Type LIKE '%K-12%'\nORDER BY f.[Enrollment (K-12)] DESC\nLIMIT 1;",
+    "sql": "SELECT \n    s.School,\n    s.OpenDate\nFROM \n    frpm f\nJOIN \n    schools s ON f.School Code = s.CDSCode\nWHERE \n    f.High Grade = '12'\n    AND f.Low Grade = 'K'\nORDER BY \n    f.Enrollment (K-12) DESC\nLIMIT 1;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "29_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT MIN(OpenDate)\nFROM schools\nWHERE School IN (\n    SELECT School\n    FROM frpm\n    WHERE LowGrade = 'K' AND HighGrade = '12'\n    ORDER BY Enrollment (K-12) DESC\n    LIMIT 1\n);",
+    "sql": "SELECT MIN(OpenDate) AS First_Open_Date\nFROM schools\nWHERE School IN (\n    SELECT School_Name\n    FROM frpm\n    WHERE Low_Grade = 'K' AND High_Grade = '12'\n    ORDER BY Enrollment (Ages 5-17) DESC\n    LIMIT 1\n);",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "29_cand_14",

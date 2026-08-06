@@ -1,6 +1,6 @@
 [
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE schools.County = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "20_cand_0",
@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.LowGrade",
-      "runtime_sec": 0.0030133724212646484,
+      "runtime_sec": 0.0026443004608154297,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -19,28 +19,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE schools.County = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';",
         "error": "no such column: frpm.LowGrade",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.8594305515289307,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE schools.County = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8215672969818115,
         "input_tokens": 1322,
         "output_tokens": 31
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "original_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE schools.County = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';\n```",
         "error": "no such column: frpm.LowGrade",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.8608150482177734,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE schools.County = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.821298360824585,
         "input_tokens": 1324,
         "output_tokens": 31
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "20_cand_1",
@@ -49,7 +49,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.CountyName",
-      "runtime_sec": 0.0028476715087890625,
+      "runtime_sec": 0.0027434825897216797,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -59,28 +59,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.County = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';",
         "error": "no such column: frpm.County",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9608557224273682,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8670878410339355,
         "input_tokens": 1322,
         "output_tokens": 31
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "original_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';\n```",
         "error": "no such column: frpm.CountyName",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9594461917877197,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' AND frpm.LowGrade = '9' AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.869734764099121,
         "input_tokens": 1324,
         "output_tokens": 31
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools\nWHERE County = 'Amador' AND Low_Grade = '9' AND High_Grade = '12';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "20_cand_2",
@@ -88,8 +88,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: frpm.LowGrade",
-      "runtime_sec": 0.0066242218017578125,
+      "error": "no such column: Low_Grade",
+      "runtime_sec": 0.0027892589569091797,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -99,23 +99,23 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';",
-        "error": "no such column: frpm.LowGrade",
+        "original_sql": "SELECT COUNT(*)\nFROM schools\nWHERE County = 'Amador' AND Low_Grade = '9' AND High_Grade = '12';",
+        "error": "no such column: Low_Grade",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9179530143737793,
-        "input_tokens": 1322,
-        "output_tokens": 31
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools\nWHERE County = 'Amador' AND Low_Grade = '9' AND High_Grade = '12';\n```",
+        "repair_time_sec": 1.355569839477539,
+        "input_tokens": 1314,
+        "output_tokens": 23
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
-        "error": "no such column: frpm.LowGrade",
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM schools\nWHERE County = 'Amador' AND Low_Grade = '9' AND High_Grade = '12';\n```",
+        "error": "no such column: Low_Grade",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM schools \nJOIN frpm ON schools.CDSCode = frpm.CDSCode \nWHERE schools.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.913050651550293,
-        "input_tokens": 1324,
-        "output_tokens": 31
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools\nWHERE County = 'Amador' AND Low_Grade = '9' AND High_Grade = '12';\n```",
+        "repair_time_sec": 1.3552536964416504,
+        "input_tokens": 1316,
+        "output_tokens": 23
       }
     ]
   },
@@ -129,7 +129,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011385917663574219,
+      "runtime_sec": 0.011052846908569336,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -149,14 +149,14 @@
         "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
-        "repair_time_sec": 1.5441150665283203,
+        "repair_time_sec": 1.501288652420044,
         "input_tokens": 1318,
         "output_tokens": 27
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' \nAND `Low Grade` = '9' \nAND `High Grade` = '12';\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "20_cand_4",
@@ -165,7 +165,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011580467224121094,
+      "runtime_sec": 0.012968778610229492,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -181,11 +181,11 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' AND Low Grade = '9' AND High Grade = '12';",
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Amador' \nAND Low Grade = '9' \nAND High Grade = '12';",
         "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
-        "repair_time_sec": 1.5365960597991943,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' \nAND `Low Grade` = '9' \nAND `High Grade` = '12';\n```",
+        "repair_time_sec": 1.549299955368042,
         "input_tokens": 1318,
         "output_tokens": 27
       }
@@ -201,7 +201,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01110386848449707,
+      "runtime_sec": 0.011266231536865234,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -221,7 +221,7 @@
         "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
-        "repair_time_sec": 1.5369975566864014,
+        "repair_time_sec": 1.5019135475158691,
         "input_tokens": 1318,
         "output_tokens": 27
       }
@@ -237,7 +237,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.CountyName",
-      "runtime_sec": 0.0029702186584472656,
+      "runtime_sec": 0.002743959426879883,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -247,11 +247,11 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
-        "error": "no such column: frpm.County",
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.CountyName",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9733428955078125,
+        "repair_time_sec": 1.9175407886505127,
         "input_tokens": 1322,
         "output_tokens": 31
       },
@@ -261,7 +261,7 @@
         "error": "no such column: frpm.CountyName",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9698724746704102,
+        "repair_time_sec": 1.916821002960205,
         "input_tokens": 1324,
         "output_tokens": 31
       }
@@ -277,7 +277,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.CountyName",
-      "runtime_sec": 0.0027327537536621094,
+      "runtime_sec": 0.003522157669067383,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -287,11 +287,11 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
-        "error": "no such column: frpm.County",
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "error": "no such column: frpm.CountyName",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9674444198608398,
+        "repair_time_sec": 1.9182534217834473,
         "input_tokens": 1322,
         "output_tokens": 31
       },
@@ -301,14 +301,14 @@
         "error": "no such column: frpm.CountyName",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9566681385040283,
+        "repair_time_sec": 1.9197790622711182,
         "input_tokens": 1324,
         "output_tokens": 31
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' \n  AND frpm.LowGrade = '9' \n  AND frpm.HighGrade = '12';\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "20_cand_8",
@@ -317,7 +317,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.CountyName",
-      "runtime_sec": 0.0031731128692626953,
+      "runtime_sec": 0.0036356449127197266,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -327,21 +327,21 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.County = 'Amador' \n  AND frpm.LowGrade = '9' \n  AND frpm.HighGrade = '12';",
         "error": "no such column: frpm.County",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9653539657592773,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' \n  AND frpm.LowGrade = '9' \n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9676063060760498,
         "input_tokens": 1322,
         "output_tokens": 31
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "original_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' \n  AND frpm.LowGrade = '9' \n  AND frpm.HighGrade = '12';\n```",
         "error": "no such column: frpm.CountyName",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9696803092956543,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' \n  AND frpm.LowGrade = '9' \n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9655547142028809,
         "input_tokens": 1324,
         "output_tokens": 31
       }
@@ -357,7 +357,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.CountyName",
-      "runtime_sec": 0.002921581268310547,
+      "runtime_sec": 0.0040285587310791016,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -371,7 +371,7 @@
         "error": "no such column: frpm.County",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9673218727111816,
+        "repair_time_sec": 1.9175231456756592,
         "input_tokens": 1322,
         "output_tokens": 31
       },
@@ -381,14 +381,14 @@
         "error": "no such column: frpm.CountyName",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9655818939208984,
+        "repair_time_sec": 1.9186806678771973,
         "input_tokens": 1324,
         "output_tokens": 31
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "20_cand_10",
@@ -397,7 +397,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.CountyName",
-      "runtime_sec": 0.0027227401733398438,
+      "runtime_sec": 0.002783060073852539,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -407,21 +407,21 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
+        "original_sql": "SELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.County = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';",
         "error": "no such column: frpm.County",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9713232517242432,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.915050745010376,
         "input_tokens": 1322,
         "output_tokens": 31
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "original_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
         "error": "no such column: frpm.CountyName",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.CountyName = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.9625911712646484,
+        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.CountyName = 'Amador' \nAND frpm.LowGrade = '9' \nAND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.9175586700439453,
         "input_tokens": 1324,
         "output_tokens": 31
       }
@@ -437,7 +437,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.LowGrade",
-      "runtime_sec": 0.0027887821197509766,
+      "runtime_sec": 0.002954721450805664,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -451,7 +451,7 @@
         "error": "no such column: frpm.LowGrade",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.8621971607208252,
+        "repair_time_sec": 1.8185069561004639,
         "input_tokens": 1322,
         "output_tokens": 31
       },
@@ -461,14 +461,14 @@
         "error": "no such column: frpm.LowGrade",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.8635015487670898,
+        "repair_time_sec": 1.819809913635254,
         "input_tokens": 1324,
         "output_tokens": 31
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "20_cand_12",
@@ -477,7 +477,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.LowGrade",
-      "runtime_sec": 0.0029141902923583984,
+      "runtime_sec": 0.0027763843536376953,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -487,21 +487,21 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';",
+        "original_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';",
         "error": "no such column: frpm.LowGrade",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.856971025466919,
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.868272066116333,
         "input_tokens": 1322,
         "output_tokens": 31
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
+        "original_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
         "error": "no such column: frpm.LowGrade",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.8672022819519043,
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\n  AND frpm.LowGrade = '9'\n  AND frpm.HighGrade = '12';\n```",
+        "repair_time_sec": 1.8670742511749268,
         "input_tokens": 1324,
         "output_tokens": 31
       }
@@ -517,7 +517,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: frpm.LowGrade",
-      "runtime_sec": 0.0030384063720703125,
+      "runtime_sec": 0.0027484893798828125,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -531,7 +531,7 @@
         "error": "no such column: frpm.LowGrade",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.8602612018585205,
+        "repair_time_sec": 1.817070484161377,
         "input_tokens": 1322,
         "output_tokens": 31
       },
@@ -541,7 +541,7 @@
         "error": "no such column: frpm.LowGrade",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Amador'\nAND frpm.LowGrade = '9'\nAND frpm.HighGrade = '12';\n```",
-        "repair_time_sec": 1.8721389770507812,
+        "repair_time_sec": 1.8190281391143799,
         "input_tokens": 1324,
         "output_tokens": 31
       }
@@ -557,7 +557,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011187314987182617,
+      "runtime_sec": 0.01872563362121582,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -577,7 +577,7 @@
         "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Amador' AND `Low Grade` = '9' AND `High Grade` = '12';\n```",
-        "repair_time_sec": 1.5352044105529785,
+        "repair_time_sec": 1.498948097229004,
         "input_tokens": 1318,
         "output_tokens": 27
       }

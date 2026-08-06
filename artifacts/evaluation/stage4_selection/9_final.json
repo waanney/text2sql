@@ -6,35 +6,60 @@
   "ranked_candidates": [
     [
       "9_cand_6",
-      1.6
+      2.4000000000000004
     ],
     [
       "9_cand_8",
+      1.6
+    ],
+    [
+      "9_cand_11",
       0.8
     ],
     [
-      "9_cand_9",
+      "9_cand_7",
       0.0
     ]
   ],
   "comparison_logs": [
     {
-      "candidate_a": "9_cand_9",
-      "candidate_b": "9_cand_6",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "9_cand_9",
-      "candidate_b": "9_cand_8",
-      "winner": "B",
+      "candidate_a": "9_cand_6",
+      "candidate_b": "9_cand_7",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "9_cand_6",
       "candidate_b": "9_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "9_cand_6",
+      "candidate_b": "9_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "9_cand_7",
+      "candidate_b": "9_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "9_cand_7",
+      "candidate_b": "9_cand_11",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "9_cand_8",
+      "candidate_b": "9_cand_11",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -50,7 +75,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022997379302978516,
+      "runtime_sec": 0.019759654998779297,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -66,5 +91,5 @@
     "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 3
+  "num_representatives": 4
 }

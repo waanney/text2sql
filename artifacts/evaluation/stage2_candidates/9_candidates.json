@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sch ON f.CDSCode = sch.CDSCode\nWHERE f.Charter_School_Number IS NOT NULL\nAND f.Charter_Funding_Type = 'Directly funded'\nAND s.AvgScrMath > 560;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "9_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Directly funded'\nAND f.AvgScrMath > 560;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "9_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(*) \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Directly funded' AND f.AvgScrMath > 560;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "9_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(DISTINCT s.CDSCode)\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(DISTINCT s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "9_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE satscores.AvgScrMath > 560 AND frpm.Charter Funding Type = 'Directly funded';",
+    "sql": "SELECT COUNT(DISTINCT s.CDSCode)\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nWHERE sat.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "9_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(DISTINCT s.CDSCode)\nFROM satscores ss\nJOIN frpm f ON ss.cds = f.CDSCode\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ss.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM satscores s\nJOIN schools sc ON s.cds = sc.CDSCode\nWHERE s.AvgScrMath > 560 AND sc.FundingType = 'Directly funded';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "9_cand_5",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(schools.School)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE satscores.AvgScrMath > 560 AND schools.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(sch.School)\nFROM frpm AS frpm\nJOIN satscores AS sat ON frpm.CDSCode = sat.cds\nJOIN schools AS sch ON frpm.CDSCode = sch.CDSCode\nWHERE frpm.Charter = 1 AND frpm.CharterFundingType = 'Directly funded' AND sat.AvgScrMath > 560;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "9_cand_7",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE AVG(sa.AvgScrMath) > 560 AND f.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(s.School)\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nWHERE AVG(sat.AvgScrMath) > 560 AND s.FundingType = 'Directly funded';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "9_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.School)\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nWHERE sat.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(s.School)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "9_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Directly funded'\nAND AVG(ss.AvgScrMath) > 560;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "9_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE f.AvgScrMath > 560 AND sc.FundingType = 'Directly funded';",
+    "sql": "SELECT COUNT(s.School)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.AvgScrMath > 560 AND s.FundingType = 'Directly funded';",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "9_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.FundingType = 'Directly funded'\nAND sa.AvgScrMath > 560;",
+    "sql": "SELECT COUNT(DISTINCT s.NCESSchool)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.FundingType = 'Directly funded'\nAND ss.AvgScrMath > 560;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "9_cand_13",

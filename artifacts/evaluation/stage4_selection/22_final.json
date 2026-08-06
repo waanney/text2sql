@@ -1,24 +1,32 @@
 {
   "question_id": 22,
   "db_id": "california_schools",
-  "final_sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
-  "best_candidate_id": "22_cand_14",
+  "final_sql": "SELECT frpm.[School Name], SUM(satscores.NumTstTakr) AS TotalTestTakers\nFROM frpm\nJOIN satscores ON frpm.[School Name] = satscores.sname\nWHERE frpm.[County Name] = 'Contra Costa'\nGROUP BY frpm.[School Name]\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+  "best_candidate_id": "22_cand_12",
   "ranked_candidates": [
     [
-      "22_cand_14",
-      3.2
+      "22_cand_12",
+      4.8
     ],
     [
-      "22_cand_8",
-      2.4000000000000004
+      "22_cand_14",
+      4.0
     ],
     [
       "22_cand_10",
-      1.05
+      3.2
     ],
     [
-      "22_cand_12",
-      1.05
+      "22_cand_9",
+      2.4000000000000004
+    ],
+    [
+      "22_cand_5",
+      1.6
+    ],
+    [
+      "22_cand_3",
+      0.8
     ],
     [
       "22_cand_6",
@@ -27,95 +35,174 @@
   ],
   "comparison_logs": [
     {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_9",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_6",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_3",
+      "candidate_b": "22_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_3",
+      "candidate_b": "22_cand_9",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_3",
+      "candidate_b": "22_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_3",
+      "candidate_b": "22_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_3",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_5",
+      "candidate_b": "22_cand_9",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_5",
+      "candidate_b": "22_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_5",
+      "candidate_b": "22_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_5",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_9",
+      "candidate_b": "22_cand_10",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_9",
+      "candidate_b": "22_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_9",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
       "candidate_a": "22_cand_10",
-      "candidate_b": "22_cand_6",
+      "candidate_b": "22_cand_12",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_10",
+      "candidate_b": "22_cand_14",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "22_cand_12",
+      "candidate_b": "22_cand_14",
       "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_10",
-      "candidate_b": "22_cand_12",
-      "winner": "tie",
-      "confidence": 0.5,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_10",
-      "candidate_b": "22_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_10",
-      "candidate_b": "22_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_6",
-      "candidate_b": "22_cand_12",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_6",
-      "candidate_b": "22_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_6",
-      "candidate_b": "22_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_12",
-      "candidate_b": "22_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_12",
-      "candidate_b": "22_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "22_cand_8",
-      "candidate_b": "22_cand_14",
-      "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-    "source": "simple_generator",
-    "prompt_id": "simple_v1",
-    "candidate_id": "22_cand_14",
+    "sql": "```sql\nSELECT frpm.[School Name], SUM(satscores.NumTstTakr) AS TotalTestTakers\nFROM frpm\nJOIN satscores ON frpm.[School Name] = satscores.sname\nWHERE frpm.[County Name] = 'Contra Costa'\nGROUP BY frpm.[School Name]\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "22_cand_12",
     "question_id": 22,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02723383903503418,
+      "runtime_sec": 0.02107977867126465,
       "row_count": 1,
-      "column_count": 1,
+      "column_count": 2,
       "columns": [
-        "School"
+        "School Name",
+        "TotalTestTakers"
       ],
       "sample_rows": [
         [
-          "Pittsburg Senior High"
+          "California High",
+          773
         ]
       ],
       "is_empty": false
@@ -123,16 +210,26 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.FRPM_Count DESC\nLIMIT 1;",
-        "error": "no such column: f.FRPM_Count",
+        "original_sql": "SELECT frpm.School Name, SUM(satscores.NumTstTakr) AS TotalTestTakers\nFROM frpm\nJOIN satscores ON frpm.School Name = satscores.sname\nWHERE frpm.County = 'Contra Costa'\nGROUP BY frpm.School Name\nORDER BY TotalTestTakers DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT frpm.[School Name], SUM(satscores.NumTstTakr) AS TotalTestTakers\nFROM frpm\nJOIN satscores ON frpm.[School Name] = satscores.sname\nWHERE frpm.County = 'Contra Costa'\nGROUP BY frpm.[School Name]\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4803645610809326,
+        "input_tokens": 1332,
+        "output_tokens": 41
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.[School Name], SUM(satscores.NumTstTakr) AS TotalTestTakers\nFROM frpm\nJOIN satscores ON frpm.[School Name] = satscores.sname\nWHERE frpm.County = 'Contra Costa'\nGROUP BY frpm.[School Name]\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.County",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Contra Costa'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.948376178741455,
-        "input_tokens": 1323,
-        "output_tokens": 35
+        "fixed_sql": "```sql\nSELECT frpm.[School Name], SUM(satscores.NumTstTakr) AS TotalTestTakers\nFROM frpm\nJOIN satscores ON frpm.[School Name] = satscores.sname\nWHERE frpm.[County Name] = 'Contra Costa'\nGROUP BY frpm.[School Name]\nORDER BY TotalTestTakers DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.526047468185425,
+        "input_tokens": 1335,
+        "output_tokens": 42
       }
     ]
   },
   "num_original_candidates": 15,
-  "num_representatives": 5
+  "num_representatives": 7
 }

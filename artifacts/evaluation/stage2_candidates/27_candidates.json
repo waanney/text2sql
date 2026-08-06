@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT \n    s.School,\n    AVG(s.AdmEmail1) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.School Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "27_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+    "sql": "SELECT \n    s.School,\n    AVG(sats.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    satscores sats ON s.School = sats.sname\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "27_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+    "sql": "SELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgWritingScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "27_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    ss.AvgScrWrite,\n    s.CharterNum\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01';",
+    "sql": "SELECT \n    s.School,\n    ss.AvgScrWrite,\n    s.CharterNum\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = REPLACE(ss.cds, '0', '')\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01');",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "27_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School AS SchoolName,\n    ss.AvgScrWrite AS AverageWritingScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01');",
+    "sql": "SELECT \n    s.School,\n    ss.AvgScrWrite,\n    COALESCE(s.CharterNum, 'None') AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = REPLACE(ss.cds, '-', '')\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01');",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "27_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School AS School_Name,\n    ss.AvgScrWrite AS Avg_Write_Score,\n    s.CharterNum AS Communication_Number\nFROM \n    frpm f\nJOIN \n    satscores ss ON f.CDSCode = SUBSTR(ss.cds, 3)\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    (f.`OpenDate` > '1991-12-31' OR f.`ClosedDate` < '2000-01-01');",
+    "sql": "SELECT \n    s.School,\n    ss.AvgScrWrite,\n    s.CharterNum\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "27_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;",
+    "sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CommunicationNumber;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "27_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CommunicationNumber;",
+    "sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CommunicationNumber;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "27_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' OR s.ClosedDate < '2000-12-31')\nGROUP BY \n    s.School, s.Phone;",
+    "sql": "SELECT \n    frpm.School Name, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.School\nJOIN \n    schools ON frpm.School = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "27_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;",
+    "sql": "SELECT \n    frpm.School Name, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.School\nJOIN \n    schools ON frpm.School = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "27_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' OR s.ClosedDate < '2000-12-31')\nGROUP BY \n    s.School, s.Phone;",
+    "sql": "SELECT \n    frpm.School Name, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.School\nJOIN \n    schools ON frpm.School = schools.NCESSchool\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "27_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;",
+    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "27_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;",
+    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "27_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;",
+    "sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    f.[Charter School Number] AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESCode = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, f.[Charter School Number];",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "27_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+    "sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "27_cand_14",

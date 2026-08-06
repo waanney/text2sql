@@ -1,6 +1,6 @@
 [
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumGE1500 > 0 AND st.AvgScrMath + st.AvgScrRead + st.AvgScrWrite > 3 * 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumGE1500) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrWrite > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "7_cand_0",
@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.025082111358642578,
+      "runtime_sec": 0.025832414627075195,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -21,79 +21,37 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumGE1500 > 0 AND st.AvgScrMath + st.AvgScrRead + st.AvgScrWrite > 3 * 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumGE1500) DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrWrite > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;",
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumGE1500 > 0 AND st.AvgScrMath + st.AvgScrRead + st.AvgScrWrite > 3 * 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumGE1500) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.1263043880462646,
-        "input_tokens": 1368,
-        "output_tokens": 57
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrWrite > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.1867897510528564,
+        "input_tokens": 1352,
+        "output_tokens": 40
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumGE1500 > 0 AND st.AvgScrMath + st.AvgScrRead + st.AvgScrWrite > 3 * 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumGE1500) DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrWrite > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;\n```",
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumGE1500 > 0 AND st.AvgScrMath + st.AvgScrRead + st.AvgScrWrite > 3 * 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumGE1500) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.1284327507019043,
-        "input_tokens": 1371,
-        "output_tokens": 57
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrWrite > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.1904544830322266,
+        "input_tokens": 1354,
+        "output_tokens": 40
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School_Code = sa.cds\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "7_cand_1",
     "question_id": 7,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.04934382438659668,
-      "row_count": 0,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.0499789714813232,
-        "input_tokens": 1366,
-        "output_tokens": 54
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.0791306495666504,
-        "input_tokens": 1368,
-        "output_tokens": 54
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT \n    s.Phone,\n    COUNT(st.NumTstTakr) AS NumTestTakers\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores st ON s.School = st.sname\nWHERE \n    st.AvgScrSAT > 1500\nGROUP BY \n    s.Phone\nORDER BY \n    NumTestTakers DESC\nLIMIT 1;\n```",
-    "source": "reasoning_generator",
-    "prompt_id": "reasoning_v1_temp_2",
-    "candidate_id": "7_cand_2",
-    "question_id": 7,
-    "db_id": "california_schools",
-    "execution_metadata": {
       "success": false,
-      "error": "no such column: st.AvgScrSAT",
-      "runtime_sec": 0.003185749053955078,
+      "error": "no such column: f.School_Code",
+      "runtime_sec": 0.0029065608978271484,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -103,28 +61,68 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT \n    s.Phone,\n    COUNT(st.NumTstTakr) AS NumTestTakers\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores st ON s.School = st.sname\nWHERE \n    st.AvgScrSAT > 1500\nGROUP BY \n    s.Phone\nORDER BY \n    NumTestTakers DESC\nLIMIT 1;",
-        "error": "no such column: st.AvgScrSAT",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.Phone,\n    COUNT(st.NumTstTakr) AS NumTestTakers\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores st ON s.School = st.sname\nWHERE \n    st.AvgScrSAT > 1500\nGROUP BY \n    s.Phone\nORDER BY \n    NumTestTakers DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.094768524169922,
-        "input_tokens": 1339,
-        "output_tokens": 48
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School Code = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School_Code = sa.cds\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.380056381225586,
+        "input_tokens": 1336,
+        "output_tokens": 44
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.Phone,\n    COUNT(st.NumTstTakr) AS NumTestTakers\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores st ON s.School = st.sname\nWHERE \n    st.AvgScrSAT > 1500\nGROUP BY \n    s.Phone\nORDER BY \n    NumTestTakers DESC\nLIMIT 1;\n```",
-        "error": "no such column: st.AvgScrSAT",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School_Code = sa.cds\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.Phone,\n    COUNT(st.NumTstTakr) AS NumTestTakers\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores st ON s.School = st.sname\nWHERE \n    st.AvgScrSAT > 1500\nGROUP BY \n    s.Phone\nORDER BY \n    NumTestTakers DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.1033082008361816,
-        "input_tokens": 1341,
-        "output_tokens": 48
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School_Code = sa.cds\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3834781646728516,
+        "input_tokens": 1337,
+        "output_tokens": 44
       }
     ]
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumGE1500 > 0\nORDER BY st.NumGE1500 DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.HighGrade IN ('11', '12')\nAND f.`School Type` = 'High Schools (Public)'\nAND s.State = 'CA'\nORDER BY f.NumTstTakr DESC\nLIMIT 1;\n```",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_2",
+    "candidate_id": "7_cand_2",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.HighGrade",
+      "runtime_sec": 0.0035355091094970703,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.HighGrade IN ('11', '12')\nAND f.School Type = 'High Schools (Public)'\nAND s.State = 'CA'\nORDER BY f.NumTstTakr DESC\nLIMIT 1;",
+        "error": "near \"Type\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.HighGrade IN ('11', '12')\nAND f.`School Type` = 'High Schools (Public)'\nAND s.State = 'CA'\nORDER BY f.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3273792266845703,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.HighGrade IN ('11', '12')\nAND f.`School Type` = 'High Schools (Public)'\nAND s.State = 'CA'\nORDER BY f.NumTstTakr DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.HighGrade",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.HighGrade IN ('11', '12')\nAND f.`School Type` = 'High Schools (Public)'\nAND s.State = 'CA'\nORDER BY f.NumTstTakr DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.329808473587036,
+        "input_tokens": 1340,
+        "output_tokens": 46
+      }
+    ]
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "7_cand_3",
@@ -133,7 +131,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.016262292861938477,
+      "runtime_sec": 0.019791841506958008,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -141,7 +139,7 @@
       ],
       "sample_rows": [
         [
-          "(213) 241-1000"
+          "(415) 759-2730"
         ]
       ],
       "is_empty": false
@@ -149,7 +147,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;\n```",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumGE1500 > 0\nORDER BY st.NumGE1500 DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "7_cand_4",
@@ -158,49 +156,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01037144660949707,
-      "row_count": 0,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0479066371917725,
-        "input_tokens": 1344,
-        "output_tokens": 32
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.049208402633667,
-        "input_tokens": 1346,
-        "output_tokens": 32
-      }
-    ]
-  },
-  {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "7_cand_5",
-    "question_id": 7,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.016303539276123047,
+      "runtime_sec": 0.01719355583190918,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -216,7 +172,32 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.NumGE1500 > 0\nORDER BY T1.NumGE1500 DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "7_cand_5",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.017563343048095703,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(213) 241-1000"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "7_cand_6",
@@ -225,7 +206,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.028655529022216797,
+      "runtime_sec": 0.008125782012939453,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -237,68 +218,70 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.45904803276062,
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3878591060638428,
         "input_tokens": 1355,
         "output_tokens": 44
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.459523916244507,
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3820910453796387,
         "input_tokens": 1358,
         "output_tokens": 44
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON f.SchoolCode = st.cds\nWHERE st.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sat.NumTstTakr) DESC\nLIMIT 1;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "7_cand_7",
     "question_id": 7,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.SchoolCode",
-      "runtime_sec": 0.003731250762939453,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02442169189453125,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
       "sample_rows": [],
-      "is_empty": null
+      "is_empty": true
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON f.School Code = st.cds\nWHERE st.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumTstTakr) DESC\nLIMIT 1;",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON f.SchoolCode = st.cds\nWHERE st.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.47607421875,
-        "input_tokens": 1336,
-        "output_tokens": 44
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sat.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sat.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.6055543422698975,
+        "input_tokens": 1361,
+        "output_tokens": 49
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON f.SchoolCode = st.cds\nWHERE st.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "error": "no such column: f.SchoolCode",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON f.SchoolCode = st.cds\nWHERE st.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(st.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.485910177230835,
-        "input_tokens": 1337,
-        "output_tokens": 44
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sat.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sat.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.603236436843872,
+        "input_tokens": 1363,
+        "output_tokens": 49
       }
     ]
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "7_cand_8",
@@ -307,112 +290,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.029462814331054688,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [
-        [
-          "(323) 817-6550"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;\n```",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_1",
-    "candidate_id": "7_cand_9",
-    "question_id": 7,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: sa.AvgScrSAT",
-      "runtime_sec": 0.003347635269165039,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;",
-        "error": "no such column: sa.AvgScrSAT",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.937527656555176,
-        "input_tokens": 1345,
-        "output_tokens": 54
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;\n```",
-        "error": "no such column: sa.AvgScrSAT",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.953385829925537,
-        "input_tokens": 1348,
-        "output_tokens": 54
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;\n```",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_2",
-    "candidate_id": "7_cand_10",
-    "question_id": 7,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: sa.AvgScrSAT",
-      "runtime_sec": 0.002980470657348633,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;",
-        "error": "no such column: sa.AvgScrSAT",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.9422168731689453,
-        "input_tokens": 1345,
-        "output_tokens": 54
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;\n```",
-        "error": "no such column: sa.AvgScrSAT",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrSAT > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumGE1500) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.944024085998535,
-        "input_tokens": 1348,
-        "output_tokens": 54
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_0",
-    "candidate_id": "7_cand_11",
-    "question_id": 7,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02835869789123535,
+      "runtime_sec": 0.025708675384521484,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -424,28 +302,150 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.1437184810638428,
-        "input_tokens": 1367,
-        "output_tokens": 55
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.559016704559326,
+        "input_tokens": 1361,
+        "output_tokens": 49
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumGE1500 > 0 AND sa.AvgScrMath + sa.AvgScrRead + sa.AvgScrWrite > 4500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 3.167248010635376,
-        "input_tokens": 1370,
-        "output_tokens": 55
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.5572903156280518,
+        "input_tokens": 1363,
+        "output_tokens": 49
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.cds\nWHERE sa.NumTstTakr > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "7_cand_9",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0334019660949707,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.65216326713562,
+        "input_tokens": 1362,
+        "output_tokens": 50
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname AND s.District = sa.dname\nWHERE sa.AvgScrWrite > 1500\nGROUP BY s.School, s.Phone\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.6453237533569336,
+        "input_tokens": 1365,
+        "output_tokens": 50
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrSAT > 1500\nGROUP BY s.School\nORDER BY COUNT(ss.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "7_cand_10",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: ss.AvgScrSAT",
+      "runtime_sec": 0.008852243423461914,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrSAT > 1500\nGROUP BY s.School\nORDER BY COUNT(ss.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "no such column: ss.AvgScrSAT",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrSAT > 1500\nGROUP BY s.School\nORDER BY COUNT(ss.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0394318103790283,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrSAT > 1500\nGROUP BY s.School\nORDER BY COUNT(ss.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "no such column: ss.AvgScrSAT",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrSAT > 1500\nGROUP BY s.School\nORDER BY COUNT(ss.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0378811359405518,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE sats.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "7_cand_11",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.School_Code",
+      "runtime_sec": 0.0027861595153808594,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School Code = s.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE sats.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE sats.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4509613513946533,
+        "input_tokens": 1337,
+        "output_tokens": 44
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE sats.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE sats.AvgScrMath > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4527761936187744,
+        "input_tokens": 1337,
+        "output_tokens": 44
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE sats.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "7_cand_12",
@@ -453,8 +453,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: f.SchoolCode",
-      "runtime_sec": 0.005156040191650391,
+      "error": "no such column: f.School_Code",
+      "runtime_sec": 0.002795696258544922,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -464,37 +464,79 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School Code = sa.cds\nWHERE sa.NumTstTakr > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School Code = s.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE sats.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;",
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.cds\nWHERE sa.NumTstTakr > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.5520009994506836,
-        "input_tokens": 1336,
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE sats.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4541544914245605,
+        "input_tokens": 1337,
         "output_tokens": 44
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.cds\nWHERE sa.NumTstTakr > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "error": "no such column: f.SchoolCode",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE sats.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.cds\nWHERE sa.NumTstTakr > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.546766757965088,
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE sats.AvgScrWrite > 1500\nGROUP BY s.Phone\nORDER BY COUNT(sats.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.450556755065918,
         "input_tokens": 1337,
         "output_tokens": 44
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.cds\nWHERE sa.NumTstTakr > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "7_cand_13",
     "question_id": 7,
     "db_id": "california_schools",
     "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02510237693786621,
+      "row_count": 0,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3767008781433105,
+        "input_tokens": 1355,
+        "output_tokens": 44
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 1500\nGROUP BY s.School\nORDER BY COUNT(sa.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3823630809783936,
+        "input_tokens": 1358,
+        "output_tokens": 44
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nGROUP BY s.School\nORDER BY SUM(satscores.NumTstTakr) DESC\nLIMIT 1;\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "7_cand_14",
+    "question_id": 7,
+    "db_id": "california_schools",
+    "execution_metadata": {
       "success": false,
-      "error": "no such column: f.SchoolCode",
-      "runtime_sec": 0.0033638477325439453,
+      "error": "no such column: satscores.NumTstTakr",
+      "runtime_sec": 0.00507354736328125,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -504,49 +546,24 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School Code = sa.cds\nWHERE sa.NumTstTakr > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;",
-        "error": "near \"Code\": syntax error",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School Type = 'High Schools (Public)'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nGROUP BY s.School\nORDER BY SUM(f.NumTstTakr) DESC\nLIMIT 1;",
+        "error": "near \"Type\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.cds\nWHERE sa.NumTstTakr > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.3472156524658203,
-        "input_tokens": 1332,
-        "output_tokens": 40
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nGROUP BY s.School\nORDER BY SUM(f.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.596428632736206,
+        "input_tokens": 1341,
+        "output_tokens": 50
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.cds\nWHERE sa.NumTstTakr > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;\n```",
-        "error": "no such column: f.SchoolCode",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nGROUP BY s.School\nORDER BY SUM(f.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.NumTstTakr",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.cds\nWHERE sa.NumTstTakr > 1500\nORDER BY sa.NumTstTakr DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.3484792709350586,
-        "input_tokens": 1333,
-        "output_tokens": 40
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nGROUP BY s.School\nORDER BY SUM(satscores.NumTstTakr) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.6433210372924805,
+        "input_tokens": 1344,
+        "output_tokens": 50
       }
     ]
-  },
-  {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumGE1500 > 0\nGROUP BY s.School\nORDER BY SUM(st.NumGE1500) DESC\nLIMIT 1;",
-    "source": "simple_generator",
-    "prompt_id": "simple_v1",
-    "candidate_id": "7_cand_14",
-    "question_id": 7,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02852344512939453,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [
-        [
-          "(925) 461-6600"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
   }
 ]

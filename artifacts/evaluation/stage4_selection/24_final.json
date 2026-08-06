@@ -1,23 +1,23 @@
 {
   "question_id": 24,
   "db_id": "california_schools",
-  "final_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
-  "best_candidate_id": "24_cand_0",
+  "final_sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores st\n    JOIN schools d ON st.cds = d.CDSCode\n    WHERE st.NumGE1500 >= 1500\n);",
+  "best_candidate_id": "24_cand_13",
   "ranked_candidates": [
     [
-      "24_cand_0",
+      "24_cand_13",
       4.0
     ],
     [
-      "24_cand_6",
+      "24_cand_7",
       3.2
     ],
     [
-      "24_cand_13",
+      "24_cand_6",
       2.4000000000000004
     ],
     [
-      "24_cand_9",
+      "24_cand_11",
       1.6
     ],
     [
@@ -31,37 +31,37 @@
   ],
   "comparison_logs": [
     {
-      "candidate_a": "24_cand_0",
+      "candidate_a": "24_cand_7",
       "candidate_b": "24_cand_8",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "24_cand_0",
+      "candidate_a": "24_cand_7",
       "candidate_b": "24_cand_12",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "24_cand_0",
+      "candidate_a": "24_cand_7",
       "candidate_b": "24_cand_6",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "24_cand_0",
-      "candidate_b": "24_cand_9",
+      "candidate_a": "24_cand_7",
+      "candidate_b": "24_cand_11",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "24_cand_0",
+      "candidate_a": "24_cand_7",
       "candidate_b": "24_cand_13",
-      "winner": "A",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
@@ -81,7 +81,7 @@
     },
     {
       "candidate_a": "24_cand_8",
-      "candidate_b": "24_cand_9",
+      "candidate_b": "24_cand_11",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -102,7 +102,7 @@
     },
     {
       "candidate_a": "24_cand_12",
-      "candidate_b": "24_cand_9",
+      "candidate_b": "24_cand_11",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -116,7 +116,7 @@
     },
     {
       "candidate_a": "24_cand_6",
-      "candidate_b": "24_cand_9",
+      "candidate_b": "24_cand_11",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -124,12 +124,12 @@
     {
       "candidate_a": "24_cand_6",
       "candidate_b": "24_cand_13",
-      "winner": "A",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "24_cand_9",
+      "candidate_a": "24_cand_11",
       "candidate_b": "24_cand_13",
       "winner": "B",
       "confidence": 0.8,
@@ -137,36 +137,36 @@
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND EXISTS (\n    SELECT 1\n    FROM satscores st\n    WHERE st.cds = s.CDSCode\n    AND st.NumGE1500 >= 1\n);",
-    "source": "reasoning_generator",
-    "prompt_id": "reasoning_v1_temp_0",
-    "candidate_id": "24_cand_0",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.[Percent (%) Eligible Free (K-12)] > 0.1\nAND s.NCESDist IN (\n    SELECT d.NCESDist\n    FROM satscores st\n    JOIN schools d ON st.cds = d.CDSCode\n    WHERE st.NumGE1500 >= 1500\n);",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "24_cand_13",
     "question_id": 24,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.033476829528808594,
-      "row_count": 1068,
+      "runtime_sec": 0.03202962875366211,
+      "row_count": 1226,
       "column_count": 1,
       "columns": [
         "School"
       ],
       "sample_rows": [
         [
-          "Clovis North High"
+          "N.E.W. Academy of Science and Arts"
         ],
         [
-          "Clovis West High"
+          "Stella Middle Charter Academy"
         ],
         [
-          "Buchanan High"
+          "High Tech LA"
         ],
         [
-          "Clovis East High"
+          "Accelerated Charter Elementary"
         ],
         [
-          "Clovis High"
+          "Wallis Annenberg High"
         ]
       ],
       "is_empty": false

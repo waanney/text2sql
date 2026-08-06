@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr > 500;",
+    "sql": "SELECT School \nFROM schools \nWHERE Magnet = 1 AND GSserved > 500;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "6_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.NCESDist,\n    s.CharterNum,\n    s.OpenDate,\n    s.ClosedDate\nFROM \n    schools s\nJOIN \n    satscores sa ON s.CDSCode = sa.cds\nWHERE \n    s.Magnet = 1\n    AND sa.NumTstTakr > 500;",
+    "sql": "SELECT School \nFROM schools \nWHERE Magnet = 1 AND GSserved >= 500;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "6_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND s.NumTstTakr > 500;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Magnet = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "6_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School, s.Magnet, s.EILName, s.GSoffered\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nWHERE sat.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%' OR s.GSoffered LIKE '%Magnet%');",
+    "sql": "SELECT s.School, s.Magnet\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "6_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 1, 12)\nWHERE sat.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILCode LIKE '%MAGNET%');",
+    "sql": "SELECT s.School, s.Magnet, s.EILName, s.GSoffered\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%' OR s.GSoffered LIKE '%Magnet%');",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "6_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT DISTINCT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = REPLACE(st.cds, ' ', '')\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.NumTstTakr > 500 AND (s.Magnet = 1 OR s.MagnetProgram IS NOT NULL);",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "6_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Charter = 1);",
+    "sql": "SELECT \n    s.School,\n    s.Magnet\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.School = sa.sname\nWHERE \n    f.`2013-14 CALPADS Fall 1 Certification Status` = 1\n    AND sa.NumTstTakr > 500\n    AND (s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%');",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "6_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores st ON s.School = st.sname\nWHERE st.NumTstTakr > 500 AND (s.Magnet = 1 OR s.Charter = 1);",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE s.Magnet = 1 AND sa.NumTstTakr > 500;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "6_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.NumTstTakr >= 500 AND s.Magnet = 1;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrMath >= 500 AND s.Magnet = 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "6_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.NumTstTakr >= 500 AND s.Magnet = 1;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE ss.AvgScrMath >= 500 AND s.Magnet = 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "6_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Magnet = 1 AND ss.NumTstTakr >= 500;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.AvgScrMath >= 500 AND s.Magnet = 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "6_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.Magnet = 1 OR s.Charter = 1\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 OR s.GSoffered LIKE '%Magnet%'\nAND f.`2013-14 CALPADS Fall 1 Certification Status` = 1\nAND s.NumTstTakr > 500;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "6_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 OR 'Magnet Program' IN (SELECT DISTINCT GSoffered FROM schools WHERE Magnet = 1)\nAND s.NumTstTakr > 500;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "6_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.School_Code\nWHERE s.Magnet = 1 OR s.Charter = 1 AND f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500;",
+    "sql": "SELECT s.School\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE s.Magnet = 1 AND st.NumTstTakr > 500;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "6_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');",
+    "sql": "SELECT s.School \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`2013-14 CALPADS Fall 1 Certification Status` = 1 AND s.NumTstTakr > 500 AND (s.Magnet = 1 OR s.EILName LIKE '%Magnet%');",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "6_cand_14",

@@ -1,30 +1,43 @@
 [
   {
-    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.FRPM_Count_K_12) DESC\nLIMIT 1;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "15_cand_0",
     "question_id": 15,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02758336067199707,
-      "row_count": 1,
-      "column_count": 2,
-      "columns": [
-        "District",
-        "AvgReadingScore"
-      ],
-      "sample_rows": [
-        [
-          "Santa Cruz County Office of Education",
-          638.0
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: f.FRPM_Count_K_12",
+      "runtime_sec": 0.0030078887939453125,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;",
+        "error": "no such column: f.AvgScrRead",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.8922791481018066,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.AvgScrRead",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.FRPM_Count_K_12) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.9877421855926514,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
   },
   {
     "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
@@ -36,7 +49,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02829909324645996,
+      "runtime_sec": 0.022251605987548828,
       "row_count": 1,
       "column_count": 2,
       "columns": [
@@ -54,7 +67,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "15_cand_2",
@@ -63,7 +76,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: f.AvgScrRead",
-      "runtime_sec": 0.003078937530517578,
+      "runtime_sec": 0.0028586387634277344,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -73,28 +86,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;",
         "error": "no such column: f.AvgScrRead",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.188408613204956,
-        "input_tokens": 1329,
-        "output_tokens": 39
+        "fixed_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.886307716369629,
+        "input_tokens": 1326,
+        "output_tokens": 35
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
         "error": "no such column: f.AvgScrRead",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.District, AVG(f.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.226893186569214,
-        "input_tokens": 1332,
-        "output_tokens": 39
+        "fixed_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.8842215538024902,
+        "input_tokens": 1328,
+        "output_tokens": 35
       }
     ]
   },
   {
-    "sql": "SELECT dname\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE StatusType = 'Active'\nGROUP BY dname\nORDER BY AVG(AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "SELECT dname, AVG(AvgScrRead) AS AvgReadingScore\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE StatusType = 'Active'\nGROUP BY dname\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "15_cand_3",
@@ -103,7 +116,61 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02508234977722168,
+      "runtime_sec": 0.021985530853271484,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "dname",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Santa Cruz County Office of Education",
+          638.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = REPLACE(ss.cds, '0', '')\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "15_cand_4",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.012923002243041992,
+      "row_count": 1,
+      "column_count": 2,
+      "columns": [
+        "District",
+        "AvgReadingScore"
+      ],
+      "sample_rows": [
+        [
+          "Palo Alto Unified",
+          627.0
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT dname\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode AND satscores.sname = schools.School\nWHERE schools.StatusType = 'Active'\nGROUP BY dname\nORDER BY AVG(AvgScrRead) DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "15_cand_5",
+    "question_id": 15,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.026353836059570312,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -119,72 +186,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT sch.District, AVG(s.AvgScrRead) AS AvgReadingScore\nFROM satscores s\nJOIN schools sch ON s.cds = sch.CDSCode AND s.sname = sch.School AND s.dname = sch.District\nWHERE sch.StatusType = 'Active'\nGROUP BY sch.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_1",
-    "candidate_id": "15_cand_4",
-    "question_id": 15,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02700185775756836,
-      "row_count": 1,
-      "column_count": 2,
-      "columns": [
-        "District",
-        "AvgReadingScore"
-      ],
-      "sample_rows": [
-        [
-          "Santa Cruz County Office of Education",
-          638.0
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT d.District, AVG(s.AvgScrRead) AS AvgReadingScore\nFROM satscores s\nJOIN schools sch ON s.cds = sch.CDSCode AND s.sname = sch.School AND s.dname = sch.District\nWHERE sch.StatusType = 'Active'\nGROUP BY d.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
-        "error": "no such column: d.District",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT sch.District, AVG(s.AvgScrRead) AS AvgReadingScore\nFROM satscores s\nJOIN schools sch ON s.cds = sch.CDSCode AND s.sname = sch.School AND s.dname = sch.District\nWHERE sch.StatusType = 'Active'\nGROUP BY sch.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.643721580505371,
-        "input_tokens": 1340,
-        "output_tokens": 49
-      }
-    ]
-  },
-  {
-    "sql": "SELECT s.District, AVG(sc.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores sc ON s.CDSCode = REPLACE(sc.cds, ' ', '')\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "15_cand_5",
-    "question_id": 15,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.017628908157348633,
-      "row_count": 1,
-      "column_count": 2,
-      "columns": [
-        "District",
-        "AvgReadingScore"
-      ],
-      "sample_rows": [
-        [
-          "Santa Cruz County Office of Education",
-          638.0
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT frpm.[District Name]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.[District Name]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "15_cand_6",
@@ -193,7 +195,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: satscores.AvgScrRead",
-      "runtime_sec": 0.002900838851928711,
+      "runtime_sec": 0.002861499786376953,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -206,25 +208,25 @@
         "original_sql": "SELECT frpm.District Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.District Name\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
         "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.260634660720825,
+        "fixed_sql": "```sql\nSELECT frpm.[District Name]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.[District Name]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.106290578842163,
         "input_tokens": 1326,
         "output_tokens": 35
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT frpm.[District Name]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.[District Name]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
         "error": "no such column: frpm.StatusType",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.1508870124816895,
+        "fixed_sql": "```sql\nSELECT frpm.[District Name]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.[District Name]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.006326675415039,
         "input_tokens": 1328,
         "output_tokens": 35
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT frpm.[District Name]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.[District Name]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "15_cand_7",
@@ -233,7 +235,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: satscores.AvgScrRead",
-      "runtime_sec": 0.003239154815673828,
+      "runtime_sec": 0.0028853416442871094,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -246,25 +248,25 @@
         "original_sql": "SELECT frpm.District Name\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.District Name\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
         "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.252346992492676,
+        "fixed_sql": "```sql\nSELECT frpm.[District Name]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.[District Name]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.10335636138916,
         "input_tokens": 1326,
         "output_tokens": 35
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT frpm.[District Name]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.[District Name]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
         "error": "no such column: frpm.StatusType",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT frpm.`District Name`\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.1410553455352783,
+        "fixed_sql": "```sql\nSELECT frpm.[District Name]\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.[District Name]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.00715970993042,
         "input_tokens": 1328,
         "output_tokens": 35
       }
     ]
   },
   {
-    "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(sa.AvgScrRead) DESC\nLIMIT 1;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "15_cand_8",
@@ -273,17 +275,15 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.025428295135498047,
+      "runtime_sec": 0.020681381225585938,
       "row_count": 1,
-      "column_count": 2,
+      "column_count": 1,
       "columns": [
-        "District",
-        "AvgReadingScore"
+        "District"
       ],
       "sample_rows": [
         [
-          "Santa Cruz County Office of Education",
-          638.0
+          "Santa Cruz County Office of Education"
         ]
       ],
       "is_empty": false
@@ -300,7 +300,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02328944206237793,
+      "runtime_sec": 0.020778417587280273,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -316,32 +316,47 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(sa.AvgScrRead) DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "15_cand_10",
     "question_id": 15,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.023228168487548828,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "District"
-      ],
-      "sample_rows": [
-        [
-          "Santa Cruz County Office of Education"
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: f.AvgScrRead",
+      "runtime_sec": 0.004095554351806641,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;",
+        "error": "no such column: f.AvgScrRead",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.88627290725708,
+        "input_tokens": 1326,
+        "output_tokens": 35
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.AvgScrRead",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.897367000579834,
+        "input_tokens": 1328,
+        "output_tokens": 35
+      }
+    ]
   },
   {
-    "sql": "SELECT \n    s.District AS Active_District,\n    AVG(ss.AvgScrRead) AS Average_Score_Reading\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.StatusType = 'Active'\nGROUP BY \n    s.District\nORDER BY \n    Average_Score_Reading DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT frpm.`District Name`, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "15_cand_11",
@@ -350,12 +365,12 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02292180061340332,
+      "runtime_sec": 0.03582143783569336,
       "row_count": 1,
       "column_count": 2,
       "columns": [
-        "Active_District",
-        "Average_Score_Reading"
+        "District Name",
+        "AvgReadingScore"
       ],
       "sample_rows": [
         [
@@ -365,10 +380,31 @@
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT frpm.District Name, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.District Name\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT frpm.`District Name`, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.596587896347046,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.`District Name`, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.StatusType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.`District Name`, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.5730960369110107,
+        "input_tokens": 1340,
+        "output_tokens": 46
+      }
+    ]
   },
   {
-    "sql": "SELECT s.District AS ActiveDistrict, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nJOIN satscores ss ON s.CDSCode = ss.cds AND ss.rtype = 'D'\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT frpm.`District Name`, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "15_cand_12",
@@ -377,11 +413,11 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02227306365966797,
+      "runtime_sec": 0.04204273223876953,
       "row_count": 1,
       "column_count": 2,
       "columns": [
-        "ActiveDistrict",
+        "District Name",
         "AvgReadingScore"
       ],
       "sample_rows": [
@@ -392,10 +428,31 @@
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT frpm.District Name, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.District Name\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT frpm.`District Name`, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.5991690158843994,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.`District Name`, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE frpm.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "error": "no such column: frpm.StatusType",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.`District Name`, AVG(satscores.AvgScrRead) AS AvgReadingScore\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nJOIN satscores ON schools.School = satscores.sname\nWHERE schools.StatusType = 'Active'\nGROUP BY frpm.`District Name`\nORDER BY AvgReadingScore DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.5736777782440186,
+        "input_tokens": 1340,
+        "output_tokens": 46
+      }
+    ]
   },
   {
-    "sql": "SELECT \n    s.District,\n    AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.StatusType = 'Active'\nGROUP BY \n    s.District\nORDER BY \n    AvgReadingScore DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT f.`District Name`\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE sc.StatusType = 'Active'\nGROUP BY f.`District Name`\nORDER BY AVG(s.AvgScrRead) DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "15_cand_13",
@@ -404,22 +461,31 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.023371219635009766,
+      "runtime_sec": 0.023859500885009766,
       "row_count": 1,
-      "column_count": 2,
+      "column_count": 1,
       "columns": [
-        "District",
-        "AvgReadingScore"
+        "District Name"
       ],
       "sample_rows": [
         [
-          "Santa Cruz County Office of Education",
-          638.0
+          "Santa Cruz County Office of Education"
         ]
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT f.District Name\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE sc.StatusType = 'Active'\nGROUP BY f.District Name\nORDER BY AVG(s.AvgScrRead) DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT f.`District Name`\nFROM frpm f\nJOIN satscores s ON f.CDSCode = s.cds\nJOIN schools sc ON f.CDSCode = sc.CDSCode\nWHERE sc.StatusType = 'Active'\nGROUP BY f.`District Name`\nORDER BY AVG(s.AvgScrRead) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3044004440307617,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      }
+    ]
   },
   {
     "sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.`FRPM Count (K-12)`) DESC\nLIMIT 1;\n```",
@@ -431,7 +497,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.031432390213012695,
+      "runtime_sec": 0.030220746994018555,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -451,7 +517,7 @@
         "error": "near \"Count\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT s.District \nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AVG(f.`FRPM Count (K-12)`) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.1814258098602295,
+        "repair_time_sec": 2.035431385040283,
         "input_tokens": 1328,
         "output_tokens": 37
       }

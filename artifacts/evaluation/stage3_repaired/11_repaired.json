@@ -1,6 +1,6 @@
 [
   {
-    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)] > 500;\n```",
+    "sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (frpm.`Enrollment (K-12)` + frpm.`Enrollment (Ages 5-17)`) > 500;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "11_cand_0",
@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.030903339385986328,
+      "runtime_sec": 0.03014683723449707,
       "row_count": 7806,
       "column_count": 1,
       "columns": [
@@ -37,66 +37,58 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Enrollment (K-12) + f.Enrollment (Ages 5-17) > 500;",
-        "error": "near \"(\": syntax error",
+        "original_sql": "SELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Enrollment (K-12) + Enrollment (Ages 5-17) > 500;",
+        "error": "near \"5\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)] > 500;\n```",
-        "repair_time_sec": 2.0203211307525635,
-        "input_tokens": 1320,
-        "output_tokens": 29
+        "fixed_sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (frpm.`Enrollment (K-12)` + frpm.`Enrollment (Ages 5-17)`) > 500;\n```",
+        "repair_time_sec": 2.0131545066833496,
+        "input_tokens": 1318,
+        "output_tokens": 27
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)`) > 500;\n```",
+    "sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (Enrollment_K_12 + Enrollment_Ages_5_17) > 500;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "11_cand_1",
     "question_id": 11,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.03163909912109375,
-      "row_count": 7806,
-      "column_count": 1,
-      "columns": [
-        "NCESSchool"
-      ],
-      "sample_rows": [
-        [
-          "10546"
-        ],
-        [
-          "10947"
-        ],
-        [
-          "12901"
-        ],
-        [
-          "13008"
-        ],
-        [
-          "04257"
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: Enrollment_K_12",
+      "runtime_sec": 0.002445697784423828,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment (K-12) + f.Enrollment (Ages 5-17)) > 500;",
-        "error": "near \"(\": syntax error",
+        "original_sql": "SELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (Enrollment (K-12) + Enrollment (Ages 5-17)) > 500;",
+        "error": "near \"5\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.`Enrollment (K-12)` + f.`Enrollment (Ages 5-17)`) > 500;\n```",
-        "repair_time_sec": 2.068594455718994,
-        "input_tokens": 1320,
-        "output_tokens": 29
+        "fixed_sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (Enrollment_K_12 + Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 1.7430737018585205,
+        "input_tokens": 1318,
+        "output_tokens": 23
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (Enrollment_K_12 + Enrollment_Ages_5_17) > 500;\n```",
+        "error": "no such column: Enrollment_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (Enrollment_K_12 + Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 1.7421507835388184,
+        "input_tokens": 1316,
+        "output_tokens": 23
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)]) > 500;\n```",
+    "sql": "```sql\nSELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)] > 500;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "11_cand_2",
@@ -105,8 +97,8 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.029907941818237305,
-      "row_count": 7806,
+      "runtime_sec": 0.042322397232055664,
+      "row_count": 7801,
       "column_count": 1,
       "columns": [
         "NCESSchool"
@@ -133,13 +125,13 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment (K-12) + f.Enrollment (Ages 5-17)) > 500;",
+        "original_sql": "SELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Enrollment (K-12) + f.Enrollment (Ages 5-17) > 500;",
         "error": "near \"(\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)]) > 500;\n```",
-        "repair_time_sec": 2.0353260040283203,
-        "input_tokens": 1320,
-        "output_tokens": 29
+        "fixed_sql": "```sql\nSELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.[Enrollment (K-12)] + f.[Enrollment (Ages 5-17)] > 500;\n```",
+        "repair_time_sec": 1.9849977493286133,
+        "input_tokens": 1322,
+        "output_tokens": 31
       }
     ]
   },
@@ -153,7 +145,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: Enrollment_K_12",
-      "runtime_sec": 0.0031795501708984375,
+      "runtime_sec": 0.0027925968170166016,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -167,7 +159,7 @@
         "error": "no such column: Enrollment_K_12",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;\n```",
-        "repair_time_sec": 1.0827326774597168,
+        "repair_time_sec": 1.0640017986297607,
         "input_tokens": 1303,
         "output_tokens": 13
       },
@@ -177,7 +169,7 @@
         "error": "no such column: Enrollment_K_12",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;\n```",
-        "repair_time_sec": 1.0814192295074463,
+        "repair_time_sec": 1.0628504753112793,
         "input_tokens": 1306,
         "output_tokens": 13
       }
@@ -193,7 +185,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: Enrollment_K_12",
-      "runtime_sec": 0.002995014190673828,
+      "runtime_sec": 0.0027501583099365234,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -207,7 +199,7 @@
         "error": "no such column: Enrollment_K_12",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;\n```",
-        "repair_time_sec": 1.0806553363800049,
+        "repair_time_sec": 1.0616178512573242,
         "input_tokens": 1303,
         "output_tokens": 13
       },
@@ -217,49 +209,57 @@
         "error": "no such column: Enrollment_K_12",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;\n```",
-        "repair_time_sec": 1.079157829284668,
+        "repair_time_sec": 1.0617306232452393,
         "input_tokens": 1306,
         "output_tokens": 13
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;\n```",
+    "sql": "```sql\nSELECT CDSCode FROM frpm WHERE `Enrollment (K-12)` >= 500;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "11_cand_5",
     "question_id": 11,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: Enrollment_K_12",
-      "runtime_sec": 0.004439353942871094,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.014178037643432617,
+      "row_count": 5377,
+      "column_count": 1,
+      "columns": [
+        "CDSCode"
+      ],
+      "sample_rows": [
+        [
+          "01100170109835"
+        ],
+        [
+          "01100176001788"
+        ],
+        [
+          "01611190111765"
+        ],
+        [
+          "01611190122085"
+        ],
+        [
+          "01611190130229"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;",
-        "error": "no such column: Enrollment_K_12",
+        "original_sql": "SELECT CDSCode FROM frpm WHERE Enrollment >= 500;",
+        "error": "no such column: Enrollment",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;\n```",
-        "repair_time_sec": 1.0817992687225342,
+        "fixed_sql": "```sql\nSELECT CDSCode FROM frpm WHERE `Enrollment (K-12)` >= 500;\n```",
+        "repair_time_sec": 1.158722162246704,
         "input_tokens": 1303,
-        "output_tokens": 13
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;\n```",
-        "error": "no such column: Enrollment_K_12",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;\n```",
-        "repair_time_sec": 1.0788288116455078,
-        "input_tokens": 1306,
-        "output_tokens": 13
+        "output_tokens": 14
       }
     ]
   },
@@ -273,7 +273,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02880549430847168,
+      "runtime_sec": 0.028550386428833008,
       "row_count": 5,
       "column_count": 1,
       "columns": [
@@ -310,7 +310,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.028759002685546875,
+      "runtime_sec": 0.03776264190673828,
       "row_count": 5,
       "column_count": 1,
       "columns": [
@@ -338,151 +338,127 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.`Enrollment (K-12)` + frpm.`Enrollment (Ages 5-17)`) > 500;\n```",
+    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment_K_12 + f.Enrollment_Ages_5_17) > 500;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "11_cand_8",
     "question_id": 11,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.016183853149414062,
-      "row_count": 7806,
-      "column_count": 1,
-      "columns": [
-        "CDSCode"
-      ],
-      "sample_rows": [
-        [
-          "01100170109835"
-        ],
-        [
-          "01100170112607"
-        ],
-        [
-          "01100170124172"
-        ],
-        [
-          "01100170125567"
-        ],
-        [
-          "01100176001788"
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: f.Enrollment_K_12",
+      "runtime_sec": 0.0026092529296875,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.Enrollment (K-12) + frpm.Enrollment (Ages 5-17)) > 500;",
-        "error": "near \"(\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.`Enrollment (K-12)` + frpm.`Enrollment (Ages 5-17)`) > 500;\n```",
-        "repair_time_sec": 1.7583646774291992,
-        "input_tokens": 1310,
-        "output_tokens": 19
+        "original_sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment_K_12 + f.Enrollment_Ages_5_17) > 500;",
+        "error": "no such column: f.Enrollment_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment_K_12 + f.Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 1.8581109046936035,
+        "input_tokens": 1316,
+        "output_tokens": 26
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment_K_12 + f.Enrollment_Ages_5_17) > 500;\n```",
+        "error": "no such column: f.Enrollment_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment_K_12 + f.Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 1.8630435466766357,
+        "input_tokens": 1319,
+        "output_tokens": 26
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE (frpm.`Enrollment (K-12)` + frpm.`Enrollment (Ages 5-17)`) > 500;\n```",
+    "sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "11_cand_9",
     "question_id": 11,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02580738067626953,
-      "row_count": 7806,
-      "column_count": 1,
-      "columns": [
-        "CDSCode"
-      ],
-      "sample_rows": [
-        [
-          "01100170109835"
-        ],
-        [
-          "01100170112607"
-        ],
-        [
-          "01100170124172"
-        ],
-        [
-          "01100170125567"
-        ],
-        [
-          "01100176001788"
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: frpm.Enrollment_K_12",
+      "runtime_sec": 0.005362033843994141,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT frpm.CDSCode\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE (frpm.Enrollment (K-12) + frpm.Enrollment (Ages 5-17)) > 500;",
-        "error": "near \"(\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE (frpm.`Enrollment (K-12)` + frpm.`Enrollment (Ages 5-17)`) > 500;\n```",
-        "repair_time_sec": 2.1114566326141357,
-        "input_tokens": 1318,
-        "output_tokens": 27
+        "original_sql": "SELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;",
+        "error": "no such column: frpm.Enrollment_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 1.568955659866333,
+        "input_tokens": 1306,
+        "output_tokens": 15
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;\n```",
+        "error": "no such column: frpm.Enrollment_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 1.5687928199768066,
+        "input_tokens": 1309,
+        "output_tokens": 15
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nWHERE frpm.`Enrollment (K-12)` + frpm.`Enrollment (Ages 5-17)` > 500;\n```",
+    "sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "11_cand_10",
     "question_id": 11,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.014458179473876953,
-      "row_count": 7806,
-      "column_count": 1,
-      "columns": [
-        "CDSCode"
-      ],
-      "sample_rows": [
-        [
-          "01100170109835"
-        ],
-        [
-          "01100170112607"
-        ],
-        [
-          "01100170124172"
-        ],
-        [
-          "01100170125567"
-        ],
-        [
-          "01100176001788"
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: frpm.Enrollment_K_12",
+      "runtime_sec": 0.0029022693634033203,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT frpm.CDSCode\nFROM frpm\nWHERE frpm.Enrollment (K-12) + frpm.Enrollment (Ages 5-17) > 500;",
-        "error": "near \"(\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT frpm.CDSCode\nFROM frpm\nWHERE frpm.`Enrollment (K-12)` + frpm.`Enrollment (Ages 5-17)` > 500;\n```",
-        "repair_time_sec": 1.701728105545044,
-        "input_tokens": 1310,
-        "output_tokens": 19
+        "original_sql": "SELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;",
+        "error": "no such column: frpm.Enrollment_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 1.864983081817627,
+        "input_tokens": 1314,
+        "output_tokens": 23
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;\n```",
+        "error": "no such column: frpm.Enrollment_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;\n```",
+        "repair_time_sec": 1.8669910430908203,
+        "input_tokens": 1316,
+        "output_tokens": 23
       }
     ]
   },
   {
-    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;",
+    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "11_cand_11",
@@ -491,44 +467,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.032857418060302734,
-      "row_count": 7801,
-      "column_count": 1,
-      "columns": [
-        "NCESSchool"
-      ],
-      "sample_rows": [
-        [
-          null
-        ],
-        [
-          "00001"
-        ],
-        [
-          "00002"
-        ],
-        [
-          "00003"
-        ],
-        [
-          "00004"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_1",
-    "candidate_id": "11_cand_12",
-    "question_id": 11,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.03802990913391113,
+      "runtime_sec": 0.03560376167297363,
       "row_count": 7801,
       "column_count": 1,
       "columns": [
@@ -560,23 +499,23 @@
         "error": "near \"(\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;\n```",
-        "repair_time_sec": 2.262645721435547,
+        "repair_time_sec": 2.1998021602630615,
         "input_tokens": 1324,
         "output_tokens": 33
       }
     ]
   },
   {
-    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (K-12)]) + SUM(f.[Enrollment (Ages 5-17)]) > 500;",
+    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;\n```",
     "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_2",
-    "candidate_id": "11_cand_13",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "11_cand_12",
     "question_id": 11,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03355550765991211,
+      "runtime_sec": 0.03776192665100098,
       "row_count": 7801,
       "column_count": 1,
       "columns": [
@@ -601,7 +540,66 @@
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.Enrollment (Ages 5-17)) + SUM(f.Enrollment (K-12)) > 500;",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;\n```",
+        "repair_time_sec": 2.201326847076416,
+        "input_tokens": 1324,
+        "output_tokens": 33
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "11_cand_13",
+    "question_id": 11,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.034913063049316406,
+      "row_count": 7801,
+      "column_count": 1,
+      "columns": [
+        "NCESSchool"
+      ],
+      "sample_rows": [
+        [
+          null
+        ],
+        [
+          "00001"
+        ],
+        [
+          "00002"
+        ],
+        [
+          "00003"
+        ],
+        [
+          "00004"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.Enrollment (Ages 5-17)) + SUM(f.Enrollment (K-12)) > 500;",
+        "error": "near \"(\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;\n```",
+        "repair_time_sec": 2.2030858993530273,
+        "input_tokens": 1324,
+        "output_tokens": 33
+      }
+    ]
   },
   {
     "sql": "```sql\nSELECT CDSCode \nFROM frpm \nGROUP BY CDSCode \nHAVING SUM(`Enrollment (Ages 5-17)`) > 500;\n```",
@@ -613,7 +611,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.016022443771362305,
+      "runtime_sec": 0.015247583389282227,
       "row_count": 5230,
       "column_count": 1,
       "columns": [
@@ -645,7 +643,7 @@
         "error": "near \"5\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT CDSCode \nFROM frpm \nGROUP BY CDSCode \nHAVING SUM(`Enrollment (Ages 5-17)`) > 500;\n```",
-        "repair_time_sec": 1.5396521091461182,
+        "repair_time_sec": 1.4961960315704346,
         "input_tokens": 1310,
         "output_tokens": 19
       }

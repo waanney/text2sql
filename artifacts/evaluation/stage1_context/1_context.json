@@ -16,7 +16,7 @@
       "Students aged 5-17",
       "Continuation schools"
     ],
-    "aggregation": "rank",
+    "aggregation": "average",
     "time_phrases": [],
     "question_skeleton": "List the {output_phrase}"
   },
@@ -30,14 +30,6 @@
   "evidence_constraints": [
     {
       "type": "value_link",
-      "constraint": "Value 'for students' matches value 'California Advancing Pathways for Students in Los Angeles County ROC/P' in table 'schools', column 'District'"
-    },
-    {
-      "type": "value_link",
-      "constraint": "Value 'for students' matches value 'California Advancing Pathways for Students in Los Angeles County' in table 'schools', column 'School'"
-    },
-    {
-      "type": "value_link",
       "constraint": "Value 'in continuation' matches value 'Albert Einstein Continuation' in table 'frpm', column 'School Name'"
     },
     {
@@ -49,28 +41,29 @@
       "constraint": "Value 'in continuation' matches value 'Arvin Continuation High' in table 'schools', column 'School'"
     },
     {
+      "type": "value_link",
+      "constraint": "Value 'for students' matches value 'California Advancing Pathways for Students in Los Angeles County ROC/P' in table 'schools', column 'District'"
+    },
+    {
+      "type": "value_link",
+      "constraint": "Value 'for students' matches value 'California Advancing Pathways for Students in Los Angeles County' in table 'schools', column 'School'"
+    },
+    {
       "phrase": "Eligible free rates for students aged 5-17 = `Free Meal Count (Ages 5-17)` / `Enrollment (Ages 5-17)`",
-      "column": "frpm.Percent (%) Eligible Free (Ages 5-17)",
-      "operator": "=",
-      "value": "(SELECT Free_Meal_Count__Ages_5_17 / Enrollment__Ages_5_17 FROM frpm WHERE School_Type = 'Continuation High Schools')",
-      "needs_cast": false,
-      "cast_type": null,
+      "type": "formula",
+      "column": "(CAST(`Free Meal Count (Ages 5-17)` AS REAL) / `Enrollment (Ages 5-17)`)",
+      "operator": null,
+      "value": null,
+      "needs_cast": true,
+      "cast_type": "REAL",
       "confidence": 1.0
     },
     {
-      "phrase": "Students aged 5-17",
-      "column": "frpm.School_Type",
+      "phrase": "`School Type` = 'Continuation High Schools'",
+      "type": "filter",
+      "column": "`School Type`",
       "operator": "=",
       "value": "'Continuation High Schools'",
-      "needs_cast": false,
-      "cast_type": null,
-      "confidence": 1.0
-    },
-    {
-      "phrase": "List the lowest three eligible free rates",
-      "column": "frpm.Percent (%) Eligible Free (Ages 5-17)",
-      "operator": "<=",
-      "value": "(SELECT MIN(Percent (%) Eligible Free (Ages 5-17)) FROM frpm WHERE School_Type = 'Continuation High Schools' ORDER BY Percent (%) Eligible Free (Ages 5-17) LIMIT 3)",
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
@@ -544,6 +537,6 @@
   "confidence": {
     "schema_linking": 0.10326923076923077,
     "literal_mapping": 0.0,
-    "evidence_parsing": 0.375
+    "evidence_parsing": 0.2857142857142857
   }
 }

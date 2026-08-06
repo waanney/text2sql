@@ -1,38 +1,26 @@
 {
   "question_id": 0,
   "db_id": "california_schools",
-  "final_sql": "SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.`County Code` = s.`County`\nWHERE s.`County` = 'Alameda';",
-  "best_candidate_id": "0_cand_11",
+  "final_sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nJOIN \"schools\" ON \"frpm\".\"CDSCode\" = \"schools\".\"CDSCode\"\nWHERE \"schools\".\"County\" = 'Alameda';",
+  "best_candidate_id": "0_cand_6",
   "ranked_candidates": [
-    [
-      "0_cand_11",
-      0.8
-    ],
     [
       "0_cand_6",
       0.0
     ]
   ],
-  "comparison_logs": [
-    {
-      "candidate_a": "0_cand_6",
-      "candidate_b": "0_cand_11",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    }
-  ],
+  "comparison_logs": [],
   "selected_candidate": {
-    "sql": "SELECT MAX(f.\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM frpm f\nJOIN schools s ON f.`County Code` = s.`County`\nWHERE s.`County` = 'Alameda';",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_0",
-    "candidate_id": "0_cand_11",
+    "sql": "SELECT MAX(\"frpm\".\"Percent (%) Eligible Free (K-12)\") AS HighestEligibleFreeRate\nFROM \"frpm\"\nJOIN \"schools\" ON \"frpm\".\"CDSCode\" = \"schools\".\"CDSCode\"\nWHERE \"schools\".\"County\" = 'Alameda';",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "0_cand_6",
     "question_id": 0,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014176130294799805,
+      "runtime_sec": 0.021008014678955078,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -40,7 +28,7 @@
       ],
       "sample_rows": [
         [
-          null
+          1.0
         ]
       ],
       "is_empty": false
@@ -48,5 +36,5 @@
     "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 2
+  "num_representatives": 1
 }

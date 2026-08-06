@@ -14,7 +14,7 @@
       "schools with the average score in Math over 560 in the SAT test",
       "directly charter-funded"
     ],
-    "aggregation": "average",
+    "aggregation": "COUNT(*)",
     "time_phrases": [],
     "question_skeleton": "How many [charter-funded] schools have an average Math score over 560 in the SAT test?"
   },

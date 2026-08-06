@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.031105518341064453,
+      "runtime_sec": 0.0299837589263916,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -34,7 +34,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02494049072265625,
+      "runtime_sec": 0.02409815788269043,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -50,7 +50,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;",
+    "sql": "SELECT s.MailStreet\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "3_cand_2",
@@ -59,7 +59,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.026463985443115234,
+      "runtime_sec": 0.027901887893676758,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -75,96 +75,16 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT T1.MailStreet\nFROM schools AS T1\nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode\nORDER BY T2.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "3_cand_3",
     "question_id": 3,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: T1.FRPM_Count_K_12",
-      "runtime_sec": 0.0036363601684570312,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;",
-        "error": "no such column: T1.FRPM_Count_K_12",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;\n```",
-        "repair_time_sec": 1.866086721420288,
-        "input_tokens": 1319,
-        "output_tokens": 28
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;\n```",
-        "error": "no such column: T1.FRPM_Count_K_12",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;\n```",
-        "repair_time_sec": 1.8640568256378174,
-        "input_tokens": 1322,
-        "output_tokens": 28
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;\n```",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_1",
-    "candidate_id": "3_cand_4",
-    "question_id": 3,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: T1.FRPM_Count_K_12",
-      "runtime_sec": 0.0027806758880615234,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;",
-        "error": "no such column: T1.FRPM_Count_K_12",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;\n```",
-        "repair_time_sec": 1.8681252002716064,
-        "input_tokens": 1319,
-        "output_tokens": 28
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;\n```",
-        "error": "no such column: T1.FRPM_Count_K_12",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT T2.MailStreet \nFROM frpm AS T1 \nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode \nORDER BY T1.FRPM_Count_K_12 DESC \nLIMIT 1;\n```",
-        "repair_time_sec": 1.8626980781555176,
-        "input_tokens": 1322,
-        "output_tokens": 28
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT s.MailStreet\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "3_cand_5",
-    "question_id": 3,
-    "db_id": "california_schools",
-    "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.028778076171875,
+      "runtime_sec": 0.026948928833007812,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -180,18 +100,94 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.MailStreet\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.FRPM_Count DESC\nLIMIT 1;",
-        "error": "no such column: f.FRPM_Count",
+        "original_sql": "SELECT T1.MailStreet\nFROM schools AS T1\nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode\nORDER BY T2.FRPM_Count_K_12 DESC\nLIMIT 1;",
+        "error": "no such column: T2.FRPM_Count_K_12",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7067725658416748,
+        "fixed_sql": "```sql\nSELECT T1.MailStreet\nFROM schools AS T1\nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode\nORDER BY T2.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.8424842357635498,
+        "input_tokens": 1319,
+        "output_tokens": 31
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "3_cand_4",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: f.FRPM_Count_K_12",
+      "runtime_sec": 0.0027184486389160156,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;",
+        "error": "no such column: f.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.594735860824585,
+        "input_tokens": 1316,
+        "output_tokens": 26
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.5968215465545654,
+        "input_tokens": 1319,
+        "output_tokens": 26
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT s.MailStreet \nFROM schools s \nJOIN frpm f ON s.CDSCode = f.CDSCode \nORDER BY f.`FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "3_cand_5",
+    "question_id": 3,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03597593307495117,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "MailStreet"
+      ],
+      "sample_rows": [
+        [
+          "14429 South Downey Avenue"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.MailStreet \nFROM schools s \nJOIN frpm f ON s.CDSCode = f.CDSCode \nORDER BY f.FRPM_Count_K_12 DESC \nLIMIT 1;",
+        "error": "no such column: f.FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.MailStreet \nFROM schools s \nJOIN frpm f ON s.CDSCode = f.CDSCode \nORDER BY f.`FRPM Count (K-12)` DESC \nLIMIT 1;\n```",
+        "repair_time_sec": 1.645961046218872,
         "input_tokens": 1316,
         "output_tokens": 28
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+    "sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "3_cand_6",
@@ -200,7 +196,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01916980743408203,
+      "runtime_sec": 0.03108072280883789,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -208,26 +204,15 @@
       ],
       "sample_rows": [
         [
-          "13330 Vaughn Street"
+          "14429 South Downey Avenue"
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.School Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
-        "error": "near \"Type\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.115002393722534,
-        "input_tokens": 1328,
-        "output_tokens": 37
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
+    "sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "3_cand_7",
@@ -236,7 +221,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019370317459106445,
+      "runtime_sec": 0.04200148582458496,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -244,26 +229,15 @@
       ],
       "sample_rows": [
         [
-          "13330 Vaughn Street"
+          "14429 South Downey Avenue"
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.School Type = 'K-12 Schools (Public)'\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;",
-        "error": "near \"Type\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.120910167694092,
-        "input_tokens": 1328,
-        "output_tokens": 37
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT MailStreet\nFROM schools\nWHERE District = 'SBE - The School of Arts and Enterprise'\nORDER BY FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "3_cand_8",
@@ -271,8 +245,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: f.District_Name",
-      "runtime_sec": 0.003063678741455078,
+      "error": "no such column: FRPM_Count_K_12",
+      "runtime_sec": 0.0031442642211914062,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -282,103 +256,95 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.District Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM Count (K-12) DESC\nLIMIT 1;",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0938358306884766,
-        "input_tokens": 1336,
-        "output_tokens": 40
+        "original_sql": "SELECT MailStreet\nFROM schools\nWHERE District = 'SBE - The School of Arts and Enterprise'\nORDER BY FRPM_Count_K_12 DESC\nLIMIT 1;",
+        "error": "no such column: FRPM_Count_K_12",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT MailStreet\nFROM schools\nWHERE District = 'SBE - The School of Arts and Enterprise'\nORDER BY FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.4791858196258545,
+        "input_tokens": 1320,
+        "output_tokens": 29
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "error": "no such column: f.District_Name",
+        "original_sql": "```sql\nSELECT MailStreet\nFROM schools\nWHERE District = 'SBE - The School of Arts and Enterprise'\nORDER BY FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+        "error": "no such column: FRPM_Count_K_12",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.065197706222534,
-        "input_tokens": 1333,
-        "output_tokens": 40
+        "fixed_sql": "```sql\nSELECT MailStreet\nFROM schools\nWHERE District = 'SBE - The School of Arts and Enterprise'\nORDER BY FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.4796009063720703,
+        "input_tokens": 1323,
+        "output_tokens": 29
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.`School Name` = s.School\nWHERE f.`District Name` = 'SBE - The School of Arts and Enterprise'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "3_cand_9",
     "question_id": 3,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.District_Name",
-      "runtime_sec": 0.003320455551147461,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0361933708190918,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "MailStreet"
+      ],
+      "sample_rows": [
+        [
+          "295 North Garey Avenue"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.District Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM Count (K-12) DESC\nLIMIT 1;",
-        "error": "near \"Code\": syntax error",
+        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School Name = s.School\nWHERE f.District Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM Count (K-12) DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0860488414764404,
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.`School Name` = s.School\nWHERE f.`District Name` = 'SBE - The School of Arts and Enterprise'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0812222957611084,
         "input_tokens": 1336,
-        "output_tokens": 40
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "error": "no such column: f.District_Name",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0727603435516357,
-        "input_tokens": 1333,
-        "output_tokens": 40
+        "output_tokens": 45
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.MailStreet\nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "3_cand_10",
     "question_id": 3,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.District_Name",
-      "runtime_sec": 0.002658367156982422,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.033921003341674805,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "MailStreet"
+      ],
+      "sample_rows": [
+        [
+          "295 North Garey Avenue"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.District Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM Count (K-12) DESC\nLIMIT 1;",
-        "error": "near \"Code\": syntax error",
+        "original_sql": "SELECT s.MailStreet\nFROM schools s\nJOIN frpm f ON s.School = f.School Name\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0931644439697266,
-        "input_tokens": 1336,
-        "output_tokens": 40
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "error": "no such column: f.District_Name",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.District_Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM_Count_K_12 DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0675432682037354,
-        "input_tokens": 1333,
-        "output_tokens": 40
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM schools s\nJOIN frpm f ON s.School = f.`School Name`\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0117976665496826,
+        "input_tokens": 1335,
+        "output_tokens": 44
       }
     ]
   },
@@ -392,7 +358,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.025174856185913086,
+      "runtime_sec": 0.02451348304748535,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -412,7 +378,7 @@
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7056028842926025,
+        "repair_time_sec": 1.6443274021148682,
         "input_tokens": 1320,
         "output_tokens": 28
       },
@@ -422,7 +388,7 @@
         "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7067010402679443,
+        "repair_time_sec": 1.6439845561981201,
         "input_tokens": 1322,
         "output_tokens": 28
       }
@@ -438,7 +404,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.024957656860351562,
+      "runtime_sec": 0.025389432907104492,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -458,7 +424,7 @@
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
         "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7081365585327148,
+        "repair_time_sec": 1.6422579288482666,
         "input_tokens": 1320,
         "output_tokens": 28
       },
@@ -468,14 +434,14 @@
         "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7073235511779785,
+        "repair_time_sec": 1.6444001197814941,
         "input_tokens": 1322,
         "output_tokens": 28
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "3_cand_13",
@@ -484,7 +450,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.025861263275146484,
+      "runtime_sec": 0.07735538482666016,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -500,28 +466,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7067461013793945,
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.6434516906738281,
         "input_tokens": 1320,
         "output_tokens": 28
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
         "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.[FRPM Count (K-12)] DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7059001922607422,
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 1.6421797275543213,
         "input_tokens": 1322,
         "output_tokens": 28
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.MailStreet \nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "3_cand_14",
@@ -530,7 +496,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: f.School_Type",
-      "runtime_sec": 0.0026662349700927734,
+      "runtime_sec": 0.002779245376586914,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -540,21 +506,21 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.MailStreet \nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.School Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.School Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.MailStreet \nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.093689203262329,
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0130438804626465,
         "input_tokens": 1329,
         "output_tokens": 36
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.MailStreet \nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
         "error": "no such column: f.School_Type",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.MailStreet \nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.081062078475952,
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.School_Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.007744789123535,
         "input_tokens": 1329,
         "output_tokens": 36
       }

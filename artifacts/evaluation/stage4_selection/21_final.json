@@ -1,9 +1,13 @@
 {
   "question_id": 21,
   "db_id": "california_schools",
-  "final_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Los Angeles' \n  AND `Free Meal Count (K-12)` > 500 \n  AND `FRPM Count (K-12)` < 700;",
-  "best_candidate_id": "21_cand_3",
+  "final_sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles'\nAND frpm.[Free Meal Count (K-12)] > 500\nAND frpm.[Free Meal Count (K-12)] < 700;",
+  "best_candidate_id": "21_cand_5",
   "ranked_candidates": [
+    [
+      "21_cand_5",
+      1.6
+    ],
     [
       "21_cand_3",
       0.8
@@ -20,19 +24,33 @@
       "winner": "B",
       "confidence": 0.8,
       "probs": null
+    },
+    {
+      "candidate_a": "21_cand_6",
+      "candidate_b": "21_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "21_cand_3",
+      "candidate_b": "21_cand_5",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Los Angeles' \n  AND `Free Meal Count (K-12)` > 500 \n  AND `FRPM Count (K-12)` < 700;\n```",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles'\nAND frpm.[Free Meal Count (K-12)] > 500\nAND frpm.[Free Meal Count (K-12)] < 700;",
     "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_0",
-    "candidate_id": "21_cand_3",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "21_cand_5",
     "question_id": 21,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011623859405517578,
+      "runtime_sec": 0.019501686096191406,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -40,24 +58,13 @@
       ],
       "sample_rows": [
         [
-          249
+          327
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*) \nFROM frpm \nWHERE County Name = 'Los Angeles' \n  AND `Free Meal Count (K-12)` > 500 \n  AND `FRPM Count (K-12)` < 700;",
-        "error": "near \"Name\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT COUNT(*) \nFROM frpm \nWHERE `County Name` = 'Los Angeles' \n  AND `Free Meal Count (K-12)` > 500 \n  AND `FRPM Count (K-12)` < 700;\n```",
-        "repair_time_sec": 1.9826128482818604,
-        "input_tokens": 1323,
-        "output_tokens": 32
-      }
-    ]
+    "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 2
+  "num_representatives": 3
 }

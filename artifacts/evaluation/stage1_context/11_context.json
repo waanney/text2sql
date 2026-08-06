@@ -41,18 +41,20 @@
     },
     {
       "phrase": "Total enrollment can be represented by `Enrollment (K-12)` + `Enrollment (Ages 5-17)`",
-      "column": "frpm.Enrollment (K-12)",
-      "operator": ">=",
-      "value": "500",
+      "type": "formula",
+      "column": "(frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17)",
+      "operator": null,
+      "value": null,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
     },
     {
-      "phrase": "Total enrollment can be represented by `Enrollment (K-12)` + `Enrollment (Ages 5-17)`",
-      "column": "frpm.Enrollment (Ages 5-17)",
-      "operator": ">=",
-      "value": "0",
+      "phrase": "list the codes of the schools with a total enrollment of over 500",
+      "type": "filter",
+      "column": "(frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17)",
+      "operator": ">",
+      "value": 500,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0

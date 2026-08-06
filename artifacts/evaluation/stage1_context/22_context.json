@@ -15,7 +15,7 @@
     ],
     "aggregation": "count",
     "time_phrases": [],
-    "question_skeleton": "Which [entity] has the highest [aggregation] of [attribute]?"
+    "question_skeleton": "Which [school] in [location] has the [highest/lowest] number of [test takers]?"
   },
   "literals": [
     "Contra Costa",

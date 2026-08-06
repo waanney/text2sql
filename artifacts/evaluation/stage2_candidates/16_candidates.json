@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*) \nFROM schools \nWHERE District = 'Alameda County Office of Education' \n  AND StatusType = 'Merged' \n  AND NCESSchool IN (\n    SELECT NCESSchool \n    FROM satscores \n    WHERE NumTstTakr < 100\n  );",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "16_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*) \nFROM schools \nWHERE County = 'Alameda' AND StatusType = 'Merged' AND NumTstTakr < 100;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "16_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*) \nFROM schools \nWHERE District = 'Alameda County Office of Education' \nAND StatusType = 'Merged' \nAND NCESSchool IN (\n    SELECT NCESSchool \n    FROM satscores \n    GROUP BY NCESSchool \n    HAVING SUM(NumTstTakr) < 100\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "16_cand_2",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*) \nFROM satscores \nJOIN schools ON satscores.cds = schools.CDSCode \nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "16_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.School Name\nWHERE frpm.County = 'Alameda' AND satscores.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM satscores\nJOIN schools ON satscores.cds = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "16_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "16_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND frpm.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "16_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.StatusType = 'Merged'\nAND schools.County = 'Alameda'\nAND satscores.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Merged'\n  AND s.County = 'Alameda'\n  AND ss.NumTstTakr < 100;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "16_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.StatusType = 'Merged'\n  AND f.School_Type = 'Elementary Schools (Public)'\n  AND s.District = 'Alameda County Office of Education'\n  AND f.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.StatusType = 'Merged'\n  AND s.County = 'Alameda'\n  AND sa.NumTstTakr < 100;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "16_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.StatusType = 'Merged'\nAND frpm.School_Type = 'Elementary Schools (Public)'\nAND frpm.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE s.StatusType = 'Merged'\n  AND s.County = 'Alameda'\n  AND st.NumTstTakr < 100;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "16_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "16_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "16_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Alameda' AND s.StatusType = 'Merged' AND f.NumTstTakr < 100;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "16_cand_13",

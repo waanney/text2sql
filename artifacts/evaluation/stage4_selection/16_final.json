@@ -1,56 +1,38 @@
 {
   "question_id": 16,
   "db_id": "california_schools",
-  "final_sql": "SELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.`County Name` = 'Alameda' AND satscores.NumTstTakr < 100;",
-  "best_candidate_id": "16_cand_5",
+  "final_sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
+  "best_candidate_id": "16_cand_6",
   "ranked_candidates": [
     [
-      "16_cand_5",
-      1.6
-    ],
-    [
-      "16_cand_8",
+      "16_cand_6",
       0.8
     ],
     [
-      "16_cand_6",
+      "16_cand_1",
       0.0
     ]
   ],
   "comparison_logs": [
     {
       "candidate_a": "16_cand_6",
-      "candidate_b": "16_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "16_cand_6",
-      "candidate_b": "16_cand_5",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "16_cand_8",
-      "candidate_b": "16_cand_5",
-      "winner": "B",
+      "candidate_b": "16_cand_1",
+      "winner": "A",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.`County Name` = 'Alameda' AND satscores.NumTstTakr < 100;\n```",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "16_cand_5",
+    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.County = 'Alameda' AND schools.StatusType = 'Merged' AND satscores.NumTstTakr < 100;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "16_cand_6",
     "question_id": 16,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.014190673828125,
+      "runtime_sec": 0.02093338966369629,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -58,34 +40,13 @@
       ],
       "sample_rows": [
         [
-          47
+          0
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.School Name\nWHERE frpm.County = 'Alameda' AND satscores.NumTstTakr < 100;",
-        "error": "near \"Name\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.County = 'Alameda' AND satscores.NumTstTakr < 100;\n```",
-        "repair_time_sec": 1.9317200183868408,
-        "input_tokens": 1318,
-        "output_tokens": 27
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.County = 'Alameda' AND satscores.NumTstTakr < 100;\n```",
-        "error": "no such column: frpm.County",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM satscores\nJOIN frpm ON satscores.sname = frpm.`School Name`\nWHERE frpm.`County Name` = 'Alameda' AND satscores.NumTstTakr < 100;\n```",
-        "repair_time_sec": 1.9763352870941162,
-        "input_tokens": 1320,
-        "output_tokens": 28
-      }
-    ]
+    "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 3
+  "num_representatives": 2
 }

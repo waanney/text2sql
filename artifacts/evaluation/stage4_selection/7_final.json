@@ -1,19 +1,15 @@
 {
   "question_id": 7,
   "db_id": "california_schools",
-  "final_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumGE1500 > 0\nORDER BY st.NumGE1500 DESC\nLIMIT 1;",
+  "final_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
   "best_candidate_id": "7_cand_3",
   "ranked_candidates": [
     [
       "7_cand_3",
-      3.2
-    ],
-    [
-      "7_cand_8",
       2.4000000000000004
     ],
     [
-      "7_cand_14",
+      "7_cand_4",
       1.6
     ],
     [
@@ -21,14 +17,14 @@
       0.8
     ],
     [
-      "7_cand_7",
+      "7_cand_10",
       0.0
     ]
   ],
   "comparison_logs": [
     {
       "candidate_a": "7_cand_6",
-      "candidate_b": "7_cand_7",
+      "candidate_b": "7_cand_10",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -42,63 +38,35 @@
     },
     {
       "candidate_a": "7_cand_6",
-      "candidate_b": "7_cand_8",
+      "candidate_b": "7_cand_4",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "7_cand_6",
-      "candidate_b": "7_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "7_cand_7",
+      "candidate_a": "7_cand_10",
       "candidate_b": "7_cand_3",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "7_cand_7",
-      "candidate_b": "7_cand_8",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "7_cand_7",
-      "candidate_b": "7_cand_14",
+      "candidate_a": "7_cand_10",
+      "candidate_b": "7_cand_4",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "7_cand_3",
-      "candidate_b": "7_cand_8",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "7_cand_3",
-      "candidate_b": "7_cand_14",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "7_cand_8",
-      "candidate_b": "7_cand_14",
+      "candidate_b": "7_cand_4",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores st ON s.CDSCode = st.cds\nWHERE st.NumGE1500 > 0\nORDER BY st.NumGE1500 DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds AND s.School = sat.sname\nWHERE sat.NumGE1500 > 0\nORDER BY sat.NumGE1500 DESC\nLIMIT 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "7_cand_3",
@@ -107,7 +75,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.016262292861938477,
+      "runtime_sec": 0.019791841506958008,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -115,7 +83,7 @@
       ],
       "sample_rows": [
         [
-          "(213) 241-1000"
+          "(415) 759-2730"
         ]
       ],
       "is_empty": false
@@ -123,5 +91,5 @@
     "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 5
+  "num_representatives": 4
 }

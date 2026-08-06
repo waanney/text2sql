@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools\nWHERE Virtual = 'F'\nAND NCESSchool IN (\n    SELECT NCESSchool\n    FROM satscores\n    GROUP BY NCESSchool\n    HAVING AVG(AvgScrMath) > 400\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "5_cand_0",
@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.030118942260742188,
+      "runtime_sec": 0.0534214973449707,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -17,7 +17,7 @@
       ],
       "sample_rows": [
         [
-          4
+          63
         ]
       ],
       "is_empty": false
@@ -25,7 +25,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools\nWHERE Virtual = 'F'\nAND NCESSchool IN (\n    SELECT NCESSchool\n    FROM satscores\n    GROUP BY NCESSchool\n    HAVING AVG(AvgScrMath) > 400\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "5_cand_1",
@@ -34,7 +34,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02246832847595215,
+      "runtime_sec": 0.05259370803833008,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -42,7 +42,7 @@
       ],
       "sample_rows": [
         [
-          4
+          63
         ]
       ],
       "is_empty": false
@@ -50,7 +50,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F' AND ss.AvgScrMath > 400;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "5_cand_2",
@@ -59,7 +59,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.026399612426757812,
+      "runtime_sec": 0.01899552345275879,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -75,7 +75,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T1.AvgScrMath > 400 AND T2.Virtual = 'V';",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'V';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "5_cand_3",
@@ -84,11 +84,11 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02008676528930664,
+      "runtime_sec": 0.018732786178588867,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(*)"
+        "COUNT(s.CDSCode)"
       ],
       "sample_rows": [
         [
@@ -100,7 +100,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'V';",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores st ON s.CDSCode = SUBSTR(st.cds, 3)\nWHERE st.AvgScrMath > 400 AND s.Virtual = 'V';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "5_cand_4",
@@ -109,7 +109,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019663572311401367,
+      "runtime_sec": 0.008663654327392578,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -125,7 +125,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'V';",
+    "sql": "SELECT COUNT(DISTINCT s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds AND s.School = sa.sname\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'V';",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "5_cand_5",
@@ -134,11 +134,11 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019448280334472656,
+      "runtime_sec": 0.018413066864013672,
       "row_count": 1,
       "column_count": 1,
       "columns": [
-        "COUNT(s.CDSCode)"
+        "COUNT(DISTINCT s.CDSCode)"
       ],
       "sample_rows": [
         [
@@ -150,7 +150,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND s.Charter = 0\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 400;\n```",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND ss.AvgScrMath > 400;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "5_cand_6",
@@ -159,46 +159,23 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.027764081954956055,
-      "row_count": 272,
+      "runtime_sec": 0.023412466049194336,
+      "row_count": 1,
       "column_count": 1,
       "columns": [
         "COUNT(*)"
       ],
       "sample_rows": [
         [
-          1
-        ],
-        [
-          1
-        ],
-        [
-          1
-        ],
-        [
-          1
-        ],
-        [
-          1
+          310
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND s.Charter = 0\nAND AVG(ss.AvgScrMath) > 400;",
-        "error": "misuse of aggregate: AVG()",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND s.Charter = 0\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 400;\n```",
-        "repair_time_sec": 2.2071592807769775,
-        "input_tokens": 1324,
-        "output_tokens": 37
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND ss.AvgScrMath > 400;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.Virtual = 'P'\nAND sa.AvgScrMath > 400;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "5_cand_7",
@@ -207,7 +184,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.023363590240478516,
+      "runtime_sec": 0.021116018295288086,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -232,7 +209,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022196054458618164,
+      "runtime_sec": 0.019062280654907227,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -257,7 +234,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022751569747924805,
+      "runtime_sec": 0.018977642059326172,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -282,7 +259,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.026011943817138672,
+      "runtime_sec": 0.019183874130249023,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -307,7 +284,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.023393869400024414,
+      "runtime_sec": 0.021195411682128906,
       "row_count": 305,
       "column_count": 1,
       "columns": [
@@ -335,7 +312,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.Virtual = 'P'\nGROUP BY s.CDSCode\nHAVING AVG(sa.AvgScrMath) > 400;",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 400;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "5_cand_12",
@@ -344,7 +321,55 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.023468017578125,
+      "runtime_sec": 0.02551746368408203,
+      "row_count": 310,
+      "column_count": 1,
+      "columns": [
+        "COUNT(*)"
+      ],
+      "sample_rows": [
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nAND AVG(ss.AvgScrMath) > 400;",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'P'\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 400;\n```",
+        "repair_time_sec": 1.8663182258605957,
+        "input_tokens": 1319,
+        "output_tokens": 32
+      }
+    ]
+  },
+  {
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.Virtual = 'P'\nGROUP BY s.CDSCode\nHAVING AVG(sa.AvgScrMath) > 400;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "5_cand_13",
+    "question_id": 5,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021765708923339844,
       "row_count": 310,
       "column_count": 1,
       "columns": [
@@ -372,44 +397,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN satscores sa ON s.School = sa.sname\nWHERE s.Virtual = 'P'\nGROUP BY s.CDSCode\nHAVING AVG(sa.AvgScrMath) > 400;",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_2",
-    "candidate_id": "5_cand_13",
-    "question_id": 5,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.026267528533935547,
-      "row_count": 341,
-      "column_count": 1,
-      "columns": [
-        "COUNT(s.CDSCode)"
-      ],
-      "sample_rows": [
-        [
-          1
-        ],
-        [
-          1
-        ],
-        [
-          5
-        ],
-        [
-          1
-        ],
-        [
-          1
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE sa.AvgScrMath > 400 AND s.Virtual = 'P';",
+    "sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 400 AND s.Virtual = 'P';\n```",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "5_cand_14",
@@ -418,19 +406,42 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.0228269100189209,
-      "row_count": 1,
+      "runtime_sec": 0.01620769500732422,
+      "row_count": 310,
       "column_count": 1,
       "columns": [
         "COUNT(*)"
       ],
       "sample_rows": [
         [
-          412
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
+        ],
+        [
+          1
         ]
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE AVG(ss.AvgScrMath) > 400 AND s.Virtual = 'P';",
+        "error": "misuse of aggregate: AVG()",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nGROUP BY s.CDSCode\nHAVING AVG(ss.AvgScrMath) > 400 AND s.Virtual = 'P';\n```",
+        "repair_time_sec": 1.8408761024475098,
+        "input_tokens": 1319,
+        "output_tokens": 32
+      }
+    ]
   }
 ]

@@ -1,23 +1,23 @@
 {
   "question_id": 2,
   "db_id": "california_schools",
-  "final_sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`District Name` = 'Fresno County Office of Education';",
-  "best_candidate_id": "2_cand_10",
+  "final_sql": "SELECT DISTINCT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
+  "best_candidate_id": "2_cand_8",
   "ranked_candidates": [
     [
-      "2_cand_10",
+      "2_cand_8",
       4.0
     ],
     [
-      "2_cand_2",
+      "2_cand_3",
       3.2
     ],
     [
-      "2_cand_4",
+      "2_cand_5",
       2.4000000000000004
     ],
     [
-      "2_cand_7",
+      "2_cand_6",
       1.6
     ],
     [
@@ -25,111 +25,111 @@
       0.8
     ],
     [
-      "2_cand_6",
+      "2_cand_0",
       0.0
     ]
   ],
   "comparison_logs": [
     {
-      "candidate_a": "2_cand_6",
-      "candidate_b": "2_cand_2",
+      "candidate_a": "2_cand_0",
+      "candidate_b": "2_cand_8",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_6",
-      "candidate_b": "2_cand_10",
+      "candidate_a": "2_cand_0",
+      "candidate_b": "2_cand_3",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_6",
-      "candidate_b": "2_cand_4",
+      "candidate_a": "2_cand_0",
+      "candidate_b": "2_cand_5",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_6",
-      "candidate_b": "2_cand_7",
+      "candidate_a": "2_cand_0",
+      "candidate_b": "2_cand_6",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_6",
+      "candidate_a": "2_cand_0",
       "candidate_b": "2_cand_14",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_2",
-      "candidate_b": "2_cand_10",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "2_cand_2",
-      "candidate_b": "2_cand_4",
+      "candidate_a": "2_cand_8",
+      "candidate_b": "2_cand_3",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_2",
-      "candidate_b": "2_cand_7",
+      "candidate_a": "2_cand_8",
+      "candidate_b": "2_cand_5",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_2",
+      "candidate_a": "2_cand_8",
+      "candidate_b": "2_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "2_cand_8",
       "candidate_b": "2_cand_14",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_10",
-      "candidate_b": "2_cand_4",
+      "candidate_a": "2_cand_3",
+      "candidate_b": "2_cand_5",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_10",
-      "candidate_b": "2_cand_7",
+      "candidate_a": "2_cand_3",
+      "candidate_b": "2_cand_6",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_10",
+      "candidate_a": "2_cand_3",
       "candidate_b": "2_cand_14",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_4",
-      "candidate_b": "2_cand_7",
+      "candidate_a": "2_cand_5",
+      "candidate_b": "2_cand_6",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_4",
+      "candidate_a": "2_cand_5",
       "candidate_b": "2_cand_14",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "2_cand_7",
+      "candidate_a": "2_cand_6",
       "candidate_b": "2_cand_14",
       "winner": "A",
       "confidence": 0.8,
@@ -137,17 +137,17 @@
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`District Name` = 'Fresno County Office of Education';",
+    "sql": "SELECT DISTINCT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_2",
-    "candidate_id": "2_cand_10",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "2_cand_8",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011411905288696289,
-      "row_count": 5,
+      "runtime_sec": 0.01955103874206543,
+      "row_count": 34,
       "column_count": 1,
       "columns": [
         "Zip"

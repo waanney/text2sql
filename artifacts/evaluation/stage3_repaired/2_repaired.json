@@ -1,6 +1,6 @@
 [
   {
-    "sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
+    "sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Charter_School_Number = 1 AND County = 'Fresno County Office of Education';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "2_cand_0",
@@ -8,8 +8,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: f.Charter_School_Y_N",
-      "runtime_sec": 0.0030248165130615234,
+      "error": "no such column: Charter_School_Number",
+      "runtime_sec": 0.008526802062988281,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -19,28 +19,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.7436230182647705,
-        "input_tokens": 1324,
-        "output_tokens": 29
+        "original_sql": "SELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Charter_School_(Y_N) = 1 AND County = 'Fresno County Office of Education';",
+        "error": "no such column: Y_N",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Charter_School_Number = 1 AND County = 'Fresno County Office of Education';\n```",
+        "repair_time_sec": 1.620166540145874,
+        "input_tokens": 1323,
+        "output_tokens": 32
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
-        "error": "no such column: f.Charter_School_Y_N",
+        "original_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Charter_School_Number = 1 AND County = 'Fresno County Office of Education';\n```",
+        "error": "no such column: Charter_School_Number",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.7380342483520508,
-        "input_tokens": 1323,
-        "output_tokens": 29
+        "fixed_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Charter_School_Number = 1 AND County = 'Fresno County Office of Education';\n```",
+        "repair_time_sec": 1.6200265884399414,
+        "input_tokens": 1326,
+        "output_tokens": 32
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
+    "sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.CDSCode \nWHERE Charter_School = 1 AND County = 'Fresno County';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "2_cand_1",
@@ -48,8 +48,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: f.Charter_School_Y_N",
-      "runtime_sec": 0.0029785633087158203,
+      "error": "no such column: Charter_School",
+      "runtime_sec": 0.0023899078369140625,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -59,28 +59,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
+        "original_sql": "SELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School Code = schools.CDSCode \nWHERE Charter School (Y/N) = 1 AND County = 'Fresno County';",
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.7308316230773926,
-        "input_tokens": 1324,
-        "output_tokens": 29
+        "fixed_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.CDSCode \nWHERE Charter_School__Y_N_ = 1 AND County = 'Fresno County';\n```",
+        "repair_time_sec": 1.621711254119873,
+        "input_tokens": 1323,
+        "output_tokens": 28
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
-        "error": "no such column: f.Charter_School_Y_N",
+        "original_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.CDSCode \nWHERE Charter_School__Y_N_ = 1 AND County = 'Fresno County';\n```",
+        "error": "no such column: Charter_School__Y_N_",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
-        "repair_time_sec": 1.7356009483337402,
-        "input_tokens": 1323,
-        "output_tokens": 29
+        "fixed_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.School_Code = schools.CDSCode \nWHERE Charter_School = 1 AND County = 'Fresno County';\n```",
+        "repair_time_sec": 1.5225703716278076,
+        "input_tokens": 1322,
+        "output_tokens": 28
       }
     ]
   },
   {
-    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
+    "sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Charter = 1 AND County = 'Fresno';\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "2_cand_2",
@@ -89,7 +89,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022233009338378906,
+      "runtime_sec": 0.0194089412689209,
       "row_count": 34,
       "column_count": 1,
       "columns": [
@@ -114,7 +114,18 @@
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Charter_School_(Y_N) = 1 AND County = 'Fresno';",
+        "error": "no such column: Y_N",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT DISTINCT Zip \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Charter = 1 AND County = 'Fresno';\n```",
+        "repair_time_sec": 1.4507343769073486,
+        "input_tokens": 1318,
+        "output_tokens": 27
+      }
+    ]
   },
   {
     "sql": "SELECT DISTINCT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Fresno' AND s.District = 'Fresno County Office of Education' AND s.Charter = 1;",
@@ -126,7 +137,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020385265350341797,
+      "runtime_sec": 0.018360137939453125,
       "row_count": 5,
       "column_count": 1,
       "columns": [
@@ -154,7 +165,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT Zip \nFROM schools \nWHERE Charter = 1 AND District = 'Fresno County Office of Education';",
+    "sql": "SELECT T1.Zip\nFROM schools AS T1\nJOIN frpm AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T1.County = 'Fresno' AND T1.District = 'Fresno County Office of Education' AND T1.Charter = 1;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "2_cand_4",
@@ -163,7 +174,44 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020819425582885742,
+      "runtime_sec": 0.018224477767944336,
+      "row_count": 5,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT Zip \nFROM schools \nWHERE County = 'Fresno' AND District = 'Fresno County Office of Education' AND Charter = 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "2_cand_5",
+    "question_id": 2,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019296646118164062,
       "row_count": 6,
       "column_count": 1,
       "columns": [
@@ -191,93 +239,16 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT DISTINCT T2.Zip\nFROM frpm AS T1\nJOIN schools AS T2 ON T1.CDSCode = T2.CDSCode\nWHERE T2.County = 'Fresno' AND T2.District = 'Fresno County Office of Education' AND T2.Charter = 1;",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "2_cand_5",
-    "question_id": 2,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.020080089569091797,
-      "row_count": 5,
-      "column_count": 1,
-      "columns": [
-        "Zip"
-      ],
-      "sample_rows": [
-        [
-          "93726-5309"
-        ],
-        [
-          "93628-9602"
-        ],
-        [
-          "93706-2611"
-        ],
-        [
-          "93726-5208"
-        ],
-        [
-          "93706-2819"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.Charter_School__YN_ = 1 AND schools.County = 'Fresno';\n```",
+    "sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "2_cand_6",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: frpm.Zip",
-      "runtime_sec": 0.15677857398986816,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.Charter_School_(Y_N) = 1 AND schools.County = 'Fresno';",
-        "error": "near \"(\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.Charter_School__YN_ = 1 AND schools.County = 'Fresno';\n```",
-        "repair_time_sec": 1.7545697689056396,
-        "input_tokens": 1316,
-        "output_tokens": 26
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.Charter_School__YN_ = 1 AND schools.County = 'Fresno';\n```",
-        "error": "no such column: frpm.Zip",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT frpm.Zip\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.Charter_School__YN_ = 1 AND schools.County = 'Fresno';\n```",
-        "repair_time_sec": 1.7782337665557861,
-        "input_tokens": 1319,
-        "output_tokens": 26
-      }
-    ]
-  },
-  {
-    "sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_1",
-    "candidate_id": "2_cand_7",
-    "question_id": 2,
-    "db_id": "california_schools",
-    "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 2.56266713142395,
+      "runtime_sec": 0.02011585235595703,
       "row_count": 36,
       "column_count": 1,
       "columns": [
@@ -305,97 +276,17 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1\nAND f.County_Name = 'Fresno';\n```",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "2_cand_8",
-    "question_id": 2,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.Charter_School_Y_N",
-      "runtime_sec": 0.0029859542846679688,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`County Name` = 'Fresno';",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1\nAND f.County_Name = 'Fresno';\n```",
-        "repair_time_sec": 1.7576065063476562,
-        "input_tokens": 1326,
-        "output_tokens": 29
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1\nAND f.County_Name = 'Fresno';\n```",
-        "error": "no such column: f.Charter_School_Y_N",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1\nAND f.County_Name = 'Fresno';\n```",
-        "repair_time_sec": 1.8088359832763672,
-        "input_tokens": 1323,
-        "output_tokens": 29
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1\nAND f.District_Name = 'Fresno County Office of Education';\n```",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_1",
-    "candidate_id": "2_cand_9",
-    "question_id": 2,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.Charter_School_Y_N",
-      "runtime_sec": 0.003077268600463867,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`District Name` = 'Fresno County Office of Education';",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1\nAND f.District_Name = 'Fresno County Office of Education';\n```",
-        "repair_time_sec": 1.9118640422821045,
-        "input_tokens": 1331,
-        "output_tokens": 35
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1\nAND f.District_Name = 'Fresno County Office of Education';\n```",
-        "error": "no such column: f.Charter_School_Y_N",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1\nAND f.District_Name = 'Fresno County Office of Education';\n```",
-        "repair_time_sec": 1.9122848510742188,
-        "input_tokens": 1328,
-        "output_tokens": 35
-      }
-    ]
-  },
-  {
-    "sql": "SELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nAND f.`District Name` = 'Fresno County Office of Education';",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_2",
-    "candidate_id": "2_cand_10",
+    "sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "2_cand_7",
     "question_id": 2,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.011411905288696289,
-      "row_count": 5,
+      "runtime_sec": 0.0196990966796875,
+      "row_count": 36,
       "column_count": 1,
       "columns": [
         "Zip"
@@ -422,7 +313,118 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming '05' is the county code for Fresno County\nAND f.Charter_School_Y_N = 1;\n```",
+    "sql": "SELECT DISTINCT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_0",
+    "candidate_id": "2_cand_8",
+    "question_id": 2,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01955103874206543,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "2_cand_9",
+    "question_id": 2,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.01968550682067871,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT DISTINCT s.Zip\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.County = 'Fresno'\nAND f.`Charter School (Y/N)` = 1;",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_2",
+    "candidate_id": "2_cand_10",
+    "question_id": 2,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.019616365432739258,
+      "row_count": 34,
+      "column_count": 1,
+      "columns": [
+        "Zip"
+      ],
+      "sample_rows": [
+        [
+          "93726-5309"
+        ],
+        [
+          "93628-9602"
+        ],
+        [
+          "93706-2611"
+        ],
+        [
+          "93726-5208"
+        ],
+        [
+          "93706-2819"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Name = 'Fresno County' AND f.Charter_School_Y_N = 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "2_cand_11",
@@ -430,8 +432,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: f.County_Code",
-      "runtime_sec": 0.0028007030487060547,
+      "error": "no such column: f.County_Name",
+      "runtime_sec": 0.0027196407318115234,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -441,28 +443,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County Code = '05' -- Assuming '05' is the county code for Fresno County\nAND f.Charter School (Y/N) = 1;",
+        "original_sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County Name = 'Fresno County' AND f.`Charter School (Y/N)` = 1;",
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming '05' is the county code for Fresno County\nAND f.Charter_School_Y_N = 1;\n```",
-        "repair_time_sec": 2.121546506881714,
-        "input_tokens": 1337,
-        "output_tokens": 41
+        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Name = 'Fresno County' AND f.Charter_School_Y_N = 1;\n```",
+        "repair_time_sec": 1.7435448169708252,
+        "input_tokens": 1326,
+        "output_tokens": 29
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming '05' is the county code for Fresno County\nAND f.Charter_School_Y_N = 1;\n```",
-        "error": "no such column: f.County_Code",
+        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Name = 'Fresno County' AND f.Charter_School_Y_N = 1;\n```",
+        "error": "no such column: f.County_Name",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming '05' is the county code for Fresno County\nAND f.Charter_School_Y_N = 1;\n```",
-        "repair_time_sec": 2.1150851249694824,
-        "input_tokens": 1335,
-        "output_tokens": 41
+        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Name = 'Fresno County' AND f.Charter_School_Y_N = 1;\n```",
+        "repair_time_sec": 1.7424073219299316,
+        "input_tokens": 1323,
+        "output_tokens": 29
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming '05' is the county code for Fresno County\n  AND f.Charter_School_Y_N = 1;\n```",
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "2_cand_12",
@@ -470,8 +472,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: f.County_Code",
-      "runtime_sec": 0.0031745433807373047,
+      "error": "no such column: f.Charter_School_Y_N",
+      "runtime_sec": 0.0028352737426757812,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -481,28 +483,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County Code = '05' -- Assuming '05' is the county code for Fresno County\n  AND f.`Charter School (Y/N)` = 1;",
+        "original_sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno';",
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming '05' is the county code for Fresno County\n  AND f.Charter_School_Y_N = 1;\n```",
-        "repair_time_sec": 2.143782615661621,
-        "input_tokens": 1337,
-        "output_tokens": 41
+        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
+        "repair_time_sec": 1.6680967807769775,
+        "input_tokens": 1323,
+        "output_tokens": 28
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming '05' is the county code for Fresno County\n  AND f.Charter_School_Y_N = 1;\n```",
-        "error": "no such column: f.County_Code",
+        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
+        "error": "no such column: f.Charter_School_Y_N",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming '05' is the county code for Fresno County\n  AND f.Charter_School_Y_N = 1;\n```",
-        "repair_time_sec": 2.1405951976776123,
-        "input_tokens": 1335,
-        "output_tokens": 41
+        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.Charter_School_Y_N = 1 AND s.County = 'Fresno';\n```",
+        "repair_time_sec": 1.668424367904663,
+        "input_tokens": 1322,
+        "output_tokens": 28
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.`County Code` = '05' -- Assuming 05 is the code for Fresno County\nAND f.Charter_School_Y_N = 1;\n```",
+    "sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County_Name = 'Fresno' AND f.Charter_School_Y_N = 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "2_cand_13",
@@ -510,8 +512,8 @@
     "db_id": "california_schools",
     "execution_metadata": {
       "success": false,
-      "error": "no such column: f.Charter_School_Y_N",
-      "runtime_sec": 0.0029213428497314453,
+      "error": "no such column: f.County_Name",
+      "runtime_sec": 0.0028595924377441406,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -521,23 +523,23 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.County Code = '05' -- Assuming 05 is the code for Fresno County\nAND f.Charter School (Y/N) = 1;",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming 05 is the code for Fresno County\nAND f.Charter_School_Y_N = 1;\n```",
-        "repair_time_sec": 2.0716545581817627,
-        "input_tokens": 1336,
-        "output_tokens": 40
+        "original_sql": "SELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County = 'Fresno' AND f.`Charter School (Y/N)` = 1;",
+        "error": "no such column: f.County",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County_Name = 'Fresno' AND f.`Charter School (Y/N)` = 1;\n```",
+        "repair_time_sec": 1.7659120559692383,
+        "input_tokens": 1322,
+        "output_tokens": 31
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.County_Code = '05' -- Assuming 05 is the code for Fresno County\nAND f.Charter_School_Y_N = 1;\n```",
-        "error": "no such column: f.County_Code",
+        "original_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County_Name = 'Fresno' AND f.`Charter School (Y/N)` = 1;\n```",
+        "error": "no such column: f.County_Name",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.`County Code` = '05' -- Assuming 05 is the code for Fresno County\nAND f.Charter_School_Y_N = 1;\n```",
-        "repair_time_sec": 2.089002847671509,
-        "input_tokens": 1333,
-        "output_tokens": 41
+        "fixed_sql": "```sql\nSELECT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.County_Name = 'Fresno' AND f.Charter_School_Y_N = 1;\n```",
+        "repair_time_sec": 1.7173709869384766,
+        "input_tokens": 1324,
+        "output_tokens": 28
       }
     ]
   },
@@ -551,7 +553,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.021953582763671875,
+      "runtime_sec": 0.02203083038330078,
       "row_count": 0,
       "column_count": 1,
       "columns": [
@@ -567,7 +569,7 @@
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
         "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno County';\n```",
-        "repair_time_sec": 1.8323705196380615,
+        "repair_time_sec": 1.7677440643310547,
         "input_tokens": 1345,
         "output_tokens": 33
       },
@@ -577,7 +579,7 @@
         "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
         "diagnosis": "unknown_execution_error",
         "fixed_sql": "```sql\nSELECT DISTINCT s.Zip\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1 AND s.County = 'Fresno County';\n```",
-        "repair_time_sec": 1.8310959339141846,
+        "repair_time_sec": 1.7670347690582275,
         "input_tokens": 1348,
         "output_tokens": 33
       }

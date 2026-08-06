@@ -1,141 +1,162 @@
 {
   "question_id": 28,
   "db_id": "california_schools",
-  "final_sql": "SELECT s.School, s.DOCType, AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS diff\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.FundingType = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING diff > (\n    SELECT AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS avg_diff\n    FROM frpm f\n    JOIN schools s ON f.CDSCode = s.CDSCode\n    WHERE s.FundingType = 'Locally funded'\n);",
-  "best_candidate_id": "28_cand_5",
+  "final_sql": "SELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter Funding Type` = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.`Enrollment (Ages 5-17)` - f.`Enrollment (K-12)`) > \n       (SELECT AVG(ABS(f2.`Enrollment (Ages 5-17)` - f2.`Enrollment (K-12)`))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.`Charter Funding Type` = 'Locally funded');",
+  "best_candidate_id": "28_cand_14",
   "ranked_candidates": [
     [
-      "28_cand_5",
-      4.0
+      "28_cand_14",
+      4.8
     ],
     [
       "28_cand_6",
       4.0
     ],
     [
-      "28_cand_14",
+      "28_cand_0",
       3.2
     ],
     [
-      "28_cand_1",
-      2.4000000000000004
-    ],
-    [
-      "28_cand_12",
-      2.4000000000000004
-    ],
-    [
       "28_cand_11",
+      2.4000000000000004
+    ],
+    [
+      "28_cand_3",
+      1.6
+    ],
+    [
+      "28_cand_2",
       0.8
     ],
     [
-      "28_cand_7",
+      "28_cand_8",
       0.0
     ]
   ],
   "comparison_logs": [
     {
-      "candidate_a": "28_cand_1",
-      "candidate_b": "28_cand_7",
+      "candidate_a": "28_cand_0",
+      "candidate_b": "28_cand_8",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_1",
-      "candidate_b": "28_cand_5",
+      "candidate_a": "28_cand_0",
+      "candidate_b": "28_cand_2",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_1",
+      "candidate_a": "28_cand_0",
+      "candidate_b": "28_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "28_cand_0",
       "candidate_b": "28_cand_6",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_1",
+      "candidate_a": "28_cand_0",
       "candidate_b": "28_cand_11",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_1",
-      "candidate_b": "28_cand_12",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "28_cand_1",
+      "candidate_a": "28_cand_0",
       "candidate_b": "28_cand_14",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_7",
-      "candidate_b": "28_cand_5",
+      "candidate_a": "28_cand_8",
+      "candidate_b": "28_cand_2",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_7",
+      "candidate_a": "28_cand_8",
+      "candidate_b": "28_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "28_cand_8",
       "candidate_b": "28_cand_6",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_7",
+      "candidate_a": "28_cand_8",
       "candidate_b": "28_cand_11",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_7",
-      "candidate_b": "28_cand_12",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "28_cand_7",
+      "candidate_a": "28_cand_8",
       "candidate_b": "28_cand_14",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_5",
+      "candidate_a": "28_cand_2",
+      "candidate_b": "28_cand_3",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "28_cand_2",
       "candidate_b": "28_cand_6",
-      "winner": "A",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_5",
+      "candidate_a": "28_cand_2",
       "candidate_b": "28_cand_11",
-      "winner": "A",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "28_cand_5",
-      "candidate_b": "28_cand_12",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "28_cand_5",
+      "candidate_a": "28_cand_2",
       "candidate_b": "28_cand_14",
-      "winner": "A",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "28_cand_3",
+      "candidate_b": "28_cand_6",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "28_cand_3",
+      "candidate_b": "28_cand_11",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "28_cand_3",
+      "candidate_b": "28_cand_14",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
@@ -148,34 +169,13 @@
     },
     {
       "candidate_a": "28_cand_6",
-      "candidate_b": "28_cand_12",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "28_cand_6",
       "candidate_b": "28_cand_14",
-      "winner": "A",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "28_cand_11",
-      "candidate_b": "28_cand_12",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "28_cand_11",
-      "candidate_b": "28_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "28_cand_12",
       "candidate_b": "28_cand_14",
       "winner": "B",
       "confidence": 0.8,
@@ -183,53 +183,58 @@
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT s.School, s.DOCType, AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS diff\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.FundingType = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING diff > (\n    SELECT AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS avg_diff\n    FROM frpm f\n    JOIN schools s ON f.CDSCode = s.CDSCode\n    WHERE s.FundingType = 'Locally funded'\n);",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "28_cand_5",
+    "sql": "```sql\nSELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter Funding Type` = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.`Enrollment (Ages 5-17)` - f.`Enrollment (K-12)`) > \n       (SELECT AVG(ABS(f2.`Enrollment (Ages 5-17)` - f2.`Enrollment (K-12)`))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.`Charter Funding Type` = 'Locally funded');\n```",
+    "source": "simple_generator",
+    "prompt_id": "simple_v1",
+    "candidate_id": "28_cand_14",
     "question_id": 28,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.026308774948120117,
-      "row_count": 86,
-      "column_count": 3,
+      "runtime_sec": 0.025458097457885742,
+      "row_count": 49,
+      "column_count": 2,
       "columns": [
         "School",
-        "DOCType",
-        "diff"
+        "DOCType"
       ],
       "sample_rows": [
         [
           "Arundel Elementary",
-          "Elementary School District",
-          23.0
-        ],
-        [
-          "Binkley Elementary Charter",
-          "Elementary School District",
-          13.0
+          "Elementary School District"
         ],
         [
           "Butterfield Charter High",
-          "Unified School District",
-          48.0
+          "Unified School District"
         ],
         [
           "Calahan Community Charter",
-          "Unified School District",
-          22.0
+          "Unified School District"
         ],
         [
-          "Capri Elementary",
-          "Elementary School District",
-          15.0
+          "Castle Rock",
+          "County Office of Education (COE)"
+        ],
+        [
+          "Castlemont Elementary",
+          "Elementary School District"
         ]
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Charter Funding Type = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > \n       (SELECT AVG(ABS(f2.[Enrollment (Ages 5-17)] - f2.[Enrollment (K-12)]))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.Charter Funding Type = 'Locally funded');",
+        "error": "near \"Funding\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter Funding Type` = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.`Enrollment (Ages 5-17)` - f.`Enrollment (K-12)`) > \n       (SELECT AVG(ABS(f2.`Enrollment (Ages 5-17)` - f2.`Enrollment (K-12)`))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.`Charter Funding Type` = 'Locally funded');\n```",
+        "repair_time_sec": 4.474045515060425,
+        "input_tokens": 1366,
+        "output_tokens": 75
+      }
+    ]
   },
   "num_original_candidates": 20,
   "num_representatives": 7

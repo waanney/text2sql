@@ -1,35 +1,27 @@
 {
   "question_id": 5,
   "db_id": "california_schools",
-  "final_sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;",
-  "best_candidate_id": "5_cand_8",
+  "final_sql": "SELECT COUNT(*)\nFROM schools\nWHERE Virtual = 'F'\nAND NCESSchool IN (\n    SELECT NCESSchool\n    FROM satscores\n    GROUP BY NCESSchool\n    HAVING AVG(AvgScrMath) > 400\n);",
+  "best_candidate_id": "5_cand_0",
   "ranked_candidates": [
     [
+      "5_cand_0",
+      4.0
+    ],
+    [
       "5_cand_8",
-      5.6
+      3.2
     ],
     [
       "5_cand_6",
-      4.0
-    ],
-    [
-      "5_cand_7",
-      4.0
-    ],
-    [
-      "5_cand_14",
-      4.0
-    ],
-    [
-      "5_cand_3",
       2.4000000000000004
     ],
     [
-      "5_cand_11",
+      "5_cand_3",
       1.6
     ],
     [
-      "5_cand_12",
+      "5_cand_11",
       0.8
     ],
     [
@@ -38,6 +30,41 @@
     ]
   ],
   "comparison_logs": [
+    {
+      "candidate_a": "5_cand_0",
+      "candidate_b": "5_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "5_cand_0",
+      "candidate_b": "5_cand_3",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "5_cand_0",
+      "candidate_b": "5_cand_6",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "5_cand_0",
+      "candidate_b": "5_cand_11",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "5_cand_0",
+      "candidate_b": "5_cand_13",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
     {
       "candidate_a": "5_cand_8",
       "candidate_b": "5_cand_3",
@@ -54,13 +81,6 @@
     },
     {
       "candidate_a": "5_cand_8",
-      "candidate_b": "5_cand_7",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_8",
       "candidate_b": "5_cand_11",
       "winner": "A",
       "confidence": 0.8,
@@ -68,21 +88,7 @@
     },
     {
       "candidate_a": "5_cand_8",
-      "candidate_b": "5_cand_12",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_8",
       "candidate_b": "5_cand_13",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_8",
-      "candidate_b": "5_cand_14",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -96,13 +102,6 @@
     },
     {
       "candidate_a": "5_cand_3",
-      "candidate_b": "5_cand_7",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_3",
       "candidate_b": "5_cand_11",
       "winner": "A",
       "confidence": 0.8,
@@ -110,28 +109,7 @@
     },
     {
       "candidate_a": "5_cand_3",
-      "candidate_b": "5_cand_12",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_3",
       "candidate_b": "5_cand_13",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_3",
-      "candidate_b": "5_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_6",
-      "candidate_b": "5_cand_7",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
@@ -145,62 +123,6 @@
     },
     {
       "candidate_a": "5_cand_6",
-      "candidate_b": "5_cand_12",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_6",
-      "candidate_b": "5_cand_13",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_6",
-      "candidate_b": "5_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_7",
-      "candidate_b": "5_cand_11",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_7",
-      "candidate_b": "5_cand_12",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_7",
-      "candidate_b": "5_cand_13",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_7",
-      "candidate_b": "5_cand_14",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_11",
-      "candidate_b": "5_cand_12",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_11",
       "candidate_b": "5_cand_13",
       "winner": "A",
       "confidence": 0.8,
@@ -208,44 +130,23 @@
     },
     {
       "candidate_a": "5_cand_11",
-      "candidate_b": "5_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_12",
       "candidate_b": "5_cand_13",
       "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_12",
-      "candidate_b": "5_cand_14",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "5_cand_13",
-      "candidate_b": "5_cand_14",
-      "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.Virtual = 'F'\nAND ss.AvgScrMath > 400;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "5_cand_8",
+    "sql": "SELECT COUNT(*)\nFROM schools\nWHERE Virtual = 'F'\nAND NCESSchool IN (\n    SELECT NCESSchool\n    FROM satscores\n    GROUP BY NCESSchool\n    HAVING AVG(AvgScrMath) > 400\n);",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_0",
+    "candidate_id": "5_cand_0",
     "question_id": 5,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.022196054458618164,
+      "runtime_sec": 0.0534214973449707,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -253,7 +154,7 @@
       ],
       "sample_rows": [
         [
-          4
+          63
         ]
       ],
       "is_empty": false
@@ -261,5 +162,5 @@
     "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 8
+  "num_representatives": 6
 }

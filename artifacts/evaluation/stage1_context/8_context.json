@@ -15,7 +15,7 @@
     ],
     "aggregation": "max",
     "time_phrases": [],
-    "question_skeleton": "How many [output_phrase]?"
+    "question_skeleton": "What is the [operation] of [output_phrase]?"
   },
   "literals": [
     "SAT test takers",

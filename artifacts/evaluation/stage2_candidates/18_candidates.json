@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN frpm ON schools.CDSCode = frpm.CDSCode\nWHERE schools.FundingType = 'Directly funded'\nAND frpm.Charter School Number IS NOT NULL\nAND satscores.NumTstTakr <= 250;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "18_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Percent_(_Eligible_Free_Ages_5_17) <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Directly funded'\nAND s.District LIKE '%Fresno%'\nAND f.NumTstTakr <= 250;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "18_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Directly funded'\nAND f.CharterSchoolNumber IS NOT NULL\nAND s.NCESDist LIKE '%Fresno%'\nAND f.NumTstTakr <= 250;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "18_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 1, 12)\nWHERE f.County = 'Fresno' AND f.Charter Funding Type = 'Directly funded' AND s.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nWHERE T2.City = 'Fresno' AND T2.FundingType = 'Directly funded' AND T1.NumTstTakr <= 250;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "18_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*) \nFROM frpm \nJOIN satscores ON frpm.CDSCode = satscores.cds \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE frpm.County = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = s.cds\nJOIN schools AS sc ON f.CDSCode = sc.CDSCode\nWHERE sc.County = 'Fresno' AND sc.FundingType = 'Directly funded' AND s.NumTstTakr <= 250;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "18_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm AS f\nJOIN satscores AS s ON f.CDSCode = SUBSTR(s.cds, 4, LENGTH(f.CDSCode))\nWHERE f.County Name = 'Fresno' AND f.Charter Funding Type = 'Directly funded' AND s.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "18_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "18_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Fresno' AND schools.FundingType = 'Directly funded' AND satscores.NumTstTakr <= 250;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "18_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nWHERE schools.SOCType = 'Elementary Schools (Public)'\n  AND schools.FundingType = 'Directly funded'\n  AND satscores.NumTstTakr <= 250;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "18_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND s.FundingType = 'Directly funded'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND f.School Type = 'Elementary Schools (Public)'\n  AND s.NCESDist IN (\n    SELECT NCESDist\n    FROM schools\n    WHERE MailStreet LIKE '%Various Schools In District%'\n      OR MailStrAbr LIKE '%Various Schools In District%'\n  )\n  AND s.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.SOCType = 'Elementary Schools (Public)'\n  AND frpm.Charter Funding Type = 'Directly funded'\n  AND satscores.NumTstTakr <= 250;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "18_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno'\n  AND f.Charter Funding Type = 'Directly funded'\n  AND s.SOCType = 'Elementary Schools (Public)'\n  AND s.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.SOCType = 'Elementary Schools (Public)'\n  AND s.FundingType = 'Directly funded'\n  AND s.NCESDist LIKE '%Fresno%'\n  AND s.NumTstTakr <= 250;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "18_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(s.NCESSchool)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.City = 'Fresno'\nAND s.FundingType = 'Directly funded'\nAND sa.NumTstTakr <= 250;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "18_cand_11",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.CDSCode = sa.cds\nWHERE s.City = 'Fresno' \n  AND s.FundingType = 'Directly funded'\n  AND sa.NumTstTakr <= 250;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "18_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nWHERE s.City = 'Fresno' AND s.FundingType = 'Directly funded' AND f.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(s.CDSCode)\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.City = 'Fresno' \n  AND s.FundingType = 'Directly funded'\n  AND f.NumTstTakr <= 250;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "18_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.FundingType = 'Directly funded'\nAND schools.County = 'Fresno'\nAND frpm.NumTstTakr <= 250;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nJOIN schools ON frpm.School Code = schools.NCESDist\nWHERE frpm.County Name = 'Fresno' \n  AND frpm.Charter School (Y/N) = 1\n  AND satscores.NumTstTakr <= 250;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "18_cand_14",

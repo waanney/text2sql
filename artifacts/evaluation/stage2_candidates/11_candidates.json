@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Enrollment (K-12) + f.Enrollment (Ages 5-17) > 500;",
+    "sql": "SELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE Enrollment (K-12) + Enrollment (Ages 5-17) > 500;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "11_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment (K-12) + f.Enrollment (Ages 5-17)) > 500;",
+    "sql": "SELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (Enrollment (K-12) + Enrollment (Ages 5-17)) > 500;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "11_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment (K-12) + f.Enrollment (Ages 5-17)) > 500;",
+    "sql": "SELECT DISTINCT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Enrollment (K-12) + f.Enrollment (Ages 5-17) > 500;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "11_cand_2",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT CDSCode FROM frpm WHERE Enrollment_K_12 > 500;",
+    "sql": "SELECT CDSCode FROM frpm WHERE Enrollment >= 500;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "11_cand_5",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.Enrollment (K-12) + frpm.Enrollment (Ages 5-17)) > 500;",
+    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE (f.Enrollment_K_12 + f.Enrollment_Ages_5_17) > 500;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "11_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT frpm.CDSCode\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE (frpm.Enrollment (K-12) + frpm.Enrollment (Ages 5-17)) > 500;",
+    "sql": "SELECT frpm.CDSCode\nFROM frpm\nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "11_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT frpm.CDSCode\nFROM frpm\nWHERE frpm.Enrollment (K-12) + frpm.Enrollment (Ages 5-17) > 500;",
+    "sql": "SELECT NCESSchool \nFROM frpm \nJOIN schools ON frpm.CDSCode = schools.CDSCode \nWHERE (frpm.Enrollment_K_12 + frpm.Enrollment_Ages_5_17) > 500;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "11_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (Ages 5-17)]) + SUM(f.[Enrollment (K-12)]) > 500;",
+    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.Enrollment (Ages 5-17)) + SUM(f.Enrollment (K-12)) > 500;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "11_cand_11",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.[Enrollment (K-12)]) + SUM(f.[Enrollment (Ages 5-17)]) > 500;",
+    "sql": "SELECT s.NCESSchool\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.NCESSchool\nHAVING SUM(f.Enrollment (Ages 5-17)) + SUM(f.Enrollment (K-12)) > 500;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "11_cand_13",

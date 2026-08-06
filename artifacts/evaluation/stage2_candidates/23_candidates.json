@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "sql": "SELECT s.School, s.Street\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "23_cand_0",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School, s.Street\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "sql": "SELECT s.School, s.Street \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "23_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)],\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.StreetAbr,\n    s.City,\n    s.Zip,\n    s.State,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)]\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "23_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.State,\n    s.Zip,\n    f.[Enrollment (K-12)],\n    f.[Enrollment (Ages 5-17)],\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "23_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.City,\n    s.Zip,\n    s.State\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "sql": "SELECT \n    frpm.School,\n    frpm.Street,\n    ABS(frpm.`Enrollment (K-12)` - frpm.`Enrollment (Ages 5-17)`) AS EnrollmentDifference\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    ABS(frpm.`Enrollment (K-12)` - frpm.`Enrollment (Ages 5-17)`) > 30;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "23_cand_5",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "sql": "SELECT \n    s.School,\n    s.Street || ', ' || s.City || ', ' || s.State || ' ' || s.Zip AS FullStreetAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "23_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School, s.Street\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "sql": "SELECT \n    s.School,\n    s.Street || ', ' || s.City || ', ' || s.State || ' ' || s.Zip AS FullStreetAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "23_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "sql": "SELECT \n    s.School,\n    s.Street || ', ' || s.City || ', ' || s.State || ' ' || s.Zip AS FullStreetAddress\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.Enrollment_K_12 - f.Enrollment_Ages_5_17) > 30;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "23_cand_10",
@@ -88,7 +88,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.Street\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > 30;",
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.MailStreet\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > 30;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "23_cand_11",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.Street,\n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > 30;",
+    "sql": "SELECT \n    s.School,\n    s.Street,\n    s.MailStreet\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > 30;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "23_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School, s.Street \nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
+    "sql": "SELECT s.School, s.Street\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > 30;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "23_cand_14",

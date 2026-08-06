@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) AS avg_diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Charter Funding Type` = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    avg_diff > (SELECT AVG(EnrollmentDiff) FROM \n                 (SELECT \n                      f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)` AS EnrollmentDiff\n                  FROM \n                      frpm f\n                  JOIN \n                      schools s ON f.CDSCode = s.CDSCode\n                  WHERE \n                      f.`Charter Funding Type` = 'Locally funded')) AS avg_diff;",
+    "sql": "WITH avg_diff AS (\n    SELECT AVG(Enrollment (K-12)) - AVG(Enrollment (Ages 5-17)) AS avg_diff\n    FROM frpm\n    WHERE Charter Funding Type = 'Locally funded'\n)\nSELECT s.School, s.DOCType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE (f.Enrollment (K-12) - f.Enrollment (Ages 5-17)) > (SELECT avg_diff FROM avg_diff)\nAND s.FundingType = 'Locally funded';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "28_cand_0",
@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) AS avg_diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.`Charter Funding Type` = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    avg_diff > (SELECT AVG(avg_diff) FROM \n                 (SELECT AVG(f2.`Enrollment (K-12)` - f2.`Enrollment (Ages 5-17)`) AS avg_diff\n                  FROM frpm f2\n                  JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n                  WHERE f2.`Charter Funding Type` = 'Locally funded'\n                  GROUP BY s2.School, s2.DOCType));",
+    "sql": "SELECT s.School, s.DOCType\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode AND s.NCESSchool = f.School_Code\nWHERE f.Charter_Funding_Type = 'Locally funded'\nAND ABS(f.Enrollment_K_12 - f.Enrollment_Ages_5_17) > (\n    SELECT AVG(ABS(f2.Enrollment_K_12 - f2.Enrollment_Ages_5_17))\n    FROM frpm f2\n    JOIN schools s2 ON f2.CDSCode = s2.CDSCode AND f2.School_Code = s2.NCESSchool\n    WHERE f2.Charter_Funding_Type = 'Locally funded'\n);",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "28_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS AvgDiff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    ABS(AvgDiff) > (SELECT AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)])) \n                    FROM frpm f2 \n                    WHERE f2.[Charter Funding Type] = 'Locally funded');",
+    "sql": "WITH AvgDiff AS (\n    SELECT \n        AVG(Enrollment (K-12)) - AVG(Enrollment (Ages 5-17)) AS avg_diff\n    FROM \n        frpm\n    WHERE \n        Charter Funding Type = 'Locally funded'\n)\nSELECT \n    s.School,\n    s.DOCType\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode AND s.NCESSchool = f.School Code\nWHERE \n    (f.Enrollment (K-12) - f.Enrollment (Ages 5-17)) > (SELECT avg_diff FROM AvgDiff)\n    AND s.FundingType = 'Locally funded';",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "28_cand_2",
@@ -24,7 +24,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "WITH avg_diff AS (\n    SELECT AVG(Enrollment (Ages 5-17) - Enrollment (K-12)) AS avg_difference\n    FROM frpm\n    WHERE Charter Funding Type = 'Locally funded'\n)\nSELECT s.School, s.DOCType, (s.Enrollment (Ages 5-17) - s.Enrollment (K-12)) AS diff\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Locally funded' AND (s.Enrollment (Ages 5-17) - s.Enrollment (K-12)) > (SELECT avg_difference FROM avg_diff);",
+    "sql": "WITH AvgDiff AS (\n    SELECT AVG(Enrollment (K-12)) - AVG(Enrollment (Ages 5-17)) AS avg_diff\n    FROM frpm\n    WHERE Charter Funding Type = 'Locally funded'\n)\nSELECT s.School, s.DOCType, f.[Percent (%) Eligible Free (K-12)] - f.[Percent (%) Eligible Free (Ages 5-17)] AS diff\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE s.FundingType = 'Locally funded' AND diff > (SELECT avg_diff FROM AvgDiff);",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "28_cand_3",
@@ -32,7 +32,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "WITH AverageDifference AS (\n    SELECT AVG(Enrollment('Ages 5-17') - Enrollment('K-12')) AS avg_diff\n    FROM frpm\n    WHERE Charter Funding Type = 'Locally funded'\n)\nSELECT \n    s.School,\n    s.DOCType,\n    f.Enrollment('Ages 5-17') - f.Enrollment('K-12') AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded' AND\n    f.Enrollment('Ages 5-17') - f.Enrollment('K-12') > (SELECT avg_diff FROM AverageDifference);",
+    "sql": "WITH AverageDifference AS (\n    SELECT AVG(Enrollment (Ages 5-17) - Enrollment (K-12)) AS avg_diff\n    FROM frpm\n    WHERE Charter Funding Type = 'Locally funded'\n),\nFilteredSchools AS (\n    SELECT \n        s.School,\n        s.DOCType,\n        f.[Percent (%) Eligible Free (K-12)],\n        f.[Percent (%) Eligible Free (Ages 5-17)],\n        f.[Percent (%) Eligible FRPM (K-12)],\n        f.[Percent (%) Eligible FRPM (Ages 5-17)]\n    FROM \n        frpm f\n    JOIN \n        schools s ON f.CDSCode = s.CDSCode\n    WHERE \n        f.[Charter Funding Type] = 'Locally funded'\n)\nSELECT \n    fs.School,\n    fs.DOCType,\n    fs.[Percent (%) Eligible Free (K-12)],\n    fs.[Percent (%) Eligible Free (Ages 5-17)],\n    fs.[Percent (%) Eligible FRPM (K-12)],\n    fs.[Percent (%) Eligible FRPM (Ages 5-17)]\nFROM \n    FilteredSchools fs\nWHERE \n    ABS(fs.[Percent (%) Eligible Free (K-12)] - fs.[Percent (%) Eligible Free (Ages 5-17)]) > (SELECT avg_diff FROM AverageDifference);",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "28_cand_4",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School, s.DOCType, AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS diff\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.FundingType = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING diff > (\n    SELECT AVG(f.`Enrollment (K-12)`) - AVG(f.`Enrollment (Ages 5-17)`) AS avg_diff\n    FROM frpm f\n    JOIN schools s ON f.CDSCode = s.CDSCode\n    WHERE s.FundingType = 'Locally funded'\n);",
+    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    ABS(s.[Enrollment (K-12)] - s.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    schools s\nWHERE \n    s.FundingType = 'Locally funded'\nHAVING \n    ABS(s.[Enrollment (K-12)] - s.[Enrollment (Ages 5-17)]) > (\n        SELECT \n            AVG(ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]))\n        FROM \n            frpm f\n        WHERE \n            f.[Charter Funding Type] = 'Locally funded'\n    );",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "28_cand_5",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.School Name,\n    frpm.DOCType,\n    ABS(frpm.Enrollment (Ages 5-17) - frpm.Enrollment (K-12)) AS EnrollmentDifference\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter Funding Type = 'Locally funded'\nHAVING \n    EnrollmentDifference > (\n        SELECT \n            AVG(ABS(frpm.Enrollment (Ages 5-17) - frpm.Enrollment (K-12)))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter Funding Type = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;",
+    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) AS EnrollmentDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nHAVING \n    ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > (\n        SELECT \n            AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)]))\n        FROM \n            frpm f2\n        JOIN \n            schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE \n            f2.[Charter Funding Type] = 'Locally funded'\n    )\nORDER BY \n    EnrollmentDifference DESC;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "28_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.School Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter Funding Type = 'Locally funded'\n    AND (frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17)) > (\n        SELECT \n            AVG(frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter Funding Type = 'Locally funded'\n    );",
+    "sql": "SELECT \n    s.SchoolName, \n    s.DOCType\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded'\n    AND ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > (\n        SELECT AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)]))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.Charter Funding Type = 'Locally funded'\n    )",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "28_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.School Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter Funding Type = 'Locally funded'\n    AND (frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17)) > (\n        SELECT \n            AVG(frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter Funding Type = 'Locally funded'\n    );",
+    "sql": "SELECT \n    s.SchoolName,\n    s.DOCType\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded'\n    AND (f.Enrollment (K-12) - f.Enrollment (Ages 5-17)) > AVG(f.Enrollment (K-12) - f.Enrollment (Ages 5-17)) OVER ()",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "28_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    frpm.School Name,\n    schools.DOCType\nFROM \n    frpm\nJOIN \n    schools ON frpm.CDSCode = schools.CDSCode\nWHERE \n    frpm.Charter Funding Type = 'Locally funded'\n    AND (frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17)) > (\n        SELECT \n            AVG(frpm.Enrollment (K-12) - frpm.Enrollment (Ages 5-17))\n        FROM \n            frpm\n        JOIN \n            schools ON frpm.CDSCode = schools.CDSCode\n        WHERE \n            frpm.Charter Funding Type = 'Locally funded'\n    );",
+    "sql": "SELECT \n    s.SchoolName,\n    s.DOCType\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.FundingType = 'Locally funded'\n    AND ABS(f.`Enrollment (K-12)` - f.`Enrollment (Ages 5-17)`) > (\n        SELECT AVG(ABS(f2.`Enrollment (K-12)` - f2.`Enrollment (Ages 5-17)`))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE s2.FundingType = 'Locally funded'\n    );",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "28_cand_10",
@@ -96,7 +96,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) AS AvgDifference\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.[Charter Funding Type] = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    ABS(AvgDifference) > (SELECT AVG(ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)])) \n                          FROM frpm f \n                          JOIN schools s ON f.CDSCode = s.CDSCode \n                          WHERE f.[Charter Funding Type] = 'Locally funded');",
+    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.Enrollment (Ages 5-17)) - AVG(f.Enrollment (K-12)) AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    diff > (SELECT AVG(diff) FROM \n            (SELECT \n                 AVG(f2.Enrollment (Ages 5-17)) - AVG(f2.Enrollment (K-12)) AS diff\n             FROM \n                 frpm f2\n             JOIN \n                 schools s2 ON f2.CDSCode = s2.CDSCode\n             WHERE \n                 f2.Charter Funding Type = 'Locally funded'\n             GROUP BY \n                 s2.School, s2.DOCType));",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "28_cand_12",
@@ -104,7 +104,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.Enrollment (Ages 5-17)) - AVG(f.Enrollment (K-12)) AS diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    diff > (SELECT AVG(diff) FROM (SELECT AVG(f2.Enrollment (Ages 5-17)) - AVG(f2.Enrollment (K-12)) AS diff\n                                    FROM frpm f2\n                                    JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n                                    WHERE f2.Charter Funding Type = 'Locally funded' GROUP BY s2.School, s2.DOCType));",
+    "sql": "SELECT \n    s.School,\n    s.DOCType,\n    AVG(f.Enrollment (Ages 5-17)) - AVG(f.Enrollment (K-12)) AS Diff\nFROM \n    frpm f\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    f.Charter Funding Type = 'Locally funded'\nGROUP BY \n    s.School, s.DOCType\nHAVING \n    ABS(Diff) > (SELECT AVG(ABS(AVG(f2.Enrollment (Ages 5-17)) - AVG(f2.Enrollment (K-12)))) \n                FROM frpm f2 \n                WHERE f2.Charter Funding Type = 'Locally funded');",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "28_cand_13",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Charter Funding Type = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.[Enrollment (K-12)] - f.[Enrollment (Ages 5-17)]) > \n       (SELECT AVG(ABS(f2.[Enrollment (K-12)] - f2.[Enrollment (Ages 5-17)]))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.Charter Funding Type = 'Locally funded');",
+    "sql": "SELECT s.School, s.DOCType\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.Charter Funding Type = 'Locally funded'\nGROUP BY s.School, s.DOCType\nHAVING ABS(f.[Enrollment (Ages 5-17)] - f.[Enrollment (K-12)]) > \n       (SELECT AVG(ABS(f2.[Enrollment (Ages 5-17)] - f2.[Enrollment (K-12)]))\n        FROM frpm f2\n        JOIN schools s2 ON f2.CDSCode = s2.CDSCode\n        WHERE f2.Charter Funding Type = 'Locally funded');",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "28_cand_14",

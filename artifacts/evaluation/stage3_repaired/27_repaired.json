@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT \n    s.School,\n    AVG(s.AdmEmail1) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    s.OpenDate > '1991-12-31' AND s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "27_cand_0",
@@ -9,47 +9,42 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03915071487426758,
-      "row_count": 8217,
+      "runtime_sec": 0.04156637191772461,
+      "row_count": 0,
       "column_count": 3,
       "columns": [
         "School",
-        "AvgScoreWrite",
-        "CommunicationNumber"
+        "AvgScore",
+        "Phone"
       ],
-      "sample_rows": [
-        [
-          "'3R' Middle",
-          null,
-          null
-        ],
-        [
-          "100 Black Men of the Bay Area Community",
-          null,
-          null
-        ],
-        [
-          "101 Elementary",
-          null,
-          null
-        ],
-        [
-          "180 Program",
-          null,
-          null
-        ],
-        [
-          "21st Century Learning Institute",
-          0.0,
-          "(951) 769-8424"
-        ]
-      ],
-      "is_empty": false
+      "sample_rows": [],
+      "is_empty": true
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.School Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+        "repair_time_sec": 3.1699442863464355,
+        "input_tokens": 1337,
+        "output_tokens": 46
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    s.OpenDate > '1991-12-31' AND s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+        "repair_time_sec": 3.177964210510254,
+        "input_tokens": 1361,
+        "output_tokens": 46
+      }
+    ]
   },
   {
-    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+    "sql": "SELECT \n    s.School,\n    AVG(sats.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    satscores sats ON s.School = sats.sname\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "27_cand_1",
@@ -58,8 +53,8 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03528785705566406,
-      "row_count": 3261,
+      "runtime_sec": 0.03368711471557617,
+      "row_count": 831,
       "column_count": 3,
       "columns": [
         "School",
@@ -69,57 +64,36 @@
       "sample_rows": [
         [
           "21st Century Learning Institute",
-          1.0,
+          null,
           "(951) 769-8424"
         ],
         [
-          "A. L. Conner Elementary",
-          1.0,
-          "(559) 305-7200"
+          "APEX Academy",
+          368.0,
+          "(323) 817-6550"
         ],
         [
-          "ACE Alum Rock",
-          1.0,
-          null
+          "ARISE High",
+          369.0,
+          "(510) 436-5487"
         ],
         [
-          "ACE Charter High",
-          1.0,
-          "(408) 251-1362"
+          "ASA Charter",
+          null,
+          "(909) 475-3322"
         ],
         [
-          "ACE Empower Academy",
-          1.0,
-          "(408) 729-3920"
+          "Abraham Lincoln Alternative",
+          null,
+          "(661) 256-5090"
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.364887237548828,
-        "input_tokens": 1337,
-        "output_tokens": 45
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
-        "error": "no such column: f.School_Code",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.3718907833099365,
-        "input_tokens": 1339,
-        "output_tokens": 45
-      }
-    ]
+    "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgWritingScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "27_cand_2",
@@ -128,12 +102,12 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03133535385131836,
+      "runtime_sec": 0.03281259536743164,
       "row_count": 3261,
       "column_count": 3,
       "columns": [
         "School",
-        "AvgScore",
+        "AvgWritingScore",
         "Phone"
       ],
       "sample_rows": [
@@ -168,18 +142,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+        "original_sql": "SELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgWritingScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+        "error": "no such column: s.NCESCode",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgWritingScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+        "repair_time_sec": 3.1931040287017822,
+        "input_tokens": 1336,
+        "output_tokens": 45
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgWritingScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
         "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.34538197517395,
-        "input_tokens": 1336,
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgWritingScore,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+        "repair_time_sec": 3.1849372386932373,
+        "input_tokens": 1339,
         "output_tokens": 45
       }
     ]
   },
   {
-    "sql": "SELECT \n    s.School,\n    ss.AvgScrWrite,\n    s.CharterNum\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01';",
+    "sql": "SELECT \n    s.School,\n    ss.AvgScrWrite,\n    s.CharterNum\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = REPLACE(ss.cds, '0', '')\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01');",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "27_cand_3",
@@ -188,7 +172,105 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.025506019592285156,
+      "runtime_sec": 0.013351917266845703,
+      "row_count": 36,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "AvgScrWrite",
+        "CharterNum"
+      ],
+      "sample_rows": [
+        [
+          "Lancaster High",
+          449,
+          null
+        ],
+        [
+          "Desert Sands Charter",
+          null,
+          "0411"
+        ],
+        [
+          "Opportunities for Learning - Baldwin Park",
+          447,
+          "0402"
+        ],
+        [
+          "Lawndale High",
+          423,
+          null
+        ],
+        [
+          "South El Monte High",
+          427,
+          null
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    ss.AvgScrWrite,\n    COALESCE(s.CharterNum, 'None') AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = REPLACE(ss.cds, '-', '')\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01');",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "27_cand_4",
+    "question_id": 27,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.013866901397705078,
+      "row_count": 749,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "AvgScrWrite",
+        "CommunicationNumber"
+      ],
+      "sample_rows": [
+        [
+          "Crescent View West Charter",
+          null,
+          "0746"
+        ],
+        [
+          "Hume Lake Charter",
+          null,
+          "0787"
+        ],
+        [
+          "Big Picture Educational Academy",
+          null,
+          "1085"
+        ],
+        [
+          "Clovis North High",
+          519,
+          "None"
+        ],
+        [
+          "Clovis Online Charter",
+          null,
+          "1006"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT \n    s.School,\n    ss.AvgScrWrite,\n    s.CharterNum\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01';",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "27_cand_5",
+    "question_id": 27,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.022743701934814453,
       "row_count": 749,
       "column_count": 3,
       "columns": [
@@ -228,165 +310,16 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT \n    s.School AS SchoolName,\n    ss.AvgScrWrite AS AverageWritingScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores ss ON s.CDSCode = ss.cds\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01');",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_1",
-    "candidate_id": "27_cand_4",
-    "question_id": 27,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.025032520294189453,
-      "row_count": 749,
-      "column_count": 3,
-      "columns": [
-        "SchoolName",
-        "AverageWritingScore",
-        "CommunicationNumber"
-      ],
-      "sample_rows": [
-        [
-          "Crescent View West Charter",
-          null,
-          "0746"
-        ],
-        [
-          "Hume Lake Charter",
-          null,
-          "0787"
-        ],
-        [
-          "Big Picture Educational Academy",
-          null,
-          "1085"
-        ],
-        [
-          "Clovis North High",
-          519,
-          null
-        ],
-        [
-          "Clovis Online Charter",
-          null,
-          "1006"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT \n    s.School AS School_Name,\n    ss.AvgScrWrite AS Avg_Write_Score,\n    s.CharterNum AS Communication_Number\nFROM \n    frpm f\nJOIN \n    satscores ss ON f.CDSCode = SUBSTR(ss.cds, 3)\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    (f.[OpenDate] > '1991-12-31' OR f.[ClosedDate] < '2000-01-01');\n```",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "27_cand_5",
-    "question_id": 27,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.OpenDate",
-      "runtime_sec": 0.0032477378845214844,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT \n    s.School AS School_Name,\n    ss.AvgScrWrite AS Avg_Write_Score,\n    s.CharterNum AS Communication_Number\nFROM \n    frpm f\nJOIN \n    satscores ss ON f.CDSCode = SUBSTR(ss.cds, 3)\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    (f.`OpenDate` > '1991-12-31' OR f.`ClosedDate` < '2000-01-01');",
-        "error": "no such column: f.OpenDate",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.School AS School_Name,\n    ss.AvgScrWrite AS Avg_Write_Score,\n    s.CharterNum AS Communication_Number\nFROM \n    frpm f\nJOIN \n    satscores ss ON f.CDSCode = SUBSTR(ss.cds, 3)\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    (f.OpenDate > '1991-12-31' OR f.ClosedDate < '2000-01-01');\n```",
-        "repair_time_sec": 3.566657781600952,
-        "input_tokens": 1340,
-        "output_tokens": 49
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.School AS School_Name,\n    ss.AvgScrWrite AS Avg_Write_Score,\n    s.CharterNum AS Communication_Number\nFROM \n    frpm f\nJOIN \n    satscores ss ON f.CDSCode = SUBSTR(ss.cds, 3)\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    (f.OpenDate > '1991-12-31' OR f.ClosedDate < '2000-01-01');\n```",
-        "error": "no such column: f.OpenDate",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.School AS School_Name,\n    ss.AvgScrWrite AS Avg_Write_Score,\n    s.CharterNum AS Communication_Number\nFROM \n    frpm f\nJOIN \n    satscores ss ON f.CDSCode = SUBSTR(ss.cds, 3)\nJOIN \n    schools s ON f.CDSCode = s.CDSCode\nWHERE \n    (f.[OpenDate] > '1991-12-31' OR f.[ClosedDate] < '2000-01-01');\n```",
-        "repair_time_sec": 3.668700933456421,
-        "input_tokens": 1342,
-        "output_tokens": 49
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;\n```",
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CommunicationNumber;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "27_cand_6",
     "question_id": 27,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.027058124542236328,
-      "row_count": 738,
-      "column_count": 3,
-      "columns": [
-        "School",
-        "AvgScoreWrite",
-        "CommunicationNumber"
-      ],
-      "sample_rows": [
-        [
-          "21st Century Learning Institute",
-          null,
-          null
-        ],
-        [
-          "APEX Academy",
-          368.0,
-          "1459"
-        ],
-        [
-          "ASA Charter",
-          null,
-          "0677"
-        ],
-        [
-          "Abraham Lincoln Alternative",
-          null,
-          null
-        ],
-        [
-          "Abraxis Charter",
-          null,
-          "0696"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;",
-        "error": "no such column: f.AvgScrWrite",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "repair_time_sec": 3.2480452060699463,
-        "input_tokens": 1332,
-        "output_tokens": 41
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CommunicationNumber;\n```",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_1",
-    "candidate_id": "27_cand_7",
-    "question_id": 27,
-    "db_id": "california_schools",
-    "execution_metadata": {
       "success": false,
       "error": "no such column: s.CommunicationNumber",
-      "runtime_sec": 0.0032873153686523438,
+      "runtime_sec": 0.0029230117797851562,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -400,7 +333,7 @@
         "error": "no such column: f.AvgScrWrite",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CommunicationNumber;\n```",
-        "repair_time_sec": 3.1670706272125244,
+        "repair_time_sec": 3.003532648086548,
         "input_tokens": 1329,
         "output_tokens": 39
       },
@@ -410,146 +343,174 @@
         "error": "no such column: s.CommunicationNumber",
         "diagnosis": "column_missing",
         "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CommunicationNumber;\n```",
-        "repair_time_sec": 3.1436960697174072,
+        "repair_time_sec": 2.9978387355804443,
         "input_tokens": 1332,
         "output_tokens": 39
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate <= '2000-12-31')\nGROUP BY \n    s.School, s.Phone;\n```",
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CommunicationNumber;\n```",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_1",
+    "candidate_id": "27_cand_7",
+    "question_id": 27,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": false,
+      "error": "no such column: s.CommunicationNumber",
+      "runtime_sec": 0.003271341323852539,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CommunicationNumber;",
+        "error": "no such column: f.AvgScrWrite",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CommunicationNumber;\n```",
+        "repair_time_sec": 3.023169755935669,
+        "input_tokens": 1329,
+        "output_tokens": 39
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CommunicationNumber;\n```",
+        "error": "no such column: s.CommunicationNumber",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CommunicationNumber;\n```",
+        "repair_time_sec": 3.019028902053833,
+        "input_tokens": 1332,
+        "output_tokens": 39
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.sname = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "27_cand_8",
     "question_id": 27,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02620697021484375,
-      "row_count": 0,
-      "column_count": 3,
-      "columns": [
-        "SchoolName",
-        "AverageScoreInWriting",
-        "CommunicationNumber"
-      ],
+      "success": false,
+      "error": "no such column: frpm.SchoolName",
+      "runtime_sec": 0.005091667175292969,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
       "sample_rows": [],
-      "is_empty": true
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' OR s.ClosedDate < '2000-12-31')\nGROUP BY \n    s.School, s.Phone;",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate <= '2000-12-31')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.735873222351074,
-        "input_tokens": 1365,
-        "output_tokens": 53
+        "original_sql": "SELECT \n    frpm.School Name, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.School\nJOIN \n    schools ON frpm.School = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');",
+        "error": "no such column: frpm.School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "repair_time_sec": 3.110503911972046,
+        "input_tokens": 1328,
+        "output_tokens": 36
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate <= '2000-12-31')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate <= '2000-12-31')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.7260491847991943,
-        "input_tokens": 1367,
-        "output_tokens": 53
+        "original_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "error": "no such column: frpm.SchoolName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.sname = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "repair_time_sec": 3.1056811809539795,
+        "input_tokens": 1329,
+        "output_tokens": 36
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;\n```",
+    "sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.sname = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "27_cand_9",
     "question_id": 27,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02054738998413086,
-      "row_count": 0,
-      "column_count": 3,
-      "columns": [
-        "SchoolName",
-        "AverageScoreInWriting",
-        "CommunicationNumber"
-      ],
+      "success": false,
+      "error": "no such column: frpm.SchoolName",
+      "runtime_sec": 0.0031042098999023438,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
       "sample_rows": [],
-      "is_empty": true
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.6666970252990723,
-        "input_tokens": 1365,
-        "output_tokens": 53
+        "original_sql": "SELECT \n    frpm.School Name, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.School\nJOIN \n    schools ON frpm.School = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');",
+        "error": "no such column: frpm.School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "repair_time_sec": 3.1073741912841797,
+        "input_tokens": 1328,
+        "output_tokens": 36
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.6672556400299072,
-        "input_tokens": 1367,
-        "output_tokens": 53
+        "original_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "error": "no such column: frpm.SchoolName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.sname = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "repair_time_sec": 3.1105518341064453,
+        "input_tokens": 1329,
+        "output_tokens": 36
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate <= '2000-12-31')\nGROUP BY \n    s.School, s.Phone;\n```",
+    "sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.sname = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "27_cand_10",
     "question_id": 27,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.02111506462097168,
-      "row_count": 0,
-      "column_count": 3,
-      "columns": [
-        "SchoolName",
-        "AverageScoreInWriting",
-        "CommunicationNumber"
-      ],
+      "success": false,
+      "error": "no such column: frpm.SchoolName",
+      "runtime_sec": 0.002981424331665039,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
       "sample_rows": [],
-      "is_empty": true
+      "is_empty": null
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' OR s.ClosedDate < '2000-12-31')\nGROUP BY \n    s.School, s.Phone;",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate <= '2000-12-31')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.6661081314086914,
-        "input_tokens": 1365,
-        "output_tokens": 53
+        "original_sql": "SELECT \n    frpm.School Name, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.School\nJOIN \n    schools ON frpm.School = schools.NCESSchool\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');",
+        "error": "no such column: frpm.School",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "repair_time_sec": 3.1158671379089355,
+        "input_tokens": 1328,
+        "output_tokens": 36
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate <= '2000-12-31')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School AS SchoolName,\n    AVG(ss.AvgScrWrite) AS AverageScoreInWriting,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores ss ON s.NCESSchool = ss.cds\nWHERE \n    (s.OpenDate >= '1991-01-01' AND s.ClosedDate <= '2000-12-31')\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.678035020828247,
-        "input_tokens": 1367,
-        "output_tokens": 53
+        "original_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.School = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "error": "no such column: frpm.SchoolName",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    frpm.SchoolName, \n    satscores.AvgScrWrite, \n    schools.PhoneNumber\nFROM \n    satscores\nJOIN \n    frpm ON satscores.sname = frpm.SchoolName\nJOIN \n    schools ON frpm.SchoolName = schools.School\nWHERE \n    (schools.OpenDate > '1991-12-31') OR (schools.ClosedDate < '2000-01-01');\n```",
+        "repair_time_sec": 3.1107711791992188,
+        "input_tokens": 1329,
+        "output_tokens": 36
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    (s.OpenDate > '1991-12-31' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "27_cand_11",
@@ -558,95 +519,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.035269975662231445,
-      "row_count": 0,
-      "column_count": 3,
-      "columns": [
-        "School",
-        "AvgScore",
-        "CommunicationNumber"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "repair_time_sec": 3.507589101791382,
-        "input_tokens": 1340,
-        "output_tokens": 49
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    (s.OpenDate > '1991-12-31' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "repair_time_sec": 3.517145872116089,
-        "input_tokens": 1363,
-        "output_tokens": 49
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    (s.OpenDate > '1991-12-31' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_1",
-    "candidate_id": "27_cand_12",
-    "question_id": 27,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.03296518325805664,
-      "row_count": 0,
-      "column_count": 3,
-      "columns": [
-        "School",
-        "AvgScoreWrite",
-        "CommunicationNumber"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;",
-        "error": "near \"Code\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "repair_time_sec": 3.54103422164917,
-        "input_tokens": 1340,
-        "output_tokens": 49
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScoreWrite,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESSchool = f.`School Code`\nWHERE \n    (s.OpenDate > '1991-12-31' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "repair_time_sec": 3.572678565979004,
-        "input_tokens": 1363,
-        "output_tokens": 49
-      }
-    ]
-  },
-  {
-    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_2",
-    "candidate_id": "27_cand_13",
-    "question_id": 27,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.03222227096557617,
+      "runtime_sec": 0.03166651725769043,
       "row_count": 3163,
       "column_count": 3,
       "columns": [
@@ -686,28 +559,142 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;",
+        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;",
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "repair_time_sec": 3.471652030944824,
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
+        "repair_time_sec": 3.3468339443206787,
         "input_tokens": 1340,
         "output_tokens": 48
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;\n```",
+        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
         "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.CharterNum;\n```",
-        "repair_time_sec": 3.4907143115997314,
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
+        "repair_time_sec": 3.3690948486328125,
         "input_tokens": 1341,
         "output_tokens": 48
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_1",
+    "candidate_id": "27_cand_12",
+    "question_id": 27,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03924989700317383,
+      "row_count": 3163,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "AvgScore",
+        "CommunicationNumber"
+      ],
+      "sample_rows": [
+        [
+          "21st Century Learning Institute",
+          1.0,
+          null
+        ],
+        [
+          "A. L. Conner Elementary",
+          1.0,
+          null
+        ],
+        [
+          "ACE Alum Rock",
+          1.0,
+          "1544"
+        ],
+        [
+          "ACE Charter High",
+          1.0,
+          "1387"
+        ],
+        [
+          "ACE Empower Academy",
+          1.0,
+          "0972"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
+        "repair_time_sec": 3.360562562942505,
+        "input_tokens": 1340,
+        "output_tokens": 48
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.School_Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
+        "error": "no such column: f.School_Code",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.`2013-14 CALPADS Fall 1 Certification Status`) AS AvgScore,\n    s.CharterNum AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.CharterNum;\n```",
+        "repair_time_sec": 3.3766963481903076,
+        "input_tokens": 1341,
+        "output_tokens": 48
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    f.[Charter School Number] AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.[School Code]\nWHERE \n    (s.OpenDate > '1991-12-31' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, f.[Charter School Number];\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "27_cand_13",
+    "question_id": 27,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.024639368057250977,
+      "row_count": 0,
+      "column_count": 3,
+      "columns": [
+        "School",
+        "AvgScore",
+        "CommunicationNumber"
+      ],
+      "sample_rows": [],
+      "is_empty": true
+    },
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    f.[Charter School Number] AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.NCESCode = f.School Code\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, f.[Charter School Number];",
+        "error": "near \"Code\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    f.[Charter School Number] AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.[School Code]\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, f.[Charter School Number];\n```",
+        "repair_time_sec": 3.4802184104919434,
+        "input_tokens": 1345,
+        "output_tokens": 54
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    f.[Charter School Number] AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.[School Code]\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, f.[Charter School Number];\n```",
+        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
+        "diagnosis": "unknown_execution_error",
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.[2013-14 CALPADS Fall 1 Certification Status]) AS AvgScore,\n    f.[Charter School Number] AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.[School Code]\nWHERE \n    (s.OpenDate > '1991-12-31' AND s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, f.[Charter School Number];\n```",
+        "repair_time_sec": 3.502774477005005,
+        "input_tokens": 1368,
+        "output_tokens": 54
+      }
+    ]
+  },
+  {
+    "sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;\n```",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "27_cand_14",
@@ -716,13 +703,13 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.027852773666381836,
+      "runtime_sec": 0.025112390518188477,
       "row_count": 749,
       "column_count": 3,
       "columns": [
         "School",
         "AvgScoreWrite",
-        "CommunicationNumber"
+        "Phone"
       ],
       "sample_rows": [
         [
@@ -756,13 +743,13 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;",
+        "original_sql": "SELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;",
         "error": "no such column: f.AvgScrWrite",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone AS CommunicationNumber\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01'\nGROUP BY \n    s.School, s.Phone;\n```",
-        "repair_time_sec": 3.0772409439086914,
-        "input_tokens": 1332,
-        "output_tokens": 41
+        "fixed_sql": "```sql\nSELECT \n    s.School,\n    AVG(f.AvgScrWrite) AS AvgScoreWrite,\n    s.Phone\nFROM \n    schools s\nJOIN \n    satscores f ON s.CDSCode = f.cds\nWHERE \n    (s.OpenDate > '1991-12-31' OR s.ClosedDate < '2000-01-01')\nGROUP BY \n    s.School, s.Phone;\n```",
+        "repair_time_sec": 2.9200353622436523,
+        "input_tokens": 1329,
+        "output_tokens": 39
       }
     ]
   }

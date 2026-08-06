@@ -1,15 +1,15 @@
 {
   "question_id": 3,
   "db_id": "california_schools",
-  "final_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
-  "best_candidate_id": "3_cand_6",
+  "final_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.`School Name` = s.School\nWHERE f.`District Name` = 'SBE - The School of Arts and Enterprise'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
+  "best_candidate_id": "3_cand_9",
   "ranked_candidates": [
     [
-      "3_cand_6",
+      "3_cand_9",
       1.6
     ],
     [
-      "3_cand_0",
+      "3_cand_6",
       0.8
     ],
     [
@@ -19,38 +19,38 @@
   ],
   "comparison_logs": [
     {
-      "candidate_a": "3_cand_0",
+      "candidate_a": "3_cand_6",
       "candidate_b": "3_cand_8",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "3_cand_0",
-      "candidate_b": "3_cand_6",
+      "candidate_a": "3_cand_6",
+      "candidate_b": "3_cand_9",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "3_cand_8",
-      "candidate_b": "3_cand_6",
+      "candidate_b": "3_cand_9",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_0",
-    "candidate_id": "3_cand_6",
+    "sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.`School Name` = s.School\nWHERE f.`District Name` = 'SBE - The School of Arts and Enterprise'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+    "source": "evidence_focused_generator",
+    "prompt_id": "evidence_focused_v1_1",
+    "candidate_id": "3_cand_9",
     "question_id": 3,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.01916980743408203,
+      "runtime_sec": 0.0361933708190918,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -58,7 +58,7 @@
       ],
       "sample_rows": [
         [
-          "13330 Vaughn Street"
+          "295 North Garey Avenue"
         ]
       ],
       "is_empty": false
@@ -66,13 +66,13 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.School Type = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;",
-        "error": "near \"Type\": syntax error",
+        "original_sql": "SELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.School Name = s.School\nWHERE f.District Name = 'SBE - The School of Arts and Enterprise'\nORDER BY f.FRPM Count (K-12) DESC\nLIMIT 1;",
+        "error": "near \"Name\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`School Type` = 'K-12 Schools (Public)'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.115002393722534,
-        "input_tokens": 1328,
-        "output_tokens": 37
+        "fixed_sql": "```sql\nSELECT s.MailStreet\nFROM frpm f\nJOIN schools s ON f.`School Name` = s.School\nWHERE f.`District Name` = 'SBE - The School of Arts and Enterprise'\nORDER BY f.`FRPM Count (K-12)` DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.0812222957611084,
+        "input_tokens": 1336,
+        "output_tokens": 45
       }
     ]
   },

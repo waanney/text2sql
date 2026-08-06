@@ -1,126 +1,162 @@
 [
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool, \n           SUM(NumGE1500) AS TotalGE1500, \n           SUM(NumTstTakr) AS TotalTstTakr\n    FROM satscores\n    GROUP BY NCESSchool\n) ss ON s.NCESSchool = ss.NCESSchool\nORDER BY CAST(ss.TotalGE1500 AS REAL) / ss.TotalTstTakr DESC\nLIMIT 3;\n```",
+    "sql": "```sql\nSELECT Phone \nFROM schools \nJOIN satscores ON schools.CDSCode = satscores.cds \nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC \nLIMIT 3;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "13_cand_0",
     "question_id": 13,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: NCESSchool",
-      "runtime_sec": 0.0036191940307617188,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.023795366287231445,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool, \n           SUM(NumGE1500) AS TotalGE1500, \n           SUM(NumTstTakr) AS TotalTstTakr\n    FROM satscores\n    GROUP BY NCESSchool\n) ss ON s.NCESSchool = ss.NCESSchool\nORDER BY CAST(ss.TotalGE1500 AS REAL) / ss.TotalTstTakr DESC\nLIMIT 3;",
-        "error": "no such column: NCESSchool",
+        "original_sql": "SELECT Phone \nFROM schools \nORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \nLIMIT 3;",
+        "error": "no such column: NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool, \n           SUM(NumGE1500) AS TotalGE1500, \n           SUM(NumTstTakr) AS TotalTstTakr\n    FROM satscores\n    GROUP BY NCESSchool\n) ss ON s.NCESSchool = ss.NCESSchool\nORDER BY CAST(ss.TotalGE1500 AS REAL) / ss.TotalTstTakr DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 3.3892910480499268,
-        "input_tokens": 1340,
-        "output_tokens": 49
+        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC \nLIMIT 3;\n```",
+        "repair_time_sec": 1.5026650428771973,
+        "input_tokens": 1311,
+        "output_tokens": 20
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool, \n           SUM(NumGE1500) AS TotalGE1500, \n           SUM(NumTstTakr) AS TotalTstTakr\n    FROM satscores\n    GROUP BY NCESSchool\n) ss ON s.NCESSchool = ss.NCESSchool\nORDER BY CAST(ss.TotalGE1500 AS REAL) / ss.TotalTstTakr DESC\nLIMIT 3;\n```",
-        "error": "no such column: NCESSchool",
+        "original_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC \nLIMIT 3;\n```",
+        "error": "no such column: satscores.NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool, \n           SUM(NumGE1500) AS TotalGE1500, \n           SUM(NumTstTakr) AS TotalTstTakr\n    FROM satscores\n    GROUP BY NCESSchool\n) ss ON s.NCESSchool = ss.NCESSchool\nORDER BY CAST(ss.TotalGE1500 AS REAL) / ss.TotalTstTakr DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 3.4300742149353027,
-        "input_tokens": 1342,
-        "output_tokens": 49
+        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nJOIN satscores ON schools.CDSCode = satscores.cds \nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC \nLIMIT 3;\n```",
+        "repair_time_sec": 1.8973186016082764,
+        "input_tokens": 1314,
+        "output_tokens": 28
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode AS NCESSchool, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.NCESSchool\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
+    "sql": "```sql\nSELECT Phone\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC\nLIMIT 3;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "13_cand_1",
     "question_id": 13,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: CDSCode",
-      "runtime_sec": 0.13668465614318848,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.027950286865234375,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.NCESSchool = ss.NCESSchool\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;",
-        "error": "no such column: NCESSchool",
+        "original_sql": "SELECT Phone\nFROM schools\nORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC\nLIMIT 3;",
+        "error": "no such column: NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode AS NCESSchool, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.NCESSchool\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 2.570659637451172,
-        "input_tokens": 1332,
-        "output_tokens": 44
+        "fixed_sql": "```sql\nSELECT Phone\nFROM schools\nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.505446195602417,
+        "input_tokens": 1311,
+        "output_tokens": 20
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode AS NCESSchool, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.NCESSchool\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
-        "error": "no such column: CDSCode",
+        "original_sql": "```sql\nSELECT Phone\nFROM schools\nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC\nLIMIT 3;\n```",
+        "error": "no such column: satscores.NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode AS NCESSchool, \n           CAST(NumGE1500 AS REAL) / NumTstTakr AS ExcellenceRate\n    FROM satscores\n) ss ON s.CDSCode = ss.NCESSchool\nORDER BY ss.ExcellenceRate DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 2.62453293800354,
-        "input_tokens": 1337,
-        "output_tokens": 44
+        "fixed_sql": "```sql\nSELECT Phone\nFROM schools\nJOIN satscores ON schools.CDSCode = satscores.cds\nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.8968851566314697,
+        "input_tokens": 1314,
+        "output_tokens": 28
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool,\n           NumGE1500,\n           NumTstTakr,\n           (CAST(NumGE1500 AS REAL) / NumTstTakr) AS ExcellenceRate\n    FROM satscores\n) sat ON s.NCESSchool = sat.NCESSchool\nORDER BY sat.ExcellenceRate DESC\nLIMIT 3;\n```",
+    "sql": "```sql\nSELECT Phone \nFROM schools \nJOIN satscores ON schools.CDSCode = satscores.cds \nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC \nLIMIT 3;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "13_cand_2",
     "question_id": 13,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: NCESSchool",
-      "runtime_sec": 0.0034198760986328125,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.03670930862426758,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(714) 220-3055"
+        ],
+        [
+          "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool,\n           NumGE1500,\n           NumTstTakr,\n           (CAST(NumGE1500 AS REAL) / NumTstTakr) AS ExcellenceRate\n    FROM satscores\n) sat ON s.NCESSchool = sat.NCESSchool\nORDER BY sat.ExcellenceRate DESC\nLIMIT 3;",
-        "error": "no such column: NCESSchool",
+        "original_sql": "SELECT Phone \nFROM schools \nORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \nLIMIT 3;",
+        "error": "no such column: NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool,\n           NumGE1500,\n           NumTstTakr,\n           (CAST(NumGE1500 AS REAL) / NumTstTakr) AS ExcellenceRate\n    FROM satscores\n) sat ON s.NCESSchool = sat.NCESSchool\nORDER BY sat.ExcellenceRate DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 2.9946343898773193,
-        "input_tokens": 1335,
-        "output_tokens": 44
+        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC \nLIMIT 3;\n```",
+        "repair_time_sec": 1.5055222511291504,
+        "input_tokens": 1311,
+        "output_tokens": 20
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool,\n           NumGE1500,\n           NumTstTakr,\n           (CAST(NumGE1500 AS REAL) / NumTstTakr) AS ExcellenceRate\n    FROM satscores\n) sat ON s.NCESSchool = sat.NCESSchool\nORDER BY sat.ExcellenceRate DESC\nLIMIT 3;\n```",
-        "error": "no such column: NCESSchool",
+        "original_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC \nLIMIT 3;\n```",
+        "error": "no such column: satscores.NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT NCESSchool,\n           NumGE1500,\n           NumTstTakr,\n           (CAST(NumGE1500 AS REAL) / NumTstTakr) AS ExcellenceRate\n    FROM satscores\n) sat ON s.NCESSchool = sat.NCESSchool\nORDER BY sat.ExcellenceRate DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 2.9889509677886963,
-        "input_tokens": 1337,
-        "output_tokens": 44
+        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nJOIN satscores ON schools.CDSCode = satscores.cds \nORDER BY CAST(satscores.NumGE1500 AS REAL) / satscores.NumTstTakr DESC \nLIMIT 3;\n```",
+        "repair_time_sec": 1.897876501083374,
+        "input_tokens": 1314,
+        "output_tokens": 28
       }
     ]
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS sat_excellence_rate\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.sat_excellence_rate DESC\nLIMIT 3;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY cds\n) sat ON s.CDSCode = sat.cds\nORDER BY sat.avg_sat_score DESC\nLIMIT 3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_0",
     "candidate_id": "13_cand_3",
@@ -129,7 +165,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.017946481704711914,
+      "runtime_sec": 0.017541885375976562,
       "row_count": 3,
       "column_count": 1,
       "columns": [
@@ -151,7 +187,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrRead + AvgScrMath + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY cds\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) t ON s.CDSCode = t.cds;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY cds\n) sat ON s.CDSCode = sat.cds\nORDER BY sat.avg_sat_score DESC\nLIMIT 3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_1",
     "candidate_id": "13_cand_4",
@@ -160,8 +196,8 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.008021831512451172,
-      "row_count": 2,
+      "runtime_sec": 0.0164792537689209,
+      "row_count": 3,
       "column_count": 1,
       "columns": [
         "Phone"
@@ -172,6 +208,9 @@
         ],
         [
           "(562) 229-7745"
+        ],
+        [
+          "(408) 366-7600"
         ]
       ],
       "is_empty": false
@@ -179,7 +218,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT \n    s.Phone,\n    AVG(sats.AvgScrMath + sats.AvgScrRead + sats.AvgScrWrite) AS SAT_Excellence_Rate\nFROM \n    satscores sats\nJOIN \n    schools s ON s.CDSCode = sats.cds\nGROUP BY \n    s.CDSCode\nORDER BY \n    SAT_Excellence_Rate DESC\nLIMIT 3;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT cds, AVG(AvgScrRead + AvgScrMath + AvgScrWrite) AS AvgSATScore\n    FROM satscores\n    GROUP BY cds\n) sub ON s.CDSCode = sub.cds\nORDER BY sub.AvgSATScore DESC\nLIMIT 3;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "13_cand_5",
@@ -188,25 +227,21 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.019227981567382812,
+      "runtime_sec": 0.018280506134033203,
       "row_count": 3,
-      "column_count": 2,
+      "column_count": 1,
       "columns": [
-        "Phone",
-        "SAT_Excellence_Rate"
+        "Phone"
       ],
       "sample_rows": [
         [
-          "(408) 366-7700",
-          2001.0
+          "(408) 366-7700"
         ],
         [
-          "(562) 229-7745",
-          1987.0
+          "(562) 229-7745"
         ],
         [
-          "(408) 366-7600",
-          1986.0
+          "(408) 366-7600"
         ]
       ],
       "is_empty": false
@@ -214,7 +249,7 @@
     "repair_history": []
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) ss ON s.CDSCode = ss.CDSCode;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) t ON s.CDSCode = t.CDSCode;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "13_cand_6",
@@ -223,7 +258,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: CDSCode",
-      "runtime_sec": 0.003007173538208008,
+      "runtime_sec": 0.007000446319580078,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -233,28 +268,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) ss ON s.CDSCode = ss.CDSCode;",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) t ON s.CDSCode = t.CDSCode;",
         "error": "no such column: CDSCode",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) ss ON s.CDSCode = ss.CDSCode;\n```",
-        "repair_time_sec": 2.578892230987549,
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) t ON s.CDSCode = t.CDSCode;\n```",
+        "repair_time_sec": 2.409675359725952,
         "input_tokens": 1336,
         "output_tokens": 45
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) ss ON s.CDSCode = ss.CDSCode;\n```",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) t ON s.CDSCode = t.CDSCode;\n```",
         "error": "no such column: CDSCode",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) ss ON s.CDSCode = ss.CDSCode;\n```",
-        "repair_time_sec": 2.5756418704986572,
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY avg_sat_score DESC\n    LIMIT 3\n) t ON s.CDSCode = t.CDSCode;\n```",
+        "repair_time_sec": 2.406005382537842,
         "input_tokens": 1339,
         "output_tokens": 45
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(NumGE1500) AS AvgSATExcellenceRate\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY AvgSATExcellenceRate DESC\n    LIMIT 3\n) f ON s.CDSCode = f.CDSCode;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n) ss ON s.CDSCode = ss.CDSCode\nORDER BY ss.avg_sat_score DESC\nLIMIT 3;\n```",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "13_cand_7",
@@ -263,7 +298,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: CDSCode",
-      "runtime_sec": 0.003044605255126953,
+      "runtime_sec": 0.005118846893310547,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -273,28 +308,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(NumGE1500) AS AvgSATExcellenceRate\n    FROM frpm\n    GROUP BY CDSCode\n    ORDER BY AvgSATExcellenceRate DESC\n    LIMIT 3\n) f ON s.CDSCode = f.CDSCode;",
-        "error": "no such column: NumGE1500",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n) ss ON s.CDSCode = ss.CDSCode\nORDER BY ss.avg_sat_score DESC\nLIMIT 3;",
+        "error": "no such column: CDSCode",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(NumGE1500) AS AvgSATExcellenceRate\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY AvgSATExcellenceRate DESC\n    LIMIT 3\n) f ON s.CDSCode = f.CDSCode;\n```",
-        "repair_time_sec": 2.605919122695923,
-        "input_tokens": 1331,
-        "output_tokens": 40
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n) ss ON s.CDSCode = ss.CDSCode\nORDER BY ss.avg_sat_score DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.379516124725342,
+        "input_tokens": 1336,
+        "output_tokens": 45
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(NumGE1500) AS AvgSATExcellenceRate\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY AvgSATExcellenceRate DESC\n    LIMIT 3\n) f ON s.CDSCode = f.CDSCode;\n```",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n) ss ON s.CDSCode = ss.CDSCode\nORDER BY ss.avg_sat_score DESC\nLIMIT 3;\n```",
         "error": "no such column: CDSCode",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(NumGE1500) AS AvgSATExcellenceRate\n    FROM satscores\n    GROUP BY CDSCode\n    ORDER BY AvgSATExcellenceRate DESC\n    LIMIT 3\n) f ON s.CDSCode = f.CDSCode;\n```",
-        "repair_time_sec": 2.6025712490081787,
-        "input_tokens": 1333,
-        "output_tokens": 40
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN (\n    SELECT CDSCode, AVG(AvgScrMath + AvgScrRead + AvgScrWrite) AS avg_sat_score\n    FROM satscores\n    GROUP BY CDSCode\n) ss ON s.CDSCode = ss.CDSCode\nORDER BY ss.avg_sat_score DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 2.382650852203369,
+        "input_tokens": 1339,
+        "output_tokens": 45
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);\n```",
+    "sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "13_cand_8",
@@ -303,7 +338,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: NumGE1500",
-      "runtime_sec": 0.0030841827392578125,
+      "runtime_sec": 0.004856109619140625,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -313,28 +348,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);",
+        "original_sql": "SELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;",
         "error": "no such column: NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);\n```",
-        "repair_time_sec": 1.9614078998565674,
-        "input_tokens": 1323,
-        "output_tokens": 32
+        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;\n```",
+        "repair_time_sec": 1.4291017055511475,
+        "input_tokens": 1311,
+        "output_tokens": 20
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);\n```",
+        "original_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;\n```",
         "error": "no such column: NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);\n```",
-        "repair_time_sec": 1.9638762474060059,
-        "input_tokens": 1326,
-        "output_tokens": 32
+        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;\n```",
+        "repair_time_sec": 1.4273316860198975,
+        "input_tokens": 1314,
+        "output_tokens": 20
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);\n```",
+    "sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "13_cand_9",
@@ -343,7 +378,7 @@
     "execution_metadata": {
       "success": false,
       "error": "no such column: NumGE1500",
-      "runtime_sec": 0.003330230712890625,
+      "runtime_sec": 0.004622936248779297,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -353,62 +388,65 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);",
+        "original_sql": "SELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;",
         "error": "no such column: NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);\n```",
-        "repair_time_sec": 1.9644019603729248,
-        "input_tokens": 1323,
-        "output_tokens": 32
+        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;\n```",
+        "repair_time_sec": 1.4292521476745605,
+        "input_tokens": 1311,
+        "output_tokens": 20
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);\n```",
+        "original_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;\n```",
         "error": "no such column: NumGE1500",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM schools \n    ORDER BY CAST(NumGE1500 AS REAL) / NumTstTakr DESC \n    LIMIT 3\n);\n```",
-        "repair_time_sec": 1.9647364616394043,
-        "input_tokens": 1326,
-        "output_tokens": 32
+        "fixed_sql": "```sql\nSELECT Phone \nFROM schools \nORDER BY (CAST(NumGE1500 AS REAL) / NumTstTakr) DESC \nLIMIT 3;\n```",
+        "repair_time_sec": 1.4298086166381836,
+        "input_tokens": 1314,
+        "output_tokens": 20
       }
     ]
   },
   {
-    "sql": "SELECT Phone \nFROM schools \nWHERE NCESSchool IN (\n    SELECT NCESSchool \n    FROM satscores \n    GROUP BY NCESSchool \n    ORDER BY SUM(NumGE1500) / SUM(NumTstTakr) DESC \n    LIMIT 3\n);",
+    "sql": "```sql\nSELECT Phone\nFROM schools\nORDER BY (NumGE1500 * 1.0) / NumTstTakr DESC\nLIMIT 3;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "13_cand_10",
     "question_id": 13,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 8.393126487731934,
-      "row_count": 12646,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [
-        [
-          null
-        ],
-        [
-          "(510) 596-8901"
-        ],
-        [
-          null
-        ],
-        [
-          "(510) 686-4131"
-        ],
-        [
-          "(510) 452-2063"
-        ]
-      ],
-      "is_empty": false
+      "success": false,
+      "error": "no such column: NumGE1500",
+      "runtime_sec": 0.0026340484619140625,
+      "row_count": null,
+      "column_count": null,
+      "columns": [],
+      "sample_rows": [],
+      "is_empty": null
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT Phone\nFROM schools\nORDER BY (NumGE1500 * 1.0) / NumTstTakr DESC\nLIMIT 3;",
+        "error": "no such column: NumGE1500",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT Phone\nFROM schools\nORDER BY (NumGE1500 * 1.0) / NumTstTakr DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.4298343658447266,
+        "input_tokens": 1311,
+        "output_tokens": 20
+      },
+      {
+        "round": 2,
+        "original_sql": "```sql\nSELECT Phone\nFROM schools\nORDER BY (NumGE1500 * 1.0) / NumTstTakr DESC\nLIMIT 3;\n```",
+        "error": "no such column: NumGE1500",
+        "diagnosis": "column_missing",
+        "fixed_sql": "```sql\nSELECT Phone\nFROM schools\nORDER BY (NumGE1500 * 1.0) / NumTstTakr DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.4292614459991455,
+        "input_tokens": 1314,
+        "output_tokens": 20
+      }
+    ]
   },
   {
     "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.StatusType = 'Active'\nORDER BY (ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) / 3 DESC\nLIMIT 3;",
@@ -420,7 +458,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03185558319091797,
+      "runtime_sec": 0.028052091598510742,
       "row_count": 3,
       "column_count": 1,
       "columns": [
@@ -442,7 +480,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.NCESSchool, s.Phone\nORDER BY AVG(ss.NumGE1500) DESC\nLIMIT 3;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nORDER BY (ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) / 3 DESC\nLIMIT 3;",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "13_cand_12",
@@ -451,38 +489,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02494525909423828,
-      "row_count": 3,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [
-        [
-          "(213) 241-1000"
-        ],
-        [
-          "(619) 725-8000"
-        ],
-        [
-          "(408) 522-2200"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;\n```",
-    "source": "join_focused_generator",
-    "prompt_id": "join_focused_v1_2",
-    "candidate_id": "13_cand_13",
-    "question_id": 13,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.025949716567993164,
+      "runtime_sec": 0.021563053131103516,
       "row_count": 3,
       "column_count": 1,
       "columns": [
@@ -501,21 +508,52 @@
       ],
       "is_empty": false
     },
+    "repair_history": []
+  },
+  {
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nGROUP BY s.School\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;\n```",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_2",
+    "candidate_id": "13_cand_13",
+    "question_id": 13,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.039544105529785156,
+      "row_count": 3,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(510) 657-3600"
+        ],
+        [
+          "(408) 366-7700"
+        ],
+        [
+          "(562) 229-7745"
+        ]
+      ],
+      "is_empty": false
+    },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;",
         "error": "misuse of aggregate: AVG()",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 2.2494325637817383,
-        "input_tokens": 1327,
-        "output_tokens": 40
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nGROUP BY s.School\nORDER BY AVG(ss.AvgScrMath + ss.AvgScrRead + ss.AvgScrWrite) DESC\nLIMIT 3;\n```",
+        "repair_time_sec": 1.9378116130828857,
+        "input_tokens": 1322,
+        "output_tokens": 35
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nORDER BY f.`Percent (%) Eligible FRPM (K-12)` DESC\nLIMIT 3;\n```",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`Percent (%) Eligible Free (K-12)` IS NOT NULL\nORDER BY f.`Percent (%) Eligible Free (K-12)` DESC\nLIMIT 3;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "13_cand_14",
@@ -524,7 +562,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02462029457092285,
+      "runtime_sec": 0.03058767318725586,
       "row_count": 3,
       "column_count": 1,
       "columns": [
@@ -532,38 +570,17 @@
       ],
       "sample_rows": [
         [
-          "(323) 443-3100"
+          "(510) 531-6800"
         ],
         [
-          "(559) 877-4440"
+          "(530) 694-9423"
         ],
         [
-          "(209) 878-3028"
+          "(530) 532-5688"
         ]
       ],
       "is_empty": false
     },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School Type = 'High Schools (Public)'\nORDER BY f.Percent (%) Eligible FRPM DESC\nLIMIT 3;",
-        "error": "near \"Type\": syntax error",
-        "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nORDER BY f.`Percent (%) Eligible FRPM` DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 2.0137603282928467,
-        "input_tokens": 1329,
-        "output_tokens": 39
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nORDER BY f.`Percent (%) Eligible FRPM` DESC\nLIMIT 3;\n```",
-        "error": "no such column: f.Percent (%) Eligible FRPM",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.`School Type` = 'High Schools (Public)'\nORDER BY f.`Percent (%) Eligible FRPM (K-12)` DESC\nLIMIT 3;\n```",
-        "repair_time_sec": 2.1536567211151123,
-        "input_tokens": 1336,
-        "output_tokens": 40
-      }
-    ]
+    "repair_history": []
   }
 ]

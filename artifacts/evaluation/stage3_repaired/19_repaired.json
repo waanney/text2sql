@@ -1,6 +1,6 @@
 [
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_0",
     "candidate_id": "19_cand_0",
@@ -9,7 +9,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.03251814842224121,
+      "runtime_sec": 0.029543161392211914,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -17,7 +17,7 @@
       ],
       "sample_rows": [
         [
-          "(510) 657-3600"
+          "(831) 479-7785"
         ]
       ],
       "is_empty": false
@@ -25,7 +25,7 @@
     "repair_history": []
   },
   {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "19_cand_1",
@@ -34,7 +34,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.027538299560546875,
+      "runtime_sec": 0.0371851921081543,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -42,141 +42,35 @@
       ],
       "sample_rows": [
         [
-          "(510) 657-3600"
+          "(831) 479-7785"
         ]
       ],
       "is_empty": false
     },
-    "repair_history": []
+    "repair_history": [
+      {
+        "round": 1,
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.Charter School Number\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.[Charter School (Y/N)] = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+        "error": "near \"School\": syntax error",
+        "diagnosis": "syntax_error",
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.385669469833374,
+        "input_tokens": 1340,
+        "output_tokens": 49
+      }
+    ]
   },
   {
-    "sql": "SELECT \n    s.Phone\nFROM \n    schools s\nJOIN \n    frpm f ON s.CDSCode = f.CDSCode\nJOIN \n    satscores sa ON s.School = sa.sname\nGROUP BY \n    s.School, s.Phone\nORDER BY \n    AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School_Type LIKE '%School%'\nAND f.Charter_School_ = 1\nGROUP BY s.School\nORDER BY AVG(f.AvgScrMath) DESC\nLIMIT 1;\n```",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "19_cand_2",
     "question_id": 19,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.027615070343017578,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [
-        [
-          "(510) 657-3600"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nORDER BY sa.AvgScrMath DESC\nLIMIT 1;",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_0",
-    "candidate_id": "19_cand_3",
-    "question_id": 19,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.024086475372314453,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [
-        [
-          "(408) 366-7700"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nWHERE s.CDSCode IS NOT NULL AND sat.cds IS NOT NULL\nORDER BY sat.AvgScrMath DESC\nLIMIT 1;\n```",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_1",
-    "candidate_id": "19_cand_4",
-    "question_id": 19,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.009727001190185547,
-      "row_count": 0,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [],
-      "is_empty": true
-    },
-    "repair_history": [
-      {
-        "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 2)\nORDER BY sat.AvgScrMath DESC\nLIMIT 1;",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nORDER BY sat.AvgScrMath DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.673888921737671,
-        "input_tokens": 1339,
-        "output_tokens": 27
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nORDER BY sat.AvgScrMath DESC\nLIMIT 1;\n```",
-        "error": "Query executed successfully, but returned 0 rows (empty result). Please check table JOIN conditions, filter column values, and comparison operators.",
-        "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = SUBSTR(sat.cds, 3)\nWHERE s.CDSCode IS NOT NULL AND sat.cds IS NOT NULL\nORDER BY sat.AvgScrMath DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.062228202819824,
-        "input_tokens": 1341,
-        "output_tokens": 40
-      }
-    ]
-  },
-  {
-    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sat ON s.CDSCode = sat.cds\nORDER BY sat.AvgScrMath DESC\nLIMIT 1;",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "19_cand_5",
-    "question_id": 19,
-    "db_id": "california_schools",
-    "execution_metadata": {
-      "success": true,
-      "error": null,
-      "runtime_sec": 0.025534391403198242,
-      "row_count": 1,
-      "column_count": 1,
-      "columns": [
-        "Phone"
-      ],
-      "sample_rows": [
-        [
-          "(408) 366-7700"
-        ]
-      ],
-      "is_empty": false
-    },
-    "repair_history": []
-  },
-  {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-    "source": "metadata_constrained_generator",
-    "prompt_id": "metadata_constrained_v1_0",
-    "candidate_id": "19_cand_6",
-    "question_id": 19,
-    "db_id": "california_schools",
-    "execution_metadata": {
       "success": false,
-      "error": "no such column: f.SchoolCode",
-      "runtime_sec": 0.003213644027709961,
+      "error": "no such column: f.School_Type",
+      "runtime_sec": 0.002662181854248047,
       "row_count": null,
       "column_count": null,
       "columns": [],
@@ -186,25 +80,125 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.School Code = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
-        "error": "near \"Code\": syntax error",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School_Type LIKE '%School%'\nAND f.Charter_School_(Y/N) = 1\nGROUP BY s.School\nORDER BY AVG(f.AvgScrMath) DESC\nLIMIT 1;",
+        "error": "near \"(\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.1663618087768555,
-        "input_tokens": 1332,
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School_Type LIKE '%School%'\nAND f.Charter_School_ = 1\nGROUP BY s.School\nORDER BY AVG(f.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.1715493202209473,
+        "input_tokens": 1331,
         "output_tokens": 40
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "error": "no such column: f.SchoolCode",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School_Type LIKE '%School%'\nAND f.Charter_School_ = 1\nGROUP BY s.School\nORDER BY AVG(f.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "error": "no such column: f.School_Type",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON f.SchoolCode = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.1706340312957764,
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nWHERE f.School_Type LIKE '%School%'\nAND f.Charter_School_ = 1\nGROUP BY s.School\nORDER BY AVG(f.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.16182279586792,
         "input_tokens": 1333,
         "output_tokens": 40
       }
     ]
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_0",
+    "candidate_id": "19_cand_3",
+    "question_id": 19,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.02339768409729004,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores sa ON s.CDSCode = sa.cds\nORDER BY sa.AvgScrMath DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_1",
+    "candidate_id": "19_cand_4",
+    "question_id": 19,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.021572113037109375,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT T2.Phone\nFROM satscores AS T1\nJOIN schools AS T2 ON T1.cds = T2.CDSCode\nORDER BY T1.AvgScrMath DESC\nLIMIT 1;",
+    "source": "icl_generator",
+    "prompt_id": "icl_v1_temp_2",
+    "candidate_id": "19_cand_5",
+    "question_id": 19,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.017438411712646484,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(408) 366-7700"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
+  },
+  {
+    "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+    "source": "metadata_constrained_generator",
+    "prompt_id": "metadata_constrained_v1_0",
+    "candidate_id": "19_cand_6",
+    "question_id": 19,
+    "db_id": "california_schools",
+    "execution_metadata": {
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.0314028263092041,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(510) 657-3600"
+        ]
+      ],
+      "is_empty": false
+    },
+    "repair_history": []
   },
   {
     "sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CDSCode = f.CDSCode\nJOIN satscores sa ON s.School = sa.sname\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
@@ -216,7 +210,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.029813051223754883,
+      "runtime_sec": 0.028146028518676758,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -241,7 +235,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.0259091854095459,
+      "runtime_sec": 0.02489614486694336,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -261,7 +255,7 @@
         "error": "misuse of aggregate: AVG()",
         "diagnosis": "unknown_execution_error",
         "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.072495698928833,
+        "repair_time_sec": 2.0137269496917725,
         "input_tokens": 1331,
         "output_tokens": 44
       }
@@ -277,7 +271,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02482128143310547,
+      "runtime_sec": 0.025821685791015625,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -297,14 +291,14 @@
         "error": "misuse of aggregate: AVG()",
         "diagnosis": "unknown_execution_error",
         "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0731990337371826,
+        "repair_time_sec": 2.014573574066162,
         "input_tokens": 1331,
         "output_tokens": 44
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nGROUP BY s.School\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname AND s.District = ss.dname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;\n```",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "19_cand_10",
@@ -313,7 +307,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.02663898468017578,
+      "runtime_sec": 0.023586511611938477,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -329,18 +323,18 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname AND s.District = ss.dname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;",
         "error": "misuse of aggregate: AVG()",
         "diagnosis": "unknown_execution_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nGROUP BY s.School\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0908126831054688,
-        "input_tokens": 1331,
-        "output_tokens": 44
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN satscores ss ON s.School = ss.sname AND s.District = ss.dname\nWHERE s.District = 'SBE - The School of Arts and Enterprise'\nGROUP BY s.Phone\nORDER BY AVG(ss.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.211273193359375,
+        "input_tokens": 1336,
+        "output_tokens": 49
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_0",
     "candidate_id": "19_cand_11",
@@ -349,7 +343,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020795345306396484,
+      "runtime_sec": 0.038855552673339844,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -357,7 +351,7 @@
       ],
       "sample_rows": [
         [
-          "(408) 366-7700"
+          "(831) 479-7785"
         ]
       ],
       "is_empty": false
@@ -365,28 +359,28 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School Code = sa.cds\nJOIN schools s ON f.School Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School Code = sa.cds\nJOIN schools s ON f.School Code = s.CDSCode\nWHERE f.[Charter School (Y/N)] = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
         "error": "near \"Code\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.0773375034332275,
-        "input_tokens": 1332,
-        "output_tokens": 39
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3620803356170654,
+        "input_tokens": 1340,
+        "output_tokens": 46
       },
       {
         "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
         "error": "no such column: f.School_Code",
         "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.071855306625366,
-        "input_tokens": 1332,
-        "output_tokens": 39
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.357984781265259,
+        "input_tokens": 1340,
+        "output_tokens": 46
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_1",
     "candidate_id": "19_cand_12",
@@ -395,7 +389,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.020209074020385742,
+      "runtime_sec": 0.03825068473815918,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -403,7 +397,7 @@
       ],
       "sample_rows": [
         [
-          "(408) 366-7700"
+          "(831) 479-7785"
         ]
       ],
       "is_empty": false
@@ -411,63 +405,49 @@
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School Code = sa.cds\nJOIN schools s ON f.School Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
-        "error": "near \"Code\": syntax error",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.Charter School Number\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+        "error": "near \"School\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.073075771331787,
-        "input_tokens": 1332,
-        "output_tokens": 39
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.School_Code = sa.cds\nJOIN schools s ON f.School_Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "error": "no such column: f.School_Code",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sa ON f.CDSCode = sa.cds\nJOIN schools s ON f.CDSCode = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 2.062396287918091,
-        "input_tokens": 1332,
-        "output_tokens": 39
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.School, s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.4783804416656494,
+        "input_tokens": 1341,
+        "output_tokens": 50
       }
     ]
   },
   {
-    "sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sats.AvgScrMath) DESC\nLIMIT 1;\n```",
+    "sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
     "source": "join_focused_generator",
     "prompt_id": "join_focused_v1_2",
     "candidate_id": "19_cand_13",
     "question_id": 19,
     "db_id": "california_schools",
     "execution_metadata": {
-      "success": false,
-      "error": "no such column: f.School_Code",
-      "runtime_sec": 0.0033354759216308594,
-      "row_count": null,
-      "column_count": null,
-      "columns": [],
-      "sample_rows": [],
-      "is_empty": null
+      "success": true,
+      "error": null,
+      "runtime_sec": 0.037731170654296875,
+      "row_count": 1,
+      "column_count": 1,
+      "columns": [
+        "Phone"
+      ],
+      "sample_rows": [
+        [
+          "(831) 479-7785"
+        ]
+      ],
+      "is_empty": false
     },
     "repair_history": [
       {
         "round": 1,
-        "original_sql": "SELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School Code = s.cds\nGROUP BY s.Phone\nORDER BY AVG(sats.AvgScrMath) DESC\nLIMIT 1;",
-        "error": "near \"Code\": syntax error",
+        "original_sql": "SELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.Charter School Number\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;",
+        "error": "near \"School\": syntax error",
         "diagnosis": "syntax_error",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nGROUP BY s.Phone\nORDER BY AVG(sats.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7642920017242432,
-        "input_tokens": 1322,
-        "output_tokens": 29
-      },
-      {
-        "round": 2,
-        "original_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN satscores sats ON f.School_Code = s.cds\nGROUP BY s.Phone\nORDER BY AVG(sats.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "error": "no such column: s.Phone",
-        "diagnosis": "column_missing",
-        "fixed_sql": "```sql\nSELECT s.Phone\nFROM frpm f\nJOIN schools s ON f.School_Code = s.CDSCode\nGROUP BY s.Phone\nORDER BY AVG(sats.AvgScrMath) DESC\nLIMIT 1;\n```",
-        "repair_time_sec": 1.7187767028808594,
-        "input_tokens": 1323,
-        "output_tokens": 29
+        "fixed_sql": "```sql\nSELECT s.Phone\nFROM schools s\nJOIN frpm f ON s.CharterNum = f.`Charter School Number`\nJOIN satscores sa ON s.School = sa.sname\nWHERE f.`Charter School (Y/N)` = 1\nGROUP BY s.Phone\nORDER BY AVG(sa.AvgScrMath) DESC\nLIMIT 1;\n```",
+        "repair_time_sec": 2.3863699436187744,
+        "input_tokens": 1340,
+        "output_tokens": 49
       }
     ]
   },
@@ -481,7 +461,7 @@
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.029559850692749023,
+      "runtime_sec": 0.028592586517333984,
       "row_count": 1,
       "column_count": 1,
       "columns": [

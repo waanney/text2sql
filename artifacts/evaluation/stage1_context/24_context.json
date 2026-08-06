@@ -15,7 +15,7 @@
     ],
     "aggregation": null,
     "time_phrases": null,
-    "question_skeleton": "Find the names of schools where the percentage of students eligible for free meals in K-12 is more than 0.1 and the test taker scores are greater than or equal to 1500."
+    "question_skeleton": "What are the names of schools where the percentage of students eligible for free meals in K-12 is greater than 0.1 and the test taker scores are at least 1500?"
   },
   "literals": [
     "School Name"
@@ -24,18 +24,20 @@
   "evidence_constraints": [
     {
       "phrase": "Percent eligible for free meals in K-12 is more than 0.1",
+      "type": "filter",
       "column": "frpm.Percent (%) Eligible Free (K-12)",
       "operator": ">",
-      "value": "0.1",
+      "value": 0.1,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
     },
     {
       "phrase": "test takers whose test score is greater than or equal to 1500",
+      "type": "filter",
       "column": "satscores.NumGE1500",
       "operator": ">=",
-      "value": "1500",
+      "value": 1500,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0

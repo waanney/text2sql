@@ -14,7 +14,7 @@
     "filter_phrases": [],
     "aggregation": "rank",
     "time_phrases": [],
-    "question_skeleton": "List the phone numbers of the schools based on their SAT excellence rate."
+    "question_skeleton": "List the {output_phrase}"
   },
   "literals": [
     "phone numbers",
@@ -41,18 +41,40 @@
     },
     {
       "phrase": "Excellence rate = NumGE1500 / NumTstTakr",
-      "column": "schools.NumGE1500",
-      "operator": "/",
-      "value": "schools.NumTstTakr",
+      "type": "formula",
+      "column": "(NumGE1500 * 1.0) / NumTstTakr",
+      "operator": null,
+      "value": null,
+      "needs_cast": true,
+      "cast_type": "REAL",
+      "confidence": 1.0
+    },
+    {
+      "phrase": "List the phone numbers of the schools with the top 3 SAT excellence rate.",
+      "type": "order_by",
+      "column": "(NumGE1500 * 1.0) / NumTstTakr DESC",
+      "operator": null,
+      "value": null,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
     },
     {
-      "phrase": "List the phone numbers of the schools with the top 3 SAT excellence rate.",
-      "column": "schools.Phone",
-      "operator": "IN",
-      "value": "(SELECT NCESSchool FROM schools ORDER BY NumGE1500 / NumTstTakr DESC LIMIT 3)",
+      "phrase": "Limit the result to the top 3 schools.",
+      "type": "limit",
+      "column": null,
+      "operator": null,
+      "value": 3,
+      "needs_cast": false,
+      "cast_type": null,
+      "confidence": 1.0
+    },
+    {
+      "phrase": "Select the phone numbers of the schools.",
+      "type": "select",
+      "column": "Phone",
+      "operator": null,
+      "value": null,
       "needs_cast": false,
       "cast_type": null,
       "confidence": 1.0
@@ -522,6 +544,6 @@
   "confidence": {
     "schema_linking": 0.10978487161693269,
     "literal_mapping": 0.0,
-    "evidence_parsing": 0.3333333333333333
+    "evidence_parsing": 0.5
   }
 }

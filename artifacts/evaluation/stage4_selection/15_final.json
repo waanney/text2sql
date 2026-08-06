@@ -2,15 +2,19 @@
   "question_id": 15,
   "db_id": "california_schools",
   "final_sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
-  "best_candidate_id": "15_cand_8",
+  "best_candidate_id": "15_cand_1",
   "ranked_candidates": [
     [
-      "15_cand_8",
+      "15_cand_1",
       2.4000000000000004
     ],
     [
-      "15_cand_9",
-      1.6
+      "15_cand_4",
+      2.4000000000000004
+    ],
+    [
+      "15_cand_8",
+      2.4000000000000004
     ],
     [
       "15_cand_14",
@@ -23,29 +27,22 @@
   ],
   "comparison_logs": [
     {
-      "candidate_a": "15_cand_8",
-      "candidate_b": "15_cand_6",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "15_cand_8",
-      "candidate_b": "15_cand_9",
-      "winner": "A",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "15_cand_8",
-      "candidate_b": "15_cand_14",
-      "winner": "A",
+      "candidate_a": "15_cand_6",
+      "candidate_b": "15_cand_1",
+      "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "15_cand_6",
-      "candidate_b": "15_cand_9",
+      "candidate_b": "15_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "15_cand_6",
+      "candidate_b": "15_cand_8",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
@@ -58,7 +55,42 @@
       "probs": null
     },
     {
-      "candidate_a": "15_cand_9",
+      "candidate_a": "15_cand_1",
+      "candidate_b": "15_cand_4",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "15_cand_1",
+      "candidate_b": "15_cand_8",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "15_cand_1",
+      "candidate_b": "15_cand_14",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "15_cand_4",
+      "candidate_b": "15_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "15_cand_4",
+      "candidate_b": "15_cand_14",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "15_cand_8",
       "candidate_b": "15_cand_14",
       "winner": "A",
       "confidence": 0.8,
@@ -67,15 +99,15 @@
   ],
   "selected_candidate": {
     "sql": "SELECT s.District, AVG(ss.AvgScrRead) AS AvgReadingScore\nFROM schools s\nJOIN satscores ss ON s.CDSCode = ss.cds\nWHERE s.StatusType = 'Active'\nGROUP BY s.District\nORDER BY AvgReadingScore DESC\nLIMIT 1;",
-    "source": "evidence_focused_generator",
-    "prompt_id": "evidence_focused_v1_0",
-    "candidate_id": "15_cand_8",
+    "source": "reasoning_generator",
+    "prompt_id": "reasoning_v1_temp_1",
+    "candidate_id": "15_cand_1",
     "question_id": 15,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.025428295135498047,
+      "runtime_sec": 0.022251605987548828,
       "row_count": 1,
       "column_count": 2,
       "columns": [
@@ -93,5 +125,5 @@
     "repair_history": []
   },
   "num_original_candidates": 15,
-  "num_representatives": 4
+  "num_representatives": 5
 }

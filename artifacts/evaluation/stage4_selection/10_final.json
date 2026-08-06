@@ -1,15 +1,15 @@
 {
   "question_id": 10,
   "db_id": "california_schools",
-  "final_sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = REPLACE(satscores.cds, ' ', '')\nWHERE satscores.rtype = 'D'\nORDER BY satscores.AvgScrRead DESC\nLIMIT 1;",
-  "best_candidate_id": "10_cand_5",
+  "final_sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.[Charter School (Y/N)] = 1\nGROUP BY frpm.[Charter School Number]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
+  "best_candidate_id": "10_cand_11",
   "ranked_candidates": [
     [
-      "10_cand_5",
+      "10_cand_11",
       3.2
     ],
     [
-      "10_cand_2",
+      "10_cand_8",
       2.4000000000000004
     ],
     [
@@ -21,47 +21,12 @@
       0.8
     ],
     [
-      "10_cand_0",
+      "10_cand_9",
       0.0
     ]
   ],
   "comparison_logs": [
     {
-      "candidate_a": "10_cand_0",
-      "candidate_b": "10_cand_6",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "10_cand_0",
-      "candidate_b": "10_cand_2",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "10_cand_0",
-      "candidate_b": "10_cand_3",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "10_cand_0",
-      "candidate_b": "10_cand_5",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "10_cand_6",
-      "candidate_b": "10_cand_2",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
       "candidate_a": "10_cand_6",
       "candidate_b": "10_cand_3",
       "winner": "B",
@@ -70,44 +35,79 @@
     },
     {
       "candidate_a": "10_cand_6",
-      "candidate_b": "10_cand_5",
-      "winner": "B",
-      "confidence": 0.8,
-      "probs": null
-    },
-    {
-      "candidate_a": "10_cand_2",
-      "candidate_b": "10_cand_3",
+      "candidate_b": "10_cand_9",
       "winner": "A",
       "confidence": 0.8,
       "probs": null
     },
     {
-      "candidate_a": "10_cand_2",
-      "candidate_b": "10_cand_5",
+      "candidate_a": "10_cand_6",
+      "candidate_b": "10_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_6",
+      "candidate_b": "10_cand_11",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     },
     {
       "candidate_a": "10_cand_3",
-      "candidate_b": "10_cand_5",
+      "candidate_b": "10_cand_9",
+      "winner": "A",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_3",
+      "candidate_b": "10_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_3",
+      "candidate_b": "10_cand_11",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_9",
+      "candidate_b": "10_cand_8",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_9",
+      "candidate_b": "10_cand_11",
+      "winner": "B",
+      "confidence": 0.8,
+      "probs": null
+    },
+    {
+      "candidate_a": "10_cand_8",
+      "candidate_b": "10_cand_11",
       "winner": "B",
       "confidence": 0.8,
       "probs": null
     }
   ],
   "selected_candidate": {
-    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = REPLACE(satscores.cds, ' ', '')\nWHERE satscores.rtype = 'D'\nORDER BY satscores.AvgScrRead DESC\nLIMIT 1;",
-    "source": "icl_generator",
-    "prompt_id": "icl_v1_temp_2",
-    "candidate_id": "10_cand_5",
+    "sql": "SELECT frpm.[FRPM Count (Ages 5-17)]\nFROM frpm\nJOIN satscores ON frpm.CDSCode = satscores.cds\nWHERE frpm.[Charter School (Y/N)] = 1\nGROUP BY frpm.[Charter School Number]\nORDER BY AVG(satscores.AvgScrRead) DESC\nLIMIT 1;",
+    "source": "join_focused_generator",
+    "prompt_id": "join_focused_v1_0",
+    "candidate_id": "10_cand_11",
     "question_id": 10,
     "db_id": "california_schools",
     "execution_metadata": {
       "success": true,
       "error": null,
-      "runtime_sec": 0.00928950309753418,
+      "runtime_sec": 0.012263774871826172,
       "row_count": 1,
       "column_count": 1,
       "columns": [
@@ -115,7 +115,7 @@
       ],
       "sample_rows": [
         [
-          3.0
+          20.0
         ]
       ],
       "is_empty": false

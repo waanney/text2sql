@@ -8,7 +8,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm f\nJOIN schools s ON f.CDSCode = s.CDSCode\nWHERE s.City = 'Los Angeles'\n  AND f.Free_Meal_Count_K_12 > 500\n  AND f.Free_Meal_Count_K_12 < 700;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_1",
     "candidate_id": "21_cand_1",
@@ -16,7 +16,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE frpm.FreeMealCount_K_12 > 500 AND frpm.FreeMealCount_K_12 < 700;",
     "source": "reasoning_generator",
     "prompt_id": "reasoning_v1_temp_2",
     "candidate_id": "21_cand_2",
@@ -40,7 +40,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nWHERE County Name = 'Los Angeles'\n  AND `Free Meal Count (K-12)` > 500\n  AND `FRPM Count (K-12)` < 700;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles'\nAND frpm.[Free Meal Count (K-12)] > 500\nAND frpm.[Free Meal Count (K-12)] < 700;",
     "source": "icl_generator",
     "prompt_id": "icl_v1_temp_2",
     "candidate_id": "21_cand_5",
@@ -48,7 +48,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.FreeMealCount_K_12 > 500\nAND frpm.FreeMealCount_K_12 < 700;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_0",
     "candidate_id": "21_cand_6",
@@ -56,7 +56,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\nAND frpm.FreeMealCount_K_12 > 500\nAND frpm.FreeMealCount_K_12 < 700;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.City = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
     "source": "metadata_constrained_generator",
     "prompt_id": "metadata_constrained_v1_1",
     "candidate_id": "21_cand_7",
@@ -64,7 +64,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School\nWHERE schools.County = 'Los Angeles'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
+    "sql": "SELECT COUNT(*) \nFROM frpm \nWHERE District = 'California Advancing Pathways for Students in Los Angeles County ROC/P' \n  AND Free_Meal_Count_K_12 > 500 \n  AND Free_Meal_Count_K_12 < 700;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_0",
     "candidate_id": "21_cand_8",
@@ -72,7 +72,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
+    "sql": "SELECT COUNT(*) \nFROM frpm \nWHERE District = 'California Advancing Pathways for Students in Los Angeles County ROC/P' \nAND Free_Meal_Count_K_12 > 500 \nAND Free_Meal_Count_K_12 < 700;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_1",
     "candidate_id": "21_cand_9",
@@ -80,7 +80,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.School = schools.School AND frpm.County = schools.County\nWHERE schools.District = 'California Advancing Pathways for Students in Los Angeles County'\n  AND frpm.Free_Meal_Count_K_12 > 500\n  AND frpm.Free_Meal_Count_K_12 < 700;",
+    "sql": "SELECT COUNT(*) \nFROM frpm \nWHERE District = 'Los Angeles' \n  AND Free_Meal_Count_K_12 > 500 \n  AND Free_Meal_Count_K_12 < 700;",
     "source": "evidence_focused_generator",
     "prompt_id": "evidence_focused_v1_2",
     "candidate_id": "21_cand_10",
@@ -112,7 +112,7 @@
     "db_id": "california_schools"
   },
   {
-    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles' \n  AND frpm.Free_Meal_Count_K_12 > 500 \n  AND frpm.Free_Meal_Count_K_12 < 700;",
+    "sql": "SELECT COUNT(*)\nFROM frpm\nJOIN schools ON frpm.CDSCode = schools.CDSCode\nWHERE schools.County = 'Los Angeles'\nAND frpm.Free_Meal_Count_K_12 > 500\nAND frpm.Free_Meal_Count_K_12 < 700;",
     "source": "simple_generator",
     "prompt_id": "simple_v1",
     "candidate_id": "21_cand_14",
